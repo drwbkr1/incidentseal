@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "INCIDENTSEAL-CONTROL-001",
+  "project": {
+    "name": "IncidentSeal",
+    "canonical_root": ".",
+    "repository_identity": {
+      "expected_remote": "https://github.com/drwbkr1/incidentseal.git",
+      "default_branch": "main"
+    },
+    "custody_roots": [
+      "C:\\Projects\\Active\\incidentseal"
+    ],
+    "forbidden_roots": [
+      "C:\\Users\\drewb\\OneDrive"
+    ]
+  },
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_action_classes": [
+      "read_only_inspection",
+      "deterministic_validation",
+      "metadata_capture",
+      "routine_qa",
+      "evidence_recording",
+      "project_control",
+      "update_project_records",
+      "reversible_remediation",
+      "repository_bootstrap",
+      "source_gate",
+      "dependency_management",
+      "version_control_write",
+      "external_repository_create",
+      "git_push",
+      "container_image_publication",
+      "release_publication",
+      "release_verification"
+    ],
+    "verified_at_utc": "2026-08-09T05:13:18Z",
+    "expires_at_utc": null
+  },
+  "control_surfaces": {
+    "instructions": [
+      "AGENTS.md"
+    ],
+    "status": "docs/status.md",
+    "roadmap": "docs/roadmap.md",
+    "active_contract": "contracts/IS-0001.json",
+    "evidence_ledger": "records/evidence-ledger.jsonl",
+    "history": [
+      "records/approvals/2026-08-09-project-approval.md",
+      "docs/devlog.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "cycle": {
+    "canonical_probe": {
+      "procedure_ref": "command:powershell -NoProfile -File scripts/probe.ps1",
+      "surface_id": "project-control"
+    },
+    "priority_ref": "docs/roadmap.md"
+  },
+  "evaluation": {
+    "procedure_ref": "docs/evaluation-plan.md",
+    "evidence_roots": [
+      "records/evaluations",
+      "records/surface-receipts"
+    ]
+  },
+  "real_surfaces": [
+    {
+      "id": "project-control",
+      "risk_classes": ["documentation", "security"],
+      "procedure_ref": "command:powershell -NoProfile -File scripts/probe.ps1",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "host-cli",
+      "risk_classes": ["runtime", "package", "security"],
+      "procedure_ref": "command:incidentseal doctor --json",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "compose-topology",
+      "risk_classes": ["runtime", "security"],
+      "procedure_ref": "command:incidentseal verify compose --json",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "postgresql",
+      "risk_classes": ["runtime", "data", "security"],
+      "procedure_ref": "command:incidentseal verify database --json",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "python-runner",
+      "risk_classes": ["runtime", "security"],
+      "procedure_ref": "command:incidentseal verify runner python --json",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "node-runner",
+      "risk_classes": ["runtime", "security"],
+      "procedure_ref": "command:incidentseal verify runner node --json",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "dashboard",
+      "risk_classes": ["runtime", "public"],
+      "procedure_ref": "command:incidentseal verify dashboard --json",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "receipts-recovery",
+      "risk_classes": ["data", "security"],
+      "procedure_ref": "command:incidentseal verify receipts --json",
+      "receipt_root": "records/surface-receipts",
+      "external": false
+    },
+    {
+      "id": "clean-clone",
+      "risk_classes": ["runtime", "package", "external"],
+      "procedure_ref": "command:incidentseal verify clean-clone --json",
+      "receipt_root": "records/surface-receipts",
+      "external": true
+    },
+    {
+      "id": "github-ghcr-release",
+      "risk_classes": ["package", "public", "security", "external"],
+      "procedure_ref": "command:incidentseal verify release --json",
+      "receipt_root": "records/surface-receipts",
+      "external": true
+    }
+  ],
+  "gate_policy": {
+    "default_human_action_classes": [
+      "normative_decision",
+      "credential_or_identity",
+      "terms_acceptance",
+      "spending",
+      "irreversible_external_action",
+      "authority_broadening"
+    ],
+    "default_non_human_action_classes": [
+      "read_only_inspection",
+      "deterministic_validation",
+      "metadata_capture",
+      "routine_qa",
+      "evidence_recording",
+      "project_control",
+      "update_project_records",
+      "reversible_remediation",
+      "repository_bootstrap",
+      "source_gate",
+      "dependency_management",
+      "version_control_write",
+      "external_repository_create",
+      "git_push",
+      "container_image_publication",
+      "release_publication",
+      "release_verification"
+    ],
+    "explicit_human_gates": [
+      {
+        "unit_id": "CORE-PROMISE-CHANGE",
+        "reason": "Changing the product promise or trust boundary is a normative decision.",
+        "authority_ref": "INCIDENTSEAL-PRODUCT-001#change-gate"
+      },
+      {
+        "unit_id": "SECURITY-GATE-WEAKENING",
+        "reason": "Weakening an explicit security or evidence gate requires owner approval.",
+        "authority_ref": "INCIDENTSEAL-PRODUCT-001#change-gate"
+      },
+      {
+        "unit_id": "ACCESS-OWNERSHIP-CHANGE",
+        "reason": "Access and ownership changes remain human-controlled.",
+        "authority_ref": "INCIDENTSEAL-PRODUCT-001#change-gate"
+      }
+    ],
+    "amendment_required_to_change_active_gate": true
+  },
+  "current_checkpoint": {
+    "checkpoint_id": "IS-0001",
+    "expected_branch": "main",
+    "expected_head": null,
+    "next_action": "Complete the exact-image source gate without using an ungated candidate"
+  }
+}

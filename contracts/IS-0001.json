@@ -1,0 +1,317 @@
+{
+  "schema_version": "1.0",
+  "milestone_id": "IS-0001",
+  "project_profile_ref": "control/project-control.json",
+  "status": "active",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_action_classes": [
+      "repository_bootstrap",
+      "project_control",
+      "update_project_records",
+      "metadata_capture",
+      "source_gate",
+      "deterministic_validation",
+      "version_control_write",
+      "external_repository_create",
+      "git_push"
+    ],
+    "user_instruction": "Create the approved IncidentSeal goal, bootstrap the repository outside OneDrive, and begin with the product contract, threat model, environment inventory, and exact-image source gate.",
+    "repository_controls": [
+      "AGENTS.md",
+      "docs/product-contract.md",
+      "control/project-control.json"
+    ],
+    "active_contract": "contracts/IS-0001.json",
+    "verified_at_utc": "2026-08-09T05:13:18Z",
+    "expires_at_utc": null
+  },
+  "scope": {
+    "objective": "Establish the approved IncidentSeal repository, product and security contracts, verified local baseline, exact-image gate, and first public checkpoint without using an ungated image or dependency.",
+    "allowed_paths": [
+      "."
+    ],
+    "forbidden_work": [
+      "Any access to C:\\Users\\drewb\\OneDrive",
+      "Pulling or running a candidate image before its source gate is ready",
+      "Installing a project dependency before its source gate exists",
+      "Implementing application surfaces beyond dependency-free checkpoint controls",
+      "Publishing an unverifiable checkpoint"
+    ],
+    "reversible_actions": [
+      "Create and edit project files",
+      "Run read-only local and remote metadata probes",
+      "Validate records",
+      "Commit the verified checkpoint",
+      "Create the approved public GitHub repository",
+      "Push the verified main branch"
+    ],
+    "stop_conditions": [
+      "A required image criterion fails or remains unknown",
+      "GitHub authentication does not match the approved owner",
+      "A license or terms ambiguity affects planned redistribution",
+      "A project record contradicts the approved product or trust boundary",
+      "Publication cannot be verified"
+    ]
+  },
+  "entry_conditions": [
+    {
+      "id": "ENTRY-APPROVAL",
+      "status": "pass",
+      "evidence": [
+        "records/approvals/2026-08-09-project-approval.md"
+      ]
+    },
+    {
+      "id": "ENTRY-CUSTODY",
+      "status": "pass",
+      "evidence": [
+        "Canonical root is C:\\Projects\\Active\\incidentseal and the Git branch is unborn main"
+      ]
+    }
+  ],
+  "exit_conditions": [
+    {
+      "id": "EXIT-CONTROL",
+      "status": "pass",
+      "evidence": [
+        "records/surface-receipts/IS-0001-control-validation.json"
+      ]
+    },
+    {
+      "id": "EXIT-CONTRACTS",
+      "status": "pass",
+      "evidence": [
+        "docs/product-contract.md",
+        "docs/threat-model.md",
+        "docs/decisions/ADR-0001-host-authority-and-manifest-digest.md"
+      ]
+    },
+    {
+      "id": "EXIT-ENVIRONMENT",
+      "status": "pass",
+      "evidence": [
+        "docs/environment-inventory.md"
+      ]
+    },
+    {
+      "id": "EXIT-IMAGE-GATE",
+      "status": "pass",
+      "evidence": [
+        "records/source-gates/2026-08-09-initial-images.json"
+      ]
+    },
+    {
+      "id": "EXIT-PUBLIC-CHECKPOINT",
+      "status": "pending",
+      "evidence": []
+    }
+  ],
+  "units": [
+    {
+      "id": "IS1-U01",
+      "purpose": "Bootstrap canonical repository custody and the portable project control plane.",
+      "depends_on": [],
+      "action_class": "repository_bootstrap",
+      "human_gate": false,
+      "status": "complete",
+      "inputs": [
+        "Approved project goal",
+        "Canonical root decision"
+      ],
+      "outputs": [
+        "AGENTS.md",
+        "control/project-control.json",
+        "contracts/IS-0001.json"
+      ],
+      "gates": {
+        "custody": "pass",
+        "onedrive_forbidden": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-CONTROL"],
+        "observed": [],
+        "decision_value": "enables_dependency",
+        "rationale": "Creates the routing and authority surfaces required for later units."
+      },
+      "next_dependency": "IS1-U02"
+    },
+    {
+      "id": "IS1-U02",
+      "purpose": "Freeze the approved product contract and architecture decision.",
+      "depends_on": ["IS1-U01"],
+      "action_class": "update_project_records",
+      "human_gate": false,
+      "status": "complete",
+      "inputs": ["Approved proposal and defaults"],
+      "outputs": [
+        "docs/product-contract.md",
+        "docs/decisions/ADR-0001-host-authority-and-manifest-digest.md"
+      ],
+      "gates": {"approval_trace": "pass"},
+      "disposition": "pass",
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-CONTRACTS"],
+        "observed": ["EXIT-CONTRACTS"],
+        "decision_value": "advances_exit",
+        "rationale": "Converts approved product choices into current repository truth."
+      },
+      "next_dependency": "IS1-U03"
+    },
+    {
+      "id": "IS1-U03",
+      "purpose": "Establish the initial threat model and explicit limitations.",
+      "depends_on": ["IS1-U02"],
+      "action_class": "update_project_records",
+      "human_gate": false,
+      "status": "complete",
+      "inputs": ["INCIDENTSEAL-PRODUCT-001"],
+      "outputs": ["docs/threat-model.md"],
+      "gates": {"trust_boundary_consistency": "pass"},
+      "disposition": "pass",
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-CONTRACTS"],
+        "observed": ["EXIT-CONTRACTS"],
+        "decision_value": "risk_reduction",
+        "rationale": "Defines what IncidentSeal does and does not protect before implementation."
+      },
+      "next_dependency": "IS1-U04"
+    },
+    {
+      "id": "IS1-U04",
+      "purpose": "Record a live, read-only environment inventory from canonical custody.",
+      "depends_on": ["IS1-U03"],
+      "action_class": "metadata_capture",
+      "human_gate": false,
+      "status": "complete",
+      "inputs": ["Local Git, Docker, Python, Node, scanner, and Codex surfaces"],
+      "outputs": ["docs/environment-inventory.md"],
+      "gates": {"live_observation": "pass", "no_candidate_use": "pass"},
+      "disposition": "pass",
+      "retained_failures": [
+        "Direct codex.exe invocation failed with Access is denied"
+      ],
+      "exit_condition_delta": {
+        "expected": ["EXIT-ENVIRONMENT"],
+        "observed": ["EXIT-ENVIRONMENT"],
+        "decision_value": "advances_exit",
+        "rationale": "Supplies current inputs to image and implementation decisions."
+      },
+      "next_dependency": "IS1-U05"
+    },
+    {
+      "id": "IS1-U05",
+      "purpose": "Gate exact PostgreSQL, Python, Node, and Dockerfile frontend image candidates before acquisition or use.",
+      "depends_on": ["IS1-U04"],
+      "action_class": "source_gate",
+      "human_gate": false,
+      "status": "complete",
+      "inputs": ["Live primary publisher and registry metadata"],
+      "outputs": ["records/source-gates/2026-08-09-initial-images.json"],
+      "gates": {
+        "source_gate_schema": "pass",
+        "required_criteria": "pass",
+        "live_evidence_freshness": "pass",
+        "controlled_acquisition_only": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-IMAGE-GATE"],
+        "observed": ["EXIT-IMAGE-GATE"],
+        "decision_value": "advances_exit",
+        "rationale": "All 32 required criteria passed with fresh evidence for exact-digest metadata retention and controlled, non-executing acquisition. Runtime use and redistribution remain outside this gate."
+      },
+      "next_dependency": "IS1-U06"
+    },
+    {
+      "id": "IS1-U06",
+      "purpose": "Validate all checkpoint records and run the canonical probe.",
+      "depends_on": ["IS1-U05"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "complete",
+      "inputs": ["Checkpoint records"],
+      "outputs": ["records/surface-receipts/IS-0001-control-validation.json"],
+      "gates": {
+        "milestone_contract": "pass",
+        "project_control": "pass",
+        "source_gate": "pass",
+        "canonical_probe": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-CONTROL", "EXIT-CONTRACTS", "EXIT-ENVIRONMENT", "EXIT-IMAGE-GATE"],
+        "observed": ["EXIT-CONTROL", "EXIT-CONTRACTS", "EXIT-ENVIRONMENT", "EXIT-IMAGE-GATE"],
+        "decision_value": "advances_exit",
+        "rationale": "All dependency-free checkpoint validators and the canonical probe passed with no errors, warnings, blockers, stale live evidence, or custody mismatch."
+      },
+      "next_dependency": "IS1-U07"
+    },
+    {
+      "id": "IS1-U07",
+      "purpose": "Commit, create, push, and verify the approved public repository checkpoint.",
+      "depends_on": ["IS1-U06"],
+      "action_class": "external_repository_create",
+      "human_gate": false,
+      "status": "ready",
+      "inputs": ["Verified checkpoint tree", "Approved GitHub owner and repository name"],
+      "outputs": ["https://github.com/drwbkr1/incidentseal"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-PUBLIC-CHECKPOINT"],
+        "observed": [],
+        "decision_value": "unknown",
+        "rationale": "Local checkpoint verification passed and released public repository creation and push, subject to live GitHub identity and post-push checks."
+      },
+      "next_dependency": null
+    }
+  ],
+  "path_efficiency": {
+    "max_consecutive_no_progress_units": 2,
+    "review_action_class": "project_control",
+    "review_human_gate": false
+  },
+  "verification": {
+    "changed_risks": [
+      "documentation",
+      "security",
+      "custody",
+      "external source",
+      "public repository"
+    ],
+    "required_checks": [
+      "Project control profile validation with path verification and milestone gate lint",
+      "Milestone contract validation and authorized-unit check",
+      "Source-gate validation",
+      "Canonical probe",
+      "Git diff and repository status inspection",
+      "GitHub authentication and remote identity verification",
+      "Post-push remote branch verification"
+    ],
+    "completed_checks": [
+      "Project control profile validation with path verification and milestone gate lint",
+      "Milestone contract validation and authorized-unit check",
+      "Source-gate validation",
+      "Canonical probe"
+    ]
+  },
+  "handoff": {
+    "current_checkpoint": "IS-0001 active",
+    "next_action": "Execute IS1-U07 GitHub identity check, commit, public repository creation, push, and remote verification",
+    "do_not_carry_forward": [
+      "Do not use OneDrive",
+      "Do not use an image or dependency without a ready source gate",
+      "Do not claim any unimplemented surface exists",
+      "Do not publish if the checkpoint cannot be verified"
+    ]
+  }
+}

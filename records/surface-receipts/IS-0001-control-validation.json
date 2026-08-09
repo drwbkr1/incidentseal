@@ -1,0 +1,52 @@
+{
+  "schema_version": "incidentseal-control-validation/v1",
+  "receipt_id": "IS-RECEIPT-0001",
+  "checkpoint_id": "IS-0001",
+  "unit_id": "IS1-U06",
+  "observed_at_utc": "2026-08-09T05:33:25Z",
+  "disposition": "pass",
+  "environment": {
+    "project_root": "C:/Projects/Active/incidentseal",
+    "branch": "main",
+    "head": null,
+    "docker_server": "29.4.3",
+    "compose": "5.1.3"
+  },
+  "checks": [
+    {
+      "id": "milestone-contract",
+      "status": "PASS",
+      "command": "python validate_milestone.py contracts/IS-0001.json --project-profile control/project-control.json --as-of 2026-08-09T05:33:25Z",
+      "result": "valid=true; authority_active=true; authorized_ready_units=[IS1-U06]; errors=[]; warnings=[]"
+    },
+    {
+      "id": "project-control",
+      "status": "PASS",
+      "command": "python validate_project_control.py control/project-control.json --project-root . --verify-paths --milestone-contract contracts/IS-0001.json --as-of 2026-08-09T05:33:25Z",
+      "result": "valid=true; authority_active=true; errors=[]; warnings=[]; gate_findings=[]"
+    },
+    {
+      "id": "source-gate",
+      "status": "PASS",
+      "command": "python validate_source_gate.py records/source-gates/2026-08-09-initial-images.json --as-of 2026-08-09T05:33:25Z",
+      "result": "valid=true; ready=true; sources=4; criteria=32; live_evidence_items=31; stale_live_evidence_items=0; blockers=[]; warnings=[]"
+    },
+    {
+      "id": "canonical-probe",
+      "status": "PASS",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/probe.ps1",
+      "result": "required_files=PASS; custody=PASS; project_root=C:/Projects/Active/incidentseal; branch=main; head=null"
+    }
+  ],
+  "observed_sha256": [
+    {"path": "AGENTS.md", "sha256": "a9e0e736588a12c6f91a47572a7557f14347acc5229dd115ecdc81cfffe651a2"},
+    {"path": "control/project-control.json", "sha256": "e4477f2d99cd0a5a94b7a62bcf78b24f0d9d2ad467f6eb44ab7c418c6fc67788"},
+    {"path": "contracts/IS-0001.json", "sha256": "ca2dc0602d3647680ed48ad6a7fc8d8986565e16b5bf767eb305172c5bc5e881"},
+    {"path": "docs/product-contract.md", "sha256": "b523d238481adc2695d8c7b6a7954dd112e8a845c06782ee85e050ba54b5d1e5"},
+    {"path": "docs/threat-model.md", "sha256": "b047dc859a1ed12aecbb0412d7f2abf0859a84d9a2f05fd36152dc2c2691b176"},
+    {"path": "docs/environment-inventory.md", "sha256": "738dd401b04a5128b6fb3296a708d8abd1eb3b3535d74314ba3099a5f63ae007"},
+    {"path": "records/source-gates/2026-08-09-initial-images.json", "sha256": "198e5884e0e66002593cd80284d4413ca02d4c2587592a851acd1bfb9bcdc14a"},
+    {"path": "scripts/probe.ps1", "sha256": "a5b67616318ff5fc5e566bdb2fffb5a68c907bf537aa2f06703e4d769d32c47d"}
+  ],
+  "scope_note": "This receipt validates only the dependency-free control/documentation baseline and exact-source decision. It is not evidence for the unimplemented CLI, Compose, database, runners, dashboard, recovery, clean-clone or release surfaces."
+}

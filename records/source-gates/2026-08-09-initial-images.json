@@ -1,0 +1,402 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-001",
+  "assessed_at": "2026-08-09T05:29:06Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "metadata review",
+      "record exact digests",
+      "pull exact digest for controlled inspection"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Select exact linux/amd64 image artifacts for IncidentSeal's PostgreSQL service, Python runner, Node runner and Dockerfile frontend. This gate permits metadata retention and non-executing acquisition for later vulnerability, license and functional inspection; it does not approve runtime use or redistribution.",
+    "planned_actions": [
+      "metadata review",
+      "record exact digests",
+      "pull exact digest for controlled inspection"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "postgres-18.4-bookworm",
+      "name": "Docker Official Image postgres 18.4 bookworm",
+      "locator": "docker.io/library/postgres:18.4-bookworm@sha256:882236b897e39051d2368c5ccc6cda944904723506b2dfc97f2a8f5bc9afa382",
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://hub.docker.com/v2/repositories/library/postgres/tags/18.4-bookworm",
+              "observed_at": "2026-08-09T05:21:32Z",
+              "note": "The public tag record was active, last updated 2026-08-05T07:09:42.262012Z, and resolved to index sha256:882236b897e39051d2368c5ccc6cda944904723506b2dfc97f2a8f5bc9afa382."
+            }
+          ],
+          "note": "The exact versioned tag, OCI index and linux/amd64 child manifest are separately identified."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://hub.docker.com/_/postgres",
+              "observed_at": "2026-08-09T05:26:30Z",
+              "note": "Docker Hub identified this as the PostgreSQL Docker Official Image, maintained by the PostgreSQL Docker Community, with source and issue links."
+            }
+          ],
+          "note": "Publisher authority is supported by Docker Official Image status and a publisher-linked source repository."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect docker.io/library/postgres:18.4-bookworm",
+              "observed_at": "2026-08-09T05:21:45Z",
+              "note": "Manifest, configuration and attestation metadata were readable without credentials. Registry rate limits can still affect later acquisition."
+            }
+          ],
+          "note": "The approved acquisition path is public and credential-free."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://raw.githubusercontent.com/docker-library/postgres/4f9ced003ba58a854656ba150d146243d27ae3ac/LICENSE",
+              "observed_at": "2026-08-09T05:27:14Z",
+              "note": "The image-packaging source uses an MIT-style license permitting use, copying, modification and distribution with notice retention."
+            },
+            {
+              "type": "live",
+              "locator": "https://www.postgresql.org/about/licence/",
+              "observed_at": "2026-08-09T05:27:14Z",
+              "note": "PostgreSQL is available under the PostgreSQL License, with notice retention required."
+            }
+          ],
+          "note": "Controlled acquisition and inspection are permitted. This gate does not approve redistribution; the later release gate must retain notices and reconcile all SBOM component licenses."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect docker.io/library/postgres:18.4-bookworm --format {{json .Provenance}}",
+              "observed_at": "2026-08-09T05:24:22Z",
+              "note": "Registry-attached SLSA metadata named builder https://github.com/docker-library, BuildKit build type, source docker-library/postgres commit 4f9ced003ba58a854656ba150d146243d27ae3ac and five resolved materials."
+            }
+          ],
+          "note": "Provenance is attributable and inspectable, but declares reproducible=false; that limitation is retained for later release evaluation."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect docker.io/library/postgres:18.4-bookworm",
+              "observed_at": "2026-08-09T05:21:45Z",
+              "note": "Index sha256:882236b897e39051d2368c5ccc6cda944904723506b2dfc97f2a8f5bc9afa382 contains linux/amd64 manifest sha256:7e6103cf85f88f7a0eddb3ec0b1ba8940eba098ed118ade25a729ca9daee5568 and its attestation manifest sha256:9cbdc7978e98734299f4ac77c2ce7ccb9f49a27d1e106c4335f64e420ae3c718."
+            }
+          ],
+          "note": "Future pulls and Compose references must use the exact index digest; platform receipts must additionally match the child digest."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect docker.io/library/postgres:18.4-bookworm --format {{json .SBOM}}",
+              "observed_at": "2026-08-09T05:24:22Z",
+              "note": "The linux/amd64 SPDX 2.3 SBOM contained 208 packages; provenance recorded PG_VERSION=18.4-1.pgdg12+1 on Debian bookworm."
+            }
+          ],
+          "note": "The artifact is a plausible PostgreSQL 18.4 baseline for controlled inspection; health, persistence and recovery remain unverified until a later real-surface gate."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "static",
+              "locator": "docs/threat-model.md",
+              "note": "The trust model treats all images as executable third-party input and permits no execution, secrets, host Docker control or broad mount access at this gate."
+            }
+          ],
+          "note": "No sensitive data is involved. Controlled pull is allowed only for later scan and inspection; runtime use remains blocked."
+        }
+      ]
+    },
+    {
+      "source_id": "python-3.12.13-slim-bookworm",
+      "name": "Docker Official Image Python 3.12.13 slim bookworm",
+      "locator": "docker.io/library/python:3.12.13-slim-bookworm@sha256:4766d8b510c428e595d74b9cc5bbb2fae8e26316fffb4adc89908d79aacd58a2",
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "https://hub.docker.com/v2/repositories/library/python/tags/3.12.13-slim-bookworm", "observed_at": "2026-08-09T05:21:32Z", "note": "The active tag, last updated 2026-08-05T08:11:27.317232Z, resolved to index sha256:4766d8b510c428e595d74b9cc5bbb2fae8e26316fffb4adc89908d79aacd58a2."}],
+          "note": "The exact versioned tag, OCI index and linux/amd64 child manifest are separately identified."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "https://hub.docker.com/_/python/", "observed_at": "2026-08-09T05:26:30Z", "note": "Docker Hub identified this as the Python Docker Official Image maintained by the Docker Community and linked its packaging sources."}],
+          "note": "Publisher authority is supported by Docker Official Image status and a publisher-linked source repository."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/python:3.12.13-slim-bookworm", "observed_at": "2026-08-09T05:21:45Z", "note": "Manifest, configuration and attestation metadata were readable without credentials; later anonymous pulls remain subject to registry limits."}],
+          "note": "The approved acquisition path is public and credential-free."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {"type": "live", "locator": "https://raw.githubusercontent.com/docker-library/python/3362634339580d3232e65a66dd5a36c47ae7ff14/LICENSE", "observed_at": "2026-08-09T05:27:14Z", "note": "The image-packaging source uses an MIT-style license with notice retention."},
+            {"type": "live", "locator": "https://docs.python.org/3/license.html", "observed_at": "2026-08-09T05:27:14Z", "note": "Python is licensed under the PSF License Version 2 and includes separately licensed incorporated components."}
+          ],
+          "note": "Controlled acquisition and inspection are permitted. Redistribution requires later SBOM license reconciliation and notice retention."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/python:3.12.13-slim-bookworm --format {{json .Provenance}}", "observed_at": "2026-08-09T05:24:22Z", "note": "Registry-attached SLSA metadata named builder https://github.com/docker-library, BuildKit build type, source docker-library/python commit 3362634339580d3232e65a66dd5a36c47ae7ff14 and five resolved materials."}],
+          "note": "Provenance is attributable and inspectable, but declares reproducible=false; that limitation is retained."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/python:3.12.13-slim-bookworm", "observed_at": "2026-08-09T05:21:45Z", "note": "Index sha256:4766d8b510c428e595d74b9cc5bbb2fae8e26316fffb4adc89908d79aacd58a2 contains linux/amd64 manifest sha256:6e13e65c55e33adf203d77ee371cf8bf5d81bd4902ef07565721f46bf44917af and attestation manifest sha256:1f46863a593e6105c6117e103149dc6396e2e48a2c9971212b760656e0715598."}],
+          "note": "Future acquisition must use the exact index digest and retain the platform child digest."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/python:3.12.13-slim-bookworm --format {{json .SBOM}}", "observed_at": "2026-08-09T05:24:22Z", "note": "The linux/amd64 SPDX 2.3 SBOM contained 153 packages and the source path selected the 3.12 slim-bookworm build."}],
+          "note": "The artifact is a plausible Python 3.12 runner base for controlled inspection; dependency installation and real runner behavior remain unverified."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [{"type": "static", "locator": "docs/threat-model.md", "note": "The trust model permits no execution, credentials, Docker control or broad host mounts during this source gate."}],
+          "note": "No sensitive data is involved. Runtime use remains blocked pending scan and functional verification."
+        }
+      ]
+    },
+    {
+      "source_id": "node-24.19.0-bookworm-slim",
+      "name": "Docker Official Image Node.js 24.19.0 bookworm slim",
+      "locator": "docker.io/library/node:24.19.0-bookworm-slim@sha256:3638d9a6fe4030bd716be989438248074489337ba3275657f93595428be4fc03",
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "https://hub.docker.com/v2/repositories/library/node/tags/24.19.0-bookworm-slim", "observed_at": "2026-08-09T05:21:32Z", "note": "The active tag, last updated 2026-08-05T02:40:20.802182Z, resolved to index sha256:3638d9a6fe4030bd716be989438248074489337ba3275657f93595428be4fc03."}],
+          "note": "The exact versioned tag, OCI index and linux/amd64 child manifest are separately identified."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "https://hub.docker.com/_/node", "observed_at": "2026-08-09T05:26:30Z", "note": "Docker Hub identified this as the Node.js Docker Official Image maintained by the Node.js Docker Team and linked its packaging source."}],
+          "note": "Publisher authority is supported by Docker Official Image status and a publisher-linked source repository."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/node:24.19.0-bookworm-slim", "observed_at": "2026-08-09T05:21:45Z", "note": "Manifest, configuration and attestation metadata were readable without credentials; later anonymous pulls remain subject to registry limits."}],
+          "note": "The approved acquisition path is public and credential-free."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {"type": "live", "locator": "https://raw.githubusercontent.com/nodejs/docker-node/fd1bf45c51970427bc899084b5381f6827722246/LICENSE", "observed_at": "2026-08-09T05:27:14Z", "note": "The Node.js Docker packaging source is MIT licensed with notice retention."},
+            {"type": "live", "locator": "https://raw.githubusercontent.com/nodejs/node/v24.19.0/LICENSE", "observed_at": "2026-08-09T05:27:14Z", "note": "Node.js 24.19.0 is MIT licensed and lists additional licenses for externally maintained components."}
+          ],
+          "note": "Controlled acquisition and inspection are permitted. Redistribution requires later SBOM license reconciliation and notice retention."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/node:24.19.0-bookworm-slim --format {{json .Provenance}}", "observed_at": "2026-08-09T05:24:22Z", "note": "Registry-attached SLSA metadata named builder https://github.com/docker-library, BuildKit build type, source nodejs/docker-node commit fd1bf45c51970427bc899084b5381f6827722246 and five resolved materials."}],
+          "note": "Provenance is attributable and inspectable, but declares reproducible=false; the config annotation is family-level 24-bookworm-slim, so exact identity remains anchored to the tag, index and source revision."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/node:24.19.0-bookworm-slim", "observed_at": "2026-08-09T05:21:45Z", "note": "Index sha256:3638d9a6fe4030bd716be989438248074489337ba3275657f93595428be4fc03 contains linux/amd64 manifest sha256:65932751ed4073ed02f5c04e494e4b2572a891b7dbea0568a863dc80341bf848 and attestation manifest sha256:0ff85b97707fee5db2a0abee72801ef78368432d6213e9e6ed4089a40da70e7b."}],
+          "note": "Future acquisition must use the exact index digest and retain the platform child digest."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/library/node:24.19.0-bookworm-slim --format {{json .SBOM}}", "observed_at": "2026-08-09T05:24:22Z", "note": "The linux/amd64 SPDX 2.3 SBOM contained 274 packages; the exact tag and source identify the 24.19.0 bookworm-slim build."}],
+          "note": "The artifact is a plausible Node.js 24 runner base for controlled inspection; dependency installation and real runner behavior remain unverified."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [{"type": "static", "locator": "docs/threat-model.md", "note": "The trust model permits no execution, credentials, Docker control or broad host mounts during this source gate."}],
+          "note": "No sensitive data is involved. Runtime use remains blocked pending scan and functional verification."
+        }
+      ]
+    },
+    {
+      "source_id": "dockerfile-frontend-1.26.0",
+      "name": "Dockerfile frontend 1.26.0",
+      "locator": "docker.io/docker/dockerfile:1.26.0@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32",
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "https://hub.docker.com/v2/repositories/docker/dockerfile/tags/1.26.0", "observed_at": "2026-08-09T05:21:32Z", "note": "The active tag, last updated 2026-07-29T16:39:39.083801Z, resolved to index sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32."}],
+          "note": "The exact frontend version, OCI index and linux/amd64 child manifest are separately identified."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "https://github.com/moby/buildkit", "observed_at": "2026-08-09T05:26:30Z", "note": "The BuildKit repository documents the Dockerfile frontend; registry annotations identify source https://github.com/moby/buildkit, vendor Moby and version 1.26.0."}],
+          "note": "The artifact is attributable to the Moby BuildKit project and its documented Dockerfile frontend."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/docker/dockerfile:1.26.0", "observed_at": "2026-08-09T05:21:45Z", "note": "Manifest, configuration and attestation metadata were readable without credentials; later anonymous pulls remain subject to registry limits."}],
+          "note": "The approved acquisition path is public and credential-free."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "https://raw.githubusercontent.com/moby/buildkit/f5d08d5a04381687203ced27ef877e0c417fd122/LICENSE", "observed_at": "2026-08-09T05:27:14Z", "note": "BuildKit is Apache-2.0 licensed with license, notice and modification-marking conditions for redistribution."}],
+          "note": "Controlled acquisition and inspection are permitted. Redistribution is outside this gate and must satisfy Apache-2.0 notice obligations."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/docker/dockerfile:1.26.0 --format {{json .Provenance}}", "observed_at": "2026-08-09T05:25:04Z", "note": "Registry-attached SLSA v1 metadata used the BuildKit definition, named GitHub Actions builder run 30469319077, recorded five dependencies, and ran from 2026-07-29T16:26:19Z to 16:26:58Z."}],
+          "note": "Registry annotations bind source revision f5d08d5a04381687203ced27ef877e0c417fd122 and version 1.26.0."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/docker/dockerfile:1.26.0", "observed_at": "2026-08-09T05:21:45Z", "note": "Index sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32 contains linux/amd64 manifest sha256:34b128e419449565adc5ed7f487a6f503a73f1077012cfed86354c731338c44f and attestation manifest sha256:ecb4dd6b5201e8005823720244733664ac75d10acb1b55d4ecfd674d235d2a25."}],
+          "note": "Future Dockerfile syntax use must pin the exact index digest and retain the platform child digest."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [{"type": "live", "locator": "command: docker buildx imagetools inspect docker.io/docker/dockerfile:1.26.0 --format {{json .SBOM}}", "observed_at": "2026-08-09T05:24:22Z", "note": "The linux/amd64 SPDX 2.3 SBOM contained 68 packages; annotations identified Dockerfile frontend version 1.26.0."}],
+          "note": "The artifact is a plausible exact Dockerfile parser frontend for controlled inspection; a real build remains unverified."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [{"type": "static", "locator": "docs/threat-model.md", "note": "The frontend is executable build input. No secrets may be passed as build arguments, and this gate permits no execution or credentials."}],
+          "note": "No sensitive data is involved. Build use remains blocked pending scan and controlled build verification."
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [],
+    "approved_actions": [
+      "metadata review",
+      "record exact digests",
+      "pull exact digest for controlled inspection"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "read public metadata",
+      "record assessment evidence",
+      "record exact digests",
+      "pull exact digest into local Docker custody without execution"
+    ],
+    "requires_explicit_authorization": [
+      "authenticate to a registry",
+      "accept new terms",
+      "purchase access",
+      "upload source or evidence",
+      "run a candidate image before its scan and functional gate",
+      "publish or redistribute a candidate image"
+    ]
+  }
+}

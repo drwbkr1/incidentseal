@@ -1,0 +1,24 @@
+.env
+.env.*
+!.env.example
+.venv/
+node_modules/
+dist/
+build/
+coverage/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.pyc
+__pycache__/
+
+# Local runtime and exported evidence. Curated receipts are copied into records/.
+.incidentseal/
+artifacts/
+tmp/
+
+# IDE and OS noise.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
