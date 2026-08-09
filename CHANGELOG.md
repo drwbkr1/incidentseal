@@ -20,3 +20,6 @@ All notable IncidentSeal changes will be recorded here. The project follows Sema
 - Stable exit-77 rejection for agent-facing approval mutation attempts.
 - Repeatable 25-scenario, 50-execution fail-closed policy and custody evaluation.
 - TTY-only, full-digest operator approval with fixed custody, atomic compare-and-swap replacement, exact superseded-record retention, post-write verification, and rollback.
+- Portable Windows and POSIX checkout launchers validated from clean temporary custody, including native-Windows Python path conversion under Git Bash.
+- Source-gated, exact-hash, temporary-only Draft 2020-12 meta-schema evaluation with four schemas, eight fixtures, and six locked Python wheel artifacts.
+- Clean-copy CLI contract verification covering 38 tests, ten real-surface checks, and the 25-scenario/50-execution fail-closed matrix without Docker or real approval state.

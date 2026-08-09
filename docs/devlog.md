@@ -59,3 +59,11 @@ The evaluation also exposed a roadmap omission: the frozen contract specifies an
 Thirty-seven tests passed. Temporary-custody probes covered first approval, changed-manifest supersession, already-matching no-churn behavior, repository-contained custody denial, redirected input, absent `--yes`, machine-path exit `77`, manifest and approval races after the prompt, and restoration of the prior record after a forced final-verification failure.
 
 The real/default approval root remained absent. No workflow is actually approved, and this implementation does not authorize Codex to invoke the operator command.
+
+## 2026-08-09 - Clean-copy manifest and CLI contract
+
+`IS2-U05` exposed and repaired two real Git Bash portability failures: the first launcher selected the Windows `python3` Store alias, and the next passed a POSIX source path to native Windows Python. The checkout launcher now probes for a working interpreter and converts its path and separator when it crosses that boundary. Thirty-eight tests pass.
+
+The missing full Draft 2020-12 gate was closed without adding a product runtime dependency. Six evaluation wheels passed a 48-criterion source gate, were pinned to exact versions and SHA-256 digests, loaded only from temporary custody, and removed after validation. `Draft202012Validator` accepted four schemas and six valid fixtures and rejected the two schema-negative fixtures as expected.
+
+An exact clean temporary clone of candidate `05bf4e2477b6626102b4103e94cb415533b18a95` then passed ten checks: clone cleanliness, all tests, Windows machine CLI behavior, external approval denial, Python site isolation, the Git Bash launcher, frozen contracts and mutations, full schema validation, 50 fail-closed executions, and final cleanliness. No Docker command ran and the real approval root remained absent. This closes the local contract exits only; public checkpoint verification remains separate.

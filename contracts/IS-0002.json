@@ -73,8 +73,11 @@
   "exit_conditions": [
     {
       "id": "EXIT-MANIFEST-CONTRACT",
-      "status": "pending",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "records/surface-receipts/IS-0002-cli-contract.json",
+        "records/evaluations/IS-0002-json-schema-meta-validation.json"
+      ]
     },
     {
       "id": "EXIT-APPROVAL-BOUNDARY",
@@ -86,8 +89,10 @@
     },
     {
       "id": "EXIT-CLI-CONTRACT",
-      "status": "pending",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "records/surface-receipts/IS-0002-cli-contract.json"
+      ]
     },
     {
       "id": "EXIT-FAIL-CLOSED-EVALUATION",
@@ -279,17 +284,38 @@
       "depends_on": ["IS2-U04A"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": ["Implemented CLI", "Machine schemas", "Mutation results"],
       "outputs": ["records/surface-receipts/IS-0002-cli-contract.json"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
+      "gates": {
+        "clean_temporary_clone": "pass",
+        "full_regression_suite": "pass",
+        "real_windows_launcher": "pass",
+        "real_posix_launcher": "pass",
+        "machine_stream_and_exit_contract": "pass",
+        "approval_authority_boundary": "pass",
+        "dependency_isolation": "pass",
+        "frozen_contract_mutations": "pass",
+        "draft_2020_12_meta_schema": "pass",
+        "source_gated_evaluator": "pass",
+        "repeated_fail_closed_matrix": "pass",
+        "clean_after_validation": "pass",
+        "no_real_approval": "pass",
+        "no_docker_use": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [
+        "The initial Git Bash launcher selected the Windows python3 Store alias and exited 49; interpreter probing was added.",
+        "The next Git Bash launcher passed a POSIX PYTHONPATH to native Windows Python and could not import IncidentSeal; cygpath conversion and the Windows separator corrected it.",
+        "Two early verifier invocations used one-second and ten-second shell allowances and ended before producing a product verdict; the measured reruns passed and left no temporary custody.",
+        "The shell safety layer rejected combined dependency evaluation and recursive cleanup commands before execution; source-gated acquisition, target verification, evaluation, and exact cleanup were completed as separate bounded steps.",
+        "The first final verifier invocation used an abbreviated candidate object ID and failed its exact-identity precondition before cloning; the exact-ID rerun passed all ten checks."
+      ],
       "exit_condition_delta": {
         "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-APPROVAL-BOUNDARY", "EXIT-CLI-CONTRACT", "EXIT-FAIL-CLOSED-EVALUATION"],
-        "observed": [],
-        "decision_value": "unknown",
-        "rationale": "The manifest, approval, operator-write, and fail-closed evaluation units passed; clean temporary-copy real-CLI validation is now the sole eligible unit."
+        "observed": ["EXIT-MANIFEST-CONTRACT", "EXIT-APPROVAL-BOUNDARY", "EXIT-CLI-CONTRACT", "EXIT-FAIL-CLOSED-EVALUATION"],
+        "decision_value": "advances_exit",
+        "rationale": "An exact clean temporary clone passed ten real-surface checks, including Windows and Git Bash launchers, the approval authority boundary, 38 tests, four mutations, full Draft 2020-12 validation with six source-gated wheels, and the 50-execution fail-closed matrix without Docker or real approval state."
       },
       "next_dependency": "IS2-U06"
     },
@@ -299,7 +325,7 @@
       "depends_on": ["IS2-U05"],
       "action_class": "git_push",
       "human_gate": false,
-      "status": "planned",
+      "status": "ready",
       "inputs": ["Verified IS-0002 tree"],
       "outputs": ["Verified remote main checkpoint", "Checkpoint receipt"],
       "gates": {},
@@ -349,12 +375,15 @@
       "Windows Known Folder, absolute system tool, ACL, and junction custody probes",
       "Twenty-five fail-closed scenarios across fifty deterministic executions",
       "Thirty-seven manifest, approval, operator, and CLI tests",
-      "TTY, full-digest, atomic supersession, rollback, and review-race probes"
+      "TTY, full-digest, atomic supersession, rollback, and review-race probes",
+      "Full Draft 2020-12 meta-schema validation for four schemas and eight positive/negative fixtures using six source-gated exact-hash wheels",
+      "Exact clean temporary clone validation with 38 tests, both checkout launchers, machine stream and exit discipline, approval denial, dependency isolation, contract mutations, and fifty fail-closed executions",
+      "Remote main equality at clean-copy candidate 05bf4e2477b6626102b4103e94cb415533b18a95"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0002 active",
-    "next_action": "Execute IS2-U05 clean temporary-copy CLI contract validation",
+    "current_checkpoint": "IS-0002 active; all local contract exits pass and only public checkpoint verification remains",
+    "next_action": "Execute IS2-U06: commit the U05 receipt and reconciled records, push, verify a fresh remote clone, and bind checkpoint-is-0002 without making a software-release claim",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not let repository content approve its own manifest digest",
