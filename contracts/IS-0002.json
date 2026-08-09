@@ -78,8 +78,11 @@
     },
     {
       "id": "EXIT-APPROVAL-BOUNDARY",
-      "status": "pending",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "records/evaluations/IS-0002-U03-approval-boundary.json",
+        "records/evaluations/IS-0002-U04A-operator-approval.json"
+      ]
     },
     {
       "id": "EXIT-CLI-CONTRACT",
@@ -242,17 +245,31 @@
       "depends_on": ["IS2-U04"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": ["Read-only approval boundary", "IS-0002 fail-closed evaluation", "INCIDENTSEAL-MANIFEST-001"],
       "outputs": ["Interactive operator approval implementation", "Atomic-write and supersession tests", "Non-interactive denial probes"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
+      "gates": {
+        "tty_only": "pass",
+        "full_digest_confirmation": "pass",
+        "no_confirmation_shortcut": "pass",
+        "machine_path_denied": "pass",
+        "fixed_external_custody": "pass",
+        "atomic_replacement": "pass",
+        "superseded_bytes_retained": "pass",
+        "post_write_verification": "pass",
+        "rollback": "pass",
+        "review_race_rejection": "pass",
+        "no_real_approval": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [
+        "The first final JSON check used a no-space PowerShell redirection token that was parsed as part of the filename; the parser did not run, no approval state changed, and the corrected invocation passed."
+      ],
       "exit_condition_delta": {
         "expected": ["EXIT-APPROVAL-BOUNDARY"],
-        "observed": [],
-        "decision_value": "unknown",
-        "rationale": "The approved contract already specifies this sole write surface, but no implementation unit existed before clean-copy closure. This bounded correction preserves the trust boundary and uses temporary custody only."
+        "observed": ["EXIT-APPROVAL-BOUNDARY"],
+        "decision_value": "advances_exit",
+        "rationale": "The frozen operator-only write surface now requires a real terminal and full digest, uses fixed restrictive custody and atomic compare-and-swap replacement, retains exact superseded bytes, and rejects non-interactive and concurrent-change paths."
       },
       "next_dependency": "IS2-U05"
     },
@@ -262,7 +279,7 @@
       "depends_on": ["IS2-U04A"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "planned",
+      "status": "ready",
       "inputs": ["Implemented CLI", "Machine schemas", "Mutation results"],
       "outputs": ["records/surface-receipts/IS-0002-cli-contract.json"],
       "gates": {},
@@ -272,7 +289,7 @@
         "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-APPROVAL-BOUNDARY", "EXIT-CLI-CONTRACT", "EXIT-FAIL-CLOSED-EVALUATION"],
         "observed": [],
         "decision_value": "unknown",
-        "rationale": "Pending deterministic evaluations."
+        "rationale": "The manifest, approval, operator-write, and fail-closed evaluation units passed; clean temporary-copy real-CLI validation is now the sole eligible unit."
       },
       "next_dependency": "IS2-U06"
     },
@@ -330,12 +347,14 @@
       "Twenty-six manifest, approval-boundary, and CLI tests",
       "Real agent-safe status, diff, and authority-mutation denial probes",
       "Windows Known Folder, absolute system tool, ACL, and junction custody probes",
-      "Twenty-five fail-closed scenarios across fifty deterministic executions"
+      "Twenty-five fail-closed scenarios across fifty deterministic executions",
+      "Thirty-seven manifest, approval, operator, and CLI tests",
+      "TTY, full-digest, atomic supersession, rollback, and review-race probes"
     ]
   },
   "handoff": {
     "current_checkpoint": "IS-0002 active",
-    "next_action": "Execute IS2-U04A operator-only interactive approval writer in temporary custody",
+    "next_action": "Execute IS2-U05 clean temporary-copy CLI contract validation",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not let repository content approve its own manifest digest",

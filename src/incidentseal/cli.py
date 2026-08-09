@@ -236,6 +236,10 @@ def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
 
 def main(argv: Sequence[str] | None = None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
+    if tuple(arguments[:2]) == ("operator", "approve-manifest") and "--json" not in arguments:
+        from .operator import main as operator_main
+
+        return operator_main(arguments[2:])
     envelope, exit_code = execute(arguments)
     encoded = json.dumps(envelope, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode("utf-8")
     sys.stdout.buffer.write(encoded + b"\n")

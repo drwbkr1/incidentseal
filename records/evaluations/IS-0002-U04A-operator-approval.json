@@ -1,0 +1,105 @@
+{
+  "schema_version": "incidentseal-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0002-U04A",
+  "checkpoint_id": "IS-0002",
+  "unit_id": "IS2-U04A",
+  "observed_at_utc": "2026-08-09T17:40:11Z",
+  "base_commit": "3ad3312a079175dfa9a3c984ac3c1863c65da7e0",
+  "disposition": "pass",
+  "environment": {
+    "project_root": "C:/Projects/Active/incidentseal",
+    "python": "3.12.10",
+    "platform": "Windows",
+    "default_approval_root_created": false,
+    "real_approval_created": false,
+    "third_party_dependencies": 0
+  },
+  "checks": [
+    {
+      "id": "full-regression-suite",
+      "status": "PASS",
+      "command": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "result": "37 tests passed, including all manifest, read-only approval, CLI, operator-write, atomicity, supersession, rollback, and race-condition cases."
+    },
+    {
+      "id": "interactive-exact-digest",
+      "status": "PASS",
+      "command": "Temporary TTY approval with the full displayed canonical digest",
+      "result": "A closed approval record was created in temporary custody, independently inspected as MATCH, and bound to the exact manifest digest, path, remote, schema, workflow, operator, and UTC approval time."
+    },
+    {
+      "id": "atomic-supersession",
+      "status": "PASS",
+      "command": "Approve, mutate the manifest, and approve the new full digest in temporary custody",
+      "result": "The new record atomically replaced the active approval, exact prior bytes were retained under the superseded history, and no temporary file remained."
+    },
+    {
+      "id": "post-write-rollback",
+      "status": "PASS",
+      "command": "Force independent post-write inspection failure",
+      "result": "The operator write failed closed, restored the exact prior active record, and left no rollback temporary file."
+    },
+    {
+      "id": "review-race-rejection",
+      "status": "PASS",
+      "command": "Mutate the manifest and current approval after the prompt but before replacement",
+      "result": "Post-confirmation manifest re-read, approval snapshot comparison, and prior-file digest compare-and-swap rejected both races without replacing approval."
+    },
+    {
+      "id": "no-churn-match",
+      "status": "PASS",
+      "command": "Invoke the interactive surface when the exact approval already matches",
+      "result": "The command returned success without rewriting the active approval or creating superseded history."
+    },
+    {
+      "id": "real-redirected-input-denial",
+      "status": "PASS",
+      "command": ".\\incidentseal.cmd operator approve-manifest --manifest fixtures\\contracts\\workflow.valid.minimal.json",
+      "result": "The real launcher returned exit 77 under redirected input, wrote no stdout approval claim, and did not create the default approval root."
+    },
+    {
+      "id": "confirmation-shortcut-denial",
+      "status": "PASS",
+      "command": "Real operator command with --yes",
+      "result": "The uncontracted non-interactive confirmation flag returned usage exit 64 and wrote no approval state."
+    },
+    {
+      "id": "machine-path-authority-denial",
+      "status": "PASS",
+      "command": "Real operator command with --json",
+      "result": "The machine path returned exit 77 and IS_AUTHORITY_MUTATION_FORBIDDEN in a schema-valid envelope."
+    },
+    {
+      "id": "unsafe-write-custody",
+      "status": "PASS",
+      "command": "Attempt approval creation inside repository custody",
+      "result": "The write failed before creating the unsafe approval root."
+    }
+  ],
+  "observed_sha256": [
+    {"path": "src/incidentseal/operator.py", "sha256": "21b0d752d513b470a44e88014b28d9b8b9c46405bcdf661b844b58d0bd0eeaa4"},
+    {"path": "src/incidentseal/cli.py", "sha256": "97abb8ca179321329d4ad945514b928faa844f0dec8222a211893760ecc5b72f"},
+    {"path": "tests/test_operator.py", "sha256": "c0206eb4b271a54a26894d909aca62621088322e86d28e66646555e7f870d59f"},
+    {"path": "tests/test_cli.py", "sha256": "35198b9434a9bc5037aab6d1de25d9058c45082269d177b68647ce623caeab4a"},
+    {"path": "docs/manifest-authority.md", "sha256": "d18411d16d56cfc903d24f8b2dea4b8c787e1faf514e30a73a6f5d8d345abf2c"},
+    {"path": "docs/threat-model.md", "sha256": "146f8b90fd10b7f1858c53a761a610f2e07b5d7278945109cc0aa27cf67cb458"}
+  ],
+  "remediations": [
+    "Pre-evidence review added post-confirmation manifest and approval snapshot rechecks plus compare-and-swap on the exact prior approval-file digest.",
+    "A failed independent post-write MATCH inspection now restores the prior active record when one existed."
+  ],
+  "retained_failures": [
+    {
+      "attempt": "First final JSON parser invocation",
+      "outcome": "failed",
+      "note": "PowerShell treated a no-space output-redirection token as part of the contract filename, so the parser did not run. Record normalization had succeeded, no approval state changed, and the corrected parser invocation passed."
+    }
+  ],
+  "limitations": [
+    "No real manifest approval was created; every positive write used temporary custody and an injected test principal.",
+    "A simultaneous OS failure during both final verification and rollback can leave approval state requiring operator inspection; the command reports failure and grants no execution authority.",
+    "The interactive writer does not make workflow verification or execution available; those surfaces remain unimplemented.",
+    "macOS approval custody remains fail-closed pending extended-ACL verification."
+  ],
+  "scope_note": "This evidence closes the operator-write portion of the IS-0002 approval boundary. It does not authorize Codex to invoke the operator command or create a real approval."
+}

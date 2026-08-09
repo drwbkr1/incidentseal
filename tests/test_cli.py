@@ -161,6 +161,30 @@ class CliTests(unittest.TestCase):
         envelope = json.loads(completed.stdout.decode("utf-8"))
         self.assertEqual(EXPECTED, envelope["data"]["manifest_digest"])
 
+    @unittest.skipUnless(os.name == "nt", "Windows operator launcher probe")
+    def test_windows_launcher_rejects_redirected_operator_approval(self) -> None:
+        approval_root = Path(os.environ["LOCALAPPDATA"]) / "IncidentSeal" / "approvals" / "v1"
+        self.assertFalse(approval_root.exists(), "test requires no real IncidentSeal approval store")
+        completed = subprocess.run(
+            [
+                os.environ.get("COMSPEC", "cmd.exe"),
+                "/d",
+                "/c",
+                str(ROOT / "incidentseal.cmd"),
+                "operator",
+                "approve-manifest",
+                "--manifest",
+                str(FIXTURES / "workflow.valid.minimal.json"),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(77, completed.returncode)
+        self.assertEqual(b"", completed.stdout)
+        self.assertIn(b"interactive terminal is required", completed.stderr)
+        self.assertFalse(approval_root.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

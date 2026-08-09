@@ -73,7 +73,9 @@ Networked acquisition is a separate host-side action. Runtime egress is denied b
 
 ## Implemented approval-boundary controls
 
-As of `IS2-U03`, the agent-facing host CLI has read-only `policy status` and `policy diff` paths. They derive the external approval location from the platform default, do not accept an approval-root override, never create a missing store, and expose no approval write function. A non-interactive attempt to invoke `operator approve-manifest` is rejected with stable exit `77` and `IS_AUTHORITY_MUTATION_FORBIDDEN`.
+The agent-facing host CLI has read-only `policy status` and `policy diff` paths. They derive the external approval location from the platform default, do not accept an approval-root override, never create a missing store, and expose no approval write function. A non-interactive attempt to invoke `operator approve-manifest` is rejected with stable exit `77` and `IS_AUTHORITY_MUTATION_FORBIDDEN`.
+
+`IS2-U04A` implements the separate human surface. It requires a real terminal and full-digest confirmation, rechecks manifest and approval state after the prompt, compare-and-swaps the prior approval-file digest, writes through a restrictive same-directory temporary file, retains exact superseded bytes, atomically replaces the active record, and independently verifies MATCH. A failed final inspection restores the prior record when possible. Tests use temporary custody only; no real approval is created by the project workflow.
 
 Approval inspection rejects repository-overlapping and configured-forbidden custody, symlinks and Windows reparse points, ambiguous case resolution, unexpected writers, unreadable paths, malformed or ambiguous JSON, invalid timestamps, and non-closed record fields. Windows custody requires the current principal to own each object and permits write grants only for owner/creator-owner rights, SYSTEM, and Administrators. POSIX custody requires current-user ownership, no group/other writes, and no extended access ACL; macOS extended-ACL verification currently fails closed. Exact digest comparison uses a constant-time primitive after record validation.
 
@@ -84,6 +86,7 @@ Temporary-custody probes distinguish `MATCH`, `MISMATCH`, `MISSING`, `EXPIRED`, 
 - Docker authority is effectively host-root authority on common systems. A compromised host CLI or unrestricted same-user process is outside the protection offered by container hardening.
 - A non-secret local approval record is tamper-evident and outside the normal repository write scope; it is not strong identity proof against a fully privileged same-user attacker.
 - Windows approval inspection depends on local PowerShell and `icacls` read access and fails closed if ownership or ACL evidence cannot be interpreted. macOS approval matching remains unavailable until extended ACLs can be verified without weakening this gate.
+- An OS-level failure during both approval replacement verification and rollback can leave state requiring operator inspection; IncidentSeal reports failure and cannot treat that state as approved.
 - Container isolation reduces risk but is not a proof that the Docker engine or kernel is free of vulnerabilities.
 - Vulnerability scans depend on advisory freshness and coverage. A clean scan is not proof of absence.
 - Reproducible procedure and digest-pinned inputs do not imply bit-for-bit reproducible outputs until measured.

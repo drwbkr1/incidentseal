@@ -21,11 +21,11 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Active unit
 
-`IS2-U04` completed 50 deterministic executions across 25 fail-closed scenarios. `IS2-U04A` is now the active unit: implement the already-specified operator-only interactive approval writer with atomic replacement and superseded-record retention, using temporary custody only. This unit was inserted because clean-copy closure otherwise had no implementation path for the frozen operator surface.
+`IS2-U04` completed the repeated fail-closed matrix, and `IS2-U04A` implemented and locally validated the operator-only interactive writer using temporary custody. `IS2-U05` is now the active unit: validate the packaged real CLI and frozen contracts from a clean temporary copy without Docker runtime use.
 
 ## Known limitations
 
-- The executable checkout CLI implements `policy lint`, `policy digest`, `policy status`, and `policy diff`; verification, events, and operator approval remain unimplemented.
+- The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
 - No Compose topology or database exists.
 - The `IS2-U01` contract artifacts passed their bounded local gate, but the full `IS-0002` checkpoint remains active and no workflow digest is approved.
 - Four exact image artifacts passed the source gate only for digest recording and controlled acquisition; none has been pulled, scanned, executed, or approved for runtime use.
@@ -34,4 +34,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS2-U04A` in `contracts/IS-0002.json`: implement and test the interactive operator-only approval write path without creating a real approval or adding a non-interactive confirmation route.
+Execute `IS2-U05` in `contracts/IS-0002.json`: copy the committed tree into isolated temporary custody and validate real Windows and POSIX launcher behavior, JSON/stdout/stderr/exit discipline, approval boundaries, and dependency-free setup.

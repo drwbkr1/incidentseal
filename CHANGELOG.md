@@ -19,3 +19,4 @@ All notable IncidentSeal changes will be recorded here. The project follows Sema
 - External approval custody checks for repository/forbidden overlap, Windows ownership and ACLs, symlinks and reparse points, case ambiguity, and process-environment shadowing.
 - Stable exit-77 rejection for agent-facing approval mutation attempts.
 - Repeatable 25-scenario, 50-execution fail-closed policy and custody evaluation.
+- TTY-only, full-digest operator approval with fixed custody, atomic compare-and-swap replacement, exact superseded-record retention, post-write verification, and rollback.

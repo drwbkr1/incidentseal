@@ -51,3 +51,11 @@ The initial Windows temporary-custody run failed closed because this profile rep
 Evaluation PASS does not turn negative product outcomes into PASS. The retained record preserves the observed MISMATCH, MISSING, EXPIRED, INVALID, exit `64`, and exit `77` results. No real approval was created.
 
 The evaluation also exposed a roadmap omission: the frozen contract specifies an interactive operator-only writer, but no unit implemented it before clean-copy closure. `IS2-U04A` was inserted as a bounded temporary-custody implementation unit rather than weakening or silently skipping that gate.
+
+## 2026-08-09 - Operator-only approval writer
+
+`IS2-U04A` implemented the frozen human surface without exposing a machine write route. The command requires a real terminal and the full displayed digest, rechecks manifest and approval state after confirmation, compare-and-swaps the exact prior approval-file digest, writes through a restrictive temporary file, atomically replaces the active record, retains exact superseded bytes, and independently verifies MATCH.
+
+Thirty-seven tests passed. Temporary-custody probes covered first approval, changed-manifest supersession, already-matching no-churn behavior, repository-contained custody denial, redirected input, absent `--yes`, machine-path exit `77`, manifest and approval races after the prompt, and restoration of the prior record after a forced final-verification failure.
+
+The real/default approval root remained absent. No workflow is actually approved, and this implementation does not authorize Codex to invoke the operator command.

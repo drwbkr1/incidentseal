@@ -62,6 +62,8 @@ The approval store must:
 
 `incidentseal operator approve-manifest` is the only planned write path. It requires an interactive terminal, shows the canonical digest and policy diff, has no non-interactive confirmation flag, and refuses redirected input. Agent-safe `policy lint`, `policy digest`, `policy status`, `policy diff`, and `verify` commands never create, edit, or replace approval.
 
+As implemented in `IS2-U04A`, the operator command requires the human to type the full displayed `sha256:` digest. It then re-reads the manifest, rechecks the displayed approval snapshot, and compare-and-swaps against the exact prior approval-file digest. The record is written to a restrictive same-directory temporary file, flushed, atomically replaced, and independently inspected. Exact prior bytes are retained under `superseded/<workflow_id>/`; a failed post-write inspection restores the prior record when one existed. No `--yes`, `--force`, approval-root override, redirected-input, or agent-facing write route exists.
+
 ## Comparison and status
 
 Digest comparison is constant-time after syntax validation. `policy status` returns exactly one approval status:
