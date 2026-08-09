@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` through `IS3-U06` passed. U06 retained two real Compose-stderr product FAIL attempts before two identical real Python application runs passed exact output and database evidence, malformed-input rejection, isolation, repeatability, and teardown. `IS3-U07` owns the real Node application runner and cross-runner consistency next.
+Progress: `IS3-U01` through `IS3-U07` passed. Two identical real Node runs passed exact output and PostgreSQL evidence, shared canonical input identity with the retained Python row, distinct language result identity, malformed-input rejection, isolation, repeatability, and teardown. `IS3-U08` owns reliability, recovery behavior, orphan detection, and clean-clone topology replay next.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

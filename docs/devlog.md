@@ -145,3 +145,13 @@ The first real invocation returned product `FAIL` at exit `10` even though the a
 The remediation did not relax the empty application-stream gate. It removes each inspected completed one-shot container before invoking the next Compose service and retains the final fail-safe teardown. Forty-seven tests, the real static implementation validator, and all 15 implementation mutations passed. Two identical real Python invocations then passed with stable result, database, and negative-output digests. The Python container ran as `65532:65532` with read-only root, all capabilities dropped, no-new-privileges, read-only input, narrow output, internal-only networking, no sensitive environment names, and no Docker endpoint. Every container and network was removed; the exact database volume remains retained.
 
 This closes only `EXIT-PYTHON-RUNNER`. `IS3-U07` owns the real Node command and cross-runner consistency; no workflow, recovery, dashboard, clean-clone, redistribution, or release claim advances from U06.
+
+## 2026-08-09 - Real Node runner and cross-runner PASS
+
+`IS3-U07` archived the exact U06 implementation and runtime locks before adding the host-owned `topology node-probe` command. The probe reuses the exact revision-3 image IDs and database volume, runs the real migration, executes the Node image's shipped default command, independently computes the expected receipt, verifies the exact single output and Node database row, and compares both language rows for the same request.
+
+The retained Python and new Node rows share canonical input digest `47963fda...f176b` while their language-bound result digests remain intentionally distinct. The fixed malformed request exited nonzero with no result and no Node row. The Node container ran as `65532:65532` with a read-only root, all capabilities dropped, no-new-privileges, read-only input, narrow output, internal-only networking, no sensitive environment names, and no Docker endpoint.
+
+Forty-eight tests, the real static implementation validator, and all 15 implementation mutations passed. Two identical real Node invocations produced stable result, database, cross-runner, negative-output, and teardown evidence. Every container and network was removed after each run; the exact database volume remains retained.
+
+This closes only `EXIT-NODE-RUNNER`. `IS3-U08` owns clean-start, retained-state resume, forced failure, cancellation, restart, orphan detection, teardown, and clean-clone topology behavior. No workflow, dashboard, receipt-recovery, redistribution, or release claim advances from U07.

@@ -38,12 +38,13 @@
 - `topology runtime-probe --mode platform-validation --json` is a state-changing host-only command. Invoke it only for the active contract unit after static locks pass; it cannot run a workflow or substitute for approval.
 - `topology database-probe --mode platform-validation --json` is also state-changing and topology-only. Treat a valid exit `10` as product `FAIL`, retain it, and do not collapse it into `INVALID` or process failure.
 - `topology python-probe --mode platform-validation --json` is the state-changing real Python application surface. Treat valid exit `10` as retained product `FAIL`; require the exact result, PostgreSQL row, negative-input behavior, runtime isolation, repeatability, and teardown before claiming Python verification.
+- `topology node-probe --mode platform-validation --json` is the state-changing real Node and cross-runner surface. Treat valid exit `10` as retained product `FAIL`; require the exact Node result and row, retained Python-row consistency, negative-input behavior, runtime isolation, repeatability, and teardown before claiming Node verification.
 - Bind successful runtime identities to `requirements/topology-runtime.lock.json`. A local tag or matching label alone is not image authority, and runtime-lock images remain local while redistribution is `INCONCLUSIVE`.
 - Treat stdout as one `incidentseal-cli-envelope/v1` JSON document and verify that `process_exit_code` equals the process exit code.
 - `policy lint` and `policy digest` are inspection-only. They do not approve a manifest, access Docker, execute workflow steps, or create evidence claims.
 - Never invoke or automate `operator approve-manifest`; operator approval is interactive authority outside the agent-safe surface.
 - Do not infer approval from a valid manifest or digest. Only `policy status` value `MATCH` can satisfy the approval gate, and workflow execution remains forbidden until the later `verify` surface is implemented and validated.
-- Never treat `topology validate` as proof that images built or containers started. Never treat `topology runtime-probe` as proof that the real migration, PostgreSQL persistence, or application runner commands passed. Never treat a Python-surface PASS as Node, workflow, recovery, or release proof.
+- Never treat `topology validate` as proof that images built or containers started. Never treat `topology runtime-probe` as proof that the real migration, PostgreSQL persistence, or application runner commands passed. Never treat language-runner PASS as workflow, recovery, clean-clone, or release proof.
 
 ## Working discipline
 

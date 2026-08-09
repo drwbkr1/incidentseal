@@ -69,6 +69,13 @@ class TopologyTests(unittest.TestCase):
         self.assertEqual("succeeded", envelope["command_status"])
         self.assertEqual("FAIL", envelope["verdict"])
 
+    def test_node_product_failure_uses_fail_verdict_and_exit(self) -> None:
+        with patch("incidentseal.cli.node_probe", return_value={"verdict": "FAIL"}):
+            envelope, exit_code = execute(["topology", "node-probe", "--mode", "platform-validation", "--json"])
+        self.assertEqual(10, exit_code)
+        self.assertEqual("succeeded", envelope["command_status"])
+        self.assertEqual("FAIL", envelope["verdict"])
+
     def test_python_raw_compose_suppresses_transport_progress(self) -> None:
         completed = subprocess.CompletedProcess([], 0, "", "")
         with patch("incidentseal.python_surface.subprocess.run", return_value=completed) as run:

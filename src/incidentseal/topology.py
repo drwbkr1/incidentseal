@@ -45,6 +45,7 @@ IMPLEMENTATION_FILES = (
     "fixtures/topology/runner-request.invalid.extra.json",
     "src/incidentseal/cli.py",
     "src/incidentseal/database.py",
+    "src/incidentseal/node_surface.py",
     "src/incidentseal/python_surface.py",
     "src/incidentseal/runtime.py",
     "src/incidentseal/topology.py",

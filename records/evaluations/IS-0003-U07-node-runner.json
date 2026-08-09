@@ -1,0 +1,58 @@
+{
+  "schema_version": "incidentseal-node-surface-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U07-NODE-RUNNER",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U07",
+  "observed_at_utc": "2026-08-09T22:04:09Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "process_exit_code": 0,
+  "command_status": "succeeded",
+  "claim_scope": "The exact retained Node image executes its shipped application command against fixed staged input and incidentseal_runner, produces the exact independently computed receipt and PostgreSQL row, agrees with retained Python evidence on the canonical input digest, rejects malformed input without output or database mutation, preserves runtime isolation, repeats, and tears down containers and network.",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "contract": "contracts/IS-0003.json",
+    "workflow_approval_state": "MISSING",
+    "workflow_execution_state": "INVALID"
+  },
+  "bindings": {
+    "topology_contract": {"path":"contracts/topology-v1.json","sha256":"sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351","revision":3},
+    "topology_contract_lock": {"path":"requirements/topology-contract.lock.json","sha256":"sha256:64d0e87f5f702218f43ae8d992bca20b55f4d0ec69eef22091d584ce1591b860"},
+    "implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:e2851faf3627d9926e7ff7749b3cc0660e4478fe8aafa32ce3ae029c5aede5c1","lock_id":"IS-TOPOLOGY-IMPLEMENTATION-LOCK-0009"},
+    "runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:e73eafebadb8cca36da987b200dd12e9d8fdc71ab74460a05c71d3cf07adc8c6","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0007"},
+    "python_evaluation": {"path":"records/evaluations/IS-0003-U06-python-runner.json","sha256":"sha256:cfd2e79cf7f63a1940bf1ec445b5ec0d2eeda16a70cb981cefe000b5755f5d28"},
+    "valid_fixture": {"path":"fixtures/topology/runner-request.valid.json","sha256":"sha256:88ad829882ff996342dcbd081d513d087564839bd21593aea3e31cc261046a54"},
+    "invalid_fixture": {"path":"fixtures/topology/runner-request.invalid.extra.json","sha256":"sha256:7fc0c870546b7cd103709b4298e07ccc360d5dd3f9c90117c500b6e98ca97b36"}
+  },
+  "invocations": [
+    {"command":"topology.node-probe","invocation_id":"b309909c-1d9b-49f6-b49b-2dc2da04b50f","mode":"platform-validation","process_exit_code":0,"verdict":"PASS"},
+    {"command":"topology.node-probe","invocation_id":"0693f7ab-2b74-4919-852e-d6dd41cb52ec","mode":"platform-validation","process_exit_code":0,"verdict":"PASS"}
+  ],
+  "runtime": {
+    "project_name": "incidentseal-57ca5f96d527da1b",
+    "database_user": "incidentseal_runner",
+    "retained_volume": "incidentseal-57ca5f96d527da1b_database-data",
+    "node_image_id": "sha256:78edf27e115551fd0128201e13486363ff595076b0446d8479cf2ddd2aa7b6a1",
+    "node_user": "65532:65532",
+    "network_internal": true,
+    "containers_retained": [],
+    "network_retained": null
+  },
+  "checks": [
+    {"id":"node-command-exit","status":"PASS","observed":{"exit_code":0,"stdout_digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","stderr_digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    {"id":"runtime-isolation","status":"PASS","observed":{"input_read_only":true,"output_narrow":true,"custody_outside_repository":true,"custody_outside_onedrive":true,"sensitive_environment_names":[],"internal_network":true,"docker_endpoint_absent":true,"privileged":false,"read_only_root":true,"cap_drop":["ALL"],"no_new_privileges":true}},
+    {"id":"staged-input-read-only","status":"PASS","observed":{"sha256":"sha256:88ad829882ff996342dcbd081d513d087564839bd21593aea3e31cc261046a54"}},
+    {"id":"result-receipt","status":"PASS","observed":{"schema_version":"incidentseal-runner-result/v1","run_id":"isrun-0123456789abcdef","runner":"node","input_digest":"sha256:47963fda9703c6dffe14e3c7a98a48384cd2ef9ccb7c36e5a77badd4cb3f176b","result_digest":"sha256:1f6530cace32274d53f101ca683c1e497cf3f11ea8beace4be0e8f601af5c4e0","database_verified":true,"file_digest":"sha256:b6f0a11208afdee0e6d9bd3bcc670fd108bbfbb642cd8eeb02d19061d34dcb24"}},
+    {"id":"database-row","status":"PASS","observed":{"run_id":"isrun-0123456789abcdef","runner":"node","input_digest":"sha256:47963fda9703c6dffe14e3c7a98a48384cd2ef9ccb7c36e5a77badd4cb3f176b","result_digest":"sha256:1f6530cace32274d53f101ca683c1e497cf3f11ea8beace4be0e8f601af5c4e0"}},
+    {"id":"cross-runner-consistency","status":"PASS","observed":{"shared_input_digest":"sha256:47963fda9703c6dffe14e3c7a98a48384cd2ef9ccb7c36e5a77badd4cb3f176b","python_result_digest":"sha256:777faab769c28fb785c323dedd886294bcae10d810be145664bec25032936fe9","node_result_digest":"sha256:1f6530cace32274d53f101ca683c1e497cf3f11ea8beace4be0e8f601af5c4e0","language_results_distinct":true}},
+    {"id":"invalid-input-rejected","status":"PASS","observed":{"exit_code":1,"output_digest":"sha256:9b5cea9f1de3b2540a683d37b2673a6973195503e7daaca54ec0e503d3dca18e","result_file_exists":false,"database_row_count":0}},
+    {"id":"repeatability","status":"PASS","observed":{"pass_count":2,"result_file_digest_stable":true,"cross_runner_rows_stable":true,"invalid_output_digest_stable":true,"teardown_stable":true}},
+    {"id":"teardown","status":"PASS","observed":{"containers_retained":[],"network_retained":null,"volume_retained":"incidentseal-57ca5f96d527da1b_database-data"}}
+  ],
+  "prohibited_claims": [
+    "This does not approve or execute a workflow manifest.",
+    "This does not verify cancellation, forced failure, crash recovery, clean-clone topology, dashboard, receipt recovery, image redistribution, or release publication."
+  ],
+  "decision": {"status":"advance","next_unit":"IS3-U08","reason":"The real Node application surface passed twice with exact positive, negative, cross-runner, database, isolation, repeatability, and cleanup evidence."}
+}

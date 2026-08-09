@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0003",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Implement and run the U07 Node surface probe with fixed staged fixtures, exact runtime identity, database-row verification, cross-runner consistency, negative input, isolation, repeatability, and teardown"
+    "next_action": "Implement and run the U08 reliability surface for clean start, retained-state resume, forced product failure, cancellation, restart, teardown, orphan detection, and clean-clone topology replay"
   }
 }

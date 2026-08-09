@@ -20,6 +20,7 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 | `topology.runtime-probe` | `incidentseal topology runtime-probe --mode platform-validation --json` | Build or verify exact local images, run topology-only security probes, and clean containers/network while retaining evidence-bound database storage. |
 | `topology.database-probe` | `incidentseal topology database-probe --mode platform-validation --json` | Execute the real migration and evaluate PostgreSQL identity, role privilege, schema, bounded DML, forbidden DDL, restart persistence, and teardown. |
 | `topology.python-probe` | `incidentseal topology python-probe --mode platform-validation --json` | Execute the shipped Python application command and evaluate exact staged input, result receipt, PostgreSQL row, malformed-input rejection, runtime isolation, repeatability, and teardown. |
+| `topology.node-probe` | `incidentseal topology node-probe --mode platform-validation --json` | Execute the shipped Node application command and evaluate exact staged input, result receipt, PostgreSQL row, Python-row consistency, malformed-input rejection, runtime isolation, repeatability, and teardown. |
 | `verify` | `incidentseal verify --manifest PATH --json` | Execute only after approval status is `MATCH`. |
 | `run.events` | `incidentseal run events --run-id ID --jsonl` | Stream retained append-only events. |
 
@@ -28,6 +29,8 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 `topology.database-probe` returns a product `FAIL` with exit `10` when a valid database run exposes a failed gate; invalid locks, custody, or runtime state remain `INVALID` with exit `12`. Its bounded persistence rows are platform evidence, not a repository workflow.
 
 `topology.python-probe` has the same product-failure semantics. A PASS proves only the exact Python application surface bound in the active runtime lock. It does not prove Node behavior, approve or run a workflow, or verify cancellation, recovery, dashboard, clean-clone, redistribution, or release claims.
+
+`topology.node-probe` has the same product-failure semantics and additionally binds the Node result to the retained Python row through the shared canonical input digest. A PASS proves only the exact Node and bounded cross-runner surface; it does not approve or run a workflow or verify cancellation, recovery, dashboard, clean-clone, redistribution, or release claims.
 
 The separate operator surface is `incidentseal operator approve-manifest --manifest PATH`. It is deliberately interactive and is not part of the agent-safe machine path.
 
