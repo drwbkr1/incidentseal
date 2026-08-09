@@ -11,6 +11,7 @@ from typing import Any, Sequence
 
 from .approval import ApprovalResult, inspect_document
 from .manifest import ALGORITHM, PROFILE, ManifestError, ManifestReadError, load_manifest
+from .topology import TopologyError, validate_platform_topology
 
 
 EXIT_SUCCESS = 0
@@ -25,13 +26,15 @@ COMMANDS = {
     ("policy", "digest"): "policy.digest",
     ("policy", "status"): "policy.status",
     ("policy", "diff"): "policy.diff",
+    ("topology", "validate"): "topology.validate",
 }
 
 
 @dataclass(frozen=True)
 class Request:
     command: str
-    manifest: str
+    manifest: str | None
+    mode: str | None
 
 
 class UsageError(ValueError):
@@ -80,9 +83,10 @@ def _envelope(
 
 def _parse(argv: Sequence[str]) -> Request:
     if len(argv) < 2 or tuple(argv[:2]) not in COMMANDS:
-        raise UsageError("expected 'policy lint', 'policy digest', 'policy status', or 'policy diff'")
+        raise UsageError("expected a supported policy or topology command")
     command = COMMANDS[tuple(argv[:2])]
     manifest: str | None = None
+    mode: str | None = None
     json_requested = False
     index = 2
     while index < len(argv):
@@ -99,12 +103,26 @@ def _parse(argv: Sequence[str]) -> Request:
             manifest = argv[index + 1]
             index += 2
             continue
+        if token == "--mode":
+            if mode is not None or index + 1 >= len(argv):
+                raise UsageError("--mode requires exactly one value")
+            mode = argv[index + 1]
+            index += 2
+            continue
         raise UsageError(f"unknown argument: {token}")
     if not json_requested:
         raise UsageError("--json is required for the v1 machine CLI")
-    if manifest is None or manifest == "":
-        raise UsageError("--manifest requires exactly one path")
-    return Request(command=command, manifest=manifest)
+    if command.startswith("policy."):
+        if manifest is None or manifest == "":
+            raise UsageError("--manifest requires exactly one path")
+        if mode is not None:
+            raise UsageError("--mode is not valid for policy commands")
+    else:
+        if manifest is not None:
+            raise UsageError("--manifest is not valid for topology validation")
+        if mode != "platform-validation":
+            raise UsageError("--mode must be platform-validation")
+    return Request(command=command, manifest=manifest, mode=mode)
 
 
 def _approval_envelope(request: Request, document: Any, result: ApprovalResult) -> dict[str, Any]:
@@ -144,6 +162,17 @@ def _approval_envelope(request: Request, document: Any, result: ApprovalResult) 
 
 
 def _success(request: Request) -> dict[str, Any]:
+    if request.command == "topology.validate":
+        result = validate_platform_topology()
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=EXIT_SUCCESS,
+            verdict="PASS",
+            data=result.data,
+            evidence=result.evidence,
+        )
+    assert request.manifest is not None
     document = load_manifest(request.manifest)
     common = {
         "manifest_path": str(document.path),
@@ -207,6 +236,16 @@ def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
             errors=[_error("IS_USAGE", str(error), None, False)],
         )
         return envelope, EXIT_USAGE
+    except TopologyError as error:
+        exit_code = EXIT_IO if error.io_error else EXIT_INVALID
+        envelope = _envelope(
+            command,
+            command_status="errored" if error.io_error else "rejected",
+            process_exit_code=exit_code,
+            verdict=None if error.io_error else "INVALID",
+            errors=[_error(error.code, str(error), None, False)],
+        )
+        return envelope, exit_code
     except ManifestError as error:
         envelope = _envelope(
             command,

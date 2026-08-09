@@ -1,0 +1,22 @@
+{
+  "schema_version": "incidentseal-topology-implementation-lock/v1",
+  "lock_id": "IS-TOPOLOGY-IMPLEMENTATION-LOCK-0001",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U03",
+  "generated_at_utc": "2026-08-09T20:15:00Z",
+  "builds_executed": false,
+  "containers_started": false,
+  "derived_image_identity": "synthetic-static-placeholder",
+  "files": [
+    {"path": "compose.yaml", "sha256": "sha256:feda56c92f58568d87db1fe04dbb7e1963c08d184683e244f58decc943788e4d"},
+    {"path": "containers/migration/Dockerfile", "sha256": "sha256:341bba419940e1aeff3dad3ad775358ce4aa73f15ab92aa667c6c2fc4accba98"},
+    {"path": "containers/migration/001-schema.sql", "sha256": "sha256:d248cc2621f1f21c8f1511cd77a2100fd3bfd9640a286a33cf640c81219ecad6"},
+    {"path": "containers/python-runner/Dockerfile", "sha256": "sha256:80e13173f00211d4a449fa0378a0e169a25bc6f5b6490360d1cf01bc6b53860b"},
+    {"path": "containers/python-runner/python_runner.py", "sha256": "sha256:4becae8accf8fa6d3c85898dd61ffbe183811880e6812ea592f351df12b23024"},
+    {"path": "containers/node-runner/Dockerfile", "sha256": "sha256:2e0655ad62eceb5a4952d96e173d78b191d2c07d47c0feed261d610a111007ec"},
+    {"path": "containers/node-runner/node_runner.mjs", "sha256": "sha256:bbbe1902fab62f1cf94a7d81618128860b57b4b76a06c54789328f7d420d19c9"},
+    {"path": "fixtures/topology/runner-request.valid.json", "sha256": "sha256:88ad829882ff996342dcbd081d513d087564839bd21593aea3e31cc261046a54"},
+    {"path": "src/incidentseal/cli.py", "sha256": "sha256:ca13c4659f6f3392cd76b83715da635396ba86ca46bee64b1ac5dc652699bd8d"},
+    {"path": "src/incidentseal/topology.py", "sha256": "sha256:85138755a35af300fff502eb3c9d634769cb7cbe02a3f784c99e3695364f8985"}
+  ]
+}

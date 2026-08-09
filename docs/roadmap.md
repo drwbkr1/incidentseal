@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` and `IS3-U02` passed. Four exact linux/amd64 artifacts are source-gated and frozen in the first image lock. A digest-bound, mutation-tested topology contract now freezes host-only Docker authority, copy-only offline builds, internal networking, numeric non-root identities, staged custody, and evidence-state separation without starting a container. Implementation begins in `IS3-U03`.
+Progress: `IS3-U01` through `IS3-U03` passed. Exact source-gated images, the mutation-tested topology contract, and the exact static implementation are frozen. The real host CLI and Docker Compose render match the normalized security projection, both runner sources agree on canonical input, and 13 implementation mutations fail closed. No image has been built and no container has started; runtime validation begins in `IS3-U04`.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

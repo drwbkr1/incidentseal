@@ -25,12 +25,14 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U02` passed without starting Docker runtime surfaces. The topology contract now binds the exact image lock, host-only Docker authority, copy-only offline builds, one internal network, numeric non-root service identities, bounded staged custody, distinct evidence states, and a normalized render model. All 12 security-relevant mutations failed closed with their expected stable error codes.
 
-`IS3-U03` is the sole eligible unit. It may implement the exact-pinned Dockerfiles, Compose model, migration, dependency-free runners, and host-CLI orchestration, then validate the real static render against the contract. It may not start the topology; runtime execution remains owned by `IS3-U04`.
+`IS3-U03` passed without building an image or starting a container. The real Windows CLI rendered `compose.yaml` through Docker Compose 5.1.3, matched the frozen normalized security projection, repeated the stable redacted-model digest, validated the exact implementation lock, and rejected all 13 real implementation mutations. Python and Node source self-tests agreed on the same canonical input digest; 41 unit tests passed.
+
+`IS3-U04` is the sole eligible unit. It may build the three exact-base, copy-only derived images without build networking, bind their actual local IDs, rerender, start only the platform-validation topology, and probe runtime security. Workflow execution remains unavailable because no manifest approval exists.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- No implemented Compose topology or database exists; only the closed static topology contract and synthetic normalized-render fixture exist.
+- The Compose, migration, and runner sources exist and pass static validation, but no derived image has been built and no database or runner has executed.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected exact images have been pulled and scanned and are eligible only for later contract-controlled execution. None has been started.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -40,4 +42,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS3-U03` in `contracts/IS-0003.json`: implement exact-pinned copy-only Dockerfiles, the Compose model, migrations, dependency-free runners, and host-CLI orchestration, then validate the real static render without starting the topology.
+Execute `IS3-U04` in `contracts/IS-0003.json`: build and bind the exact derived images, rerender, then start only the platform-validation topology and probe the complete runtime security surface through the host CLI.

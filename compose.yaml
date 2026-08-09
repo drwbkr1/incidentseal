@@ -1,0 +1,199 @@
+name: ${INCIDENTSEAL_PROJECT_NAME:?INCIDENTSEAL_PROJECT_NAME is required}
+
+x-incidentseal-labels: &incidentseal-labels
+  dev.incidentseal.contract-digest: ${INCIDENTSEAL_CONTRACT_DIGEST:?INCIDENTSEAL_CONTRACT_DIGEST is required}
+  dev.incidentseal.manifest-digest: ${INCIDENTSEAL_MANIFEST_DIGEST:-not-used}
+  dev.incidentseal.run-id: ${INCIDENTSEAL_RUN_ID:?INCIDENTSEAL_RUN_ID is required}
+
+services:
+  database:
+    image: ${INCIDENTSEAL_POSTGRES_IMAGE:?INCIDENTSEAL_POSTGRES_IMAGE is required}
+    pull_policy: never
+    platform: linux/amd64
+    user: "70:70"
+    read_only: true
+    privileged: false
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    restart: "no"
+    networks:
+      - data
+    entrypoint:
+      - /usr/bin/docker-entrypoint.sh
+      - postgres
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: incidentseal
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: incidentseal
+      TZ: UTC
+    volumes:
+      - type: volume
+        source: database-data
+        target: /var/lib/postgresql/data
+    tmpfs:
+      - /tmp:size=67108864,mode=1777,uid=70,gid=70
+      - /var/run/postgresql:size=16777216,mode=0775,uid=70,gid=70
+    healthcheck:
+      test: ["CMD", "/usr/bin/pg_isready", "-h", "127.0.0.1", "-U", "incidentseal", "-d", "incidentseal"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+    labels: *incidentseal-labels
+
+  migration:
+    image: ${INCIDENTSEAL_MIGRATION_IMAGE:?INCIDENTSEAL_MIGRATION_IMAGE is required}
+    pull_policy: never
+    platform: linux/amd64
+    user: "70:70"
+    read_only: true
+    privileged: false
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 64
+    restart: "no"
+    networks:
+      - data
+    entrypoint:
+      - /usr/bin/psql
+    command:
+      - --host=database
+      - --username=incidentseal
+      - --dbname=incidentseal
+      - --set=ON_ERROR_STOP=1
+      - --file=/opt/incidentseal/migrations/001-schema.sql
+    environment:
+      PGCONNECT_TIMEOUT: "5"
+      TZ: UTC
+    tmpfs:
+      - /tmp:size=16777216,mode=0700,uid=70,gid=70
+    depends_on:
+      database:
+        condition: service_healthy
+        required: true
+    labels: *incidentseal-labels
+
+  python-runner:
+    image: ${INCIDENTSEAL_PYTHON_IMAGE:?INCIDENTSEAL_PYTHON_IMAGE is required}
+    pull_policy: never
+    platform: linux/amd64
+    user: "65532:65532"
+    read_only: true
+    privileged: false
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 64
+    restart: "no"
+    networks:
+      - data
+    entrypoint:
+      - /usr/bin/python
+    command:
+      - /opt/incidentseal/python_runner.py
+    environment:
+      HOME: /tmp/home
+      INCIDENTSEAL_INPUT: /incidentseal/input
+      INCIDENTSEAL_OUTPUT: /incidentseal/output
+      PGDATABASE: incidentseal
+      PGHOST: database
+      PGPORT: "5432"
+      PGUSER: incidentseal
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONHASHSEED: "0"
+      TZ: UTC
+    volumes:
+      - type: bind
+        source: ${INCIDENTSEAL_INPUT_DIR:?INCIDENTSEAL_INPUT_DIR is required}
+        target: /incidentseal/input
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${INCIDENTSEAL_PYTHON_OUTPUT_DIR:?INCIDENTSEAL_PYTHON_OUTPUT_DIR is required}
+        target: /incidentseal/output
+        read_only: false
+        bind:
+          create_host_path: false
+    tmpfs:
+      - /tmp:size=67108864,mode=0700,uid=65532,gid=65532
+    depends_on:
+      database:
+        condition: service_healthy
+        required: true
+      migration:
+        condition: service_completed_successfully
+        required: true
+    labels: *incidentseal-labels
+
+  node-runner:
+    image: ${INCIDENTSEAL_NODE_IMAGE:?INCIDENTSEAL_NODE_IMAGE is required}
+    pull_policy: never
+    platform: linux/amd64
+    user: "65532:65532"
+    read_only: true
+    privileged: false
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 64
+    restart: "no"
+    networks:
+      - data
+    entrypoint:
+      - /nodejs/bin/node
+    command:
+      - /opt/incidentseal/node_runner.mjs
+    environment:
+      HOME: /tmp/home
+      INCIDENTSEAL_INPUT: /incidentseal/input
+      INCIDENTSEAL_OUTPUT: /incidentseal/output
+      PGDATABASE: incidentseal
+      PGHOST: database
+      PGPORT: "5432"
+      PGUSER: incidentseal
+      TZ: UTC
+    volumes:
+      - type: bind
+        source: ${INCIDENTSEAL_INPUT_DIR:?INCIDENTSEAL_INPUT_DIR is required}
+        target: /incidentseal/input
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${INCIDENTSEAL_NODE_OUTPUT_DIR:?INCIDENTSEAL_NODE_OUTPUT_DIR is required}
+        target: /incidentseal/output
+        read_only: false
+        bind:
+          create_host_path: false
+    tmpfs:
+      - /tmp:size=67108864,mode=0700,uid=65532,gid=65532
+    depends_on:
+      database:
+        condition: service_healthy
+        required: true
+      migration:
+        condition: service_completed_successfully
+        required: true
+    labels: *incidentseal-labels
+
+networks:
+  data:
+    driver: bridge
+    internal: true
+    attachable: false
+    external: false
+
+volumes:
+  database-data:
+    driver: local
+    external: false
+    labels: *incidentseal-labels

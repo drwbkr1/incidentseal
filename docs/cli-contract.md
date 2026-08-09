@@ -16,6 +16,7 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 | `policy.digest` | `incidentseal policy digest --manifest PATH --json` | Return canonical digest and canonical byte count. |
 | `policy.status` | `incidentseal policy status --manifest PATH --json` | Compare the manifest with external approval. |
 | `policy.diff` | `incidentseal policy diff --manifest PATH --json` | Explain bound-field and canonical policy differences without writing approval. |
+| `topology.validate` | `incidentseal topology validate --mode platform-validation --json` | Render and compare the real static Compose security projection without building or starting containers. |
 | `verify` | `incidentseal verify --manifest PATH --json` | Execute only after approval status is `MATCH`. |
 | `run.events` | `incidentseal run events --run-id ID --jsonl` | Stream retained append-only events. |
 

@@ -116,13 +116,16 @@
       "depends_on":["IS3-U02"],
       "action_class":"reversible_remediation",
       "human_gate":false,
-      "status":"ready",
+      "status":"completed",
       "inputs":["Frozen topology contract","Approved exact images"],
       "outputs":["Dockerfiles","Compose file","Locks","Migrations","Host CLI orchestration","Static topology receipts"],
-      "gates":{},
-      "disposition":null,
-      "retained_failures":[],
-      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":[],"decision_value":"unknown","rationale":"Implementation must pass configuration and policy mutations before runtime use."},
+      "gates":{"implementation_lock":"pass","real_cli":"pass","compose_render":"pass","runner_source":"pass","mutation":"pass","build_execution":"not_started","runtime_execution":"not_started"},
+      "disposition":"pass",
+      "retained_failures":[
+        "The initial full Compose model digest included generated temporary paths and was not stable. The final redacted model digest repeated exactly.",
+        "The first mutation-harness copy omitted one locked fixture and failed with IS_TOPOLOGY_READ; the corrected bounded copy passed baseline and all thirteen mutations."
+      ],
+      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":["EXIT-COMPOSE-CONTRACT"],"decision_value":"high","rationale":"The real host CLI rendered the exact locked Compose implementation, matched the frozen security projection, passed runner source probes and thirteen implementation mutations, and changed no Docker resource history."},
       "next_dependency":"IS3-U04"
     },
     {
@@ -131,7 +134,7 @@
       "depends_on":["IS3-U03"],
       "action_class":"deterministic_validation",
       "human_gate":false,
-      "status":"planned",
+      "status":"ready",
       "inputs":["Statically valid topology","Passed image execution gate"],
       "outputs":["Real Compose topology receipt","Runtime hardening receipt","Retained startup and teardown attempts"],
       "gates":{},
@@ -232,12 +235,13 @@
     "completed_checks":[
       "Exact image source-gate revalidation and platform binding",
       "SBOM, provenance, license and vulnerability disposition before execution",
-      "Closed topology contract and fail-closed mutation checks"
+      "Closed topology contract and fail-closed mutation checks",
+      "Compose render and fail-closed mutation checks"
     ]
   },
   "handoff": {
     "current_checkpoint":"IS-0003 active",
-    "next_action":"Execute IS3-U03: implement exact-pinned copy-only Dockerfiles, the Compose model, migrations, dependency-free runners, and host-CLI orchestration, then validate the real static render against the locked topology contract without starting containers.",
+    "next_action":"Execute IS3-U04: through the host CLI, build the three copy-only derived images without build network, bind their real local image IDs in a runtime lock, rerender, then start only the platform-validation topology and probe identity, privilege, filesystem, mount, network, egress, health, Docker-socket absence, and teardown.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not run an image merely because acquisition or metadata passed",
