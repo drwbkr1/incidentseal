@@ -1,0 +1,150 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-002",
+  "assessed_at": "2026-08-09T17:59:30Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "metadata review",
+      "download exact wheel artifacts",
+      "verify exact wheel hashes",
+      "install exact wheels into an isolated temporary directory",
+      "execute full Draft 2020-12 schema meta-validation"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Acquire six exact Python wheel artifacts solely into temporary evaluation custody, verify every SHA-256 digest, install them without indexes or dependency resolution into a temporary target, and use jsonschema Draft202012Validator to meta-validate IncidentSeal's frozen schemas. These packages are evaluation tooling, not IncidentSeal runtime dependencies.",
+    "planned_actions": [
+      "metadata review",
+      "download exact wheel artifacts",
+      "verify exact wheel hashes",
+      "install exact wheels into an isolated temporary directory",
+      "execute full Draft 2020-12 schema meta-validation"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "jsonschema-4.26.0",
+      "name": "jsonschema 4.26.0 Python wheel",
+      "locator": "https://files.pythonhosted.org/packages/69/90/f63fb5873511e014207a475e2bb4e8b2e570d655b00ac19a9a0ca0a385ee/jsonschema-4.26.0-py3-none-any.whl#sha256=d489f15263b8d200f8387e64b4c3a75f06629559fb73deb8fdfb525f2dab50ce",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI identified current release 4.26.0, Python >=3.10, exact universal wheel filename, and upload time 2026-01-07T13:41:05.306692Z; the artifact was not yanked."}],"note":"Identity is pinned to version, filename and digest rather than a mutable package name."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/project/jsonschema/","observed_at":"2026-08-09T17:59:30Z","note":"The PyPI project metadata links the canonical python-jsonschema/jsonschema source repository and official documentation."}],"note":"The artifact is obtained from the package index and project location asserted by the maintainers."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/json","observed_at":"2026-08-09T17:59:30Z","note":"Metadata and the files.pythonhosted.org artifact URL were anonymously readable with no account, secret, terms acceptance or payment."}],"note":"Credential-free public acquisition is available."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI core metadata declares license expression MIT."}],"note":"Temporary evaluation is permitted; this gate does not approve redistribution."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/python-jsonschema/jsonschema","observed_at":"2026-08-09T17:59:30Z","note":"The source repository matches the Source and Homepage links published in the package metadata."}],"note":"Repository-to-index provenance is attributable; no build attestation was asserted."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/4.26.0/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI published SHA-256 d489f15263b8d200f8387e64b4c3a75f06629559fb73deb8fdfb525f2dab50ce for jsonschema-4.26.0-py3-none-any.whl."}],"note":"Acquisition must match this exact digest before installation."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://python-jsonschema.readthedocs.io/en/stable/validate/","observed_at":"2026-08-09T17:59:30Z","note":"Official 4.26.0 documentation exposes Draft202012Validator and check_schema for validating schemas against their declared metaschema."}],"note":"This directly supplies the missing full Draft 2020-12 meta-schema check on Python 3.12."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"Third-party evaluation code receives no secrets, Docker control, broad host mounts or project write authority; it is installed in and loaded from a temporary directory."}],"note":"No sensitive data is used; network access ends after exact artifact acquisition."}
+      ]
+    },
+    {
+      "source_id": "attrs-26.1.0",
+      "name": "attrs 26.1.0 Python wheel",
+      "locator": "https://files.pythonhosted.org/packages/64/b4/17d4b0b2a2dc85a6df63d1157e028ed19f90d4cd97c36717afef2bc2f395/attrs-26.1.0-py3-none-any.whl#sha256=c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/attrs/26.1.0/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI identified release 26.1.0, Python >=3.9 and the exact non-yanked universal wheel uploaded 2026-03-19T14:22:23.645947Z."}],"note":"Exact release, filename and digest are fixed."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/project/attrs/","observed_at":"2026-08-09T17:59:30Z","note":"PyPI metadata links attrs official documentation and python-attrs/attrs repository."}],"note":"Publisher path is attributable through the official package record."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/attrs/26.1.0/json","observed_at":"2026-08-09T17:59:30Z","note":"The exact public artifact is anonymously retrievable without credentials or payment."}],"note":"Credential-free access is available."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/attrs/26.1.0/json","observed_at":"2026-08-09T17:59:30Z","note":"Core metadata declares MIT."}],"note":"Temporary evaluation is permitted; redistribution is outside this gate."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/python-attrs/attrs","observed_at":"2026-08-09T17:59:30Z","note":"The source matches the GitHub project URL in PyPI metadata."}],"note":"Source attribution is retained; no build attestation was asserted."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/attrs/26.1.0/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI published SHA-256 c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309 for attrs-26.1.0-py3-none-any.whl."}],"note":"The wheel must match this digest."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/4.26.0/json","observed_at":"2026-08-09T17:59:30Z","note":"jsonschema 4.26.0 declares attrs>=22.2.0; 26.1.0 satisfies that exact dependency constraint on Python 3.12."}],"note":"This is an evaluation-only transitive dependency."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"The exact wheel is restricted to isolated temporary evaluation with no secrets or host authority."}],"note":"No sensitive data is involved."}
+      ]
+    },
+    {
+      "source_id": "jsonschema-specifications-2025.9.1",
+      "name": "jsonschema-specifications 2025.9.1 Python wheel",
+      "locator": "https://files.pythonhosted.org/packages/41/45/1a4ed80516f02155c51f51e8cedb3c1902296743db0bbc66608a0db2814f/jsonschema_specifications-2025.9.1-py3-none-any.whl#sha256=98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema-specifications/2025.9.1/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI identified release 2025.9.1, Python >=3.9, and the exact non-yanked universal wheel uploaded 2025-09-08T01:34:57.871954Z."}],"note":"Exact release, filename and digest are fixed."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/project/jsonschema-specifications/","observed_at":"2026-08-09T17:59:30Z","note":"PyPI links the canonical python-jsonschema/jsonschema-specifications source and documentation."}],"note":"Publisher path is attributable."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema-specifications/2025.9.1/json","observed_at":"2026-08-09T17:59:30Z","note":"The public artifact is anonymously retrievable without credentials or payment."}],"note":"Credential-free access is available."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema-specifications/2025.9.1/json","observed_at":"2026-08-09T17:59:30Z","note":"Core metadata declares MIT."}],"note":"Temporary evaluation is permitted; redistribution is outside this gate."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/python-jsonschema/jsonschema-specifications","observed_at":"2026-08-09T17:59:30Z","note":"The source matches the project metadata Source link."}],"note":"Source attribution is retained; no build attestation was asserted."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema-specifications/2025.9.1/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI published SHA-256 98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe for the exact wheel."}],"note":"The wheel must match this digest."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/4.26.0/json","observed_at":"2026-08-09T17:59:30Z","note":"jsonschema 4.26.0 requires jsonschema-specifications>=2023.03.6; 2025.9.1 satisfies the constraint and publishes the referenced metaschemas."}],"note":"This supplies the validator's specification registry."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"The exact wheel is restricted to isolated temporary evaluation with no secrets or host authority."}],"note":"No sensitive data is involved."}
+      ]
+    },
+    {
+      "source_id": "referencing-0.37.0",
+      "name": "referencing 0.37.0 Python wheel",
+      "locator": "https://files.pythonhosted.org/packages/2c/58/ca301544e1fa93ed4f80d724bf5b194f6e4b945841c5bfd555878eea9fcb/referencing-0.37.0-py3-none-any.whl#sha256=381329a9f99628c9069361716891d34ad94af76e461dcb0335825aecc7692231",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/referencing/0.37.0/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI identified release 0.37.0, Python >=3.10 and the exact non-yanked universal wheel uploaded 2025-10-13T15:30:47.625937Z."}],"note":"Exact release, filename and digest are fixed."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/project/referencing/","observed_at":"2026-08-09T17:59:30Z","note":"PyPI links python-jsonschema/referencing and its documentation."}],"note":"Publisher path is attributable."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/referencing/0.37.0/json","observed_at":"2026-08-09T17:59:30Z","note":"The public artifact is anonymously retrievable without credentials or payment."}],"note":"Credential-free access is available."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/referencing/0.37.0/json","observed_at":"2026-08-09T17:59:30Z","note":"Core metadata declares MIT."}],"note":"Temporary evaluation is permitted; redistribution is outside this gate."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/python-jsonschema/referencing","observed_at":"2026-08-09T17:59:30Z","note":"The source matches the project metadata Source link."}],"note":"Source attribution is retained; no build attestation was asserted."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/referencing/0.37.0/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI published SHA-256 381329a9f99628c9069361716891d34ad94af76e461dcb0335825aecc7692231 for the exact wheel."}],"note":"The wheel must match this digest."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/4.26.0/json","observed_at":"2026-08-09T17:59:30Z","note":"jsonschema 4.26.0 requires referencing>=0.28.4; 0.37.0 satisfies that constraint and supports resource registries for cross-schema references."}],"note":"This supplies explicit Draft 2020-12 resource resolution."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"The exact wheel is restricted to isolated temporary evaluation with no secrets or host authority."}],"note":"No sensitive data is involved."}
+      ]
+    },
+    {
+      "source_id": "rpds-py-2026.6.3-win-amd64-cp312",
+      "name": "rpds-py 2026.6.3 CPython 3.12 Windows amd64 wheel",
+      "locator": "https://files.pythonhosted.org/packages/04/3a/f0ee4d4dde9d3b69dedf1b5f74e7a40017046d55052d173e418c6a94f960/rpds_py-2026.6.3-cp312-cp312-win_amd64.whl#sha256=2c958bf94822e9290a40aaf2a822d4bc5c88099093e3948ad6c571eca9272e5f",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/rpds-py/2026.6.3/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI identified release 2026.6.3, Python >=3.11 and the exact non-yanked CPython 3.12 Windows amd64 wheel uploaded 2026-06-30T07:15:33.359432Z."}],"note":"Platform, ABI, release, filename and digest are fixed."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/project/rpds-py/","observed_at":"2026-08-09T17:59:30Z","note":"PyPI links crate-py/rpds as source and the rpds documentation."}],"note":"Publisher path is attributable."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/rpds-py/2026.6.3/json","observed_at":"2026-08-09T17:59:30Z","note":"The platform wheel is anonymously retrievable without credentials or payment."}],"note":"Credential-free access is available."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/rpds-py/2026.6.3/json","observed_at":"2026-08-09T17:59:30Z","note":"Core metadata declares MIT."}],"note":"Temporary evaluation is permitted; redistribution is outside this gate."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/crate-py/rpds","observed_at":"2026-08-09T17:59:30Z","note":"The source matches the project metadata Source link; the artifact is a native compiled wheel, so exact platform binding is retained."}],"note":"Source attribution is retained; no build attestation was asserted."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/rpds-py/2026.6.3/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI published SHA-256 2c958bf94822e9290a40aaf2a822d4bc5c88099093e3948ad6c571eca9272e5f for the exact CPython 3.12 Windows amd64 wheel."}],"note":"The native wheel must match this exact digest."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/jsonschema/4.26.0/json","observed_at":"2026-08-09T17:59:30Z","note":"jsonschema requires rpds-py>=0.25.0 and referencing requires rpds-py>=0.7.0; 2026.6.3 satisfies both for the observed CPython 3.12 Windows amd64 evaluator."}],"note":"This is the required native persistent-data-structure dependency."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"Native third-party code is loaded only after hash verification, from a temporary target, without secrets, Docker control or external network during validation."}],"note":"Native-code risk is bounded but not eliminated; the package never becomes a runtime dependency."}
+      ]
+    },
+    {
+      "source_id": "typing-extensions-4.16.0",
+      "name": "typing-extensions 4.16.0 Python wheel",
+      "locator": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl#sha256=481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/typing-extensions/4.16.0/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI identified release 4.16.0, Python >=3.9 and the exact non-yanked universal wheel uploaded 2026-07-02T08:40:04.659120Z."}],"note":"Exact release, filename and digest are fixed."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/project/typing-extensions/","observed_at":"2026-08-09T17:59:30Z","note":"PyPI links the python/typing_extensions repository and official documentation."}],"note":"Publisher path is attributable to the Python typing project."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/typing-extensions/4.16.0/json","observed_at":"2026-08-09T17:59:30Z","note":"The public artifact is anonymously retrievable without credentials or payment."}],"note":"Credential-free access is available."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/typing-extensions/4.16.0/json","observed_at":"2026-08-09T17:59:30Z","note":"Core metadata declares PSF-2.0."}],"note":"Temporary evaluation is permitted; redistribution is outside this gate."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/python/typing_extensions","observed_at":"2026-08-09T17:59:30Z","note":"The source matches the Repository and Home links in project metadata."}],"note":"Source attribution is retained; no build attestation was asserted."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/typing-extensions/4.16.0/json","observed_at":"2026-08-09T17:59:30Z","note":"PyPI published SHA-256 481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8 for the exact wheel."}],"note":"The wheel must match this digest."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://pypi.org/pypi/referencing/0.37.0/json","observed_at":"2026-08-09T17:59:30Z","note":"referencing 0.37.0 requires typing-extensions>=4.4.0 when Python is below 3.13; 4.16.0 satisfies the constraint on Python 3.12."}],"note":"This conditionally required dependency closes the observed evaluator graph."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"The exact wheel is restricted to isolated temporary evaluation with no secrets or host authority."}],"note":"No sensitive data is involved."}
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [],
+    "approved_actions": [
+      "metadata review",
+      "download exact wheel artifacts",
+      "verify exact wheel hashes",
+      "install exact wheels into an isolated temporary directory",
+      "execute full Draft 2020-12 schema meta-validation"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "read public package and documentation metadata",
+      "record source-gate evidence and exact hashes",
+      "download the six exact wheels into a system temporary directory",
+      "install the exact verified wheels into a system temporary target without dependency resolution or package indexes",
+      "execute schema meta-validation against repository-controlled JSON only",
+      "delete temporary evaluation custody after recording the receipt"
+    ],
+    "requires_explicit_authorization": [
+      "authenticate to a package index",
+      "accept new terms",
+      "purchase access",
+      "install packages into the system, user or project runtime environment",
+      "use unpinned artifacts or resolve new dependencies",
+      "upload repository content or evidence",
+      "publish or redistribute dependency artifacts"
+    ]
+  }
+}
