@@ -183,3 +183,11 @@ Annotated tag `checkpoint-is-0003` was created at that exact commit, pushed, and
 No IncidentSeal container or network remains, and all three protected evidence volumes remain. The non-canonical U08 and U09 temp clones remain in non-OneDrive local temp custody because local command policy denied recursive cleanup; neither is canonical or a release artifact.
 
 IS-0003 is complete, but IncidentSeal remains `0.0.0` and unreleased. The next bounded milestone is evidence and recovery: append-only portable receipts, idempotency, durable cancellation/failure records, crash recovery, verified backup/restore, and independent offline verification.
+
+## 2026-08-09 - IS-0004 evidence-and-recovery milestone opened
+
+After the IS-0003 closure receipts were committed and remote `main` independently matched `79c5b71930023b4c63f42ff6269d3ee95fed5b0b`, the project advanced to `IS-0004`. The immutable `checkpoint-is-0003` marker remains at `a0c05070dd1d147aecae6b4ed686440414a3aa27`; post-marker records do not move it.
+
+The real agent-safe `policy status` surface returned approval `MISSING`, verdict `INVALID`, and exit `12` for the valid minimal fixture. Workflow execution therefore remains unavailable. IS4-U01 is contract-only and may not start Docker or write runtime evidence. Later units are ordered through portable receipts and independent offline verification, idempotent event history, interruption recovery, clean PostgreSQL restore, integrated real-surface evaluation, and a credential-free public checkpoint.
+
+The first combined post-push verification wrapper was `INVALID` after the push had already succeeded because PowerShell rejected an inline conditional expression. Separate read-only checks then proved local and remote `main` both at `79c5b719...`, the annotated marker unchanged, and the canonical worktree clean.

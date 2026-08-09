@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0",
+  "milestone_id": "IS-0004",
+  "project_profile_ref": "control/project-control.json",
+  "status": "active",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_action_classes": [
+      "read_only_inspection",
+      "project_control",
+      "update_project_records",
+      "reversible_remediation",
+      "deterministic_validation",
+      "version_control_write",
+      "git_push"
+    ],
+    "user_instruction": "Add independently verifiable portable evidence and real recovery behavior one bounded unit at a time without changing the approved manifest authority, machine CLI, Docker trust boundary, or evidence-state semantics.",
+    "repository_controls": [
+      "AGENTS.md",
+      "docs/product-contract.md",
+      "docs/threat-model.md",
+      "control/project-control.json"
+    ],
+    "active_contract": "contracts/IS-0004.json",
+    "verified_at_utc": "2026-08-09T22:40:58Z",
+    "expires_at_utc": null
+  },
+  "scope": {
+    "objective": "Freeze and implement append-only, content-addressed portable receipts; durable idempotent event history; state-separated interruption recovery; verified PostgreSQL backup and clean restore; and an independent offline verifier on the already verified local topology.",
+    "allowed_paths": ["."],
+    "forbidden_work": [
+      "Any access to C:\\Users\\drewb\\OneDrive",
+      "Changing the approved product promise, manifest authority, Docker trust boundary, or evidence semantics",
+      "Mounting a Docker or container-engine socket into any container",
+      "Giving containers secrets, privileged mode, host network, broad host mounts, or external runtime network",
+      "Creating or changing a real workflow approval or executing repository workflow input",
+      "Deleting, mounting into a new project, relabeling, renaming, or otherwise mutating any protected IS-0003 evidence volume",
+      "Using a dependency before its exact source, integrity, license, vulnerability, and compatibility gate passes",
+      "Adding dashboard, registry publication, image redistribution, release, cloud, Kubernetes, multi-tenancy, or arbitrary remote execution work",
+      "Claiming tests, source inspection, a live database alone, or a later successful attempt overwrites prior evidence"
+    ],
+    "reversible_actions": [
+      "Create closed schemas, fixtures, canonicalization vectors, locks, mutation harnesses, ADRs, and documentation",
+      "Implement host-owned portable receipt custody and an offline verifier using source-gated dependencies or the standard library",
+      "Extend the stable CLI with additive evidence and recovery commands that preserve existing command and exit semantics",
+      "Use only fixed non-sensitive disposable staging, containers, networks, and volumes for destructive recovery probes",
+      "Create and verify PostgreSQL dumps and restores in bounded disposable custody",
+      "Retain immutable failed, invalid, cancelled, stale, superseded, and corrupted attempts",
+      "Commit and push verified bounded improvements"
+    ],
+    "stop_conditions": [
+      "A required change would alter the core promise, trust boundary, approval authority, or weaken an explicit security or evidence gate",
+      "A dependency or artifact cannot pass the applicable source, integrity, license, vulnerability, or compatibility gate",
+      "A recovery probe cannot prove that every protected volume remains untouched",
+      "A test would require a secret, real sensitive data, consequential action, paid service, access or ownership change, or irreversible operation",
+      "An evidence state cannot remain distinguishable and independently verifiable",
+      "A checkpoint or release claim cannot be verified from clean local and public custody"
+    ]
+  },
+  "entry_conditions": [
+    {
+      "id": "ENTRY-VERIFIED-IS-0003",
+      "status": "pass",
+      "evidence": [
+        "records/evaluations/IS-0003-U09-public-checkpoint.json",
+        "records/surface-receipts/IS-0003-public-checkpoint.json",
+        "records/surface-receipts/IS-0003-checkpoint-marker.json",
+        "records/evaluations/IS-0004-milestone-opening.json"
+      ]
+    },
+    {
+      "id": "ENTRY-MACHINE-CONTRACT",
+      "status": "pass",
+      "evidence": [
+        "docs/cli-contract.md",
+        "schemas/run-event-v1.schema.json",
+        "records/evaluations/IS-0002-U01-machine-contracts.json"
+      ]
+    },
+    {
+      "id": "ENTRY-REAL-TOPOLOGY",
+      "status": "pass",
+      "evidence": [
+        "requirements/topology-runtime.lock.json",
+        "requirements/retained-runtime-volumes.lock.json",
+        "records/evaluations/IS-0003-U08-reliability.json"
+      ]
+    },
+    {
+      "id": "ENTRY-WORKFLOW-EXECUTION-DENIED",
+      "status": "pass",
+      "evidence": [
+        "docs/manifest-authority.md",
+        "records/evaluations/IS-0002-U03-approval-boundary.json",
+        "records/evaluations/IS-0004-milestone-opening.json"
+      ]
+    }
+  ],
+  "exit_conditions": [
+    {"id":"EXIT-RECEIPT-CONTRACT","status":"pending","evidence":[]},
+    {"id":"EXIT-PORTABLE-RECEIPTS","status":"pending","evidence":[]},
+    {"id":"EXIT-INDEPENDENT-VERIFIER","status":"pending","evidence":[]},
+    {"id":"EXIT-IDEMPOTENT-EVENTS","status":"pending","evidence":[]},
+    {"id":"EXIT-INTERRUPTION-RECOVERY","status":"pending","evidence":[]},
+    {"id":"EXIT-BACKUP-RESTORE","status":"pending","evidence":[]},
+    {"id":"EXIT-REAL-RECOVERY","status":"pending","evidence":[]},
+    {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
+  ],
+  "units": [
+    {
+      "id": "IS4-U01",
+      "purpose": "Freeze the portable receipt, artifact, event-chain, run-summary, custody, canonicalization, and offline-verification contracts with valid, invalid, corruption, truncation, reordering, replay, and state-separation vectors before implementation.",
+      "depends_on": [],
+      "action_class": "update_project_records",
+      "human_gate": false,
+      "status": "ready",
+      "inputs": ["Frozen CLI and run-event v1 contract", "Product evidence semantics", "IS-0003 retained reliability evidence"],
+      "outputs": ["Closed receipt schemas", "Canonical digest and chain rules", "Golden and negative fixtures", "Mutation plan", "Receipt contract lock and ADR"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-RECEIPT-CONTRACT"],"observed":[],"decision_value":"unknown","rationale":"The contract must fail closed under bounded mutations before any receipt writer or verifier is trusted."},
+      "next_dependency": "IS4-U02"
+    },
+    {
+      "id": "IS4-U02",
+      "purpose": "Implement an atomic append-only portable receipt store and an independent offline verifier that requires no Docker, PostgreSQL, network, approval state, secret, or repository write access.",
+      "depends_on": ["IS4-U01"],
+      "action_class": "reversible_remediation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Frozen receipt contract"],
+      "outputs": ["Host receipt writer", "Offline verifier CLI", "Content-addressed artifact custody", "Implementation mutations"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-PORTABLE-RECEIPTS","EXIT-INDEPENDENT-VERIFIER"],"observed":[],"decision_value":"unknown","rationale":"A portable receipt is not trusted until clean custody and a separate read-only verifier reject corruption."},
+      "next_dependency": "IS4-U03"
+    },
+    {
+      "id": "IS4-U03",
+      "purpose": "Persist monotonic append-only run events with deterministic idempotency keys, duplicate replay handling, and explicit stale and superseded transitions while preserving every prior attempt.",
+      "depends_on": ["IS4-U02"],
+      "action_class": "reversible_remediation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Verified receipt store and offline verifier", "Run-event v1 schema"],
+      "outputs": ["Durable event journal", "Idempotency and duplicate policy", "Stale and superseded evidence"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-IDEMPOTENT-EVENTS"],"observed":[],"decision_value":"unknown","rationale":"Duplicate and superseding attempts must be observable without rewriting the earlier event chain."},
+      "next_dependency": "IS4-U04"
+    },
+    {
+      "id": "IS4-U04",
+      "purpose": "Add host crash reconciliation and durable cancellation/failure recovery at bounded boundaries, proving that lifecycle failure never fabricates or erases a verification verdict.",
+      "depends_on": ["IS4-U03"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Durable event journal", "Verified disposable topology"],
+      "outputs": ["Crash boundary receipts", "Cancellation and failure recovery receipts", "Resume and orphan reconciliation evidence"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-INTERRUPTION-RECOVERY"],"observed":[],"decision_value":"unknown","rationale":"The real host and disposable topology must recover without mutating protected evidence or collapsing lifecycle and verdict."},
+      "next_dependency": "IS4-U05"
+    },
+    {
+      "id": "IS4-U05",
+      "purpose": "Create an exact PostgreSQL logical backup from bounded disposable evidence state, restore into a clean disposable volume, and verify schema, roles, event ordering, receipts, and negative privilege boundaries.",
+      "depends_on": ["IS4-U04"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Recoverable event model", "Exact PostgreSQL runtime lock", "Protected-volume lock"],
+      "outputs": ["Backup receipt", "Clean-restore receipt", "Restored evidence equivalence and privilege evidence"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-BACKUP-RESTORE"],"observed":[],"decision_value":"unknown","rationale":"Backup existence is insufficient; an exact clean restore must reproduce the bounded evidence state and least-privilege controls."},
+      "next_dependency": "IS4-U06"
+    },
+    {
+      "id": "IS4-U06",
+      "purpose": "Run the integrated receipt and recovery matrix repeatedly against the real CLI, disposable Compose topology, PostgreSQL, both runners, corruption cases, interruption boundaries, and clean restore.",
+      "depends_on": ["IS4-U05"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["All implemented IS-0004 surfaces"],
+      "outputs": ["Repeated real recovery evaluation", "State-separation matrix", "Resource and protected-volume custody receipt"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-REAL-RECOVERY"],"observed":[],"decision_value":"unknown","rationale":"Integrated PASS requires repeated real-surface behavior, mutation rejection, recovery, and complete disposable teardown."},
+      "next_dependency": "IS4-U07"
+    },
+    {
+      "id": "IS4-U07",
+      "purpose": "Commit, push, credential-free clean-clone, replay, tag, and independently verify the bounded IS-0004 checkpoint without claiming dashboard or release completion.",
+      "depends_on": ["IS4-U06"],
+      "action_class": "git_push",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Verified IS-0004 tree"],
+      "outputs": ["Verified remote main checkpoint", "checkpoint-is-0004 marker", "Public receipt and recovery checkpoint receipt"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-PUBLIC-CHECKPOINT"],"observed":[],"decision_value":"unknown","rationale":"The milestone closes only after exact public custody reproduces its real receipt and recovery claims and independently verifies the annotated marker."},
+      "next_dependency": null
+    }
+  ],
+  "path_efficiency": {
+    "max_consecutive_no_progress_units": 2,
+    "review_action_class": "project_control",
+    "review_human_gate": false
+  },
+  "verification": {
+    "changed_risks": ["security", "runtime", "data", "public contract"],
+    "required_checks": [
+      "Closed-schema and canonicalization validation with fail-closed mutations",
+      "Independent offline verification of exact receipts and artifacts",
+      "Truncation, reordering, replay, duplicate, corruption, stale, and superseded cases",
+      "Real cancellation, failure, host-crash, resume, orphan, and cleanup behavior",
+      "Exact PostgreSQL dump, clean restore, data equivalence, role, and privilege checks",
+      "Protected-volume identity before and after every destructive probe",
+      "Repeated real CLI, Compose, database, Python, and Node recovery matrix",
+      "Credential-free clean-clone, Git integrity, secret scan, and public marker verification"
+    ],
+    "completed_checks": []
+  },
+  "handoff": {
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Execute IS4-U01 by freezing closed portable receipt and event-chain contracts plus fail-closed vectors without writing runtime evidence or starting Docker.",
+    "do_not_carry_forward": [
+      "Do not use OneDrive",
+      "Do not alter or automate operator approval",
+      "Do not execute repository workflow input",
+      "Do not mount Docker authority into containers",
+      "Do not add secrets, external runtime network, broad mounts, or privileged execution",
+      "Do not touch the three protected IS-0003 evidence volumes",
+      "Do not collapse verdict and lifecycle state or overwrite prior attempts",
+      "Do not claim dashboard, redistribution, registry, release, or v0.1.0 completion"
+    ]
+  }
+}

@@ -1,8 +1,8 @@
 # IncidentSeal status
 
-- Current checkpoint: `IS-0003`
+- Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: checkpoint complete; next milestone not yet opened
+- State: active; `IS4-U01` ready
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -15,7 +15,7 @@
 
 ## Current truth
 
-The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `IS-0003` now establishes the verified public hardened-topology checkpoint on top of the `IS-0002` manifest authority and machine CLI contract.
+The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `IS-0003` establishes the latest verified public hardened-topology checkpoint. `IS-0004` is active for evidence and recovery without changing that trust boundary.
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
@@ -39,6 +39,8 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U09` passed. Exact closure commit `a0c05070...` and tree `67c05a10...` passed the full credential-free clone matrix, Git object integrity, secret scanning, and real reliability invocation `73711f49...`. Annotated marker object `28eea260...` was pushed and independently fetched from public custody, peeling to the exact closure commit. IS-0003 is complete.
 
+`IS4-U01` is ready. Its bounded scope is contract-first: closed portable receipt, artifact, event-chain, summary, custody, canonicalization, and offline-verification schemas plus fail-closed fixtures and mutations. It must not start Docker, write runtime evidence, approve a manifest, or execute a workflow.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, and bounded platform-validation probes; approved-workflow verification and its run-event stream remain unimplemented.
@@ -52,4 +54,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Open and validate a new `IS-0004` evidence-and-recovery milestone from `checkpoint-is-0003`. Preserve the stable machine CLI and trust boundary while adding append-only receipts, idempotency, durable cancellation/failure records, crash recovery, verified PostgreSQL backup/restore, and an independent offline receipt verifier one bounded unit at a time.
+Execute `IS4-U01`: freeze the portable receipt and event-chain contracts, canonical digest and chain rules, independent-verifier behavior, and bounded corruption/truncation/reordering/replay/state-separation vectors before implementation.

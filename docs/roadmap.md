@@ -40,7 +40,9 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 ### IS-0004 - Evidence and recovery
 
-Status: planned
+Status: active
+
+Progress: `IS4-U01` is ready to freeze receipt and event-chain contracts plus fail-closed vectors before any storage or recovery implementation.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.
