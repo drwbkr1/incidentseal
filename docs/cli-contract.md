@@ -22,6 +22,8 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 | `topology.python-probe` | `incidentseal topology python-probe --mode platform-validation --json` | Execute the shipped Python application command and evaluate exact staged input, result receipt, PostgreSQL row, malformed-input rejection, runtime isolation, repeatability, and teardown. |
 | `topology.node-probe` | `incidentseal topology node-probe --mode platform-validation --json` | Execute the shipped Node application command and evaluate exact staged input, result receipt, PostgreSQL row, Python-row consistency, malformed-input rejection, runtime isolation, repeatability, and teardown. |
 | `topology.reliability-probe` | `incidentseal topology reliability-probe --mode platform-validation --json` | Exercise a protected disposable topology through fresh start, real runners, distinct failure/cancellation states, recovery, restart, orphan detection, and teardown. |
+| `receipt.materialize` | `incidentseal receipt materialize --receipt PATH --source-root PATH --output-root PATH --json` | Validate exact source receipt/artifact bytes and atomically create or idempotently reuse a content-addressed portable bundle outside repository and OneDrive custody. |
+| `receipt.verify` | `incidentseal receipt verify --receipt PATH --bundle-root PATH [--expected-digest SHA256] --json` | Read-only offline verification; exact identity may pass, unbound identity is inconclusive, corruption fails, and unsafe custody is invalid. |
 | `verify` | `incidentseal verify --manifest PATH --json` | Execute only after approval status is `MATCH`. |
 | `run.events` | `incidentseal run events --run-id ID --jsonl` | Stream retained append-only events. |
 
@@ -36,6 +38,8 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 `topology.reliability-probe` operates only on the exact disposable project named by the retained-volume lock. It may delete only that non-sensitive disposable volume after verified teardown. Its machine output keeps verification `FAIL` and `INVALID` separate from lifecycle `failed` and `cancelled`. A canonical-checkout PASS does not prove the clean-clone gate.
 
 The separate operator surface is `incidentseal operator approve-manifest --manifest PATH`. It is deliberately interactive and is not part of the agent-safe machine path.
+
+`receipt.materialize` and `receipt.verify` do not approve or execute a workflow and never access Docker, PostgreSQL, the network, or approval state. Materialization writes only beneath the explicit non-repository, non-OneDrive output root. Verification writes nothing. Their `data` object conforms to the frozen receipt implementation or verification contract; the outer envelope and stable exit meanings remain v1.
 
 ## Output discipline
 

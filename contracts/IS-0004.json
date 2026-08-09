@@ -130,7 +130,7 @@
       "depends_on": ["IS4-U01"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "ready",
+      "status": "in_progress",
       "inputs": ["Frozen receipt contract"],
       "outputs": ["Host receipt writer", "Offline verifier CLI", "Content-addressed artifact custody", "Implementation mutations"],
       "gates": {},

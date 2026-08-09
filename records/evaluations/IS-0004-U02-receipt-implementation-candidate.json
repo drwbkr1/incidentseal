@@ -1,0 +1,46 @@
+{
+  "schema_version": "incidentseal-receipt-implementation-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U02-RECEIPT-CANDIDATE",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U02",
+  "observed_at_utc": "2026-08-09T23:10:00Z",
+  "execution_state": "running",
+  "verification_verdict": null,
+  "implementation": {
+    "lock": "requirements/receipt-implementation.lock.json",
+    "lock_digest": "sha256:4beb0e11f321c66cc65deb5d5ed54fcda581c293cc904de91615517305ac7594",
+    "contract_digest": "sha256:7bd0abd1923b6e03ba99f02bfde9beca551fb789a837ff41098a570674c501e3",
+    "runtime_dependencies": 0,
+    "commands": ["receipt.materialize", "receipt.verify"]
+  },
+  "observed_checks": {
+    "unit_tests": 54,
+    "real_windows_materialize_invocation": "031e9aa4-2a7c-48fb-a425-83951e8d20c6",
+    "real_windows_verify_invocation": "fcc649f0-9f2d-4170-a315-e4ea22a380f0",
+    "real_windows_unbound_invocation": "9e0ba709-4261-43f3-89f4-d11ddaac7472",
+    "locked_validator_materialize_invocation": "748e0b94-b3cf-4ccd-a0e7-5b39f8096458",
+    "locked_validator_verify_invocation": "644877e5-218e-4c39-8fa5-af9a456499e8",
+    "locked_validator_unbound_invocation": "2d6a889b-0e34-4d68-a296-32f69f0ce0e7",
+    "atomic_materialize": "PASS",
+    "idempotent_reuse": "PASS",
+    "exact_offline_verify": "PASS",
+    "unbound_inconclusive": "PASS",
+    "identity_mismatch_invalid": "PASS",
+    "artifact_corruption_fail": "PASS",
+    "required_artifact_missing_inconclusive": "PASS",
+    "read_only_verification": "PASS",
+    "repository_output_rejection": "PASS",
+    "temporary_custody_removed": true,
+    "docker_state_unchanged": true,
+    "approval_state_unchanged": true
+  },
+  "remaining_gates": [
+    "Implementation mutation harness against the exact locked real CLI",
+    "Credential-free clean-copy replay of the complete U02 surface",
+    "Final U02 receipt and contract closure"
+  ],
+  "decision": {
+    "status": "continue",
+    "reason": "The locked real CLI candidate passes its positive and state-separated negative surfaces, but U02 remains in progress until implementation mutations and clean-copy replay pass."
+  }
+}

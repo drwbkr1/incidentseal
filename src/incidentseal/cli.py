@@ -14,6 +14,7 @@ from .database import database_probe
 from .manifest import ALGORITHM, PROFILE, ManifestError, ManifestReadError, load_manifest
 from .node_surface import node_probe
 from .python_surface import python_probe
+from .receipt import ReceiptError, materialize_bundle, verify_bundle
 from .reliability_surface import reliability_probe
 from .runtime import runtime_probe
 from .topology import TopologyError, validate_platform_topology
@@ -21,6 +22,7 @@ from .topology import TopologyError, validate_platform_topology
 
 EXIT_SUCCESS = 0
 EXIT_FAIL = 10
+EXIT_INCONCLUSIVE = 11
 EXIT_INVALID = 12
 EXIT_USAGE = 64
 EXIT_INTERNAL = 70
@@ -38,6 +40,8 @@ COMMANDS = {
     ("topology", "python-probe"): "topology.python-probe",
     ("topology", "node-probe"): "topology.node-probe",
     ("topology", "reliability-probe"): "topology.reliability-probe",
+    ("receipt", "materialize"): "receipt.materialize",
+    ("receipt", "verify"): "receipt.verify",
 }
 
 
@@ -46,6 +50,11 @@ class Request:
     command: str
     manifest: str | None
     mode: str | None
+    receipt: str | None
+    source_root: str | None
+    bundle_root: str | None
+    output_root: str | None
+    expected_digest: str | None
 
 
 class UsageError(ValueError):
@@ -98,6 +107,12 @@ def _parse(argv: Sequence[str]) -> Request:
     command = COMMANDS[tuple(argv[:2])]
     manifest: str | None = None
     mode: str | None = None
+    receipt: str | None = None
+    source_root: str | None = None
+    bundle_root: str | None = None
+    output_root: str | None = None
+    expected_digest: str | None = None
+    seen_receipt_options: set[str] = set()
     json_requested = False
     index = 2
     while index < len(argv):
@@ -120,6 +135,26 @@ def _parse(argv: Sequence[str]) -> Request:
             mode = argv[index + 1]
             index += 2
             continue
+        option_fields = {
+            "--receipt": "receipt",
+            "--source-root": "source_root",
+            "--bundle-root": "bundle_root",
+            "--output-root": "output_root",
+            "--expected-digest": "expected_digest",
+        }
+        if token in option_fields:
+            field = option_fields[token]
+            if token in seen_receipt_options or index + 1 >= len(argv) or argv[index + 1] == "":
+                raise UsageError(f"{token} requires exactly one value")
+            seen_receipt_options.add(token)
+            value = argv[index + 1]
+            if field == "receipt": receipt = value
+            elif field == "source_root": source_root = value
+            elif field == "bundle_root": bundle_root = value
+            elif field == "output_root": output_root = value
+            else: expected_digest = value
+            index += 2
+            continue
         raise UsageError(f"unknown argument: {token}")
     if not json_requested:
         raise UsageError("--json is required for the v1 machine CLI")
@@ -128,12 +163,26 @@ def _parse(argv: Sequence[str]) -> Request:
             raise UsageError("--manifest requires exactly one path")
         if mode is not None:
             raise UsageError("--mode is not valid for policy commands")
-    else:
+        if any(value is not None for value in (receipt, source_root, bundle_root, output_root, expected_digest)):
+            raise UsageError("receipt options are not valid for policy commands")
+    elif command.startswith("topology."):
         if manifest is not None:
             raise UsageError("--manifest is not valid for topology validation")
         if mode != "platform-validation":
             raise UsageError("--mode must be platform-validation")
-    return Request(command=command, manifest=manifest, mode=mode)
+        if any(value is not None for value in (receipt, source_root, bundle_root, output_root, expected_digest)):
+            raise UsageError("receipt options are not valid for topology commands")
+    else:
+        if manifest is not None or mode is not None:
+            raise UsageError("policy and topology options are not valid for receipt commands")
+        if receipt is None:
+            raise UsageError("--receipt requires exactly one path")
+        if command == "receipt.materialize":
+            if source_root is None or output_root is None or bundle_root is not None or expected_digest is not None:
+                raise UsageError("receipt materialize requires --source-root and --output-root only")
+        elif bundle_root is None or source_root is not None or output_root is not None:
+            raise UsageError("receipt verify requires --bundle-root and optional --expected-digest")
+    return Request(command, manifest, mode, receipt, source_root, bundle_root, output_root, expected_digest)
 
 
 def _approval_envelope(request: Request, document: Any, result: ApprovalResult) -> dict[str, Any]:
@@ -173,6 +222,30 @@ def _approval_envelope(request: Request, document: Any, result: ApprovalResult) 
 
 
 def _success(request: Request) -> dict[str, Any]:
+    if request.command == "receipt.materialize":
+        assert request.receipt and request.source_root and request.output_root
+        data = materialize_bundle(request.receipt, request.source_root, request.output_root)
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=EXIT_SUCCESS,
+            verdict="PASS",
+            data=data,
+            evidence=[{"kind": "receipt", "path": data["bundle_path"], "digest": data["receipt_digest"]}],
+        )
+    if request.command == "receipt.verify":
+        assert request.receipt and request.bundle_root
+        data = verify_bundle(request.receipt, request.bundle_root, request.expected_digest)
+        verdict = data["verification_verdict"]
+        exit_code = {"PASS": EXIT_SUCCESS, "FAIL": EXIT_FAIL, "INCONCLUSIVE": EXIT_INCONCLUSIVE, "INVALID": EXIT_INVALID}[verdict]
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=exit_code,
+            verdict=verdict,
+            data=data,
+            evidence=[] if data["receipt_digest"] is None else [{"kind": "receipt", "path": str(request.receipt), "digest": data["receipt_digest"]}],
+        )
     if request.command == "topology.validate":
         result = validate_platform_topology()
         return _envelope(
@@ -308,6 +381,16 @@ def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
             process_exit_code=exit_code,
             verdict=None if error.io_error else "INVALID",
             errors=[_error(error.code, str(error), None, False)],
+        )
+        return envelope, exit_code
+    except ReceiptError as error:
+        exit_code = EXIT_IO if error.io_error else EXIT_INVALID
+        envelope = _envelope(
+            command,
+            command_status="errored" if error.io_error else "rejected",
+            process_exit_code=exit_code,
+            verdict=None if error.io_error else "INVALID",
+            errors=[_error(error.code, str(error), None, error.io_error)],
         )
         return envelope, exit_code
     except ManifestError as error:

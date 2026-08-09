@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U02` ready
+- State: active; `IS4-U02` in progress
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -43,6 +43,8 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact evaluation-only wheels passed their saved source gate and hashes in temporary custody, but local policy denied removal of `C:\Users\drewb\AppData\Local\Temp\incidentseal-is4-u01-meta-6ccc178db91e40fa9c6b695f32eddcf0`. That path is non-canonical, outside OneDrive, and not a runtime or release dependency.
 
+`IS4-U02` is in progress. The dependency-free real CLI candidate atomically materializes a canonical bundle under its receipt digest, verifies and reuses it idempotently, and independently verifies without writes. Fifty-four tests and the locked real Windows launcher pass exact `PASS`, unbound `INCONCLUSIVE`, identity-mismatch `INVALID`, corrupt-artifact `FAIL`, missing-artifact `INCONCLUSIVE`, repository-output denial, temporary cleanup, and unchanged Docker/approval state. U02 is not yet complete: implementation mutations and credential-free clean-copy replay remain.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, and bounded platform-validation probes; approved-workflow verification and its run-event stream remain unimplemented.
@@ -56,4 +58,4 @@ The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact ev
 
 ## Next eligible action
 
-Execute `IS4-U02`: implement the exact locked atomic receipt writer and independent read-only offline verifier, then prove clean-custody writes, exact replay, unbound `INCONCLUSIVE`, corruption and missing-artifact handling, and zero Docker/database/network/approval requirements.
+Continue `IS4-U02`: run fail-closed mutations against the exact locked real CLI, then replay the complete materialize/verify matrix from clean credential-free custody before closing the unit.

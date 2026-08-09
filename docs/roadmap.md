@@ -42,7 +42,7 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 Status: active
 
-Progress: `IS4-U01` passed with two closed receipt schemas, 17 locked files, full Draft 2020-12 validation, exact canonical and artifact identities, and 14 fail-closed mutations. `IS4-U02` is ready for the atomic writer and independent offline verifier.
+Progress: `IS4-U01` passed with two closed receipt schemas, 17 locked files, full Draft 2020-12 validation, exact canonical and artifact identities, and 14 fail-closed mutations. `IS4-U02` has a locked dependency-free atomic writer and read-only verifier candidate passing 54 tests and the real Windows launcher; implementation mutations and clean-copy replay remain.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.
