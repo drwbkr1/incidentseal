@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/portable-receipt-v1.schema.json",
+  "title": "IncidentSeal portable receipt v1",
+  "description": "A closed, canonicalizable receipt whose ordered event links and artifact descriptors can be verified without Docker, PostgreSQL, network, secrets, or repository writes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "created_at_utc",
+    "authority",
+    "source",
+    "bindings",
+    "run",
+    "event_chain",
+    "artifacts",
+    "custody"
+  ],
+  "properties": {
+    "schema_version": {"const": "incidentseal-portable-receipt/v1"},
+    "receipt_id": {"$ref": "#/$defs/uuid"},
+    "created_at_utc": {"$ref": "#/$defs/utc_timestamp"},
+    "authority": {"$ref": "#/$defs/authority"},
+    "source": {"$ref": "#/$defs/source"},
+    "bindings": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {"$ref": "#/$defs/binding"}
+    },
+    "run": {"$ref": "#/$defs/run_summary"},
+    "event_chain": {"$ref": "#/$defs/event_chain"},
+    "artifacts": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {"$ref": "#/$defs/artifact"}
+    },
+    "custody": {"$ref": "#/$defs/custody"}
+  },
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "utc_timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$",
+      "maxLength": 120
+    },
+    "safe_path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$",
+      "maxLength": 1000
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "workflow_id", "manifest_digest", "approval_digest", "platform_contract_digest"],
+      "properties": {
+        "mode": {"enum": ["approved-workflow", "platform-validation"]},
+        "workflow_id": {
+          "oneOf": [
+            {"$ref": "#/$defs/identifier"},
+            {"type": "null"}
+          ]
+        },
+        "manifest_digest": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "approval_digest": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "platform_contract_digest": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit", "tree"],
+      "properties": {
+        "repository": {"type": "string", "pattern": "^https://", "maxLength": 1000},
+        "commit": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"},
+        "tree": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}
+      }
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "name", "digest"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "manifest",
+            "approval",
+            "source-tree",
+            "dependency-lock",
+            "image-lock",
+            "topology-contract",
+            "runtime-lock",
+            "command",
+            "input",
+            "output",
+            "recovery"
+          ]
+        },
+        "name": {"$ref": "#/$defs/identifier"},
+        "digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "run_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "lifecycle", "verdict", "terminal", "terminal_event_id"],
+      "properties": {
+        "run_id": {"$ref": "#/$defs/uuid"},
+        "lifecycle": {"enum": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"]},
+        "verdict": {
+          "oneOf": [
+            {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"]},
+            {"type": "null"}
+          ]
+        },
+        "terminal": {"type": "boolean"},
+        "terminal_event_id": {
+          "oneOf": [
+            {"$ref": "#/$defs/uuid"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "event_chain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "canonicalization", "genesis_digest", "event_count", "root_digest", "links"],
+      "properties": {
+        "algorithm": {"const": "sha256-rfc8785-link-v1"},
+        "canonicalization": {"const": "RFC8785-JCS"},
+        "genesis_digest": {"const": "sha256:0000000000000000000000000000000000000000000000000000000000000000"},
+        "event_count": {"type": "integer", "minimum": 1, "maximum": 1000000},
+        "root_digest": {"$ref": "#/$defs/sha256"},
+        "links": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1000000,
+          "items": {"$ref": "#/$defs/event_link"}
+        }
+      }
+    },
+    "event_link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "event_digest", "previous_link_digest", "link_digest", "event"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+        "event_digest": {"$ref": "#/$defs/sha256"},
+        "previous_link_digest": {"$ref": "#/$defs/sha256"},
+        "link_digest": {"$ref": "#/$defs/sha256"},
+        "event": {"$ref": "#/$defs/evidence_event"}
+      }
+    },
+    "evidence_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "event_id",
+        "run_id",
+        "sequence",
+        "occurred_at_utc",
+        "event_type",
+        "lifecycle",
+        "verdict",
+        "terminal",
+        "authority_digest",
+        "payload",
+        "error"
+      ],
+      "properties": {
+        "schema_version": {"const": "incidentseal-evidence-event/v1"},
+        "event_id": {"$ref": "#/$defs/uuid"},
+        "run_id": {"$ref": "#/$defs/uuid"},
+        "sequence": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+        "occurred_at_utc": {"$ref": "#/$defs/utc_timestamp"},
+        "event_type": {
+          "enum": [
+            "run.queued",
+            "run.started",
+            "policy.checked",
+            "step.started",
+            "step.completed",
+            "step.failed",
+            "evidence.recorded",
+            "run.completed",
+            "run.cancelled",
+            "run.failed",
+            "run.stale",
+            "run.superseded"
+          ]
+        },
+        "lifecycle": {"enum": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"]},
+        "verdict": {
+          "oneOf": [
+            {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"]},
+            {"type": "null"}
+          ]
+        },
+        "terminal": {"type": "boolean"},
+        "authority_digest": {"$ref": "#/$defs/sha256"},
+        "payload": {"type": "object"},
+        "error": {
+          "oneOf": [
+            {"$ref": "#/$defs/error"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retriable"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^IS_[A-Z0-9_]+$", "maxLength": 100},
+        "message": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "retriable": {"type": "boolean"}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_id", "kind", "path", "media_type", "byte_count", "digest", "required"],
+      "properties": {
+        "artifact_id": {"$ref": "#/$defs/identifier"},
+        "kind": {"enum": ["stdout", "stderr", "result", "log", "artifact", "sbom", "provenance", "scan", "backup", "restore", "runtime-probe", "release"]},
+        "path": {"$ref": "#/$defs/safe_path"},
+        "media_type": {"type": "string", "pattern": "^[a-z0-9.+-]+/[a-z0-9.+-]+$", "maxLength": 200},
+        "byte_count": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+        "digest": {"$ref": "#/$defs/sha256"},
+        "required": {"type": "boolean"}
+      }
+    },
+    "custody": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layout", "artifact_root", "path_policy", "network_required", "docker_required", "database_required", "secret_required"],
+      "properties": {
+        "layout": {"const": "incidentseal-portable-bundle/v1"},
+        "artifact_root": {"const": "artifacts"},
+        "path_policy": {"const": "safe-relative-posix"},
+        "network_required": {"const": false},
+        "docker_required": {"const": false},
+        "database_required": {"const": false},
+        "secret_required": {"const": false}
+      }
+    }
+  }
+}

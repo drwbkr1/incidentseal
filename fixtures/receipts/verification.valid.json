@@ -1,0 +1,15 @@
+{
+  "schema_version": "incidentseal-receipt-verification/v1",
+  "receipt_digest": "sha256:7293ac4087873338dfbe78411c74c809efd18b2ffac0aa88e052df33d0353c77",
+  "expected_receipt_digest": "sha256:7293ac4087873338dfbe78411c74c809efd18b2ffac0aa88e052df33d0353c77",
+  "identity_status": "MATCH",
+  "schema_status": "PASS",
+  "semantic_status": "PASS",
+  "chain_status": "PASS",
+  "artifact_status": "PASS",
+  "verification_verdict": "PASS",
+  "run_lifecycle": "completed",
+  "run_verdict": "PASS",
+  "event_count": 3,
+  "errors": []
+}

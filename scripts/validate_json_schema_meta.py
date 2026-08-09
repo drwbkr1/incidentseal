@@ -24,20 +24,25 @@ SCHEMA_FILES = (
     "manifest-approval-v1.schema.json",
     "cli-envelope-v1.schema.json",
     "run-event-v1.schema.json",
+    "portable-receipt-v1.schema.json",
+    "receipt-verification-v1.schema.json",
 )
 
 VALID_FIXTURES = (
-    ("workflow-manifest-v1.schema.json", "workflow.valid.minimal.json"),
-    ("workflow-manifest-v1.schema.json", "workflow.valid.reordered.json"),
-    ("workflow-manifest-v1.schema.json", "workflow.valid.canonical.json"),
-    ("manifest-approval-v1.schema.json", "approval.valid.json"),
-    ("cli-envelope-v1.schema.json", "cli-envelope.valid.json"),
-    ("run-event-v1.schema.json", "run-event.valid.json"),
+    ("workflow-manifest-v1.schema.json", "contracts/workflow.valid.minimal.json"),
+    ("workflow-manifest-v1.schema.json", "contracts/workflow.valid.reordered.json"),
+    ("workflow-manifest-v1.schema.json", "contracts/workflow.valid.canonical.json"),
+    ("manifest-approval-v1.schema.json", "contracts/approval.valid.json"),
+    ("cli-envelope-v1.schema.json", "contracts/cli-envelope.valid.json"),
+    ("run-event-v1.schema.json", "contracts/run-event.valid.json"),
+    ("portable-receipt-v1.schema.json", "receipts/receipt.valid.json"),
+    ("receipt-verification-v1.schema.json", "receipts/verification.valid.json"),
 )
 
 INVALID_FIXTURES = (
-    ("workflow-manifest-v1.schema.json", "workflow.invalid.float.json"),
-    ("workflow-manifest-v1.schema.json", "workflow.invalid.network.json"),
+    ("workflow-manifest-v1.schema.json", "contracts/workflow.invalid.float.json"),
+    ("workflow-manifest-v1.schema.json", "contracts/workflow.invalid.network.json"),
+    ("portable-receipt-v1.schema.json", "receipts/receipt.invalid.minimal.json"),
 )
 
 
@@ -56,7 +61,7 @@ def first_error(validator: Any, instance: Any) -> str | None:
 
 def validate(root: Path) -> dict[str, Any]:
     schemas_dir = root / "schemas"
-    fixtures_dir = root / "fixtures" / "contracts"
+    fixtures_dir = root / "fixtures"
     schemas = {name: load_json(schemas_dir / name) for name in SCHEMA_FILES}
 
     resources = []

@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Execute IS4-U01 by freezing the portable receipt and event-chain contracts with fail-closed vectors before implementation"
+    "next_action": "Execute IS4-U02 by implementing the locked atomic portable receipt writer and independent read-only offline verifier"
   }
 }

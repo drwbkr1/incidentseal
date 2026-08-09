@@ -1,0 +1,34 @@
+{
+  "schema_version": "incidentseal-receipt-canonicalization-vectors/v1",
+  "receipt": {
+    "path": "receipt.valid.json",
+    "canonicalization": "RFC8785-JCS",
+    "canonical_byte_count": 3847,
+    "digest": "sha256:7293ac4087873338dfbe78411c74c809efd18b2ffac0aa88e052df33d0353c77"
+  },
+  "event_links": [
+    {
+      "sequence": 0,
+      "event_digest": "sha256:b2b9fd32ec610c4ce102a938a2dbd830351a1b2c13ad9e254821eedbf57d8cb9",
+      "previous_link_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "link_digest": "sha256:93709504b55826d6b98e59bd12d9302f50bf91b0fe745a88256ae01d8a3169d3"
+    },
+    {
+      "sequence": 1,
+      "event_digest": "sha256:3f280b32852b70f721dab382103b6f5a8a92b68ac96da49275541bbfc609c66d",
+      "previous_link_digest": "sha256:93709504b55826d6b98e59bd12d9302f50bf91b0fe745a88256ae01d8a3169d3",
+      "link_digest": "sha256:d7255e6b049eb00917fa9af11ebee962dd4b2a63057e863007cbbc185576e2c2"
+    },
+    {
+      "sequence": 2,
+      "event_digest": "sha256:ea8c01cf669ec6fed0859b4d94c91186379133d35a4f1ad394021590eb39f88a",
+      "previous_link_digest": "sha256:d7255e6b049eb00917fa9af11ebee962dd4b2a63057e863007cbbc185576e2c2",
+      "link_digest": "sha256:8aff86cd9c13469cf44a4a18e8a2ebd9d45ea3e8a73fdeeed1f0d18e66407c6c"
+    }
+  ],
+  "artifact": {
+    "path": "artifacts/result.json",
+    "byte_count": 18,
+    "digest": "sha256:423b0a945a73ecb5ab748c7c796af9328a4639bf6921af982e71ad00924f46e9"
+  }
+}

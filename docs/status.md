@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U01` ready
+- State: active; `IS4-U02` ready
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -39,7 +39,9 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U09` passed. Exact closure commit `a0c05070...` and tree `67c05a10...` passed the full credential-free clone matrix, Git object integrity, secret scanning, and real reliability invocation `73711f49...`. Annotated marker object `28eea260...` was pushed and independently fetched from public custody, peeling to the exact closure commit. IS-0003 is complete.
 
-`IS4-U01` is ready. Its bounded scope is contract-first: closed portable receipt, artifact, event-chain, summary, custody, canonicalization, and offline-verification schemas plus fail-closed fixtures and mutations. It must not start Docker, write runtime evidence, approve a manifest, or execute a workflow.
+`IS4-U01` passed. Two closed schemas bind platform or approved-workflow authority, source and lock identities, RFC 8785 event/link/receipt digests, raw artifact bytes, run summary, safe relative custody, and an independent verification report. The golden receipt has three events, one artifact, root `8aff86cd...`, and receipt digest `7293ac40...`; 17 files are locked by `7bd0abd1...`. Full Draft 2020-12 validation covered six total schemas and eleven fixtures, all 14 receipt mutations failed closed, the original machine contract passed, and 50 tests passed without Docker runtime.
+
+The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact evaluation-only wheels passed their saved source gate and hashes in temporary custody, but local policy denied removal of `C:\Users\drewb\AppData\Local\Temp\incidentseal-is4-u01-meta-6ccc178db91e40fa9c6b695f32eddcf0`. That path is non-canonical, outside OneDrive, and not a runtime or release dependency.
 
 ## Known limitations
 
@@ -54,4 +56,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS4-U01`: freeze the portable receipt and event-chain contracts, canonical digest and chain rules, independent-verifier behavior, and bounded corruption/truncation/reordering/replay/state-separation vectors before implementation.
+Execute `IS4-U02`: implement the exact locked atomic receipt writer and independent read-only offline verifier, then prove clean-custody writes, exact replay, unbound `INCONCLUSIVE`, corruption and missing-artifact handling, and zero Docker/database/network/approval requirements.

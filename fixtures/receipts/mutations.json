@@ -1,0 +1,19 @@
+{
+  "schema_version": "incidentseal-receipt-mutations/v1",
+  "mutations": [
+    {"id":"unknown-top-level-field","expected_error":"IS_RECEIPT_SCHEMA"},
+    {"id":"authority-mode-smuggling","expected_error":"IS_RECEIPT_AUTHORITY"},
+    {"id":"authority-digest-drift","expected_error":"IS_RECEIPT_AUTHORITY"},
+    {"id":"duplicate-binding","expected_error":"IS_RECEIPT_BINDING"},
+    {"id":"event-reordering","expected_error":"IS_RECEIPT_SEQUENCE"},
+    {"id":"event-truncation","expected_error":"IS_RECEIPT_EVENT_COUNT"},
+    {"id":"event-digest-corruption","expected_error":"IS_RECEIPT_EVENT_DIGEST"},
+    {"id":"link-predecessor-corruption","expected_error":"IS_RECEIPT_LINK"},
+    {"id":"root-digest-corruption","expected_error":"IS_RECEIPT_ROOT"},
+    {"id":"run-summary-collapse","expected_error":"IS_RECEIPT_STATE"},
+    {"id":"terminal-event-drift","expected_error":"IS_RECEIPT_STATE"},
+    {"id":"artifact-digest-corruption","expected_error":"IS_RECEIPT_ARTIFACT"},
+    {"id":"unsafe-artifact-path","expected_error":"IS_RECEIPT_SCHEMA"},
+    {"id":"unbound-pass","expected_error":"IS_RECEIPT_IDENTITY"}
+  ]
+}

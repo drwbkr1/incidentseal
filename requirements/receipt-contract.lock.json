@@ -1,0 +1,40 @@
+{
+  "schema_version": "incidentseal-receipt-contract-lock/v1",
+  "contract_id": "INCIDENTSEAL-RECEIPT-001",
+  "unit_id": "IS4-U01",
+  "canonicalization": "RFC8785-JCS",
+  "files": [
+    {"path":"docs/decisions/ADR-0005-content-addressed-portable-receipts.md","sha256":"sha256:3e195f04b0d74b6ec6b342e50b42138a20f0427826ae4a16d768a4fa2ec46884"},
+    {"path":"docs/receipt-contract.md","sha256":"sha256:3848831030d9f7602cfaa817968bad22b66dd4909d081f92dd7f77950082e270"},
+    {"path":"docs/receipt-mutation-plan.md","sha256":"sha256:5ef1b02dd255b8b33a5a0f5df2be708f76db4d572915c84868b9b98d48f01b6b"},
+    {"path":"fixtures/receipts/artifacts/result.json","sha256":"sha256:423b0a945a73ecb5ab748c7c796af9328a4639bf6921af982e71ad00924f46e9"},
+    {"path":"fixtures/receipts/canonicalization-vectors.json","sha256":"sha256:03bc4a1a78a5e3e61855cd0253c6c18953d9b8392a4950da1399d29b9a164aa3"},
+    {"path":"fixtures/receipts/mutations.json","sha256":"sha256:fa15ce6d798a3e13e7925777f55188fdac27ad09c509401514c0ab8f3d909d8d"},
+    {"path":"fixtures/receipts/receipt.invalid.minimal.json","sha256":"sha256:8ccf56af6a9a6f09607dceed61bed42b77bca86565f7c0fba04fae482e9ba4e0"},
+    {"path":"fixtures/receipts/receipt.valid.json","sha256":"sha256:6dfc70d31b1680b62298fc09ad57d3974fb0fbc1b88fadf4e85af78127d6920b"},
+    {"path":"fixtures/receipts/verification.invalid.unbound-pass.json","sha256":"sha256:3a2cdd962375b82a6f998e8db7aa3a8cad5f17c27cfae9e6e39be555571cf0df"},
+    {"path":"fixtures/receipts/verification.valid.json","sha256":"sha256:d01931a0d4f215d10ce13d57d2e14bd6712473aee789874cd513b44c79990c70"},
+    {"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"},
+    {"path":"schemas/portable-receipt-v1.schema.json","sha256":"sha256:3fbdd8d20b97f3b82935d5739559a6b314918e20af0c3ff81ba91ec1897d7f36"},
+    {"path":"schemas/receipt-verification-v1.schema.json","sha256":"sha256:e1bf36878466c7d0ff4f47e7ccfadd09b0971829a5610b13806805dd16becf9a"},
+    {"path":"scripts/test_receipt_contract_mutations.py","sha256":"sha256:21bcb096ad38fc76811cbc8c2ea610e8805681e561b8888d672dddb9570c7fd3"},
+    {"path":"scripts/validate_json_schema_meta.py","sha256":"sha256:a1d99a15a44eb99022f6701fcfb4d42a07f833d100e66aa4457ec20e416c4865"},
+    {"path":"scripts/validate_machine_contracts.py","sha256":"sha256:cc35ff70628848a77c02f80b93f7d255e014a80a4e64a13021ef19fee94ba106"},
+    {"path":"scripts/validate_receipt_contract.py","sha256":"sha256:4ca8ed3669926b4d86ef7821159f5407acdab3f5f0cbf5b4308e5f9cd87990ac"}
+  ],
+  "golden": {
+    "receipt_digest": "sha256:7293ac4087873338dfbe78411c74c809efd18b2ffac0aa88e052df33d0353c77",
+    "event_root_digest": "sha256:8aff86cd9c13469cf44a4a18e8a2ebd9d45ea3e8a73fdeeed1f0d18e66407c6c",
+    "event_count": 3,
+    "artifact_count": 1
+  },
+  "mutations": {
+    "manifest": "fixtures/receipts/mutations.json",
+    "count": 14
+  },
+  "evaluation_dependencies": {
+    "lock": "requirements/meta-validation.lock",
+    "source_gate": "records/source-gates/2026-08-09-jsonschema-meta-validation.json",
+    "runtime_dependency": false
+  }
+}

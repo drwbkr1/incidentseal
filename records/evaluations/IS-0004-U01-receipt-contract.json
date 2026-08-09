@@ -1,0 +1,70 @@
+{
+  "schema_version": "incidentseal-receipt-contract-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U01-RECEIPT-CONTRACT",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U01",
+  "observed_at_utc": "2026-08-09T22:57:50Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "contract": {
+    "contract_id": "INCIDENTSEAL-RECEIPT-001",
+    "lock": "requirements/receipt-contract.lock.json",
+    "lock_digest": "sha256:7bd0abd1923b6e03ba99f02bfde9beca551fb789a837ff41098a570674c501e3",
+    "locked_files": 17,
+    "schemas": [
+      "schemas/portable-receipt-v1.schema.json",
+      "schemas/receipt-verification-v1.schema.json"
+    ],
+    "canonicalization": "RFC8785-JCS",
+    "receipt_digest": "sha256:7293ac4087873338dfbe78411c74c809efd18b2ffac0aa88e052df33d0353c77",
+    "event_root_digest": "sha256:8aff86cd9c13469cf44a4a18e8a2ebd9d45ea3e8a73fdeeed1f0d18e66407c6c",
+    "events": 3,
+    "artifacts": 1,
+    "external_expected_digest_required_for_pass": true
+  },
+  "checks": {
+    "dependency_free_contract_validator": "PASS",
+    "receipt_mutations": 14,
+    "receipt_mutations_passed": 14,
+    "full_draft_2020_12_schemas": 6,
+    "full_draft_2020_12_fixtures": 11,
+    "original_machine_contract": "PASS",
+    "unit_tests": 50,
+    "runtime_started": false,
+    "docker_state_read_only_checks": true,
+    "approval_written": false,
+    "workflow_executed": false
+  },
+  "evaluation_dependencies": {
+    "source_gate_assessment_id": "INCIDENTSEAL-SOURCE-GATE-002",
+    "exact_artifact_hashes_verified": true,
+    "temporary_install": true,
+    "network_used_during_schema_validation": false,
+    "runtime_dependency": false,
+    "artifacts": [
+      {"filename":"attrs-26.1.0-py3-none-any.whl","sha256":"c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309","bytes":67548},
+      {"filename":"jsonschema-4.26.0-py3-none-any.whl","sha256":"d489f15263b8d200f8387e64b4c3a75f06629559fb73deb8fdfb525f2dab50ce","bytes":90630},
+      {"filename":"jsonschema_specifications-2025.9.1-py3-none-any.whl","sha256":"98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe","bytes":18437},
+      {"filename":"referencing-0.37.0-py3-none-any.whl","sha256":"381329a9f99628c9069361716891d34ad94af76e461dcb0335825aecc7692231","bytes":26766},
+      {"filename":"rpds_py-2026.6.3-cp312-cp312-win_amd64.whl","sha256":"2c958bf94822e9290a40aaf2a822d4bc5c88099093e3948ad6c571eca9272e5f","bytes":220394},
+      {"filename":"typing_extensions-4.16.0-py3-none-any.whl","sha256":"481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8","bytes":45571}
+    ],
+    "temporary_custody": "C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is4-u01-meta-6ccc178db91e40fa9c6b695f32eddcf0",
+    "temporary_custody_removed": false,
+    "temporary_custody_state": "retained-noncanonical-non-onedrive-after-local-policy-denied-cleanup"
+  },
+  "retained_invalid_attempts": [
+    "Running the full Draft validator in the base Python environment returned ModuleNotFoundError for the intentionally absent evaluation-only jsonschema package.",
+    "The first combined exact-wheel acquisition, validation, and recursive-cleanup wrapper was rejected before execution by local command policy.",
+    "After exact acquisition and successful validation, a separately path-checked PowerShell cleanup was rejected before execution by local command policy; the exact non-canonical system-temp custody remains retained and is not a project or release dependency."
+  ],
+  "limitations": [
+    "IS4-U01 freezes contracts and validators; it does not implement a receipt writer or offline CLI.",
+    "A content-consistent receipt without an externally supplied expected digest is INCONCLUSIVE, not authenticated.",
+    "No workflow manifest is approved or executed."
+  ],
+  "decision": {
+    "status": "pass",
+    "reason": "Both closed schemas passed full Draft 2020-12 validation, the exact golden identities reproduced, all 14 bounded mutations failed closed, and existing machine/test contracts remained intact without Docker runtime."
+  }
+}

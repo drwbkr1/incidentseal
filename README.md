@@ -8,7 +8,7 @@ IncidentSeal does not claim to be a complete sandbox, vulnerability scanner, rel
 
 ## Current state
 
-`checkpoint-is-0003` is the latest verified public checkpoint. It freezes an exact-image hardened Compose topology, least-privilege PostgreSQL, the shipped Python and Node commands, state-separated reliability behavior, and a credential-free public-clone replay. IncidentSeal remains unreleased at `0.0.0`; evidence recovery, the dashboard, release packaging, and release supply-chain gates are still planned.
+`checkpoint-is-0003` is the latest verified public checkpoint. It freezes an exact-image hardened Compose topology, least-privilege PostgreSQL, the shipped Python and Node commands, state-separated reliability behavior, and a credential-free public-clone replay. `IS-0004` is active: the portable receipt contract has passed and its atomic writer and independent verifier are next. IncidentSeal remains unreleased at `0.0.0`.
 
 Current truth is recorded in:
 

@@ -10,6 +10,7 @@
       "read_only_inspection",
       "project_control",
       "update_project_records",
+      "dependency_management",
       "reversible_remediation",
       "deterministic_validation",
       "version_control_write",
@@ -98,7 +99,7 @@
     }
   ],
   "exit_conditions": [
-    {"id":"EXIT-RECEIPT-CONTRACT","status":"pending","evidence":[]},
+    {"id":"EXIT-RECEIPT-CONTRACT","status":"pass","evidence":["requirements/receipt-contract.lock.json","schemas/portable-receipt-v1.schema.json","schemas/receipt-verification-v1.schema.json","records/evaluations/IS-0004-U01-receipt-contract.json"]},
     {"id":"EXIT-PORTABLE-RECEIPTS","status":"pending","evidence":[]},
     {"id":"EXIT-INDEPENDENT-VERIFIER","status":"pending","evidence":[]},
     {"id":"EXIT-IDEMPOTENT-EVENTS","status":"pending","evidence":[]},
@@ -114,13 +115,13 @@
       "depends_on": [],
       "action_class": "update_project_records",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": ["Frozen CLI and run-event v1 contract", "Product evidence semantics", "IS-0003 retained reliability evidence"],
       "outputs": ["Closed receipt schemas", "Canonical digest and chain rules", "Golden and negative fixtures", "Mutation plan", "Receipt contract lock and ADR"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
-      "exit_condition_delta": {"expected":["EXIT-RECEIPT-CONTRACT"],"observed":[],"decision_value":"unknown","rationale":"The contract must fail closed under bounded mutations before any receipt writer or verifier is trusted."},
+      "gates": {"closed_schemas":"pass","canonicalization":"pass","authority_modes":"pass","external_identity_requirement":"pass","artifact_custody":"pass","dependency_free_validation":"pass","full_draft_2020_12":"pass","mutations":"pass_14_of_14","regression_tests":"pass_50","runtime_execution":"not_started"},
+      "disposition": "pass",
+      "retained_failures": ["The base Python full-schema attempt was INVALID because evaluation-only jsonschema was intentionally absent. An exact source-gated temporary evaluator then passed. Two policy-rejected cleanup wrappers remain INVALID; exact non-canonical non-OneDrive temporary dependency custody is retained."],
+      "exit_condition_delta": {"expected":["EXIT-RECEIPT-CONTRACT"],"observed":["EXIT-RECEIPT-CONTRACT"],"decision_value":"advances_exit","rationale":"Two closed schemas, exact RFC 8785 receipt and event-link vectors, raw artifact identity, 17 locked files, full Draft 2020-12 validation, and all 14 fail-closed mutations passed without Docker runtime."},
       "next_dependency": "IS4-U02"
     },
     {
@@ -129,7 +130,7 @@
       "depends_on": ["IS4-U01"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "planned",
+      "status": "ready",
       "inputs": ["Frozen receipt contract"],
       "outputs": ["Host receipt writer", "Offline verifier CLI", "Content-addressed artifact custody", "Implementation mutations"],
       "gates": {},
@@ -231,11 +232,16 @@
       "Repeated real CLI, Compose, database, Python, and Node recovery matrix",
       "Credential-free clean-clone, Git integrity, secret scan, and public marker verification"
     ],
-    "completed_checks": []
+    "completed_checks": [
+      "Closed receipt and verification schemas with exact RFC 8785 canonical identities",
+      "Dependency-free receipt contract validator and fourteen fail-closed mutations",
+      "Full Draft 2020-12 meta-validation of six schemas and eleven fixtures",
+      "Fifty regression tests and original four-schema machine-contract validation"
+    ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; workflow approval remains MISSING and execution remains unavailable",
-    "next_action": "Execute IS4-U01 by freezing closed portable receipt and event-chain contracts plus fail-closed vectors without writing runtime evidence or starting Docker.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U01 receipt contract passed; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Execute IS4-U02 by implementing the locked atomic portable receipt writer and independent read-only offline verifier without Docker, PostgreSQL, network, secrets, approval writes, or repository writes at runtime.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",
