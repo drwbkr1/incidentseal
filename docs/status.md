@@ -23,12 +23,14 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U01` passed without starting a container. The exact linux/amd64 Dockerfile frontend, Chainguard PostgreSQL 18.4, Distroless Node.js 24, and Chainguard Python 3.14.7 images are now bound in `requirements/images.lock.json` with platform children, local identities, signatures or provenance, SBOMs, vulnerability evidence, license limits, and mandatory runtime constraints.
 
-`IS3-U02` is the sole eligible unit. It must freeze the Compose and service contract around that lock before Dockerfiles, Compose configuration, migrations, runners, or host orchestration are implemented. No selected image may run merely because acquisition passed.
+`IS3-U02` passed without starting Docker runtime surfaces. The topology contract now binds the exact image lock, host-only Docker authority, copy-only offline builds, one internal network, numeric non-root service identities, bounded staged custody, distinct evidence states, and a normalized render model. All 12 security-relevant mutations failed closed with their expected stable error codes.
+
+`IS3-U03` is the sole eligible unit. It may implement the exact-pinned Dockerfiles, Compose model, migration, dependency-free runners, and host-CLI orchestration, then validate the real static render against the contract. It may not start the topology; runtime execution remains owned by `IS3-U04`.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- No Compose topology or database exists.
+- No implemented Compose topology or database exists; only the closed static topology contract and synthetic normalized-render fixture exist.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected exact images have been pulled and scanned and are eligible only for later contract-controlled execution. None has been started.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -38,4 +40,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS3-U02` in `contracts/IS-0003.json`: freeze the Compose, service identity, user, network, mount, filesystem, health, migration, runner, and host-orchestration contract around `requirements/images.lock.json` before implementation or runtime use.
+Execute `IS3-U03` in `contracts/IS-0003.json`: implement exact-pinned copy-only Dockerfiles, the Compose model, migrations, dependency-free runners, and host-CLI orchestration, then validate the real static render without starting the topology.

@@ -1,0 +1,275 @@
+{
+  "schema_version": "incidentseal-topology/v1",
+  "topology_id": "incidentseal.local-verification",
+  "revision": 1,
+  "platform": "linux/amd64",
+  "image_lock": {
+    "path": "requirements/images.lock.json",
+    "sha256": "sha256:8a816cbf072ec87f4495a7a9cf4c9f538a919178cbcfb245fa501b64e91d4ab8"
+  },
+  "authority": {
+    "control_plane": "host-cli",
+    "docker_api_consumers": ["host-cli"],
+    "compose_source": "host-generated-and-validated",
+    "direct_compose_claim": "INVALID",
+    "workflow_execution_gate": "MATCH",
+    "platform_validation_input": "baked-in-fixtures-only",
+    "platform_validation_claim_scope": "topology-only",
+    "repository_approval_mutation": "denied"
+  },
+  "build_policy": {
+    "frontend": "docker.io/docker/dockerfile@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32",
+    "network": "none",
+    "contexts": [
+      "containers/migration",
+      "containers/python-runner",
+      "containers/node-runner"
+    ],
+    "allowed_instructions": ["ARG", "FROM", "LABEL", "COPY", "USER", "WORKDIR", "ENTRYPOINT", "CMD"],
+    "run_instruction": "denied",
+    "remote_add": "denied",
+    "secret_mounts": "denied",
+    "ssh_mounts": "denied",
+    "online_dependency_resolution": "denied",
+    "base_images": "image-lock-only",
+    "runtime_identity": "local-image-id",
+    "pull_policy": "never"
+  },
+  "networks": [
+    {
+      "id": "data",
+      "driver": "bridge",
+      "internal": true,
+      "attachable": false,
+      "external": false
+    }
+  ],
+  "volumes": [
+    {
+      "id": "database-data",
+      "driver": "local",
+      "external": false,
+      "lifecycle": "retained-until-verified-cleanup"
+    }
+  ],
+  "staging": {
+    "custody": "host-state-outside-repository-and-forbidden-roots",
+    "repository_mount": "denied",
+    "input_mount": "staged-read-only",
+    "output_mount": "staged-write-only-by-convention",
+    "symlinks": "denied",
+    "reparse_points": "denied",
+    "hardlinks": "denied",
+    "special_files": "denied",
+    "maximum_files": 4096,
+    "maximum_total_bytes": 268435456,
+    "cleanup": "after-evidence-promotion-and-verification"
+  },
+  "services": [
+    {
+      "id": "database",
+      "lifecycle": "persistent",
+      "image_source": "image-lock",
+      "image_role": "postgresql",
+      "build_context": null,
+      "user": "70:70",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "pids_limit": 128,
+      "restart": "no",
+      "networks": ["data"],
+      "published_ports": [],
+      "entrypoint": ["/usr/bin/docker-entrypoint.sh", "postgres"],
+      "command": [],
+      "environment": {
+        "PGDATA": "/var/lib/postgresql/data/pgdata",
+        "POSTGRES_DB": "incidentseal",
+        "POSTGRES_HOST_AUTH_METHOD": "trust",
+        "POSTGRES_USER": "incidentseal",
+        "TZ": "UTC"
+      },
+      "mounts": [
+        {
+          "kind": "named-volume",
+          "source": "database-data",
+          "target": "/var/lib/postgresql/data",
+          "mode": "rw"
+        }
+      ],
+      "tmpfs": [
+        {"target": "/tmp", "size_bytes": 67108864, "mode": 1023, "uid": 70, "gid": 70},
+        {"target": "/var/run/postgresql", "size_bytes": 16777216, "mode": 509, "uid": 70, "gid": 70}
+      ],
+      "depends_on": [],
+      "healthcheck": {
+        "test": ["CMD", "/usr/bin/pg_isready", "-h", "127.0.0.1", "-U", "incidentseal", "-d", "incidentseal"],
+        "interval_seconds": 5,
+        "timeout_seconds": 3,
+        "retries": 20,
+        "start_period_seconds": 10
+      },
+      "expected_exit_codes": []
+    },
+    {
+      "id": "migration",
+      "lifecycle": "one-shot",
+      "image_source": "runtime-lock",
+      "image_role": "postgresql",
+      "build_context": "containers/migration",
+      "user": "70:70",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "pids_limit": 64,
+      "restart": "no",
+      "networks": ["data"],
+      "published_ports": [],
+      "entrypoint": ["/usr/bin/psql"],
+      "command": ["--host=database", "--username=incidentseal", "--dbname=incidentseal", "--set=ON_ERROR_STOP=1", "--file=/opt/incidentseal/migrations/001-schema.sql"],
+      "environment": {
+        "PGCONNECT_TIMEOUT": "5",
+        "TZ": "UTC"
+      },
+      "mounts": [],
+      "tmpfs": [
+        {"target": "/tmp", "size_bytes": 16777216, "mode": 448, "uid": 70, "gid": 70}
+      ],
+      "depends_on": [
+        {"service": "database", "condition": "service_healthy"}
+      ],
+      "healthcheck": null,
+      "expected_exit_codes": [0]
+    },
+    {
+      "id": "python-runner",
+      "lifecycle": "one-shot",
+      "image_source": "runtime-lock",
+      "image_role": "python_runner",
+      "build_context": "containers/python-runner",
+      "user": "65532:65532",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "pids_limit": 64,
+      "restart": "no",
+      "networks": ["data"],
+      "published_ports": [],
+      "entrypoint": ["/usr/bin/python"],
+      "command": ["/opt/incidentseal/python_runner.py"],
+      "environment": {
+        "HOME": "/tmp/home",
+        "INCIDENTSEAL_INPUT": "/incidentseal/input",
+        "INCIDENTSEAL_OUTPUT": "/incidentseal/output",
+        "PGDATABASE": "incidentseal",
+        "PGHOST": "database",
+        "PGPORT": "5432",
+        "PGUSER": "incidentseal",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONHASHSEED": "0",
+        "TZ": "UTC"
+      },
+      "mounts": [
+        {"kind": "staged-input", "source": "input", "target": "/incidentseal/input", "mode": "ro"},
+        {"kind": "staged-output", "source": "python-output", "target": "/incidentseal/output", "mode": "rw"}
+      ],
+      "tmpfs": [
+        {"target": "/tmp", "size_bytes": 67108864, "mode": 448, "uid": 65532, "gid": 65532}
+      ],
+      "depends_on": [
+        {"service": "database", "condition": "service_healthy"},
+        {"service": "migration", "condition": "service_completed_successfully"}
+      ],
+      "healthcheck": null,
+      "expected_exit_codes": [0]
+    },
+    {
+      "id": "node-runner",
+      "lifecycle": "one-shot",
+      "image_source": "runtime-lock",
+      "image_role": "node_runner",
+      "build_context": "containers/node-runner",
+      "user": "65532:65532",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "pids_limit": 64,
+      "restart": "no",
+      "networks": ["data"],
+      "published_ports": [],
+      "entrypoint": ["/nodejs/bin/node"],
+      "command": ["/opt/incidentseal/node_runner.mjs"],
+      "environment": {
+        "HOME": "/tmp/home",
+        "INCIDENTSEAL_INPUT": "/incidentseal/input",
+        "INCIDENTSEAL_OUTPUT": "/incidentseal/output",
+        "PGDATABASE": "incidentseal",
+        "PGHOST": "database",
+        "PGPORT": "5432",
+        "PGUSER": "incidentseal",
+        "TZ": "UTC"
+      },
+      "mounts": [
+        {"kind": "staged-input", "source": "input", "target": "/incidentseal/input", "mode": "ro"},
+        {"kind": "staged-output", "source": "node-output", "target": "/incidentseal/output", "mode": "rw"}
+      ],
+      "tmpfs": [
+        {"target": "/tmp", "size_bytes": 67108864, "mode": 448, "uid": 65532, "gid": 65532}
+      ],
+      "depends_on": [
+        {"service": "database", "condition": "service_healthy"},
+        {"service": "migration", "condition": "service_completed_successfully"}
+      ],
+      "healthcheck": null,
+      "expected_exit_codes": [0]
+    }
+  ],
+  "orchestration": {
+    "project_name_pattern": "^incidentseal-[0-9a-f]{16}$",
+    "labels": [
+      "dev.incidentseal.contract-digest",
+      "dev.incidentseal.manifest-digest",
+      "dev.incidentseal.run-id"
+    ],
+    "operation_modes": ["platform-validation", "workflow-execution"],
+    "platform_validation": {
+      "manifest_approval": "not-used",
+      "repository_input": "denied",
+      "commands": "baked-in-only",
+      "claim_scope": "topology-only"
+    },
+    "workflow_execution": {
+      "manifest_approval": "MATCH",
+      "manifest_recheck": ["before-staging", "after-staging", "before-each-runner"],
+      "commands": "approved-manifest-only",
+      "claim_scope": "approved-claim-only"
+    },
+    "phase_order": [
+      "verify-control-state",
+      "verify-image-and-topology-locks",
+      "stage-inputs",
+      "build-derived-images",
+      "validate-rendered-compose",
+      "start-database",
+      "run-migration",
+      "run-approved-steps",
+      "promote-evidence",
+      "verify-cleanup"
+    ],
+    "concurrency": "manifest-dag-only",
+    "cancellation": "retain-attempt-then-stop-new-work",
+    "teardown": "host-cli-only",
+    "volume_deletion": "after-evidence-and-recovery-gates-only"
+  },
+  "evidence_policy": {
+    "preserve_verdicts": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"],
+    "preserve_lifecycle": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"],
+    "retain_attempts": "all",
+    "config_render_is_runtime_proof": false,
+    "source_tests_are_runtime_proof": false
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": "incidentseal-topology-contract-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U02-TOPOLOGY-CONTRACT",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U02",
+  "observed_at_utc": "2026-08-09T20:00:07Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Closed static topology, host authority, build, staging, service, normalized-render, and evidence contracts. This proves fail-closed policy behavior only; no Docker build, Compose render, container, PostgreSQL, migration, or runner behavior was executed or verified.",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "contract": "contracts/IS-0003.json",
+    "workflow_approval_state": "MISSING",
+    "workflow_execution_state": "INVALID"
+  },
+  "contract": {
+    "path": "contracts/topology-v1.json",
+    "sha256": "sha256:a6443d83ae9eb463780a74f76e34db496a7731f0470fa6976a7678cc1a4eae82",
+    "file_lock": "requirements/topology-contract.lock.json",
+    "image_lock": "requirements/images.lock.json",
+    "image_lock_sha256": "sha256:8a816cbf072ec87f4495a7a9cf4c9f538a919178cbcfb245fa501b64e91d4ab8",
+    "third_party_dependencies": 0
+  },
+  "architecture_decisions": [
+    "The host CLI is the control plane and the only Docker API consumer; no control container exists.",
+    "Platform validation may use only baked-in synthetic probes and can claim only topology behavior.",
+    "Workflow execution requires an exact MATCH approval and rechecks it before staging, after staging, and before every runner.",
+    "Derived images are copy-only, offline builds from exact locked images, with exact local image IDs and pull_policy never.",
+    "Repository content is never mounted. The host stages bounded inputs outside repository and forbidden roots, read-only to runners, with distinct output custody.",
+    "The sole Compose network is internal and non-external; no service publishes a port or receives a Docker socket, secret, host network, broad mount, privilege, or retained capability."
+  ],
+  "checks": [
+    {"id": "schema-documents", "status": "PASS", "result": "Two closed Draft 2020-12 topology schemas have stable repository-controlled identities and pass the dependency-free supported-keyword linter."},
+    {"id": "exact-file-binding", "status": "PASS", "result": "The topology contract, schemas, normalized render, mutation set, and exact image lock are bound by SHA-256 in the topology file lock."},
+    {"id": "host-only-authority", "status": "PASS", "result": "Only the host CLI may consume the Docker API; direct Compose claims are INVALID and repository approval mutation is denied."},
+    {"id": "manifest-authority", "status": "PASS", "result": "Workflow execution requires exact approval MATCH and fixed rechecks; platform validation cannot ingest repository input or make workflow claims."},
+    {"id": "offline-build-policy", "status": "PASS", "result": "The exact Dockerfile frontend and build contexts are frozen; RUN, remote ADD, network, secret and SSH mounts, online resolution, mutable pull behavior, and unlocked bases are denied."},
+    {"id": "service-hardening", "status": "PASS", "result": "Database, migration, Python, and Node identities require numeric non-root users, read-only roots, no-new-privileges, cap_drop ALL, no published ports, and only the internal data network."},
+    {"id": "staged-custody", "status": "PASS", "result": "Repository mounts and link-like inputs are denied; staged inputs are read-only and bounded to 4096 files and 256 MiB."},
+    {"id": "evidence-separation", "status": "PASS", "result": "PASS, FAIL, INCONCLUSIVE, and INVALID remain distinct from queued, running, completed, cancelled, failed, stale, and superseded lifecycle states; static renders and tests are not runtime proof."},
+    {"id": "fail-closed-mutations", "status": "PASS", "result": "All 12 authority, network, root-user, privilege, mount, build-network, evidence-collapse, published-port, external-network, and capability mutations failed with the expected stable error code."},
+    {"id": "prior-contract-regression", "status": "PASS", "result": "The frozen four-schema machine-contract validator remained PASS after its schema set was made explicit."},
+    {"id": "workspace-serialization", "status": "PASS", "result": "All 74 JSON documents and 17 JSONL records parsed; the bounded credential and private-key pattern scan returned no match."},
+    {"id": "runtime-non-execution", "status": "PASS", "result": "No IncidentSeal-labeled or IncidentSeal-named container exists; no image, build, Compose project, service, database, migration, or runner was started in this unit."}
+  ],
+  "mutation_results": [
+    {"id": "container-control-plane", "expected_error": "IS_TOPOLOGY_AUTHORITY", "status": "PASS"},
+    {"id": "workflow-match-bypass", "expected_error": "IS_TOPOLOGY_AUTHORITY", "status": "PASS"},
+    {"id": "platform-repository-input", "expected_error": "IS_TOPOLOGY_AUTHORITY", "status": "PASS"},
+    {"id": "external-data-network", "expected_error": "IS_TOPOLOGY_NETWORK", "status": "PASS"},
+    {"id": "root-database", "expected_error": "IS_SCHEMA_INSTANCE", "status": "PASS"},
+    {"id": "privileged-runner", "expected_error": "IS_TOPOLOGY_SERVICE", "status": "PASS"},
+    {"id": "repository-mount", "expected_error": "IS_TOPOLOGY_STAGING", "status": "PASS"},
+    {"id": "build-network", "expected_error": "IS_TOPOLOGY_BUILD", "status": "PASS"},
+    {"id": "runtime-proof-collapse", "expected_error": "IS_TOPOLOGY_EVIDENCE", "status": "PASS"},
+    {"id": "published-database-port", "expected_error": "IS_TOPOLOGY_RENDER", "status": "PASS"},
+    {"id": "render-external-network", "expected_error": "IS_TOPOLOGY_RENDER", "status": "PASS"},
+    {"id": "render-retained-capability", "expected_error": "IS_TOPOLOGY_RENDER", "status": "PASS"}
+  ],
+  "retained_attempts": [
+    {
+      "attempt": "Combined final evidence wrapper",
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "note": "The first wrapper used the unsupported Windows PowerShell ConvertFrom-Json -Depth option and exited before observable results. Split commands without that option then parsed all JSON and JSONL records, scanned for credentials, and inspected Docker container history successfully."
+    },
+    {
+      "attempt": "Policy status with unsupported --format json",
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "exit_code": 64,
+      "note": "The read-only invocation used an unknown argument and returned stable usage failure. It did not inspect or alter approval state."
+    },
+    {
+      "attempt": "Policy status without required --json",
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "exit_code": 64,
+      "note": "The corrected command shape still omitted the machine-output flag and failed closed. It did not inspect or alter approval state."
+    },
+    {
+      "attempt": "Policy status with exact manifest and --json",
+      "execution_state": "completed",
+      "verification_verdict": "INVALID",
+      "exit_code": 12,
+      "note": "The valid read-only invocation returned approval MISSING and verdict INVALID as expected. No external approval exists and no writer was invoked."
+    }
+  ],
+  "decision": {
+    "status": "passed",
+    "runtime_execution_eligible": false,
+    "next_unit": "IS3-U03",
+    "next_action": "Implement the exact-pinned copy-only Dockerfiles, Compose model, migrations, runner probes, and host-CLI orchestration, then validate their static render against this locked contract without starting the topology.",
+    "prohibited_claims": [
+      "No real Compose configuration has rendered yet.",
+      "No image build or container runtime behavior has been verified.",
+      "No database, migration, Python runner, Node runner, recovery, dashboard, clean-clone topology, or release behavior has been verified.",
+      "No workflow manifest is approved."
+    ]
+  }
+}

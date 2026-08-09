@@ -31,10 +31,10 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` passed. Four exact linux/amd64 artifacts are source-gated, locally acquired without execution, independently scanned, and frozen in the first image lock. The initial Docker Official PostgreSQL, Node, and Python candidates remain retained as failed and superseded evidence.
+Progress: `IS3-U01` and `IS3-U02` passed. Four exact linux/amd64 artifacts are source-gated and frozen in the first image lock. A digest-bound, mutation-tested topology contract now freezes host-only Docker authority, copy-only offline builds, internal networking, numeric non-root identities, staged custody, and evidence-state separation without starting a container. Implementation begins in `IS3-U03`.
 
 - Canonical Compose topology with exact-digest images.
-- PostgreSQL, one-shot migrations, Python runner, Node runner, and control service.
+- PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.
 - No Docker socket, secrets, broad mounts, or runtime egress.
 - Real configuration, health, identity, filesystem, privilege, mount, and network probes.
 

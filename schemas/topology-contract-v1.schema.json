@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/topology-contract-v1.schema.json",
+  "title": "IncidentSeal topology contract v1",
+  "description": "Closed security and orchestration contract for the local verification topology.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "topology_id",
+    "revision",
+    "platform",
+    "image_lock",
+    "authority",
+    "build_policy",
+    "networks",
+    "volumes",
+    "staging",
+    "services",
+    "orchestration",
+    "evidence_policy"
+  ],
+  "properties": {
+    "schema_version": {"const": "incidentseal-topology/v1"},
+    "topology_id": {"$ref": "#/$defs/id"},
+    "revision": {"type": "integer", "minimum": 1, "maximum": 9007199254740991},
+    "platform": {"const": "linux/amd64"},
+    "image_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/relative_path"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "control_plane",
+        "docker_api_consumers",
+        "compose_source",
+        "direct_compose_claim",
+        "workflow_execution_gate",
+        "platform_validation_input",
+        "platform_validation_claim_scope",
+        "repository_approval_mutation"
+      ],
+      "properties": {
+        "control_plane": {"type": "string"},
+        "docker_api_consumers": {"type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": {"type": "string"}},
+        "compose_source": {"type": "string"},
+        "direct_compose_claim": {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"]},
+        "workflow_execution_gate": {"enum": ["MATCH", "MISMATCH", "MISSING", "EXPIRED", "INVALID"]},
+        "platform_validation_input": {"type": "string"},
+        "platform_validation_claim_scope": {"type": "string"},
+        "repository_approval_mutation": {"enum": ["allowed", "denied"]}
+      }
+    },
+    "build_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frontend",
+        "network",
+        "contexts",
+        "allowed_instructions",
+        "run_instruction",
+        "remote_add",
+        "secret_mounts",
+        "ssh_mounts",
+        "online_dependency_resolution",
+        "base_images",
+        "runtime_identity",
+        "pull_policy"
+      ],
+      "properties": {
+        "frontend": {"$ref": "#/$defs/exact_image"},
+        "network": {"enum": ["none", "default", "host"]},
+        "contexts": {"type": "array", "minItems": 1, "maxItems": 8, "uniqueItems": true, "items": {"$ref": "#/$defs/relative_path"}},
+        "allowed_instructions": {"type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z]+$"}},
+        "run_instruction": {"enum": ["allowed", "denied"]},
+        "remote_add": {"enum": ["allowed", "denied"]},
+        "secret_mounts": {"enum": ["allowed", "denied"]},
+        "ssh_mounts": {"enum": ["allowed", "denied"]},
+        "online_dependency_resolution": {"enum": ["allowed", "denied"]},
+        "base_images": {"type": "string"},
+        "runtime_identity": {"type": "string"},
+        "pull_policy": {"enum": ["always", "missing", "never"]}
+      }
+    },
+    "networks": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"$ref": "#/$defs/network"}},
+    "volumes": {"type": "array", "maxItems": 16, "items": {"$ref": "#/$defs/volume"}},
+    "staging": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "custody",
+        "repository_mount",
+        "input_mount",
+        "output_mount",
+        "symlinks",
+        "reparse_points",
+        "hardlinks",
+        "special_files",
+        "maximum_files",
+        "maximum_total_bytes",
+        "cleanup"
+      ],
+      "properties": {
+        "custody": {"type": "string"},
+        "repository_mount": {"enum": ["allowed", "denied"]},
+        "input_mount": {"type": "string"},
+        "output_mount": {"type": "string"},
+        "symlinks": {"enum": ["allowed", "denied"]},
+        "reparse_points": {"enum": ["allowed", "denied"]},
+        "hardlinks": {"enum": ["allowed", "denied"]},
+        "special_files": {"enum": ["allowed", "denied"]},
+        "maximum_files": {"type": "integer", "minimum": 1, "maximum": 100000},
+        "maximum_total_bytes": {"type": "integer", "minimum": 1, "maximum": 10737418240},
+        "cleanup": {"type": "string"}
+      }
+    },
+    "services": {"type": "array", "minItems": 1, "maxItems": 16, "items": {"$ref": "#/$defs/service"}},
+    "orchestration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_name_pattern",
+        "labels",
+        "operation_modes",
+        "platform_validation",
+        "workflow_execution",
+        "phase_order",
+        "concurrency",
+        "cancellation",
+        "teardown",
+        "volume_deletion"
+      ],
+      "properties": {
+        "project_name_pattern": {"type": "string", "minLength": 1, "maxLength": 200},
+        "labels": {"type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": {"type": "string"}},
+        "operation_modes": {"type": "array", "minItems": 1, "maxItems": 8, "uniqueItems": true, "items": {"type": "string"}},
+        "platform_validation": {"$ref": "#/$defs/operation_mode"},
+        "workflow_execution": {"$ref": "#/$defs/workflow_mode"},
+        "phase_order": {"type": "array", "minItems": 1, "maxItems": 32, "uniqueItems": true, "items": {"type": "string"}},
+        "concurrency": {"type": "string"},
+        "cancellation": {"type": "string"},
+        "teardown": {"type": "string"},
+        "volume_deletion": {"type": "string"}
+      }
+    },
+    "evidence_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preserve_verdicts", "preserve_lifecycle", "retain_attempts", "config_render_is_runtime_proof", "source_tests_are_runtime_proof"],
+      "properties": {
+        "preserve_verdicts": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"]}},
+        "preserve_lifecycle": {"type": "array", "minItems": 7, "maxItems": 7, "uniqueItems": true, "items": {"enum": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"]}},
+        "retain_attempts": {"enum": ["all", "passing-only"]},
+        "config_render_is_runtime_proof": {"type": "boolean"},
+        "source_tests_are_runtime_proof": {"type": "boolean"}
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$", "minLength": 1, "maxLength": 80},
+    "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "exact_image": {"type": "string", "pattern": "^[^@\\s]+@sha256:[0-9a-f]{64}$", "maxLength": 500},
+    "relative_path": {"type": "string", "minLength": 1, "maxLength": 260, "pattern": "^(?!/)(?![A-Za-z]:)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
+    "argv": {"type": "array", "maxItems": 64, "items": {"type": "string", "minLength": 1, "maxLength": 4096, "pattern": "^[^\\u0000]*$"}},
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "driver", "internal", "attachable", "external"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "driver": {"enum": ["bridge"]},
+        "internal": {"type": "boolean"},
+        "attachable": {"type": "boolean"},
+        "external": {"type": "boolean"}
+      }
+    },
+    "volume": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "driver", "external", "lifecycle"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "driver": {"enum": ["local"]},
+        "external": {"type": "boolean"},
+        "lifecycle": {"type": "string"}
+      }
+    },
+    "mount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "source", "target", "mode"],
+      "properties": {
+        "kind": {"enum": ["named-volume", "staged-input", "staged-output"]},
+        "source": {"$ref": "#/$defs/id"},
+        "target": {"type": "string", "pattern": "^/[^\\u0000]+$", "maxLength": 260},
+        "mode": {"enum": ["ro", "rw"]}
+      }
+    },
+    "tmpfs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "size_bytes", "mode", "uid", "gid"],
+      "properties": {
+        "target": {"type": "string", "pattern": "^/[^\\u0000]+$", "maxLength": 260},
+        "size_bytes": {"type": "integer", "minimum": 1048576, "maximum": 1073741824},
+        "mode": {"type": "integer", "minimum": 0, "maximum": 4095},
+        "uid": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+        "gid": {"type": "integer", "minimum": 1, "maximum": 2147483647}
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["service", "condition"],
+      "properties": {
+        "service": {"$ref": "#/$defs/id"},
+        "condition": {"enum": ["service_started", "service_healthy", "service_completed_successfully"]}
+      }
+    },
+    "healthcheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["test", "interval_seconds", "timeout_seconds", "retries", "start_period_seconds"],
+      "properties": {
+        "test": {"$ref": "#/$defs/argv"},
+        "interval_seconds": {"type": "integer", "minimum": 1, "maximum": 300},
+        "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 60},
+        "retries": {"type": "integer", "minimum": 1, "maximum": 100},
+        "start_period_seconds": {"type": "integer", "minimum": 0, "maximum": 600}
+      }
+    },
+    "service": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "lifecycle",
+        "image_source",
+        "image_role",
+        "build_context",
+        "user",
+        "read_only_root",
+        "privileged",
+        "no_new_privileges",
+        "cap_drop",
+        "pids_limit",
+        "restart",
+        "networks",
+        "published_ports",
+        "entrypoint",
+        "command",
+        "environment",
+        "mounts",
+        "tmpfs",
+        "depends_on",
+        "healthcheck",
+        "expected_exit_codes"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "lifecycle": {"enum": ["persistent", "one-shot"]},
+        "image_source": {"enum": ["image-lock", "runtime-lock"]},
+        "image_role": {"enum": ["postgresql", "python_runner", "node_runner"]},
+        "build_context": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/relative_path"}]},
+        "user": {"type": "string", "pattern": "^[1-9][0-9]*:[1-9][0-9]*$"},
+        "read_only_root": {"type": "boolean"},
+        "privileged": {"type": "boolean"},
+        "no_new_privileges": {"type": "boolean"},
+        "cap_drop": {"type": "array", "minItems": 1, "maxItems": 64, "uniqueItems": true, "items": {"type": "string"}},
+        "pids_limit": {"type": "integer", "minimum": 1, "maximum": 4096},
+        "restart": {"enum": ["no", "always", "unless-stopped", "on-failure"]},
+        "networks": {"type": "array", "minItems": 1, "maxItems": 8, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "published_ports": {"type": "array", "maxItems": 32, "uniqueItems": true, "items": {"type": "string"}},
+        "entrypoint": {"$ref": "#/$defs/argv"},
+        "command": {"$ref": "#/$defs/argv"},
+        "environment": {"type": "object", "additionalProperties": {"type": "string"}},
+        "mounts": {"type": "array", "maxItems": 16, "items": {"$ref": "#/$defs/mount"}},
+        "tmpfs": {"type": "array", "maxItems": 16, "items": {"$ref": "#/$defs/tmpfs"}},
+        "depends_on": {"type": "array", "maxItems": 16, "items": {"$ref": "#/$defs/dependency"}},
+        "healthcheck": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/healthcheck"}]},
+        "expected_exit_codes": {"type": "array", "maxItems": 16, "uniqueItems": true, "items": {"type": "integer", "minimum": 0, "maximum": 255}}
+      }
+    },
+    "operation_mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_approval", "repository_input", "commands", "claim_scope"],
+      "properties": {
+        "manifest_approval": {"type": "string"},
+        "repository_input": {"type": "string"},
+        "commands": {"type": "string"},
+        "claim_scope": {"type": "string"}
+      }
+    },
+    "workflow_mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_approval", "manifest_recheck", "commands", "claim_scope"],
+      "properties": {
+        "manifest_approval": {"type": "string"},
+        "manifest_recheck": {"type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": {"type": "string"}},
+        "commands": {"type": "string"},
+        "claim_scope": {"type": "string"}
+      }
+    }
+  }
+}

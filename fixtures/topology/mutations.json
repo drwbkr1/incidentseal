@@ -1,0 +1,17 @@
+{
+  "schema_version": "incidentseal-topology-mutations/v1",
+  "mutations": [
+    {"id": "container-control-plane", "target": "contract", "pointer": "/authority/control_plane", "value": "control-container", "expected_error": "IS_TOPOLOGY_AUTHORITY"},
+    {"id": "workflow-match-bypass", "target": "contract", "pointer": "/authority/workflow_execution_gate", "value": "MISSING", "expected_error": "IS_TOPOLOGY_AUTHORITY"},
+    {"id": "platform-repository-input", "target": "contract", "pointer": "/orchestration/platform_validation/repository_input", "value": "allowed", "expected_error": "IS_TOPOLOGY_AUTHORITY"},
+    {"id": "external-data-network", "target": "contract", "pointer": "/networks/0/internal", "value": false, "expected_error": "IS_TOPOLOGY_NETWORK"},
+    {"id": "root-database", "target": "contract", "pointer": "/services/0/user", "value": "0:0", "expected_error": "IS_SCHEMA_INSTANCE"},
+    {"id": "privileged-runner", "target": "contract", "pointer": "/services/2/privileged", "value": true, "expected_error": "IS_TOPOLOGY_SERVICE"},
+    {"id": "repository-mount", "target": "contract", "pointer": "/staging/repository_mount", "value": "allowed", "expected_error": "IS_TOPOLOGY_STAGING"},
+    {"id": "build-network", "target": "contract", "pointer": "/build_policy/network", "value": "default", "expected_error": "IS_TOPOLOGY_BUILD"},
+    {"id": "runtime-proof-collapse", "target": "contract", "pointer": "/evidence_policy/config_render_is_runtime_proof", "value": true, "expected_error": "IS_TOPOLOGY_EVIDENCE"},
+    {"id": "published-database-port", "target": "render", "pointer": "/services/0/published_ports", "value": ["5432:5432"], "expected_error": "IS_TOPOLOGY_RENDER"},
+    {"id": "render-external-network", "target": "render", "pointer": "/networks/0/external", "value": true, "expected_error": "IS_TOPOLOGY_RENDER"},
+    {"id": "render-retained-capability", "target": "render", "pointer": "/services/3/cap_drop", "value": ["NET_RAW"], "expected_error": "IS_TOPOLOGY_RENDER"}
+  ]
+}

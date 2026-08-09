@@ -536,7 +536,13 @@ def validate_schema_instance(
 
 
 def load_schema_documents() -> dict[str, dict[str, Any]]:
-    return {path.name: strict_load(path) for path in sorted(SCHEMAS.glob("*.schema.json"))}
+    names = (
+        "workflow-manifest-v1.schema.json",
+        "manifest-approval-v1.schema.json",
+        "cli-envelope-v1.schema.json",
+        "run-event-v1.schema.json",
+    )
+    return {name: strict_load(SCHEMAS / name) for name in names}
 
 
 def validate_schema_documents(documents: dict[str, dict[str, Any]]) -> list[str]:
