@@ -242,7 +242,7 @@ def validate_services(contract: dict[str, Any]) -> dict[str, dict[str, Any]]:
         "PGDATA": "/var/lib/postgresql/incidentseal-data/pgdata",
         "POSTGRES_DB": "incidentseal",
         "POSTGRES_HOST_AUTH_METHOD": "trust",
-        "POSTGRES_USER": "incidentseal",
+        "POSTGRES_USER": "incidentseal_admin",
         "TZ": "UTC",
     }:
         fail("IS_TOPOLOGY_SERVICE", "database authentication is not the frozen internal-only configuration")
@@ -259,6 +259,14 @@ def validate_services(contract: dict[str, Any]) -> dict[str, dict[str, Any]]:
         {"service": "database", "condition": "service_healthy"}
     ]:
         fail("IS_TOPOLOGY_SERVICE", "migration dependency differs from v1")
+    if by_id["migration"]["entrypoint"] != ["/usr/bin/psql"] or by_id["migration"]["command"] != [
+        "--host=database",
+        "--username=incidentseal_admin",
+        "--dbname=incidentseal",
+        "--set=ON_ERROR_STOP=1",
+        "--file=/opt/incidentseal/migrations/001-schema.sql",
+    ]:
+        fail("IS_TOPOLOGY_SERVICE", "migration does not use the bootstrap admin role")
     runner_dependencies = [
         {"service": "database", "condition": "service_healthy"},
         {"service": "migration", "condition": "service_completed_successfully"},
@@ -272,6 +280,8 @@ def validate_services(contract: dict[str, Any]) -> dict[str, dict[str, Any]]:
             ("staged-output", "/incidentseal/output", "rw"),
         ]:
             fail("IS_TOPOLOGY_SERVICE", f"{service_id} staged mounts differ from v1")
+        if by_id[service_id]["environment"].get("PGUSER") != "incidentseal_runner":
+            fail("IS_TOPOLOGY_SERVICE", f"{service_id} does not use the least-privilege runner role")
     return by_id
 
 
@@ -389,8 +399,8 @@ def run(root: Path) -> dict[str, Any]:
         "topology-render-v1.schema.json",
         documents,
     )
-    if contract["revision"] != 2:
-        fail("IS_TOPOLOGY_DIGEST", "active topology contract is not revision 2")
+    if contract["revision"] != 3:
+        fail("IS_TOPOLOGY_DIGEST", "active topology contract is not revision 3")
     images = validate_image_lock(root, contract)
     validate_authority(contract)
     validate_build(contract, images)

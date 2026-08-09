@@ -6,4 +6,4 @@ COPY --chown=70:70 001-schema.sql /opt/incidentseal/migrations/001-schema.sql
 USER 70:70
 WORKDIR /opt/incidentseal
 ENTRYPOINT ["/usr/bin/psql"]
-CMD ["--host=database","--username=incidentseal","--dbname=incidentseal","--set=ON_ERROR_STOP=1","--file=/opt/incidentseal/migrations/001-schema.sql"]
+CMD ["--host=database","--username=incidentseal_admin","--dbname=incidentseal","--set=ON_ERROR_STOP=1","--file=/opt/incidentseal/migrations/001-schema.sql"]

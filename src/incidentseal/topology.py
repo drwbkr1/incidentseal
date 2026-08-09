@@ -198,6 +198,26 @@ def _validate_dockerfiles(contract: dict[str, Any]) -> None:
     seed = (ROOT / "containers" / "database" / "volume-seed" / "owner.txt").read_text(encoding="utf-8")
     if seed != "incidentseal-volume-owner=70:70\n":
         raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", "database ownership seed differs from the contract")
+    migration_dockerfile = (ROOT / "containers" / "migration" / "Dockerfile").read_text(encoding="utf-8")
+    if 'CMD ["--host=database","--username=incidentseal_admin","--dbname=incidentseal","--set=ON_ERROR_STOP=1","--file=/opt/incidentseal/migrations/001-schema.sql"]' not in migration_dockerfile:
+        raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", "migration image does not default to the bootstrap admin role")
+    migration = (ROOT / "containers" / "migration" / "001-schema.sql").read_text(encoding="utf-8")
+    required_migration_controls = {
+        "REVOKE CREATE ON SCHEMA public FROM PUBLIC;",
+        "REVOKE ALL ON DATABASE incidentseal FROM PUBLIC;",
+        "CREATE ROLE incidentseal_runner LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS;",
+        "ALTER ROLE incidentseal_runner LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS;",
+        "GRANT CONNECT ON DATABASE incidentseal TO incidentseal_runner;",
+        "GRANT USAGE ON SCHEMA public TO incidentseal_runner;",
+        "REVOKE ALL ON TABLE verification_results FROM PUBLIC;",
+        "REVOKE ALL ON TABLE incidentseal_schema_migrations FROM PUBLIC;",
+        "GRANT SELECT, INSERT, UPDATE ON TABLE verification_results TO incidentseal_runner;",
+        "ALTER DEFAULT PRIVILEGES IN SCHEMA public REVOKE ALL ON TABLES FROM PUBLIC;",
+    }
+    if not all(control in migration for control in required_migration_controls):
+        raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", "migration least-privilege controls are incomplete")
+    if "GRANT ALL" in migration.upper() or "PASSWORD" in migration.upper():
+        raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", "migration contains a broad grant or secret-bearing role")
 
 
 def _compose_environment(contract: dict[str, Any], custody: Path) -> dict[str, str]:

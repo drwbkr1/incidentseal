@@ -24,20 +24,20 @@
   },
   "bindings": {
     "topology_contract": {
-      "path": "contracts/topology-v1.json",
+      "path": "contracts/history/IS3-U04-topology-revision-2.json",
       "sha256": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde",
       "revision": 2
     },
     "topology_contract_lock": {
-      "path": "requirements/topology-contract.lock.json",
+      "path": "requirements/history/IS3-U04-topology-contract.lock.json",
       "sha256": "sha256:887f923253a9b91d31ac8c7c640979cd3fb1270d22beb8aabba71efb436becc9"
     },
     "implementation_lock": {
-      "path": "requirements/topology-implementation.lock.json",
+      "path": "requirements/history/IS3-U05-database-least-privilege-failure.implementation.lock.json",
       "sha256": "sha256:113f279a4fcccce7034c3586e5bf1498aca1b0d82a69f3323c78c4a1d8833319"
     },
     "runtime_lock": {
-      "path": "requirements/topology-runtime.lock.json",
+      "path": "requirements/history/IS3-U05-database-least-privilege-failure.runtime.lock.json",
       "sha256": "sha256:16d79597f1fc440f710cf0f0fee385d869ae61a87f4d71ca3fcfb4a284730be9"
     }
   },

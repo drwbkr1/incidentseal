@@ -67,6 +67,7 @@ Networked acquisition is a separate host-side action. Runtime egress is denied b
 | Mutable image tag changes bytes | Pin tag plus exact platform digest after source gate | Resolve and compare manifest/platform digests before use and at release |
 | Missing provenance or advisory data is treated as safe | `INCONCLUSIVE`, never `PASS` | Remove or block evidence source and verify verdict |
 | Database reports partial work as complete | Transactional step commits, idempotency keys, immutable events | Kill at defined boundaries, resume, and verify no duplicate committed step |
+| Application runner owns or administers the database | Separate bootstrap and runner roles; revoke public schema creation; grant bounded table DML only | Inspect role attributes; require DML success, DDL denial, migration-ledger denial, and persistence after restart |
 | Receipt is edited or truncated | Canonical serialization, content hashes, chain/root digest, independent verifier | Mutate fields, reorder records, remove records, and corrupt artifacts |
 | Dashboard or prose overstates evidence | Dashboard derives from receipt schema; release claim matrix is explicit | Compare rendered claims with receipt and current release matrix |
 | Registry loses or rewrites attestations | Verify remote digest and attestations after push and after download | Registry round-trip verification |

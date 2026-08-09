@@ -1,6 +1,6 @@
 {
   "schema_version": "incidentseal-topology-render/v1",
-  "contract_digest": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde",
+  "contract_digest": "sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351",
   "project_name": "incidentseal-0123456789abcdef",
   "operation_mode": "platform-validation",
   "services": [

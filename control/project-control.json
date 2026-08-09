@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0003",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Archive the U05 database FAIL, separate admin and runner roles with narrow grants, and replay topology plus database gates on a new digest-bound volume"
+    "next_action": "Execute IS3-U06 with the exact runtime lock and validate the real Python application runner against staged input and the least-privilege database role"
   }
 }

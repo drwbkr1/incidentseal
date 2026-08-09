@@ -85,13 +85,14 @@ def _runtime_lock_images(contract_digest: str) -> dict[str, dict[str, Any]]:
         return {}
     lock = _load(RUNTIME_LOCK_PATH)
     try:
+        contract_revision = _load(CONTRACT_PATH)["revision"]
         valid = all(
             [
                 lock["schema_version"] == "incidentseal-topology-runtime-lock/v1",
                 lock["contract"] == {
                     "path": "contracts/topology-v1.json",
                     "sha256": contract_digest,
-                    "revision": 2,
+                    "revision": contract_revision,
                 },
                 lock["topology_contract_lock"] == {
                     "path": "requirements/topology-contract.lock.json",

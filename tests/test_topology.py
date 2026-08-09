@@ -22,11 +22,30 @@ from incidentseal.topology import CONTRACT_PATH, TopologyError  # noqa: E402
 class TopologyTests(unittest.TestCase):
     def test_active_runtime_lock_binds_all_exact_image_roles(self) -> None:
         images = runtime._runtime_lock_images(runtime._sha256_file(CONTRACT_PATH))
+        if not runtime.RUNTIME_LOCK_PATH.exists():
+            self.assertEqual({}, images)
+            return
         self.assertEqual(["database", "migration", "python-runner", "node-runner"], list(images))
         self.assertTrue(all(item["image_id"].startswith("sha256:") for item in images.values()))
 
     def test_runtime_lock_contract_drift_fails_closed(self) -> None:
-        lock = json.loads(runtime.RUNTIME_LOCK_PATH.read_text(encoding="utf-8"))
+        source = runtime.RUNTIME_LOCK_PATH
+        if not source.exists():
+            source = ROOT / "requirements" / "history" / "IS3-U05-database-least-privilege-failure.runtime.lock.json"
+        lock = json.loads(source.read_text(encoding="utf-8"))
+        lock["contract"] = {
+            "path": "contracts/topology-v1.json",
+            "sha256": runtime._sha256_file(CONTRACT_PATH),
+            "revision": 3,
+        }
+        lock["topology_contract_lock"] = {
+            "path": "requirements/topology-contract.lock.json",
+            "sha256": runtime._sha256_file(runtime.TOPOLOGY_LOCK_PATH),
+        }
+        lock["implementation_lock"] = {
+            "path": "requirements/topology-implementation.lock.json",
+            "sha256": runtime._sha256_file(runtime.IMPLEMENTATION_LOCK_PATH),
+        }
         lock["contract"]["sha256"] = "sha256:" + "f" * 64
         with tempfile.TemporaryDirectory(prefix="incidentseal-runtime-lock-test-") as temporary:
             path = Path(temporary) / "runtime.lock.json"

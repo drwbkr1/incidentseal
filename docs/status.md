@@ -29,12 +29,12 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U04` passed after preserving its two revision-1 runtime failures. Topology revision 2 added a fourth exact-base, copy-only database image whose ownership-seeded path lets a new named volume initialize under required user `70:70` without a root runtime or privileged helper. Four exact local image IDs are bound in `requirements/topology-runtime.lock.json`. All 14 contract and 14 implementation mutations failed closed. Two real host-CLI probes reached PostgreSQL health and passed container identity, capability, filesystem, staged-mount, internal-network, egress-denial, sensitive-environment, and Docker-endpoint checks; the second run verified image reuse and exact-volume resume. Both runs removed every container and network. The passing and failed labeled volumes remain separately retained.
 
-`IS3-U05` is active with a retained real product `FAIL`. The machine database probe returned exit `10`: PostgreSQL 18.4 health and identity, two idempotent migration runs, exact schema, bounded DML, restart persistence, and teardown passed. Least privilege failed because both application runners use the bootstrap superuser `incidentseal`; that role has superuser, role/database creation, replication, and bypass-RLS rights, and its forbidden `CREATE TABLE` succeeded. The probe dropped that table and removed all containers and network. The exact revision-2 volume remains retained.
+`IS3-U05` passed while retaining its real revision-2 product `FAIL`. Revision 3 separates bootstrap role `incidentseal_admin` from application role `incidentseal_runner`, revokes public database and schema creation, and grants only required DML. Sixteen contract mutations and 15 implementation mutations passed before four new exact images were runtime-locked. Two database probes passed PostgreSQL 18.4 identity, idempotent migration, schema and migration record, non-superuser attributes, bounded DML, denied DDL, denied migration-ledger reads, restart persistence, repeatability, and teardown. All three digest-bound volumes remain separately retained; no container or network remains.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- The real migration, schema, and restart persistence are now observed, but the database surface remains FAIL until distinct narrow admin and runner roles pass. Real Python and Node application commands remain unverified in `IS3-U06` and `IS3-U07`.
+- The database surface now passes, but real Python and Node application commands remain unverified in `IS3-U06` and `IS3-U07`.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; their four revision-2 derived images ran only under the exact topology contract. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -44,4 +44,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Archive the exact U05 failure inputs, version distinct `incidentseal_admin` and `incidentseal_runner` roles with explicit narrow grants and no public schema creation, then replay topology and database gates on a new digest-bound volume.
+Execute `IS3-U06` with the exact revision-3 runtime lock: run the real Python application command against bounded staged input and `incidentseal_runner`, retain positive and negative evidence, and do not claim Node or workflow verification.

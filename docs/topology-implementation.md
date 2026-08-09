@@ -15,8 +15,8 @@ The implementation contains:
 - four Compose services: PostgreSQL, one-shot migration, Python runner, and Node runner;
 - one internal bridge and one non-external database volume;
 - four narrow, exact-base, copy-only Dockerfiles with no `RUN`, package resolution, build network, secret, SSH mount, or remote `ADD`; the database context contains only its Dockerfile and fixed UID/GID 70 ownership marker;
-- an idempotent PostgreSQL schema;
+- an idempotent PostgreSQL schema with a migration ledger, separate bootstrap and runner roles, revoked public creation, and explicit bounded runner DML grants;
 - standard-library-only Python and Node runners with bounded PostgreSQL v3 clients; and
 - an exact implementation lock covering every executable or rendered product input.
 
-The source self-tests prove only parsing and cross-language canonical-input agreement. U04 now proves exact image users, read-only roots, privilege and capability controls, staged mount direction, internal networking, egress denial, Docker-endpoint absence, database health, repeated volume resume, and container/network cleanup. Real migration execution, PostgreSQL schema and persistence, and the application runner commands remain separate claims for U05 through U07.
+The source self-tests prove only parsing and cross-language canonical-input agreement. U04 proves exact image users, read-only roots, privilege and capability controls, staged mount direction, internal networking, egress denial, Docker-endpoint absence, database health, repeated volume resume, and container/network cleanup. U05 proves the real migration, PostgreSQL identity, least-privilege application role, schema, migration record, bounded DML, denied DDL and ledger reads, restart persistence, repeatability, and cleanup. The real Python and Node application commands remain separate claims for U06 and U07.

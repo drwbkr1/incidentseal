@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import os
 import subprocess
 import tempfile
 import time
@@ -158,7 +157,7 @@ def database_probe() -> dict[str, Any]:
                 result = _run(docker, [*base, "run", "--name", name, "--no-deps", "migration"], env=env)
                 inspections.append(_inspect_container(docker, name, identities["migration"], "70:70", network))
                 query_evidence[f"migration_{index + 1}_output_digest"] = _digest(result.stdout)
-            _check(checks, "migration-idempotency", True, query_evidence)
+            _check(checks, "migration-idempotency", True, dict(query_evidence))
 
             identity_sql = """SELECT json_build_object(
               'server_version_num', current_setting('server_version_num')::integer,
@@ -239,6 +238,25 @@ def database_probe() -> dict[str, Any]:
             schema_ok = schema.get("table_exists") is True and schema.get("columns") == expected_columns and schema.get("primary_key") == ["run_id", "runner"]
             _check(checks, "schema-shape", schema_ok, schema)
 
+            migration_record = _last_json(
+                _run_psql(
+                    docker,
+                    base,
+                    env,
+                    f"{project}-query-migration-record",
+                    admin_user,
+                    "SELECT json_build_object('row_count', count(*), 'migration_id', max(migration_id))::text FROM public.incidentseal_schema_migrations;",
+                    created_names,
+                )
+            )
+            query_evidence["migration_record"] = migration_record
+            _check(
+                checks,
+                "migration-record",
+                migration_record == {"row_count": 1, "migration_id": "001-schema-v2"},
+                migration_record,
+            )
+
             marker_input = _digest("incidentseal-u05-persistence-input")
             marker_result = _digest("incidentseal-u05-persistence-result")
             dml_sql = f"""INSERT INTO public.verification_results(run_id, runner, input_digest, result_digest)
@@ -267,6 +285,26 @@ def database_probe() -> dict[str, Any]:
             query_evidence["runner_ddl_exit_code"] = ddl.returncode
             query_evidence["runner_ddl_output_digest"] = _digest(ddl_text)
             _check(checks, "runner-ddl-denied", ddl_denied, {"exit_code": ddl.returncode, "output_digest": _digest(ddl_text)})
+            ledger_name = f"{project}-query-runner-ledger"
+            ledger = _run_psql_expected_failure(
+                docker,
+                base,
+                env,
+                ledger_name,
+                runner_user,
+                "SELECT migration_id FROM public.incidentseal_schema_migrations;",
+                created_names,
+            )
+            ledger_text = (ledger.stdout + ledger.stderr).strip()
+            ledger_denied = ledger.returncode != 0 and "permission denied" in ledger_text.lower()
+            query_evidence["runner_migration_ledger_exit_code"] = ledger.returncode
+            query_evidence["runner_migration_ledger_output_digest"] = _digest(ledger_text)
+            _check(
+                checks,
+                "runner-migration-ledger-denied",
+                ledger_denied,
+                {"exit_code": ledger.returncode, "output_digest": _digest(ledger_text)},
+            )
             _run_psql(
                 docker,
                 base,

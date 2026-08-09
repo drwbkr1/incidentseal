@@ -1,0 +1,108 @@
+{
+  "schema_version": "incidentseal-database-surface-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U05-DATABASE-SURFACE",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U05",
+  "observed_at_utc": "2026-08-09T21:24:19Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Exact revision-3 PostgreSQL migration, identity, role least privilege, schema, migration record, bounded DML, denied DDL and migration-ledger reads, restart persistence, runtime identity, and teardown. Real Python and Node application commands remain outside this claim.",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "contract": "contracts/IS-0003.json",
+    "workflow_approval_state": "MISSING",
+    "workflow_execution_state": "INVALID",
+    "platform_validation_manifest_digest": "not-used"
+  },
+  "bindings": {
+    "topology_contract": {
+      "path": "contracts/topology-v1.json",
+      "sha256": "sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351",
+      "revision": 3
+    },
+    "topology_contract_lock": {
+      "path": "requirements/topology-contract.lock.json",
+      "sha256": "sha256:64d0e87f5f702218f43ae8d992bca20b55f4d0ec69eef22091d584ce1591b860"
+    },
+    "implementation_lock": {
+      "path": "requirements/topology-implementation.lock.json",
+      "sha256": "sha256:6a44c008a1aa328b3727433f8d2d5e54c640dda194aeb884bb2c06b93c35ce25"
+    },
+    "runtime_lock": {
+      "path": "requirements/topology-runtime.lock.json",
+      "sha256": "sha256:26e617ab3163e9635535aef185ee9e7973bc452aece52b60cea0375fd9432ce8"
+    }
+  },
+  "runtime_images": [
+    {"role": "database", "image_id": "sha256:da7f3a6b1f8ab31e9ad0180f0166914e1c2503c1b2892b1d6991c832033e3cbb", "user": "70:70"},
+    {"role": "migration", "image_id": "sha256:ae51cb71dccad8a329ae519b7d4f35a714e74379b5eff126cbafb1a04befa211", "user": "70:70"},
+    {"role": "python-runner", "image_id": "sha256:6e4050c67295a90ca3591bf1674317e59b698a89ce86e8ce64579d34182c3e71", "user": "65532:65532"},
+    {"role": "node-runner", "image_id": "sha256:78edf27e115551fd0128201e13486363ff595076b0446d8479cf2ddd2aa7b6a1", "user": "65532:65532"}
+  ],
+  "checks": [
+    {"id": "topology-revision-3", "status": "PASS", "result": "The exact topology and implementation passed 16 contract mutations and 15 implementation mutations before build; role collapse and broad-grant mutations failed closed."},
+    {"id": "exact-runtime-identities", "status": "PASS", "result": "Four exact-base images built offline under the revision-3 digest, passed topology security, and were bound in runtime lock 0003 before database execution."},
+    {"id": "database-health", "status": "PASS", "result": "PostgreSQL 18.4 reached healthy under UID/GID 70 with a read-only root and the ownership-seeded named volume."},
+    {"id": "migration-idempotency", "status": "PASS", "result": {"first_output_digest": "sha256:c3f355f62b57845bb8c47f51b2e05c53e2de7d507cec930dbfd39155c89ad9ad", "second_output_digest": "sha256:87292dba187240d0052e51b7de076a60ab0175f267047c3725c3546d70e81d1c"}},
+    {"id": "database-identity", "status": "PASS", "result": {"server_version_num": 180004, "database": "incidentseal", "admin_user": "incidentseal_admin", "admin_superuser": true}},
+    {"id": "runner-role-least-privilege", "status": "PASS", "result": {"role": "incidentseal_runner", "can_login": true, "superuser": false, "create_database": false, "create_role": false, "replication": false, "bypass_rls": false}},
+    {"id": "schema-shape", "status": "PASS", "result": {"table": "public.verification_results", "columns": ["run_id:text:not-null", "runner:text:not-null", "input_digest:text:not-null", "result_digest:text:not-null"], "primary_key": ["run_id", "runner"]}},
+    {"id": "migration-record", "status": "PASS", "result": {"migration_id": "001-schema-v2", "row_count": 1}},
+    {"id": "runner-bounded-dml", "status": "PASS", "result": {"row_count": 1, "result_digest": "sha256:db91644d229667bdfd255685c9044657d2e23c25b32a80748242d45790c96167"}},
+    {"id": "runner-ddl-denied", "status": "PASS", "result": {"exit_code": 1, "output_digest": "sha256:9a5d24b3a7423c92c5cb84108a866425be461491e3900a23e0d0ef151545e708"}},
+    {"id": "runner-migration-ledger-denied", "status": "PASS", "result": {"exit_code": 1, "output_digest": "sha256:99bb084d16fa1bc5084294bffcfcbfa71d347cb8178399bed2a917c5bdb3c071"}},
+    {"id": "restart-persistence", "status": "PASS", "result": {"row_count": 1, "result_digest": "sha256:db91644d229667bdfd255685c9044657d2e23c25b32a80748242d45790c96167"}},
+    {"id": "repeatability", "status": "PASS", "result": "A second exact locked invocation reran both migrations and every database check on the retained revision-3 volume with all 11 checks PASS."},
+    {"id": "teardown", "status": "PASS", "result": "Both database runs removed every container and the internal network while retaining incidentseal-57ca5f96d527da1b_database-data."}
+  ],
+  "retained_attempts": [
+    {
+      "evidence": "records/evaluations/IS-0003-U05-database-least-privilege-failure.json",
+      "execution_state": "completed",
+      "verification_verdict": "FAIL",
+      "note": "The shared-superuser revision-2 result remains an immutable product FAIL and was not rewritten by this passing remediation."
+    },
+    {
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "note": "The first revision-3 unit-test replay assumed an active runtime lock during the deliberate pre-build state. Static contract and implementation gates passed, no build or container ran, and the corrected tests accept an absent first-build lock while still rejecting drifted locks."
+    },
+    {
+      "command": "topology.runtime-probe",
+      "invocation_id": "340e984c-bc8b-4804-9682-53f1cd9d4d9f",
+      "execution_state": "completed",
+      "verification_verdict": "PASS"
+    },
+    {
+      "command": "topology.database-probe",
+      "invocation_id": "6699187a-acfb-4a72-997c-e6aabd7a8998",
+      "execution_state": "completed",
+      "verification_verdict": "PASS"
+    },
+    {
+      "command": "topology.database-probe",
+      "invocation_id": "fdb8499b-e4b6-4cbe-a32f-99c504000255",
+      "execution_state": "completed",
+      "verification_verdict": "PASS"
+    }
+  ],
+  "runtime_state": {
+    "retained_pass_volume": "incidentseal-57ca5f96d527da1b_database-data",
+    "retained_prior_database_fail_volume": "incidentseal-e10983c7309c56a0_database-data",
+    "retained_prior_startup_fail_volume": "incidentseal-a6443d83ae9eb463_database-data",
+    "containers_retained": [],
+    "networks_retained": []
+  },
+  "decision": {
+    "status": "passed",
+    "next_unit": "IS3-U06",
+    "next_action": "Run the real Python application runner against exact staged input and the verified database role, retaining positive and negative application evidence without broadening workflow authority.",
+    "prohibited_claims": [
+      "No repository workflow manifest is approved or executed.",
+      "The Python and Node application runner commands remain unverified.",
+      "Database dump, clean restore, crash recovery, and dashboard behavior remain unverified.",
+      "The derived images remain local and publication is forbidden while redistribution is INCONCLUSIVE."
+    ]
+  }
+}

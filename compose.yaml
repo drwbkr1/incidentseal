@@ -28,7 +28,7 @@ services:
       PGDATA: /var/lib/postgresql/incidentseal-data/pgdata
       POSTGRES_DB: incidentseal
       POSTGRES_HOST_AUTH_METHOD: trust
-      POSTGRES_USER: incidentseal
+      POSTGRES_USER: incidentseal_admin
       TZ: UTC
     volumes:
       - type: volume
@@ -64,7 +64,7 @@ services:
       - /usr/bin/psql
     command:
       - --host=database
-      - --username=incidentseal
+      - --username=incidentseal_admin
       - --dbname=incidentseal
       - --set=ON_ERROR_STOP=1
       - --file=/opt/incidentseal/migrations/001-schema.sql
@@ -105,7 +105,7 @@ services:
       PGDATABASE: incidentseal
       PGHOST: database
       PGPORT: "5432"
-      PGUSER: incidentseal
+      PGUSER: incidentseal_runner
       PYTHONDONTWRITEBYTECODE: "1"
       PYTHONHASHSEED: "0"
       TZ: UTC
@@ -159,7 +159,7 @@ services:
       PGDATABASE: incidentseal
       PGHOST: database
       PGPORT: "5432"
-      PGUSER: incidentseal
+      PGUSER: incidentseal_runner
       TZ: UTC
     volumes:
       - type: bind

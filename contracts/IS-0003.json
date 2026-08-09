@@ -66,7 +66,7 @@
     {"id":"EXIT-IMAGE-ACQUISITION-SCAN","status":"pass","evidence":["requirements/images.lock.json","records/evaluations/IS-0003-U01-image-acquisition-scan.json"]},
     {"id":"EXIT-COMPOSE-CONTRACT","status":"pass","evidence":["contracts/topology-v1.json","requirements/topology-contract.lock.json","records/evaluations/IS-0003-U02-topology-contract.json"]},
     {"id":"EXIT-TOPOLOGY-SECURITY","status":"pass","evidence":["requirements/history/IS3-U04-topology-runtime.lock.json","records/evaluations/IS-0003-U04-topology-runtime.json"]},
-    {"id":"EXIT-DATABASE-SURFACE","status":"pending","evidence":[]},
+    {"id":"EXIT-DATABASE-SURFACE","status":"pass","evidence":["requirements/topology-runtime.lock.json","records/evaluations/IS-0003-U05-database-surface.json"]},
     {"id":"EXIT-PYTHON-RUNNER","status":"pending","evidence":[]},
     {"id":"EXIT-NODE-RUNNER","status":"pending","evidence":[]},
     {"id":"EXIT-REAL-TOPOLOGY","status":"pending","evidence":[]},
@@ -149,13 +149,13 @@
       "depends_on":["IS3-U04"],
       "action_class":"deterministic_validation",
       "human_gate":false,
-      "status":"in_progress",
+      "status":"complete",
       "inputs":["Running hardened topology","Migration contract"],
       "outputs":["Database surface receipt","Migration and persistence evidence"],
-      "gates":{"runtime_lock":"pass","migration_execution":"pass","database_identity":"pass","least_privilege":"fail","schema":"pass","persistence":"pass","restart":"pass","teardown":"pass_with_volume_retained"},
-      "disposition":null,
+      "gates":{"runtime_lock":"pass","migration_execution":"pass","database_identity":"pass","least_privilege":"pass","schema":"pass","migration_record":"pass","bounded_dml":"pass","forbidden_ddl":"pass","migration_ledger_isolation":"pass","persistence":"pass","restart":"pass","repeatability":"pass","teardown":"pass_with_volumes_retained"},
+      "disposition":"pass",
       "retained_failures":["The first real database probe completed with verdict FAIL and exit 10: migration, PostgreSQL identity, schema, bounded DML, persistence, restart and teardown passed, but both application runners use the bootstrap superuser and their forbidden CREATE TABLE probe succeeded. The probe removed that table and all runtime resources except the exact retained volume."],
-      "exit_condition_delta":{"expected":["EXIT-DATABASE-SURFACE"],"observed":[],"decision_value":"risk_reduction","rationale":"The real surface proved migration and persistence behavior while exposing a confirmed least-privilege defect. A distinct non-owner runner role and explicit grants are required before database PASS."},
+      "exit_condition_delta":{"expected":["EXIT-DATABASE-SURFACE"],"observed":["EXIT-DATABASE-SURFACE"],"decision_value":"advances_exit","rationale":"Revision 3 separated bootstrap and application roles, passed exact topology gates, real idempotent migration, PostgreSQL identity, schema, migration record, bounded runner DML, denied runner DDL and migration-ledger reads, restart persistence, repeatability and teardown."},
       "next_dependency":"IS3-U06"
     },
     {
@@ -164,13 +164,13 @@
       "depends_on":["IS3-U05"],
       "action_class":"deterministic_validation",
       "human_gate":false,
-      "status":"planned",
+      "status":"ready",
       "inputs":["Verified database surface","Python runner contract"],
       "outputs":["Python runner receipt","Positive and negative runner evidence"],
       "gates":{},
       "disposition":null,
       "retained_failures":[],
-      "exit_condition_delta":{"expected":["EXIT-PYTHON-RUNNER"],"observed":[],"decision_value":"unknown","rationale":"The real Python runner does not yet exist."},
+      "exit_condition_delta":{"expected":["EXIT-PYTHON-RUNNER"],"observed":[],"decision_value":"unknown","rationale":"The Python runner source exists, but its real application command has not run against staged input and the verified database role."},
       "next_dependency":"IS3-U07"
     },
     {
@@ -237,12 +237,13 @@
       "SBOM, provenance, license and vulnerability disposition before execution",
       "Closed topology contract and fail-closed mutation checks",
       "Compose render and fail-closed mutation checks",
-      "Real container identity, privilege, capability, filesystem, mount, network and egress probes"
+      "Real container identity, privilege, capability, filesystem, mount, network and egress probes",
+      "Real PostgreSQL migration, health, persistence and restart checks"
     ]
   },
   "handoff": {
     "current_checkpoint":"IS-0003 active",
-    "next_action":"Archive the exact U05 failure inputs, version distinct incidentseal_admin and incidentseal_runner roles with narrow grants, then replay topology and database gates on a new digest-bound volume.",
+    "next_action":"Execute IS3-U06 through the exact runtime lock: run the real Python application runner against staged input and incidentseal_runner, retain positive and negative evidence, and do not claim Node or workflow verification.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not run an image merely because acquisition or metadata passed",

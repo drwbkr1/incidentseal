@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` through `IS3-U04` passed. `IS3-U05` retained a real database-surface FAIL: migration idempotency, PostgreSQL identity, schema, bounded DML, restart persistence, and teardown passed, but the application runners share the bootstrap superuser and can create tables. U05 remains active for distinct admin and runner roles with narrow grants; the exact failed disposition and revision-2 volume remain retained.
+Progress: `IS3-U01` through `IS3-U05` passed. U05 retained its real shared-superuser product FAIL, then revision 3 separated bootstrap and runner roles with narrow grants. Two exact database runs passed migration idempotency, identity, schema, migration record, bounded DML, denied DDL and ledger reads, restart persistence, repeatability, and teardown. `IS3-U06` owns the real Python application runner next.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

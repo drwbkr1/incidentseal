@@ -1,11 +1,11 @@
 # Hardened topology contract
 
 - Contract: `INCIDENTSEAL-TOPOLOGY-001`
-- Version: `1.1` (machine revision 2)
+- Version: `1.2` (machine revision 3)
 - Machine instance: `contracts/topology-v1.json`
 - Schema: `schemas/topology-contract-v1.schema.json`
 - Image authority: `requirements/images.lock.json`
-- Status: revision 1 frozen by `IS3-U02`; revision 2 bounded remediation verified by `IS3-U04`
+- Status: revision 1 frozen by `IS3-U02`; revision 2 startup remediation verified by `IS3-U04`; revision 3 database authorization verified by `IS3-U05`
 
 ## User-facing promise
 
@@ -30,11 +30,11 @@ The host records each derived local image ID in a runtime lock and sets `pull_po
 The Compose model contains four container services:
 
 - `database`: persistent PostgreSQL 18.4 in a copy-only derived image, forced to UID/GID `70:70`, with one ownership-seeded named data volume and bounded tmpfs paths;
-- `migration`: one-shot `psql` from a copy-only derived PostgreSQL image;
+- `migration`: one-shot `psql` from a copy-only derived PostgreSQL image, connecting as bootstrap role `incidentseal_admin`;
 - `python-runner`: one-shot Python 3.14.7, UID/GID `65532:65532`;
 - `node-runner`: one-shot Distroless Node.js 24, UID/GID `65532:65532`.
 
-Every service has a read-only root filesystem, drops all capabilities, sets no-new-privileges, disables restart, uses bounded PIDs and tmpfs, joins only the internal `data` bridge, and publishes no port. PostgreSQL trust authentication is acceptable only because the database is isolated on that internal network, has no host port, and receives no secret.
+Every service has a read-only root filesystem, drops all capabilities, sets no-new-privileges, disables restart, uses bounded PIDs and tmpfs, joins only the internal `data` bridge, and publishes no port. PostgreSQL trust authentication is acceptable only because the database is isolated on that internal network, has no host port, and receives no secret. Python and Node connect as `incidentseal_runner`, which has only database connect, schema usage, and bounded DML on `verification_results`; it cannot create schema objects or read the migration ledger.
 
 ## Staged custody
 
