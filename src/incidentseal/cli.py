@@ -12,6 +12,7 @@ from typing import Any, Sequence
 from .approval import ApprovalResult, inspect_document
 from .database import database_probe
 from .manifest import ALGORITHM, PROFILE, ManifestError, ManifestReadError, load_manifest
+from .python_surface import python_probe
 from .runtime import runtime_probe
 from .topology import TopologyError, validate_platform_topology
 
@@ -32,6 +33,7 @@ COMMANDS = {
     ("topology", "validate"): "topology.validate",
     ("topology", "runtime-probe"): "topology.runtime-probe",
     ("topology", "database-probe"): "topology.database-probe",
+    ("topology", "python-probe"): "topology.python-probe",
 }
 
 
@@ -188,6 +190,17 @@ def _success(request: Request) -> dict[str, Any]:
         )
     if request.command == "topology.database-probe":
         data = database_probe()
+        verdict = data["verdict"]
+        exit_code = EXIT_SUCCESS if verdict == "PASS" else EXIT_FAIL
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=exit_code,
+            verdict=verdict,
+            data=data,
+        )
+    if request.command == "topology.python-probe":
+        data = python_probe()
         verdict = data["verdict"]
         exit_code = EXIT_SUCCESS if verdict == "PASS" else EXIT_FAIL
         return _envelope(

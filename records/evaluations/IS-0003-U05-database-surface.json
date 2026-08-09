@@ -26,11 +26,11 @@
       "sha256": "sha256:64d0e87f5f702218f43ae8d992bca20b55f4d0ec69eef22091d584ce1591b860"
     },
     "implementation_lock": {
-      "path": "requirements/topology-implementation.lock.json",
+      "path": "requirements/history/IS3-U05-database-surface.implementation.lock.json",
       "sha256": "sha256:6a44c008a1aa328b3727433f8d2d5e54c640dda194aeb884bb2c06b93c35ce25"
     },
     "runtime_lock": {
-      "path": "requirements/topology-runtime.lock.json",
+      "path": "requirements/history/IS3-U05-database-surface.runtime.lock.json",
       "sha256": "sha256:26e617ab3163e9635535aef185ee9e7973bc452aece52b60cea0375fd9432ce8"
     }
   },

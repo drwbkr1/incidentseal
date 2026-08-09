@@ -1,0 +1,48 @@
+{
+  "schema_version": "incidentseal-python-surface-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U06-PYTHON-COMPOSE-ORPHAN-FAILURE",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U06",
+  "observed_at_utc": "2026-08-09T21:47:32Z",
+  "execution_state": "completed",
+  "verification_verdict": "FAIL",
+  "process_exit_code": 10,
+  "command_status": "succeeded",
+  "claim_scope": "Real Python application command, exact result receipt, PostgreSQL row, invalid-input rejection, runtime isolation, and teardown after suppressing Compose progress output.",
+  "invocation": {"command":"topology.python-probe","invocation_id":"557d3622-9a5e-42a2-b1ca-27a9eeec8124","mode":"platform-validation","manifest_digest":"not-used"},
+  "bindings": {
+    "topology_contract": {"path":"contracts/topology-v1.json","sha256":"sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351","revision":3},
+    "implementation_lock": {"path":"requirements/history/IS3-U06-python-compose-orphan-failure.implementation.lock.json","sha256":"sha256:b2073c5426ab66467c56917af64cfb581a7b3adb59b995a9a1a72f9106c478ee"},
+    "runtime_lock": {"path":"requirements/history/IS3-U06-python-compose-orphan-failure.runtime.lock.json","sha256":"sha256:8b6f4b474684fc46a1cf599cb7042073847ba30948beab1e189e14f849567ba7"}
+  },
+  "checks": [
+    {"id":"python-command-exit","status":"FAIL","observed":{"exit_code":0,"stdout_digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","stderr_digest":"sha256:e88a64e618c874af5de7ac58c9d2a90238ca075ac2b3a3696c4e431587be8ab3"}},
+    {"id":"runtime-isolation","status":"PASS","observed":{"input_read_only":true,"output_write_only_by_convention":true,"sensitive_environment_names":[],"internal_network":true,"docker_endpoint_absent":true}},
+    {"id":"result-receipt","status":"PASS","observed":{"run_id":"isrun-0123456789abcdef","runner":"python","input_digest":"sha256:47963fda9703c6dffe14e3c7a98a48384cd2ef9ccb7c36e5a77badd4cb3f176b","result_digest":"sha256:777faab769c28fb785c323dedd886294bcae10d810be145664bec25032936fe9","database_verified":true}},
+    {"id":"database-row","status":"PASS","observed":{"run_id":"isrun-0123456789abcdef","runner":"python","input_digest":"sha256:47963fda9703c6dffe14e3c7a98a48384cd2ef9ccb7c36e5a77badd4cb3f176b","result_digest":"sha256:777faab769c28fb785c323dedd886294bcae10d810be145664bec25032936fe9"}},
+    {"id":"invalid-input-rejected","status":"PASS","observed":{"exit_code":1,"output_digest":"sha256:f5b6c3390d35777149ad579a03d0b2b00b68f99fa81fd8bf93cdec86def0eb95","result_file_exists":false,"database_row_count":0}},
+    {"id":"teardown","status":"PASS","observed":{"containers_retained":[],"network_retained":null,"volume_retained":"incidentseal-57ca5f96d527da1b_database-data"}}
+  ],
+  "diagnostic": {
+    "command_status": "succeeded",
+    "runtime_started": true,
+    "stderr_class": "docker-compose-orphan-warning",
+    "observed_message": "A retained completed one-shot migration container was reported by Docker Compose as an orphan before the Python service started.",
+    "sensitive_data_present": false
+  },
+  "root_cause": {
+    "status": "confirmed",
+    "summary": "Compose progress suppression did not remove its orphan warning. The probe inspected but retained each completed one-shot container until final teardown, so a later Compose run reported the earlier custom-named one-shot container on stderr even though the application exited zero and all result controls passed.",
+    "security_gate_preserved": true
+  },
+  "decision": {
+    "status": "remediate",
+    "next_action": "Remove each inspected completed one-shot container before invoking the next service, keep final fail-safe teardown, and replay the full real surface twice.",
+    "prohibited_shortcuts": [
+      "Do not ignore arbitrary application stderr.",
+      "Do not discard either FAIL or its exact stream digests.",
+      "Do not weaken exact result, database, isolation, invalid-input, or teardown checks.",
+      "Do not delete the retained database volume."
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": "incidentseal-runner-request/v1",
+  "run_id": "isrun-fedcba9876543210",
+  "payload": {
+    "probe": "incidentseal-invalid"
+  },
+  "unexpected": true
+}

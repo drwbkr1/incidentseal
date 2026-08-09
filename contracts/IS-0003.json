@@ -67,7 +67,7 @@
     {"id":"EXIT-COMPOSE-CONTRACT","status":"pass","evidence":["contracts/topology-v1.json","requirements/topology-contract.lock.json","records/evaluations/IS-0003-U02-topology-contract.json"]},
     {"id":"EXIT-TOPOLOGY-SECURITY","status":"pass","evidence":["requirements/history/IS3-U04-topology-runtime.lock.json","records/evaluations/IS-0003-U04-topology-runtime.json"]},
     {"id":"EXIT-DATABASE-SURFACE","status":"pass","evidence":["requirements/topology-runtime.lock.json","records/evaluations/IS-0003-U05-database-surface.json"]},
-    {"id":"EXIT-PYTHON-RUNNER","status":"pending","evidence":[]},
+    {"id":"EXIT-PYTHON-RUNNER","status":"pass","evidence":["requirements/topology-runtime.lock.json","records/evaluations/IS-0003-U06-python-runner.json"]},
     {"id":"EXIT-NODE-RUNNER","status":"pending","evidence":[]},
     {"id":"EXIT-REAL-TOPOLOGY","status":"pending","evidence":[]},
     {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
@@ -164,13 +164,13 @@
       "depends_on":["IS3-U05"],
       "action_class":"deterministic_validation",
       "human_gate":false,
-      "status":"ready",
+      "status":"complete",
       "inputs":["Verified database surface","Python runner contract"],
       "outputs":["Python runner receipt","Positive and negative runner evidence"],
-      "gates":{},
-      "disposition":null,
-      "retained_failures":[],
-      "exit_condition_delta":{"expected":["EXIT-PYTHON-RUNNER"],"observed":[],"decision_value":"unknown","rationale":"The Python runner source exists, but its real application command has not run against staged input and the verified database role."},
+      "gates":{"runtime_lock":"pass","staged_input":"pass","real_python_command":"pass","result_receipt":"pass","database_row":"pass","negative_input":"pass","runtime_isolation":"pass","repeatability":"pass","teardown":"pass_with_volume_retained"},
+      "disposition":"pass",
+      "retained_failures":["The first real Python probe returned a valid product FAIL at exit 10. The application container exited zero and its exact result, PostgreSQL row, invalid-input rejection, isolation, and teardown passed, but Docker Compose transport stderr was incorrectly treated as application failure. Quiet progress preserved that FAIL because an inspected completed migration container remained until final teardown and Compose correctly emitted an orphan warning. Both exact invocations and their pre-remediation locks remain retained."],
+      "exit_condition_delta":{"expected":["EXIT-PYTHON-RUNNER"],"observed":["EXIT-PYTHON-RUNNER"],"decision_value":"advances_exit","rationale":"Two exact host-CLI runs executed the shipped Python application command, matched independently computed output and PostgreSQL evidence, rejected malformed input without output or row, preserved the runtime boundary, and removed all containers and network while retaining the bound database volume."},
       "next_dependency":"IS3-U07"
     },
     {
@@ -179,7 +179,7 @@
       "depends_on":["IS3-U06"],
       "action_class":"deterministic_validation",
       "human_gate":false,
-      "status":"planned",
+      "status":"ready",
       "inputs":["Verified database and Python surfaces","Node runner contract"],
       "outputs":["Node runner receipt","Cross-runner consistency and negative evidence"],
       "gates":{},
@@ -239,11 +239,12 @@
       "Compose render and fail-closed mutation checks",
       "Real container identity, privilege, capability, filesystem, mount, network and egress probes",
       "Real PostgreSQL migration, health, persistence and restart checks"
+      ,"Real Python runner positive, negative, database, isolation, repeatability and teardown checks"
     ]
   },
   "handoff": {
     "current_checkpoint":"IS-0003 active",
-    "next_action":"Execute IS3-U06 through the exact runtime lock: run the real Python application runner against staged input and incidentseal_runner, retain positive and negative evidence, and do not claim Node or workflow verification.",
+    "next_action":"Implement and run the bounded U07 Node surface probe against the same fixed staged contract, exact runtime identity, verified database role, cross-runner consistency, negative input, isolation, repeatability, and teardown.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not run an image merely because acquisition or metadata passed",

@@ -136,6 +136,10 @@ def copy_root(destination: Path) -> None:
         ROOT / "fixtures" / "topology" / "runner-request.valid.json",
         destination / "fixtures" / "topology" / "runner-request.valid.json",
     )
+    shutil.copy2(
+        ROOT / "fixtures" / "topology" / "runner-request.invalid.extra.json",
+        destination / "fixtures" / "topology" / "runner-request.invalid.extra.json",
+    )
     shutil.copy2(ROOT / "fixtures" / "topology" / "mutations.json", destination / "fixtures" / "topology" / "mutations.json")
     for name in ("topology-contract-v1.schema.json", "topology-render-v1.schema.json"):
         shutil.copy2(ROOT / "schemas" / name, destination / "schemas" / name)

@@ -1,0 +1,41 @@
+{
+  "schema_version": "incidentseal-python-surface-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U06-PYTHON-COMMAND-STDERR-FAILURE",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U06",
+  "observed_at_utc": "2026-08-09T21:37:00Z",
+  "execution_state": "completed",
+  "verification_verdict": "FAIL",
+  "process_exit_code": 10,
+  "command_status": "succeeded",
+  "claim_scope": "Real Python application command, exact result receipt, PostgreSQL row, invalid-input rejection, runtime isolation, and teardown against the revision-3 retained topology volume.",
+  "invocation": {"command":"topology.python-probe","invocation_id":"cf3f7b29-fc1c-4f72-bc34-b6328a2841f2","mode":"platform-validation","manifest_digest":"not-used"},
+  "bindings": {
+    "topology_contract": {"path":"contracts/topology-v1.json","sha256":"sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351","revision":3},
+    "implementation_lock": {"path":"requirements/history/IS3-U06-python-stderr-policy-failure.implementation.lock.json","sha256":"sha256:a1c5f5072b62d16a516e8beafe5dadcf69cf4cdd42dc5c192377e0d3b5b60e94"},
+    "runtime_lock": {"path":"requirements/history/IS3-U06-python-stderr-policy-failure.runtime.lock.json","sha256":"sha256:b3e78a7afa300e2c69d9fe45c1589ed5fd362c2b40b428d656757f123627bde5"}
+  },
+  "checks": [
+    {"id":"python-command-exit","status":"FAIL","observed":{"exit_code":0,"stdout_digest":"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","stderr_digest":"sha256:e56a433d4b5a190f2d9777f6f43ef28493c697a681cd1083d357965ac4b41de0"}},
+    {"id":"runtime-isolation","status":"PASS","observed":{"input_read_only":true,"output_write_only_by_convention":true,"sensitive_environment_names":[],"internal_network":true,"docker_endpoint_absent":true}},
+    {"id":"result-receipt","status":"PASS","observed":{"run_id":"isrun-0123456789abcdef","runner":"python","input_digest":"sha256:47963fda9703c6dffe14e3c7a98a48384cd2ef9ccb7c36e5a77badd4cb3f176b","result_digest":"sha256:777faab769c28fb785c323dedd886294bcae10d810be145664bec25032936fe9","database_verified":true}},
+    {"id":"database-row","status":"PASS","observed":{"run_id":"isrun-0123456789abcdef","runner":"python","input_digest":"sha256:47963fda9703c6dffe14e3c7a98a48384cd2ef9ccb7c36e5a77badd4cb3f176b","result_digest":"sha256:777faab769c28fb785c323dedd886294bcae10d810be145664bec25032936fe9"}},
+    {"id":"invalid-input-rejected","status":"PASS","observed":{"exit_code":1,"output_digest":"sha256:0276d7591f2a508245b285186208353de2bc18ec2ed3ef304755d36190751adc","result_file_exists":false,"database_row_count":0}},
+    {"id":"teardown","status":"PASS","observed":{"containers_retained":[],"network_retained":null,"volume_retained":"incidentseal-57ca5f96d527da1b_database-data"}}
+  ],
+  "root_cause": {
+    "status": "confirmed-policy-mismatch",
+    "summary": "The successful application container exited zero and produced an independently verified exact result and database row, but the host probe treated any Docker Compose stderr bytes as application failure. Compose transport output and application outcome were conflated.",
+    "security_gate_preserved": true
+  },
+  "decision": {
+    "status": "remediate",
+    "next_action": "Suppress Docker Compose progress output for raw application invocations while retaining the zero-exit, exact receipt, database, isolation, negative-input, and teardown gates; then replay twice.",
+    "prohibited_shortcuts": [
+      "Do not discard or rewrite this FAIL.",
+      "Do not accept a nonzero application exit or an inexact result or database row.",
+      "Do not weaken staged-input, database, isolation, invalid-input, or teardown checks.",
+      "Do not rebuild, replace, publish, or delete the exact images or retained volume."
+    ]
+  }
+}

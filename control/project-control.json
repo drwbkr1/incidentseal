@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0003",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Execute IS3-U06 with the exact runtime lock and validate the real Python application runner against staged input and the least-privilege database role"
+    "next_action": "Implement and run the U07 Node surface probe with fixed staged fixtures, exact runtime identity, database-row verification, cross-runner consistency, negative input, isolation, repeatability, and teardown"
   }
 }

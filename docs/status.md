@@ -10,7 +10,7 @@
 - Latest verified checkpoint commit: `e8b9823f63e3505f87490cbd87894705221a33cd` on local and remote `main`
 - Verified checkpoint marker: `checkpoint-is-0002` tag object `630bc88f0860de56c51d0637260953429a6df172` -> `e8b9823f63e3505f87490cbd87894705221a33cd`
 - Approved workflow manifest digest: not established
-- Application surfaces: static topology and topology-only runtime security verified; real migration, database persistence, and application runners remain pending
+- Application surfaces: topology security, PostgreSQL, and the real Python runner are verified; Node and end-to-end reliability remain pending
 - Release state: unreleased
 
 ## Current truth
@@ -31,10 +31,12 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U05` passed while retaining its real revision-2 product `FAIL`. Revision 3 separates bootstrap role `incidentseal_admin` from application role `incidentseal_runner`, revokes public database and schema creation, and grants only required DML. Sixteen contract mutations and 15 implementation mutations passed before four new exact images were runtime-locked. Two database probes passed PostgreSQL 18.4 identity, idempotent migration, schema and migration record, non-superuser attributes, bounded DML, denied DDL, denied migration-ledger reads, restart persistence, repeatability, and teardown. All three digest-bound volumes remain separately retained; no container or network remains.
 
+`IS3-U06` passed while retaining two real product `FAIL` attempts. The real host CLI now executes the shipped Python application command against fixed read-only staged input and `incidentseal_runner`, independently verifies the exact result file and PostgreSQL row, rejects malformed input with no output or row, and inspects the exact image, numeric user, read-only root, dropped capabilities, no-new-privileges, narrow mounts, internal network, sensitive environment names, and Docker-endpoint absence. Two identical invocations passed with stable receipts and teardown. The earlier Compose-stderr and orphan-warning failures remain digest-bound; all containers and network were removed and the revision-3 volume remains retained.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- The database surface now passes, but real Python and Node application commands remain unverified in `IS3-U06` and `IS3-U07`.
+- The database and real Python application surfaces now pass, but the Node application command remains unverified in `IS3-U07`.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; their four revision-2 derived images ran only under the exact topology contract. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -44,4 +46,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS3-U06` with the exact revision-3 runtime lock: run the real Python application command against bounded staged input and `incidentseal_runner`, retain positive and negative evidence, and do not claim Node or workflow verification.
+Execute `IS3-U07` with the exact revision-3 runtime lock: run the real Node application command against the same bounded staged contract and `incidentseal_runner`, compare cross-runner digests, retain positive and negative evidence, and do not claim workflow or end-to-end reliability verification.

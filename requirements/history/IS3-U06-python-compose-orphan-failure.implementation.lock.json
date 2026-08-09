@@ -1,9 +1,9 @@
 {
   "schema_version": "incidentseal-topology-implementation-lock/v1",
-  "lock_id": "IS-TOPOLOGY-IMPLEMENTATION-LOCK-0008",
+  "lock_id": "IS-TOPOLOGY-IMPLEMENTATION-LOCK-0007",
   "checkpoint_id": "IS-0003",
   "unit_id": "IS3-U06",
-  "generated_at_utc": "2026-08-09T21:50:30Z",
+  "generated_at_utc": "2026-08-09T21:46:12Z",
   "builds_executed": false,
   "containers_started": false,
   "derived_image_identity": "runtime-probe-build-required",
@@ -21,7 +21,7 @@
     {"path": "fixtures/topology/runner-request.invalid.extra.json", "sha256": "sha256:7fc0c870546b7cd103709b4298e07ccc360d5dd3f9c90117c500b6e98ca97b36"},
     {"path": "src/incidentseal/cli.py", "sha256": "sha256:a0681d328691ce2c69a202ace3431744eba8c52a9990a8c248f20a3871b5ed1e"},
     {"path": "src/incidentseal/database.py", "sha256": "sha256:dc0f428a5541c90f984d89bd765b527bb04c5510d2860ec9221b478dc8c3ef1c"},
-    {"path": "src/incidentseal/python_surface.py", "sha256": "sha256:271da3e7ec204e72a0e2878323ff065943f93003e108ebde5208f41e88e152eb"},
+    {"path": "src/incidentseal/python_surface.py", "sha256": "sha256:97d9d2769edf354868b089979327b26e396caeb1f890cfeda90253149c2ba240"},
     {"path": "src/incidentseal/runtime.py", "sha256": "sha256:4691d8362228a7268bd82263568e576e3b7d5e041ca8bc385bf1e47b4346bcb9"},
     {"path": "src/incidentseal/topology.py", "sha256": "sha256:ef9b380e490f557e72b71d59dee6f817b0bbd76ba7864bc0b9326546ce2edb09"}
   ]

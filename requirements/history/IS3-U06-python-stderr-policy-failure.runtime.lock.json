@@ -1,0 +1,22 @@
+{
+  "schema_version": "incidentseal-topology-runtime-lock/v1",
+  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0004",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U06",
+  "generated_at_utc": "2026-08-09T21:33:30Z",
+  "supersedes": "requirements/history/IS3-U05-database-surface.runtime.lock.json",
+  "platform": "linux/amd64",
+  "claim_scope": "topology-database-and-python-validation",
+  "publication_status": "not-authorized-redistribution-inconclusive",
+  "contract": {"path":"contracts/topology-v1.json","sha256":"sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351","revision":3},
+  "topology_contract_lock": {"path":"requirements/topology-contract.lock.json","sha256":"sha256:64d0e87f5f702218f43ae8d992bca20b55f4d0ec69eef22091d584ce1591b860"},
+  "implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:a1c5f5072b62d16a516e8beafe5dadcf69cf4cdd42dc5c192377e0d3b5b60e94"},
+  "build_policy": {"network":"none","pull":false,"no_cache":true,"frontend":"docker.io/docker/dockerfile@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32"},
+  "images": [
+    {"role":"database","tag":"incidentseal-local/database:57ca5f96d527da1b","image_id":"sha256:da7f3a6b1f8ab31e9ad0180f0166914e1c2503c1b2892b1d6991c832033e3cbb","base_role":"postgresql","base_image_id":"sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9","user":"70:70","build_log_digest":"sha256:8594af9a047941308f55ddac987b260d152ba3d3d74e011386834ac2f4b8d8e5"},
+    {"role":"migration","tag":"incidentseal-local/migration:57ca5f96d527da1b","image_id":"sha256:ae51cb71dccad8a329ae519b7d4f35a714e74379b5eff126cbafb1a04befa211","base_role":"postgresql","base_image_id":"sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9","user":"70:70","build_log_digest":"sha256:b92a5a5714e26d47986ae9e4ca88fa5f7b81c510296edc3d4b473fc2b5c0e016"},
+    {"role":"python-runner","tag":"incidentseal-local/python-runner:57ca5f96d527da1b","image_id":"sha256:6e4050c67295a90ca3591bf1674317e59b698a89ce86e8ce64579d34182c3e71","base_role":"python_runner","base_image_id":"sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5","user":"65532:65532","build_log_digest":"sha256:255037dbab7aeefde5772cb91b40504e5f6292ce387e1901a60df2c4e57d294f"},
+    {"role":"node-runner","tag":"incidentseal-local/node-runner:57ca5f96d527da1b","image_id":"sha256:78edf27e115551fd0128201e13486363ff595076b0446d8479cf2ddd2aa7b6a1","base_role":"node_runner","base_image_id":"sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a","user":"65532:65532","build_log_digest":"sha256:9b944a0e31169e6429cdef6b825ddfcbbf3a619b54f8a57091a50ac095ff932e"}
+  ],
+  "runtime": {"project_name":"incidentseal-57ca5f96d527da1b","manifest_digest":"not-used","retained_volume":"incidentseal-57ca5f96d527da1b_database-data","volume_created_at":"2026-08-09T21:22:28Z","topology_pass_invocation_id":"340e984c-bc8b-4804-9682-53f1cd9d4d9f","database_probe_state":"pass","database_pass_invocation_id":"6699187a-acfb-4a72-997c-e6aabd7a8998","database_repeat_pass_invocation_id":"fdb8499b-e4b6-4cbe-a32f-99c504000255","python_probe_state":"not-started","containers_retained":[],"network_retained":null}
+}

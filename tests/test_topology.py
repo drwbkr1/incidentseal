@@ -15,7 +15,7 @@ SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
 from incidentseal.cli import execute  # noqa: E402
-from incidentseal import runtime  # noqa: E402
+from incidentseal import python_surface, runtime  # noqa: E402
 from incidentseal.topology import CONTRACT_PATH, TopologyError  # noqa: E402
 
 
@@ -61,6 +61,37 @@ class TopologyTests(unittest.TestCase):
         self.assertEqual(10, exit_code)
         self.assertEqual("succeeded", envelope["command_status"])
         self.assertEqual("FAIL", envelope["verdict"])
+
+    def test_python_product_failure_uses_fail_verdict_and_exit(self) -> None:
+        with patch("incidentseal.cli.python_probe", return_value={"verdict": "FAIL"}):
+            envelope, exit_code = execute(["topology", "python-probe", "--mode", "platform-validation", "--json"])
+        self.assertEqual(10, exit_code)
+        self.assertEqual("succeeded", envelope["command_status"])
+        self.assertEqual("FAIL", envelope["verdict"])
+
+    def test_python_raw_compose_suppresses_transport_progress(self) -> None:
+        completed = subprocess.CompletedProcess([], 0, "", "")
+        with patch("incidentseal.python_surface.subprocess.run", return_value=completed) as run:
+            python_surface._raw_compose(
+                "docker",
+                ["compose", "--ansi", "never"],
+                {},
+                ["run", "python-runner"],
+            )
+        self.assertEqual(
+            ["docker", "compose", "--progress", "quiet", "--ansi", "never", "run", "python-runner"],
+            run.call_args.args[0],
+        )
+
+    def test_python_completed_one_shots_are_removed_between_runs(self) -> None:
+        names = ["migration", "python", "migration"]
+        with patch("incidentseal.python_surface._run") as run:
+            python_surface._remove_completed("docker", names)
+        self.assertEqual([], names)
+        self.assertEqual(
+            [("docker", ["rm", "-f", "migration"]), ("docker", ["rm", "-f", "python"])],
+            [call.args for call in run.call_args_list],
+        )
 
     def test_non_platform_mode_is_rejected_before_docker(self) -> None:
         envelope, exit_code = execute(["topology", "validate", "--mode", "workflow-execution", "--json"])

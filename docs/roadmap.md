@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` through `IS3-U05` passed. U05 retained its real shared-superuser product FAIL, then revision 3 separated bootstrap and runner roles with narrow grants. Two exact database runs passed migration idempotency, identity, schema, migration record, bounded DML, denied DDL and ledger reads, restart persistence, repeatability, and teardown. `IS3-U06` owns the real Python application runner next.
+Progress: `IS3-U01` through `IS3-U06` passed. U06 retained two real Compose-stderr product FAIL attempts before two identical real Python application runs passed exact output and database evidence, malformed-input rejection, isolation, repeatability, and teardown. `IS3-U07` owns the real Node application runner and cross-runner consistency next.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.
