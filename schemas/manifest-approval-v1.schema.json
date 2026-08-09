@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/manifest-approval-v1.schema.json",
+  "title": "IncidentSeal external manifest approval v1",
+  "description": "Operator-owned approval for one exact canonical workflow digest. Approval records live outside repository custody.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "approval_id",
+    "workflow_id",
+    "manifest_schema_version",
+    "repository_remote",
+    "manifest_path",
+    "manifest_digest",
+    "approved_at_utc",
+    "expires_at_utc",
+    "approved_by"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "incidentseal-manifest-approval/v1"
+    },
+    "approval_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "workflow_id": {
+      "$ref": "workflow-manifest-v1.schema.json#/$defs/id"
+    },
+    "manifest_schema_version": {
+      "const": "incidentseal-workflow/v1"
+    },
+    "repository_remote": {
+      "type": "string",
+      "pattern": "^https://[^\\s]+$",
+      "maxLength": 500
+    },
+    "manifest_path": {
+      "$ref": "workflow-manifest-v1.schema.json#/$defs/relative_path"
+    },
+    "manifest_digest": {
+      "$ref": "workflow-manifest-v1.schema.json#/$defs/sha256"
+    },
+    "approved_at_utc": {
+      "$ref": "#/$defs/utc_timestamp"
+    },
+    "expires_at_utc": {
+      "oneOf": [
+        {"$ref": "#/$defs/utc_timestamp"},
+        {"type": "null"}
+      ]
+    },
+    "approved_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "local_principal"],
+      "properties": {
+        "kind": {
+          "const": "operator"
+        },
+        "local_principal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      }
+    },
+    "note": {
+      "type": "string",
+      "maxLength": 1000
+    }
+  },
+  "$defs": {
+    "utc_timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$"
+    }
+  }
+}

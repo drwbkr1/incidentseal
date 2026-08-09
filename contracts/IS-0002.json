@@ -104,7 +104,7 @@
       "depends_on": [],
       "action_class": "update_project_records",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": [
         "INCIDENTSEAL-PRODUCT-001",
         "ADR-0001",
@@ -112,20 +112,34 @@
       ],
       "outputs": [
         "schemas/workflow-manifest-v1.schema.json",
+        "schemas/manifest-approval-v1.schema.json",
         "schemas/cli-envelope-v1.schema.json",
         "schemas/run-event-v1.schema.json",
         "docs/cli-contract.md",
         "docs/manifest-authority.md",
-        "fixtures/contracts"
+        "fixtures/contracts",
+        "scripts/validate_machine_contracts.py",
+        "scripts/test_machine_contract_mutations.py"
       ],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
+      "gates": {
+        "schema_subset_lint": "pass",
+        "schema_bound_fixtures": "pass",
+        "golden_digest": "pass",
+        "cross_process_digest": "pass",
+        "mutation_rejection": "pass",
+        "dependency_free": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [
+        "The shell safety policy blocked an ad-hoc PowerShell mutation harness before execution; no state changed and a repository-owned Python harness replaced it.",
+        "The first hash inventory used an unavailable System.IO.Path.GetRelativePath API; no state changed.",
+        "The second hash inventory omitted the fixtures/contracts path segment; the corrected explicit inventory succeeded."
+      ],
       "exit_condition_delta": {
         "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-CLI-CONTRACT"],
         "observed": [],
-        "decision_value": "unknown",
-        "rationale": "This is the smallest contract-first unit that prevents implementation from defining authority or evidence semantics by accident."
+        "decision_value": "enables_dependency",
+        "rationale": "The dependency-free contract freeze passed supported-subset, fixture, digest, cross-process, and mutation gates. It releases implementation but does not yet prove a real CLI, a full Draft 2020-12 meta-schema check, or the operator approval store."
       },
       "next_dependency": "IS2-U02"
     },
@@ -135,7 +149,7 @@
       "depends_on": ["IS2-U01"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "planned",
+      "status": "ready",
       "inputs": ["IS2-U01 machine contracts"],
       "outputs": ["src", "tests", "incidentseal policy lint --json", "incidentseal policy digest --json"],
       "gates": {},
@@ -145,7 +159,7 @@
         "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-CLI-CONTRACT"],
         "observed": [],
         "decision_value": "unknown",
-        "rationale": "Pending contract freeze."
+        "rationale": "The IS2-U01 contract freeze passed and this is now the sole eligible implementation unit."
       },
       "next_dependency": "IS2-U03"
     },
@@ -252,11 +266,16 @@
       "Git diff and secret scan",
       "Post-push remote branch verification"
     ],
-    "completed_checks": []
+    "completed_checks": [
+      "Project control and milestone validation",
+      "Dependency-free schema supported-subset lint and five schema-bound fixtures",
+      "Cross-process canonical digest golden vectors",
+      "Four fail-closed contract mutation probes"
+    ]
   },
   "handoff": {
     "current_checkpoint": "IS-0002 active",
-    "next_action": "Execute IS2-U01 dependency-free machine contract freeze",
+    "next_action": "Execute IS2-U02 dependency-free manifest and CLI implementation",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not let repository content approve its own manifest digest",

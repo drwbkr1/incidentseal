@@ -1,0 +1,66 @@
+{
+  "schema_version": "incidentseal-workflow/v1",
+  "workflow_id": "example.release",
+  "revision": 1,
+  "description": "Cross-language verification contract fixture.",
+  "repository": {
+    "remote": "https://github.com/example/widget.git",
+    "commit": "1111111111111111111111111111111111111111",
+    "tree_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "claim": {
+    "id": "release.ready",
+    "statement": "The declared Python and Node checks passed under the approved workflow.",
+    "required_steps": ["unit-python", "unit-node"]
+  },
+  "security": {
+    "container_engine_control": "host-cli-only",
+    "docker_socket": "denied",
+    "privileged": false,
+    "host_network": false,
+    "runtime_egress": "denied",
+    "secrets": "denied",
+    "host_mount_mode": "staged-read-only"
+  },
+  "steps": [
+    {
+      "id": "unit-python",
+      "runner": "python",
+      "command": ["python", "-m", "unittest", "discover", "-s", "tests/python"],
+      "cwd": ".",
+      "depends_on": [],
+      "timeout_seconds": 120,
+      "expected_exit_codes": [0],
+      "inputs": ["src", "tests/python"],
+      "outputs": [],
+      "network": "none",
+      "capture": {
+        "stdout": "full",
+        "stderr": "full",
+        "max_bytes": 1048576
+      }
+    },
+    {
+      "id": "unit-node",
+      "runner": "node",
+      "command": ["node", "--test", "tests/node"],
+      "cwd": ".",
+      "depends_on": [],
+      "timeout_seconds": 120,
+      "expected_exit_codes": [0],
+      "inputs": ["src", "tests/node"],
+      "outputs": [],
+      "network": "none",
+      "capture": {
+        "stdout": "full",
+        "stderr": "full",
+        "max_bytes": 1048576
+      }
+    }
+  ],
+  "evidence_policy": {
+    "preserve_verdicts": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"],
+    "preserve_lifecycle": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"],
+    "retain_attempts": "all"
+  }
+}

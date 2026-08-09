@@ -1,0 +1,44 @@
+{
+  "schema_version": "incidentseal-workflow/v1",
+  "workflow_id": "invalid.float",
+  "revision": 1,
+  "repository": {
+    "remote": "https://github.com/example/widget.git",
+    "commit": "1111111111111111111111111111111111111111",
+    "tree_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "claim": {
+    "id": "release.ready",
+    "statement": "This must be rejected before canonicalization.",
+    "required_steps": ["bad-step"]
+  },
+  "security": {
+    "container_engine_control": "host-cli-only",
+    "docker_socket": "denied",
+    "privileged": false,
+    "host_network": false,
+    "runtime_egress": "denied",
+    "secrets": "denied",
+    "host_mount_mode": "staged-read-only"
+  },
+  "steps": [
+    {
+      "id": "bad-step",
+      "runner": "host",
+      "command": ["true"],
+      "cwd": ".",
+      "depends_on": [],
+      "timeout_seconds": 1.5,
+      "expected_exit_codes": [0],
+      "inputs": [],
+      "outputs": [],
+      "network": "none",
+      "capture": {"stdout": "none", "stderr": "none", "max_bytes": 0}
+    }
+  ],
+  "evidence_policy": {
+    "preserve_verdicts": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"],
+    "preserve_lifecycle": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"],
+    "retain_attempts": "all"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "incidentseal-canonicalization-vectors/v1",
+  "algorithm": "RFC8785-JCS",
+  "profile": "incidentseal-workflow-v1-i-json",
+  "vectors": [
+    {
+      "id": "minimal-reordered-equivalence",
+      "inputs": [
+        "workflow.valid.minimal.json",
+        "workflow.valid.reordered.json"
+      ],
+      "canonical": "workflow.valid.canonical.json",
+      "sha256": "0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45"
+    }
+  ],
+  "invalid_inputs": [
+    {
+      "path": "workflow.invalid.duplicate-key.json",
+      "error": "IS_MANIFEST_DUPLICATE_KEY"
+    },
+    {
+      "path": "workflow.invalid.float.json",
+      "error": "IS_MANIFEST_NUMBER_DOMAIN"
+    },
+    {
+      "path": "workflow.invalid.network.json",
+      "error": "IS_MANIFEST_SCHEMA"
+    }
+  ]
+}

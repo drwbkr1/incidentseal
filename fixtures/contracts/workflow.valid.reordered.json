@@ -1,0 +1,58 @@
+{
+  "steps": [
+    {
+      "timeout_seconds": 120,
+      "runner": "python",
+      "outputs": [],
+      "network": "none",
+      "inputs": ["src", "tests/python"],
+      "id": "unit-python",
+      "expected_exit_codes": [0],
+      "depends_on": [],
+      "cwd": ".",
+      "command": ["python", "-m", "unittest", "discover", "-s", "tests/python"],
+      "capture": {"max_bytes": 1048576, "stderr": "full", "stdout": "full"}
+    },
+    {
+      "timeout_seconds": 120,
+      "runner": "node",
+      "outputs": [],
+      "network": "none",
+      "inputs": ["src", "tests/node"],
+      "id": "unit-node",
+      "expected_exit_codes": [0],
+      "depends_on": [],
+      "cwd": ".",
+      "command": ["node", "--test", "tests/node"],
+      "capture": {"max_bytes": 1048576, "stderr": "full", "stdout": "full"}
+    }
+  ],
+  "workflow_id": "example.release",
+  "security": {
+    "secrets": "denied",
+    "runtime_egress": "denied",
+    "privileged": false,
+    "host_network": false,
+    "host_mount_mode": "staged-read-only",
+    "docker_socket": "denied",
+    "container_engine_control": "host-cli-only"
+  },
+  "schema_version": "incidentseal-workflow/v1",
+  "revision": 1,
+  "repository": {
+    "tree_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "remote": "https://github.com/example/widget.git",
+    "commit": "1111111111111111111111111111111111111111"
+  },
+  "evidence_policy": {
+    "retain_attempts": "all",
+    "preserve_verdicts": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"],
+    "preserve_lifecycle": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"]
+  },
+  "description": "Cross-language verification contract fixture.",
+  "claim": {
+    "statement": "The declared Python and Node checks passed under the approved workflow.",
+    "required_steps": ["unit-python", "unit-node"],
+    "id": "release.ready"
+  }
+}

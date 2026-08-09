@@ -1,0 +1,16 @@
+{
+  "schema_version": "incidentseal-manifest-approval/v1",
+  "approval_id": "123e4567-e89b-42d3-a456-426614174000",
+  "workflow_id": "example.release",
+  "manifest_schema_version": "incidentseal-workflow/v1",
+  "repository_remote": "https://github.com/example/widget.git",
+  "manifest_path": "incidentseal.workflow.json",
+  "manifest_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+  "approved_at_utc": "2026-08-09T00:00:00Z",
+  "expires_at_utc": null,
+  "approved_by": {
+    "kind": "operator",
+    "local_principal": "fixture-operator"
+  },
+  "note": "Contract fixture only; not an IncidentSeal project approval."
+}

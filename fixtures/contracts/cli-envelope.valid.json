@@ -1,0 +1,21 @@
+{
+  "schema_version": "incidentseal-cli-envelope/v1",
+  "command": "policy.status",
+  "invocation_id": "123e4567-e89b-42d3-a456-426614174001",
+  "emitted_at_utc": "2026-08-09T00:00:01Z",
+  "command_status": "succeeded",
+  "process_exit_code": 0,
+  "verdict": null,
+  "lifecycle": null,
+  "policy": {
+    "workflow_id": "example.release",
+    "manifest_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+    "approved_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+    "approval_status": "MATCH"
+  },
+  "data": {
+    "approved": true
+  },
+  "errors": [],
+  "evidence": []
+}

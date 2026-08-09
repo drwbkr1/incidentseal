@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/workflow-manifest-v1.schema.json",
+  "title": "IncidentSeal workflow manifest v1",
+  "description": "Closed, canonicalizable workflow authority for IncidentSeal verification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "workflow_id",
+    "revision",
+    "repository",
+    "claim",
+    "security",
+    "steps",
+    "evidence_policy"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "incidentseal-workflow/v1"
+    },
+    "workflow_id": {
+      "$ref": "#/$defs/id"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["remote", "commit", "tree_digest"],
+      "properties": {
+        "remote": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 500
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "tree_digest": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "statement", "required_steps"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "required_steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "container_engine_control",
+        "docker_socket",
+        "privileged",
+        "host_network",
+        "runtime_egress",
+        "secrets",
+        "host_mount_mode"
+      ],
+      "properties": {
+        "container_engine_control": {
+          "const": "host-cli-only"
+        },
+        "docker_socket": {
+          "const": "denied"
+        },
+        "privileged": {
+          "const": false
+        },
+        "host_network": {
+          "const": false
+        },
+        "runtime_egress": {
+          "const": "denied"
+        },
+        "secrets": {
+          "const": "denied"
+        },
+        "host_mount_mode": {
+          "const": "staged-read-only"
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/step"
+      }
+    },
+    "evidence_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preserve_verdicts", "preserve_lifecycle", "retain_attempts"],
+      "properties": {
+        "preserve_verdicts": {
+          "const": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"]
+        },
+        "preserve_lifecycle": {
+          "const": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"]
+        },
+        "retain_attempts": {
+          "const": "all"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 260,
+      "pattern": "^(?!/)(?![A-Za-z]:)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"
+    },
+    "command_argument": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^[^\\u0000]*$"
+    },
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stdout", "stderr", "max_bytes"],
+      "properties": {
+        "stdout": {
+          "enum": ["full", "hash", "none"]
+        },
+        "stderr": {
+          "enum": ["full", "hash", "none"]
+        },
+        "max_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 104857600
+        }
+      }
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "runner",
+        "command",
+        "cwd",
+        "depends_on",
+        "timeout_seconds",
+        "expected_exit_codes",
+        "inputs",
+        "outputs",
+        "network",
+        "capture"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "runner": {
+          "enum": ["host", "python", "node", "postgresql", "compose-probe", "receipt-verifier"]
+        },
+        "command": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/command_argument"
+          }
+        },
+        "cwd": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "depends_on": {
+          "type": "array",
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600
+        },
+        "expected_exit_codes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/relative_path"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/relative_path"
+          }
+        },
+        "network": {
+          "const": "none"
+        },
+        "capture": {
+          "$ref": "#/$defs/capture"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "incidentseal-run-event/v1",
+  "event_id": "123e4567-e89b-42d3-a456-426614174002",
+  "run_id": "123e4567-e89b-42d3-a456-426614174003",
+  "sequence": 7,
+  "occurred_at_utc": "2026-08-09T00:00:02Z",
+  "event_type": "run.completed",
+  "lifecycle": "completed",
+  "verdict": "FAIL",
+  "terminal": true,
+  "manifest_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+  "approval_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+  "payload": {
+    "failed_steps": ["unit-node"]
+  },
+  "error": null
+}

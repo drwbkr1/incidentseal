@@ -1,0 +1,11 @@
+{
+  "schema_version": "incidentseal-workflow/v1",
+  "workflow_id": "invalid.duplicate",
+  "workflow_id": "silently.replaced",
+  "revision": 1,
+  "repository": {},
+  "claim": {},
+  "security": {},
+  "steps": [],
+  "evidence_policy": {}
+}

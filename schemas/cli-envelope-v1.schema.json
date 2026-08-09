@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/cli-envelope-v1.schema.json",
+  "title": "IncidentSeal CLI result envelope v1",
+  "description": "One complete JSON result written to stdout by a non-streaming IncidentSeal CLI command.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "command",
+    "invocation_id",
+    "emitted_at_utc",
+    "command_status",
+    "process_exit_code",
+    "verdict",
+    "lifecycle",
+    "policy",
+    "data",
+    "errors",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "incidentseal-cli-envelope/v1"
+    },
+    "command": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$",
+      "maxLength": 120
+    },
+    "invocation_id": {
+      "$ref": "#/$defs/uuid"
+    },
+    "emitted_at_utc": {
+      "$ref": "#/$defs/utc_timestamp"
+    },
+    "command_status": {
+      "enum": ["succeeded", "rejected", "errored"]
+    },
+    "process_exit_code": {
+      "enum": [0, 10, 11, 12, 20, 21, 22, 23, 64, 70, 74, 77]
+    },
+    "verdict": {
+      "oneOf": [
+        {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"]},
+        {"type": "null"}
+      ]
+    },
+    "lifecycle": {
+      "oneOf": [
+        {"enum": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"]},
+        {"type": "null"}
+      ]
+    },
+    "policy": {
+      "oneOf": [
+        {"$ref": "#/$defs/policy_status"},
+        {"type": "null"}
+      ]
+    },
+    "data": {
+      "type": "object"
+    },
+    "errors": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/error"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "$ref": "#/$defs/evidence_ref"
+      }
+    }
+  },
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "utc_timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "policy_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow_id", "manifest_digest", "approved_digest", "approval_status"],
+      "properties": {
+        "workflow_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"
+        },
+        "manifest_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "approved_digest": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "approval_status": {
+          "enum": ["MATCH", "MISMATCH", "MISSING", "EXPIRED", "INVALID"]
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "detail", "retriable"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^IS_[A-Z0-9_]+$",
+          "maxLength": 100
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "detail": {
+          "oneOf": [
+            {"type": "object"},
+            {"type": "null"}
+          ]
+        },
+        "retriable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "digest"],
+      "properties": {
+        "kind": {
+          "enum": ["receipt", "stdout", "stderr", "artifact", "sbom", "provenance", "scan", "runtime-probe", "release"]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "digest": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  }
+}
