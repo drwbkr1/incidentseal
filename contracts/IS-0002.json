@@ -149,17 +149,29 @@
       "depends_on": ["IS2-U01"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": ["IS2-U01 machine contracts"],
       "outputs": ["src", "tests", "incidentseal policy lint --json", "incidentseal policy digest --json"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
+      "gates": {
+        "production_compile": "pass",
+        "unit_and_contract_tests": "pass",
+        "real_windows_launcher": "pass",
+        "cli_envelope_schema": "pass",
+        "digest_invariance": "pass",
+        "invalid_fail_closed": "pass",
+        "dependency_isolation": "pass",
+        "approval_store_untouched": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [
+        "A wildcard py_compile invocation failed because Windows passed the wildcard literally; the explicit-path rerun passed.",
+        "The shell safety policy blocked generated-cache cleanup before execution; caches remain ignored and untracked."
+      ],
       "exit_condition_delta": {
         "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-CLI-CONTRACT"],
         "observed": [],
-        "decision_value": "unknown",
-        "rationale": "The IS2-U01 contract freeze passed and this is now the sole eligible implementation unit."
+        "decision_value": "enables_dependency",
+        "rationale": "The real dependency-free lint and digest commands now satisfy the frozen contract for their bounded surface and release the external approval-store implementation. Full checkpoint exits remain pending until approval, mutation, and clean-copy gates pass."
       },
       "next_dependency": "IS2-U03"
     },
@@ -169,7 +181,7 @@
       "depends_on": ["IS2-U02"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "planned",
+      "status": "ready",
       "inputs": ["Manifest digest implementation", "Temporary isolated test custody"],
       "outputs": ["Approval-store implementation", "Boundary probes", "Threat-model update"],
       "gates": {},
@@ -179,7 +191,7 @@
         "expected": ["EXIT-APPROVAL-BOUNDARY"],
         "observed": [],
         "decision_value": "unknown",
-        "rationale": "Pending deterministic manifest digest implementation."
+        "rationale": "The deterministic manifest digest and stable envelope implementation passed; the external approval boundary is now the sole eligible unit."
       },
       "next_dependency": "IS2-U04"
     },
@@ -270,12 +282,15 @@
       "Project control and milestone validation",
       "Dependency-free schema supported-subset lint and five schema-bound fixtures",
       "Cross-process canonical digest golden vectors",
-      "Four fail-closed contract mutation probes"
+      "Four fail-closed contract mutation probes",
+      "Thirteen manifest and CLI implementation tests",
+      "Real Windows lint and digest launcher probes",
+      "Python site-disabled dependency-isolation and approval no-write probes"
     ]
   },
   "handoff": {
     "current_checkpoint": "IS-0002 active",
-    "next_action": "Execute IS2-U02 dependency-free manifest and CLI implementation",
+    "next_action": "Execute IS2-U03 operator-owned approval-store implementation and boundary probes",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not let repository content approve its own manifest digest",

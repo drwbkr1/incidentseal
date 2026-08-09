@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+INCIDENTSEAL_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if [ -n "${PYTHONPATH:-}" ]; then
+  PYTHONPATH="${INCIDENTSEAL_ROOT}/src:${PYTHONPATH}"
+else
+  PYTHONPATH="${INCIDENTSEAL_ROOT}/src"
+fi
+export PYTHONPATH
+exec python3 -m incidentseal "$@"

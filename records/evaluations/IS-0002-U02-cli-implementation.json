@@ -1,0 +1,100 @@
+{
+  "schema_version": "incidentseal-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0002-U02",
+  "checkpoint_id": "IS-0002",
+  "unit_id": "IS2-U02",
+  "observed_at_utc": "2026-08-09T17:07:50Z",
+  "base_commit": "eb1cc29277d169478385f35cf8a773acca2d9502",
+  "disposition": "pass",
+  "environment": {
+    "project_root": "C:/Projects/Active/incidentseal",
+    "python": "3.12.10",
+    "platform_launcher": "incidentseal.cmd",
+    "third_party_dependencies": 0
+  },
+  "checks": [
+    {
+      "id": "unit-and-contract-tests",
+      "status": "PASS",
+      "command": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "result": "13 tests passed, including strict parsing, fixed-boundary validation, UTF-16 property ordering, format-invariant digesting, stable exit codes, schema-bound envelopes, and the real Windows launcher."
+    },
+    {
+      "id": "real-cli-lint",
+      "status": "PASS",
+      "command": ".\\incidentseal.cmd policy lint --manifest fixtures\\contracts\\workflow.valid.minimal.json --json",
+      "result": "Exit 0; exactly one incidentseal-cli-envelope/v1 JSON document; valid=true."
+    },
+    {
+      "id": "real-cli-digest",
+      "status": "PASS",
+      "command": ".\\incidentseal.cmd policy digest --manifest fixtures\\contracts\\workflow.valid.reordered.json --json",
+      "result": "Exit 0; RFC8785-JCS; canonical_byte_count=1513; digest=sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45."
+    },
+    {
+      "id": "fail-closed-inputs",
+      "status": "PASS",
+      "command": "CLI tests against duplicate-key, float, network-policy, usage, and missing-input cases",
+      "result": "Invalid manifests returned exit 12 and verdict INVALID; usage returned 64; unreadable input returned 74; process and envelope exit codes matched."
+    },
+    {
+      "id": "dependency-isolation",
+      "status": "PASS",
+      "command": "PYTHONPATH=src python -S -m incidentseal policy digest --manifest fixtures/contracts/workflow.valid.minimal.json --json",
+      "result": "Exit 0 with Python site initialization disabled and no third-party dependency."
+    },
+    {
+      "id": "approval-custody-no-write",
+      "status": "PASS",
+      "command": "Check default approval root before and after policy digest",
+      "result": "The approval root did not exist before or after execution; U02 inspection commands created no approval state."
+    },
+    {
+      "id": "authority-and-network-scan",
+      "status": "PASS",
+      "command": "Scan production source for approval mutation, Docker socket, network, and third-party client imports",
+      "result": "No production authority mutation, Docker socket access, network client, or third-party dependency path was present."
+    },
+    {
+      "id": "frozen-contract-regression",
+      "status": "PASS",
+      "command": "python scripts/validate_machine_contracts.py && python scripts/test_machine_contract_mutations.py",
+      "result": "The IS2-U01 contract, digest, five bound fixtures, and four fail-closed mutation probes remained passing."
+    }
+  ],
+  "observed_sha256": [
+    {"path": ".gitignore", "sha256": "4bfcbbb787fe329b410e5f18743ca30a1ad3bb3cba9a243f3b01da606b15aebd"},
+    {"path": "AGENTS.md", "sha256": "4f1f3a2c2fae4d59e5a18df3d8a71f49d01d9687c695b656fd2eaf595f5262b5"},
+    {"path": "incidentseal", "sha256": "e0298fc7d143d9078c746bd211da0ccdf73259ac3b82346c8abc677462bebed4"},
+    {"path": "incidentseal.cmd", "sha256": "48f6374a6c5320fed187717c0ce03a9ef28f9d68384ed53c980000b0b2e785a2"},
+    {"path": "src/incidentseal/__init__.py", "sha256": "daa9d4e4cc05b13d8d78fc2890cc7d47d4c273e9fb2496c08db0a4dc267bfcf3"},
+    {"path": "src/incidentseal/__main__.py", "sha256": "50a6f8044ffdbd04abd40e6464510ff6bf72e63f9870d958357e7bb0171d4cf6"},
+    {"path": "src/incidentseal/manifest.py", "sha256": "05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"},
+    {"path": "src/incidentseal/cli.py", "sha256": "f697ccd3fd989498d164b8044aff1d88b1ee5364c13c99dc9c65742d1578ff94"},
+    {"path": "tests/test_manifest.py", "sha256": "e5c60d28cc7f841f022b347cb405ecb8e339e90b12740295b7558de580b33fdc"},
+    {"path": "tests/test_cli.py", "sha256": "10877b35e5367217593d68a6a3f4d3583b29fdae6bf1a6b2a08f9bcb1dc64b80"}
+  ],
+  "remediations": [
+    "Pre-evidence review replaced Python's bool/int-coercing equality with exact JSON-type equality for the fixed security and evidence contracts.",
+    "Untyped enum values now fail as IS_MANIFEST_SCHEMA instead of reaching an internal-error path."
+  ],
+  "retained_failures": [
+    {
+      "attempt": "Wildcard py_compile invocation",
+      "outcome": "failed",
+      "note": "Windows passed src/incidentseal/*.py literally to Python; no tests ran and no project state changed. The explicit-path rerun passed."
+    },
+    {
+      "attempt": "Generated cache cleanup",
+      "outcome": "blocked",
+      "note": "The shell safety policy blocked recursive removal before execution. Generated caches remain ignored and untracked."
+    }
+  ],
+  "limitations": [
+    "Only policy lint and policy digest are implemented; policy status, policy diff, verification, run events, and operator approval are not implemented.",
+    "The dependency-free manifest validator implements the frozen v1 closed contract directly; full Draft 2020-12 meta-schema validation remains pending.",
+    "No workflow approval exists and no workflow execution is permitted.",
+    "Compose, PostgreSQL, runners, dashboard, recovery, clean-clone, and release surfaces remain unimplemented."
+  ],
+  "scope_note": "This evidence closes only IS2-U02. It proves the bounded manifest and machine-envelope implementation, not the full IS-0002 checkpoint or any release claim."
+}

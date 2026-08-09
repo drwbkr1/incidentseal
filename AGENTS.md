@@ -29,6 +29,15 @@
 - Never collapse lifecycle failure into a verification verdict, and never convert missing or ambiguous evidence into `PASS`.
 - Preserve failed, blocked, cancelled, stale, superseded, and excluded attempts in append-only records.
 
+## Agent-safe CLI use
+
+- From this checkout on Windows, call `.\incidentseal.cmd policy lint --manifest PATH --json` before relying on a workflow manifest.
+- Call `.\incidentseal.cmd policy digest --manifest PATH --json` to obtain its RFC 8785 canonical digest. On POSIX systems, use `./incidentseal` with the same arguments.
+- Treat stdout as one `incidentseal-cli-envelope/v1` JSON document and verify that `process_exit_code` equals the process exit code.
+- `policy lint` and `policy digest` are inspection-only. They do not approve a manifest, access Docker, execute workflow steps, or create evidence claims.
+- Never invoke or automate `operator approve-manifest`; operator approval is interactive authority outside the agent-safe surface.
+- Do not infer approval from a valid manifest or digest. Until `policy status` is implemented and returns `MATCH`, workflow execution remains forbidden.
+
 ## Working discipline
 
 - Implement one bounded, measurable checkpoint improvement at a time.
