@@ -1,0 +1,370 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-006",
+  "assessed_at": "2026-08-09T19:03:00Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "download three exact public Python wheels and Sigstore trust root 10 into system temp",
+      "verify every exact digest before import",
+      "install the exact wheels into isolated temporary target custody without dependency resolution",
+      "use Python TUF only to update the Sigstore root chain and retrieve artifact.pub",
+      "remove the isolated client and TUF metadata after the Cosign bootstrap check"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Use Python TUF 7.0.0, securesystemslib 1.4.0 and urllib3 2.7.0 from exact wheels with Sigstore's documented version-10 root to retrieve the TUF-authenticated artifact.pub key for independent verification of the unexecuted Cosign binary.",
+    "planned_actions": [
+      "acquire exact wheels and initial root",
+      "verify hashes",
+      "refresh TUF metadata and retrieve artifact.pub",
+      "remove temporary dependency and metadata custody"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "python-tuf-7.0.0-bootstrap-set",
+      "name": "Exact Python TUF bootstrap dependency set",
+      "locator": "https://pypi.org/project/tuf/7.0.0/",
+      "components": [
+        {
+          "name": "tuf",
+          "version": "7.0.0",
+          "filename": "tuf-7.0.0-py3-none-any.whl",
+          "sha256": "572bdbdc9ff4a82278a0d4773e6100863b9b33023f27575e84ca65b486dd0d79",
+          "size": 55277,
+          "url": "https://files.pythonhosted.org/packages/43/c7/301f699ad9427bb0e06935ed56850dd26eecb2b3e8e07b80311875eae676/tuf-7.0.0-py3-none-any.whl"
+        },
+        {
+          "name": "securesystemslib",
+          "version": "1.4.0",
+          "filename": "securesystemslib-1.4.0-py3-none-any.whl",
+          "sha256": "a0743a3d978cf26e98a70a57e3fbd5a18e0a74c20cabe615f6a55b02ef0272b3",
+          "size": 871457,
+          "url": "https://files.pythonhosted.org/packages/f9/29/3ff76b9d90ce4482dc8e8d216dc3a6b6d0c934c52f68b0738e2c99ca685f/securesystemslib-1.4.0-py3-none-any.whl"
+        },
+        {
+          "name": "urllib3",
+          "version": "2.7.0",
+          "filename": "urllib3-2.7.0-py3-none-any.whl",
+          "sha256": "9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897",
+          "size": 131087,
+          "url": "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/tuf/json",
+              "observed_at": "2026-08-09T19:00:28Z",
+              "note": "PyPI identifies current tuf 7.0.0 and its exact universal wheel."
+            },
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/securesystemslib/json",
+              "observed_at": "2026-08-09T19:00:40Z",
+              "note": "PyPI identifies current securesystemslib 1.4.0 and its exact universal wheel."
+            },
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/urllib3/json",
+              "observed_at": "2026-08-09T19:00:40Z",
+              "note": "PyPI identifies current urllib3 2.7.0 and its exact universal wheel."
+            }
+          ],
+          "note": "The full dependency closure for Python TUF's default client path is exact and no extras are selected."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://theupdateframework.readthedocs.io/en/stable/",
+              "observed_at": "2026-08-09T19:00:28Z",
+              "note": "The Update Framework documentation identifies python-tuf as the reference Python implementation."
+            }
+          ],
+          "note": "Package metadata links directly to the upstream python-tuf, securesystemslib and urllib3 projects."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/tuf/json",
+              "observed_at": "2026-08-09T19:00:28Z",
+              "note": "All three wheels are public, non-yanked and anonymously downloadable."
+            }
+          ],
+          "note": "No account, secret, purchase, build backend or source distribution is used."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/tuf/json",
+              "observed_at": "2026-08-09T19:01:39Z",
+              "note": "tuf declares Apache-2.0 OR MIT; securesystemslib and urllib3 declare MIT."
+            }
+          ],
+          "note": "Temporary local evaluation is permitted; wheels are not redistributed or committed."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/tuf/json",
+              "observed_at": "2026-08-09T19:00:28Z",
+              "note": "PyPI metadata binds project source URLs, release versions, upload times, filenames, sizes and digests for the exact wheels."
+            }
+          ],
+          "note": "This gate relies on PyPI release custody plus exact hashes; no unverified dependency resolution is allowed."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/tuf/json",
+              "observed_at": "2026-08-09T19:00:28Z",
+              "note": "PyPI publishes SHA-256 572bdbdc9ff4a82278a0d4773e6100863b9b33023f27575e84ca65b486dd0d79 for tuf 7.0.0."
+            },
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/securesystemslib/json",
+              "observed_at": "2026-08-09T19:00:40Z",
+              "note": "PyPI publishes SHA-256 a0743a3d978cf26e98a70a57e3fbd5a18e0a74c20cabe615f6a55b02ef0272b3 for securesystemslib 1.4.0."
+            },
+            {
+              "type": "live",
+              "locator": "https://pypi.org/pypi/urllib3/json",
+              "observed_at": "2026-08-09T19:00:40Z",
+              "note": "PyPI publishes SHA-256 9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897 for urllib3 2.7.0."
+            }
+          ],
+          "note": "Every wheel hash and size must match before an isolated import."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/advisories/GHSA-qp9x-wp8f-qgjj",
+              "observed_at": "2026-08-09T19:02:40Z",
+              "note": "The current python-tuf delegation-path advisory affects versions through 6.0.0 and is patched in selected 7.0.0."
+            },
+            {
+              "type": "live",
+              "locator": "https://github.com/advisories/GHSA-mf9v-mfxr-j63j",
+              "observed_at": "2026-08-09T19:02:40Z",
+              "note": "The current urllib3 streaming decompression advisory affects versions below 2.7.0 and is patched in selected 2.7.0."
+            }
+          ],
+          "note": "Selected versions satisfy Python 3.12 and current published security fixes relevant to this client path."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "static",
+              "locator": "docs/threat-model.md",
+              "note": "The isolated client retrieves only public Sigstore TUF metadata and one public key target; it receives no secrets, repository content, private registry data or approval authority."
+            }
+          ],
+          "note": "No extras, environment credentials, package indexes during install or persistent import paths are permitted."
+        }
+      ]
+    },
+    {
+      "source_id": "sigstore-root-10",
+      "name": "Sigstore TUF root metadata version 10",
+      "locator": "https://raw.githubusercontent.com/sigstore/root-signing/03f9c7e0023c917b60eb7431e87f47e6a636f37a/metadata/root_history/10.root.json#sha256=836bff947925edfc23eb9ce17af66fb1e43bb5e2bdd240520985ae52b585eae9",
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/root-signing/contents/metadata/root_history/10.root.json?ref=03f9c7e0023c917b60eb7431e87f47e6a636f37a",
+              "observed_at": "2026-08-09T19:01:10Z",
+              "note": "Exact 6,911-byte Git blob 3f18ee74ca6415a3a8dbdc30be69fc1b1703c02f parses as TUF root version 10 with consistent snapshots enabled."
+            }
+          ],
+          "note": "Root filename, version, immutable commit, blob and content digest are exact."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://docs.sigstore.dev/cosign/system_config/installation/",
+              "observed_at": "2026-08-09T18:58:08Z",
+              "note": "Sigstore's official Cosign installation procedure explicitly selects version-10 root history to initialize the public TUF repository."
+            }
+          ],
+          "note": "The trust root is selected by Sigstore's documented bootstrap procedure, not arbitrary repository state."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://raw.githubusercontent.com/sigstore/root-signing/03f9c7e0023c917b60eb7431e87f47e6a636f37a/metadata/root_history/10.root.json",
+              "observed_at": "2026-08-09T19:01:10Z",
+              "note": "The immutable root and public TUF repository are anonymously readable."
+            }
+          ],
+          "note": "Authentication and alternate mirrors are forbidden."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/sigstore/root-signing/blob/main/LICENSE",
+              "observed_at": "2026-08-09T19:01:10Z",
+              "note": "The root-signing repository is Apache-2.0 licensed."
+            }
+          ],
+          "note": "Temporary trust metadata use is permitted."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://docs.sigstore.dev/cosign/system_config/installation/",
+              "observed_at": "2026-08-09T18:58:08Z",
+              "note": "Official guidance explains that root 10 bridges a backward-incompatible migration and that the client must update to the latest signed root chain."
+            }
+          ],
+          "note": "Root 10 is only the pinned initial trust anchor; TUF must validate every subsequent root and current target metadata."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/root-signing/contents/metadata/root_history/10.root.json?ref=03f9c7e0023c917b60eb7431e87f47e6a636f37a",
+              "observed_at": "2026-08-09T19:01:10Z",
+              "note": "The exact bytes hash to SHA-256 836bff947925edfc23eb9ce17af66fb1e43bb5e2bdd240520985ae52b585eae9 and contain 10 signatures with a root threshold of 3."
+            }
+          ],
+          "note": "The exact initial hash and full TUF root-update verification must pass."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://tuf-repo-cdn.sigstore.dev",
+              "observed_at": "2026-08-09T19:01:10Z",
+              "note": "The official public repository is the endpoint named by Sigstore for artifact-key retrieval."
+            }
+          ],
+          "note": "The root is fit only for authenticating Sigstore public TUF metadata and artifact.pub."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "static",
+              "locator": "docs/threat-model.md",
+              "note": "Only public signed metadata and a verification key are retrieved; no authority-bearing project state is read or written."
+            }
+          ],
+          "note": "TUF output is evidence for the scanner bootstrap, never workflow authority."
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [
+      "four downloaded content hashes",
+      "isolated exact import versions",
+      "root update chain",
+      "current target metadata",
+      "artifact.pub target verification"
+    ],
+    "approved_actions": [
+      "download the exact four public artifacts into verified system temp",
+      "verify all hashes",
+      "install wheels without indexes or dependency resolution into isolated temporary custody",
+      "retrieve artifact.pub through the verified TUF chain",
+      "remove all temporary TUF custody after Cosign verification"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "download only the exact listed artifacts",
+      "perform isolated no-index no-deps installation",
+      "connect only to the official public Sigstore TUF repository",
+      "retrieve only metadata needed for artifact.pub",
+      "retain bounded bootstrap receipts and remove temporary custody"
+    ],
+    "requires_explicit_authorization": [
+      "resolve floating package versions or use unlisted dependencies or extras",
+      "accept an alternate initial root mirror key or target",
+      "continue if any hash signature threshold expiration rollback or target check fails",
+      "persist the dependency environment in the repository or global Python",
+      "use TUF output as IncidentSeal workflow approval or signing authority"
+    ]
+  }
+}
