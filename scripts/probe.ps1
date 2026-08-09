@@ -16,6 +16,7 @@ $requiredFiles = @(
     "AGENTS.md",
     "control/project-control.json",
     "contracts/IS-0001.json",
+    "contracts/IS-0002.json",
     "docs/product-contract.md",
     "docs/threat-model.md",
     "docs/environment-inventory.md",
@@ -35,7 +36,8 @@ if ($missing.Count -gt 0) {
 }
 
 $profile = Get-Content -Raw (Join-Path $projectRoot "control/project-control.json") | ConvertFrom-Json
-$contract = Get-Content -Raw (Join-Path $projectRoot "contracts/IS-0001.json") | ConvertFrom-Json
+$contractPath = Join-Path $projectRoot $profile.control_surfaces.active_contract
+$contract = Get-Content -Raw $contractPath | ConvertFrom-Json
 
 $branch = (& git -C $projectRoot branch --show-current).Trim()
 $null = & git -C $projectRoot show-ref --verify --quiet "refs/heads/$branch"

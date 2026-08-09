@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0",
+  "milestone_id": "IS-0002",
+  "project_profile_ref": "control/project-control.json",
+  "status": "active",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_action_classes": [
+      "read_only_inspection",
+      "project_control",
+      "update_project_records",
+      "dependency_management",
+      "reversible_remediation",
+      "deterministic_validation",
+      "version_control_write",
+      "git_push"
+    ],
+    "user_instruction": "Continue from the latest verified checkpoint, implement one bounded measurable improvement at a time, bind workflow authority to an operator-approved manifest digest outside the repository, and expose a stable machine-readable CLI before any reusable Codex skill.",
+    "repository_controls": [
+      "AGENTS.md",
+      "docs/product-contract.md",
+      "control/project-control.json"
+    ],
+    "active_contract": "contracts/IS-0002.json",
+    "verified_at_utc": "2026-08-09T05:39:02Z",
+    "expires_at_utc": null
+  },
+  "scope": {
+    "objective": "Freeze and implement IncidentSeal's versioned manifest authority and machine-readable host CLI contract with deterministic, fail-closed behavior before introducing the Compose runtime.",
+    "allowed_paths": [
+      "."
+    ],
+    "forbidden_work": [
+      "Any access to C:\\Users\\drewb\\OneDrive",
+      "Allowing repository content or an agent-facing command to create or replace operator approval",
+      "Pulling, running, or redistributing a candidate image outside its approved gate",
+      "Adding a third-party dependency before a separate source gate",
+      "Starting the Compose, PostgreSQL, runner, dashboard, or release implementation before the CLI and manifest contracts pass",
+      "Claiming an unverified real product surface"
+    ],
+    "reversible_actions": [
+      "Create and edit repository contracts, schemas, fixtures, source, tests, and documentation",
+      "Create an isolated test approval store outside the repository under the project test harness",
+      "Run dependency-free local validation and mutation tests",
+      "Commit and push verified bounded improvements"
+    ],
+    "stop_conditions": [
+      "A proposed change alters the approved product promise or trust boundary",
+      "The external approval boundary cannot fail closed",
+      "A dependency is required without a ready source gate",
+      "A stable machine contract requires an unresolved product choice",
+      "A checkpoint cannot be verified locally and after push"
+    ]
+  },
+  "entry_conditions": [
+    {
+      "id": "ENTRY-VERIFIED-IS-0001",
+      "status": "pass",
+      "evidence": [
+        "records/surface-receipts/IS-0001-public-repository.json"
+      ]
+    },
+    {
+      "id": "ENTRY-PRODUCT-CONTRACT",
+      "status": "pass",
+      "evidence": [
+        "docs/product-contract.md",
+        "docs/decisions/ADR-0001-host-authority-and-manifest-digest.md"
+      ]
+    }
+  ],
+  "exit_conditions": [
+    {
+      "id": "EXIT-MANIFEST-CONTRACT",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "EXIT-APPROVAL-BOUNDARY",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "EXIT-CLI-CONTRACT",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "EXIT-FAIL-CLOSED-EVALUATION",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "EXIT-PUBLIC-CHECKPOINT",
+      "status": "pending",
+      "evidence": []
+    }
+  ],
+  "units": [
+    {
+      "id": "IS2-U01",
+      "purpose": "Freeze the versioned manifest schema, canonicalization rules, digest approval boundary, stable CLI commands, exit codes, JSON schemas, and mutation vectors as dependency-free machine contracts.",
+      "depends_on": [],
+      "action_class": "update_project_records",
+      "human_gate": false,
+      "status": "ready",
+      "inputs": [
+        "INCIDENTSEAL-PRODUCT-001",
+        "ADR-0001",
+        "Current Codex AGENTS.md and non-interactive JSON guidance"
+      ],
+      "outputs": [
+        "schemas/workflow-manifest-v1.schema.json",
+        "schemas/cli-envelope-v1.schema.json",
+        "schemas/run-event-v1.schema.json",
+        "docs/cli-contract.md",
+        "docs/manifest-authority.md",
+        "fixtures/contracts"
+      ],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-CLI-CONTRACT"],
+        "observed": [],
+        "decision_value": "unknown",
+        "rationale": "This is the smallest contract-first unit that prevents implementation from defining authority or evidence semantics by accident."
+      },
+      "next_dependency": "IS2-U02"
+    },
+    {
+      "id": "IS2-U02",
+      "purpose": "Implement dependency-free manifest parsing, schema checks, canonicalization, SHA-256 digesting, and stable CLI envelopes.",
+      "depends_on": ["IS2-U01"],
+      "action_class": "reversible_remediation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["IS2-U01 machine contracts"],
+      "outputs": ["src", "tests", "incidentseal policy lint --json", "incidentseal policy digest --json"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-CLI-CONTRACT"],
+        "observed": [],
+        "decision_value": "unknown",
+        "rationale": "Pending contract freeze."
+      },
+      "next_dependency": "IS2-U03"
+    },
+    {
+      "id": "IS2-U03",
+      "purpose": "Implement and probe the operator-owned approval store outside repository custody, with inspect and compare available to agents but approval replacement unavailable through agent-facing paths.",
+      "depends_on": ["IS2-U02"],
+      "action_class": "reversible_remediation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Manifest digest implementation", "Temporary isolated test custody"],
+      "outputs": ["Approval-store implementation", "Boundary probes", "Threat-model update"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-APPROVAL-BOUNDARY"],
+        "observed": [],
+        "decision_value": "unknown",
+        "rationale": "Pending deterministic manifest digest implementation."
+      },
+      "next_dependency": "IS2-U04"
+    },
+    {
+      "id": "IS2-U04",
+      "purpose": "Run deterministic golden-vector, malformed-input, policy-drift, stale-approval, ambiguous-approval, and repository-tampering mutation evaluations.",
+      "depends_on": ["IS2-U03"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Implemented manifest and approval contracts"],
+      "outputs": ["records/evaluations/IS-0002-fail-closed.json"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-FAIL-CLOSED-EVALUATION"],
+        "observed": [],
+        "decision_value": "unknown",
+        "rationale": "Pending approval-boundary implementation."
+      },
+      "next_dependency": "IS2-U05"
+    },
+    {
+      "id": "IS2-U05",
+      "purpose": "Validate the packaged local CLI contract from a clean temporary copy without Docker runtime use.",
+      "depends_on": ["IS2-U04"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Implemented CLI", "Machine schemas", "Mutation results"],
+      "outputs": ["records/surface-receipts/IS-0002-cli-contract.json"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-MANIFEST-CONTRACT", "EXIT-APPROVAL-BOUNDARY", "EXIT-CLI-CONTRACT", "EXIT-FAIL-CLOSED-EVALUATION"],
+        "observed": [],
+        "decision_value": "unknown",
+        "rationale": "Pending deterministic evaluations."
+      },
+      "next_dependency": "IS2-U06"
+    },
+    {
+      "id": "IS2-U06",
+      "purpose": "Commit, push, and live-verify the bounded IS-0002 checkpoint without making a software-release claim.",
+      "depends_on": ["IS2-U05"],
+      "action_class": "git_push",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Verified IS-0002 tree"],
+      "outputs": ["Verified remote main checkpoint", "Checkpoint receipt"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {
+        "expected": ["EXIT-PUBLIC-CHECKPOINT"],
+        "observed": [],
+        "decision_value": "unknown",
+        "rationale": "Pending all prior IS-0002 exit conditions."
+      },
+      "next_dependency": null
+    }
+  ],
+  "path_efficiency": {
+    "max_consecutive_no_progress_units": 2,
+    "review_action_class": "project_control",
+    "review_human_gate": false
+  },
+  "verification": {
+    "changed_risks": [
+      "security",
+      "runtime",
+      "package",
+      "public contract"
+    ],
+    "required_checks": [
+      "Project control and milestone validation",
+      "JSON Schema meta-validation and positive/negative fixtures",
+      "Cross-process canonical digest golden vectors",
+      "Stable CLI stdout, stderr, exit-code, JSON and JSONL checks",
+      "Approval-store custody and mutation probes",
+      "Clean temporary-copy verification",
+      "Git diff and secret scan",
+      "Post-push remote branch verification"
+    ],
+    "completed_checks": []
+  },
+  "handoff": {
+    "current_checkpoint": "IS-0002 active",
+    "next_action": "Execute IS2-U01 dependency-free machine contract freeze",
+    "do_not_carry_forward": [
+      "Do not use OneDrive",
+      "Do not let repository content approve its own manifest digest",
+      "Do not add a dependency without a source gate",
+      "Do not start real Docker runtime work before IS-0002 closes",
+      "Do not collapse verification verdicts into lifecycle state"
+    ]
+  }
+}

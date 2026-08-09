@@ -1,0 +1,30 @@
+{
+  "schema_version": "incidentseal-public-repository/v1",
+  "receipt_id": "IS-RECEIPT-0002",
+  "checkpoint_id": "IS-0001",
+  "unit_id": "IS1-U07",
+  "observed_at_utc": "2026-08-09T05:39:02Z",
+  "disposition": "pass",
+  "repository": {
+    "name_with_owner": "drwbkr1/incidentseal",
+    "url": "https://github.com/drwbkr1/incidentseal",
+    "visibility": "PUBLIC",
+    "default_branch": "main",
+    "archived": false,
+    "origin": "https://github.com/drwbkr1/incidentseal.git"
+  },
+  "verification": {
+    "authenticated_account": "drwbkr1",
+    "local_head": "b4cd51e466e8de89410b5ff58bf446a849a988d3",
+    "remote_main_head": "b4cd51e466e8de89410b5ff58bf446a849a988d3",
+    "heads_match": true,
+    "worktree_clean": true,
+    "commands": [
+      "gh auth status",
+      "gh repo view drwbkr1/incidentseal --json nameWithOwner,visibility,url,defaultBranchRef,isArchived",
+      "git -c credential.interactive=never ls-remote --heads origin refs/heads/main",
+      "git status --porcelain=v1"
+    ]
+  },
+  "scope_note": "This receipt proves public repository identity and the first pushed baseline commit. It is not a software release, image publication, or evidence for unimplemented application surfaces."
+}

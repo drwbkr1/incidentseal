@@ -8,7 +8,7 @@ Release a polished `v0.1.0` local verification path that binds an approved workf
 
 ### IS-0001 - Contract and source boundary
 
-Status: active
+Status: complete
 
 - Establish canonical non-OneDrive custody and public repository identity.
 - Freeze the product contract and threat model.
@@ -19,7 +19,7 @@ Status: active
 
 ### IS-0002 - Manifest authority and CLI contract
 
-Status: planned
+Status: active
 
 - Versioned manifest JSON Schema and deterministic canonicalization.
 - Operator-controlled digest approval store outside the repository.
