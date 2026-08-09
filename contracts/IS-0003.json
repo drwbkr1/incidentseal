@@ -58,7 +58,7 @@
     ]
   },
   "entry_conditions": [
-    {"id":"ENTRY-VERIFIED-IS-0002","status":"pass","evidence":["records/surface-receipts/IS-0002-public-checkpoint.json"]},
+    {"id":"ENTRY-VERIFIED-IS-0002","status":"pass","evidence":["records/surface-receipts/IS-0002-public-checkpoint.json","records/surface-receipts/IS-0002-checkpoint-marker.json"]},
     {"id":"ENTRY-IMAGE-SOURCE-GATE","status":"pass","evidence":["records/source-gates/2026-08-09-initial-images.json"]},
     {"id":"ENTRY-TRUST-BOUNDARY","status":"pass","evidence":["docs/product-contract.md","docs/threat-model.md","docs/decisions/ADR-0001-host-authority-and-manifest-digest.md"]}
   ],

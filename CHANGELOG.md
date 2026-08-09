@@ -24,3 +24,4 @@ All notable IncidentSeal changes will be recorded here. The project follows Sema
 - Source-gated, exact-hash, temporary-only Draft 2020-12 meta-schema evaluation with four schemas, eight fixtures, and six locked Python wheel artifacts.
 - Clean-copy CLI contract verification covering 38 tests, ten real-surface checks, and the 25-scenario/50-execution fail-closed matrix without Docker or real approval state.
 - Public IS-0002 checkpoint verification from an exact credential-free GitHub clone, including project controls, Git object integrity, secret scanning, and full CLI-contract replay.
+- Verified annotated checkpoint marker `checkpoint-is-0002` at the exact IS-0002 closure commit.

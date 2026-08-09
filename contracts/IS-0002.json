@@ -103,7 +103,8 @@
       "id": "EXIT-PUBLIC-CHECKPOINT",
       "status": "pass",
       "evidence": [
-        "records/surface-receipts/IS-0002-public-checkpoint.json"
+        "records/surface-receipts/IS-0002-public-checkpoint.json",
+        "records/surface-receipts/IS-0002-checkpoint-marker.json"
       ]
     }
   ],

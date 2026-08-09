@@ -1,0 +1,30 @@
+{
+  "schema_version": "incidentseal-checkpoint-marker/v1",
+  "receipt_id": "IS-RECEIPT-0005",
+  "checkpoint_id": "IS-0002",
+  "observed_at_utc": "2026-08-09T18:25:45Z",
+  "disposition": "pass",
+  "repository": "https://github.com/drwbkr1/incidentseal.git",
+  "branch": "main",
+  "local_head": "e8b9823f63e3505f87490cbd87894705221a33cd",
+  "remote_main_head": "e8b9823f63e3505f87490cbd87894705221a33cd",
+  "heads_match": true,
+  "worktree_clean": true,
+  "tag": {
+    "name": "checkpoint-is-0002",
+    "kind": "annotated",
+    "message": "IncidentSeal IS-0002 verified checkpoint",
+    "local_tag_object": "630bc88f0860de56c51d0637260953429a6df172",
+    "remote_tag_object": "630bc88f0860de56c51d0637260953429a6df172",
+    "local_peeled_commit": "e8b9823f63e3505f87490cbd87894705221a33cd",
+    "remote_peeled_commit": "e8b9823f63e3505f87490cbd87894705221a33cd",
+    "objects_match": true
+  },
+  "approval_root_exists": false,
+  "retained_failures": [
+    {"attempt":"First closure push","outcome":"failed","note":"Git reported a transient DNS failure resolving github.com; read-only DNS and ls-remote checks then passed, and the exact unchanged commit pushed successfully."},
+    {"attempt":"First local annotated-tag peel check","outcome":"failed","note":"Unquoted ^{} revision syntax was mangled by PowerShell after local tag creation; the tag remained local and a shell-safe rev-list check proved its exact target before push."},
+    {"attempt":"First remote annotated-tag peel check","outcome":"failed","note":"The tag push succeeded, but the combined post-push command again exposed unquoted PowerShell peel syntax; a quoted remote ref pattern then verified both tag object and peeled commit."}
+  ],
+  "scope_note": "This marker freezes the verified IS-0002 checkpoint. It is not a versioned software release and does not prove any Docker-backed surface."
+}

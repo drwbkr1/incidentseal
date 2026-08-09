@@ -7,8 +7,8 @@
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
 - Expected branch: `main`
-- Verified public IS-0002 candidate: `9cafb72f418edd3e3808c30fabda2e56bfee228a` on local, remote `main`, and fresh public clone
-- Expected checkpoint marker: `checkpoint-is-0002` (created and verified after the closure record is committed)
+- Latest verified checkpoint commit: `e8b9823f63e3505f87490cbd87894705221a33cd` on local and remote `main`
+- Verified checkpoint marker: `checkpoint-is-0002` tag object `630bc88f0860de56c51d0637260953429a6df172` -> `e8b9823f63e3505f87490cbd87894705221a33cd`
 - Approved workflow manifest digest: not established
 - Application surfaces: not implemented
 - Release state: unreleased
@@ -34,4 +34,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Create and independently verify `checkpoint-is-0002` at the closure commit. Then execute `IS3-U01` in `contracts/IS-0003.json`: revalidate the image source gate, acquire exact artifacts without running them, and retain SBOM, provenance, license, scan, and platform-digest evidence before any runtime decision.
+Execute `IS3-U01` in `contracts/IS-0003.json`: revalidate the image source gate, acquire exact artifacts without running them, and retain SBOM, provenance, license, scan, and platform-digest evidence before any runtime decision.
