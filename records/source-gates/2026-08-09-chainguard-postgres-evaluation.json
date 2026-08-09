@@ -1,0 +1,226 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-007",
+  "assessed_at": "2026-08-09T19:05:00Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "verify the exact public image and attestation signatures",
+      "retrieve exact signed SPDX, SLSA and apko configuration attestations",
+      "pull the exact linux/amd64 image into local Docker custody without running it",
+      "scan the exact local image offline with the already gated Trivy database",
+      "decide whether the candidate may replace the blocked Docker Official PostgreSQL artifact"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Evaluate the exact anonymous Chainguard Free PostgreSQL 18 candidate as a lower-vulnerability replacement for the blocked Docker Official Image. This gate permits signature, attestation, license, SBOM and vulnerability inspection plus non-executing acquisition; it does not approve runtime use or redistribution.",
+    "planned_actions": [
+      "verify exact image signature",
+      "verify and retain exact attestations",
+      "pull exact linux/amd64 artifact without running it",
+      "scan exact local artifact offline",
+      "retain a runtime disposition"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "chainguard-postgres-18-20260809",
+      "name": "Chainguard Free PostgreSQL exact 2026-08-09 image",
+      "locator": "cgr.dev/chainguard/postgres@sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
+      "platform": {
+        "os": "linux",
+        "architecture": "amd64",
+        "child_manifest": "sha256:fb7f999b914c2217128f1b3833524df362316ae9452ffd74d116b6c1b812a088"
+      },
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect cgr.dev/chainguard/postgres:latest --format {{json .}}",
+              "observed_at": "2026-08-09T18:56:20Z",
+              "note": "The public tag resolved to OCI index sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9 created 2026-08-09T04:38:19Z with linux/amd64 child sha256:fb7f999b914c2217128f1b3833524df362316ae9452ffd74d116b6c1b812a088."
+            },
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/postgres/versions",
+              "observed_at": "2026-08-09T18:51:47Z",
+              "note": "Chainguard's public catalog identifies the current free latest track as PostgreSQL 18.4."
+            }
+          ],
+          "note": "The mutable discovery tag is not retained as authority; all approved actions use the exact index and platform child digest."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/postgres/overview",
+              "observed_at": "2026-08-09T18:51:47Z",
+              "note": "Chainguard's official image directory identifies this as the PostgreSQL image packaged and maintained by Chainguard."
+            }
+          ],
+          "note": "Publisher identity is direct and independently signature-checkable."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://edu.chainguard.dev/chainguard/chainguard-images/chainguard-registry/authenticating/",
+              "observed_at": "2026-08-09T18:51:47Z",
+              "note": "Chainguard documents that public Free images require no authentication and are free to use."
+            },
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect cgr.dev/chainguard/postgres:latest --format {{json .}}",
+              "observed_at": "2026-08-09T18:56:20Z",
+              "note": "Exact registry metadata was anonymously readable without credentials."
+            }
+          ],
+          "note": "Authentication, private production tags, Catalog Starter selection and paid access are forbidden."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/chainguard-images/images/blob/main/LICENSE",
+              "observed_at": "2026-08-09T19:04:31Z",
+              "note": "The public image-definition repository is Apache-2.0 licensed."
+            },
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/postgres/sbom",
+              "observed_at": "2026-08-09T19:03:55Z",
+              "note": "The catalog exposes component-level licenses across the image SBOM; exact notices and copyleft obligations remain pending signed-SBOM reconciliation."
+            }
+          ],
+          "note": "Controlled acquisition and evaluation are permitted. Redistribution remains blocked pending exact SBOM and notice review."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/postgres/provenance",
+              "observed_at": "2026-08-09T19:03:55Z",
+              "note": "Chainguard publishes Sigstore image signatures plus signed SLSA v1, apko configuration and SPDX attestations for the public PostgreSQL image."
+            },
+            {
+              "type": "live",
+              "locator": "https://edu.chainguard.dev/chainguard/chainguard-images/how-to-use/verifying-chainguard-images-and-metadata-signatures-with-cosign/",
+              "observed_at": "2026-08-09T18:58:08Z",
+              "note": "Official verification fixes the issuer to GitHub Actions OIDC and the identity to chainguard-images/images release.yaml on main."
+            }
+          ],
+          "note": "Exact image and each required attestation must verify against the fixed public release workflow before acquisition is treated as trusted."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect cgr.dev/chainguard/postgres:latest --format {{json .Manifest}}",
+              "observed_at": "2026-08-09T18:56:20Z",
+              "note": "The exact 1,131-byte OCI index binds amd64 child sha256:fb7f999b914c2217128f1b3833524df362316ae9452ffd74d116b6c1b812a088 and arm64 child sha256:2d4cfbdf6fa1531344ec4121b94e05d643795300504b0819a24da530991249cc."
+            }
+          ],
+          "note": "The exact index signature, exact amd64 child and local image identity must all match; no tag fallback is permitted."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/postgres/vulnerabilities",
+              "observed_at": "2026-08-09T19:03:55Z",
+              "note": "The public catalog currently reports the PostgreSQL latest image free of detected CVEs; IncidentSeal will independently rescan the exact digest."
+            },
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/postgres/specifications",
+              "observed_at": "2026-08-09T19:03:55Z",
+              "note": "The image provides PostgreSQL 18 entrypoint semantics but declares User 0 and includes a shell."
+            }
+          ],
+          "note": "Low vulnerability density is promising, but root-default execution and shell presence are explicit runtime risks; scan success cannot alone approve use."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "static",
+              "locator": "docs/threat-model.md",
+              "note": "Only the public exact image and public attestations are accessed. The image remains unexecuted and receives no Docker socket, secret, mount, network or repository content."
+            }
+          ],
+          "note": "The registry and verification tools receive no private project input or approval state."
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [
+      "exact image signature",
+      "exact SLSA attestation signature and subject",
+      "exact apko configuration attestation signature and subject",
+      "exact SPDX attestation signature and subject",
+      "anonymous exact pull",
+      "local platform identity",
+      "offline Trivy SBOM vulnerability and license disposition",
+      "non-root runtime feasibility without security weakening"
+    ],
+    "approved_actions": [
+      "verify exact signatures and attestations",
+      "pull exact linux/amd64 artifact without running it",
+      "scan exact local artifact offline",
+      "retain a replacement disposition"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "anonymous read-only verification of the exact public digest and attestations",
+      "anonymous pull of only the exact public linux/amd64 artifact",
+      "non-executing local metadata inspection",
+      "offline scan with the already exact-pinned Trivy tool and DB",
+      "retain exact SBOM provenance signature vulnerability license and platform receipts"
+    ],
+    "requires_explicit_authorization": [
+      "authenticate, select a Catalog Starter entitlement, accept interactive terms, buy access or use a private production image",
+      "use latest or another floating tag after discovery",
+      "run the image before all execution gates pass",
+      "accept root-default execution merely because the vulnerability scan is clean",
+      "publish, mirror, redistribute or treat catalog claims as final scan evidence"
+    ]
+  }
+}
