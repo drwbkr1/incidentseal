@@ -1,0 +1,56 @@
+{
+  "schema_version": "incidentseal-u08-clean-clone-receipt/v1",
+  "receipt_id": "IS-RECEIPT-0003-U08-CLEAN-CLONE",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U08",
+  "observed_at_utc": "2026-08-09T22:22:00Z",
+  "verification_verdict": "PASS",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "branch": "main",
+    "commit": "71dca263a1e696c454b3e48fcbb394cd04d802a0",
+    "tree": "44b0626b8cb33235c3c4482cc04ffc4ced0d71b3",
+    "clone_clean_before_and_after": true,
+    "credential_helpers_disabled": true,
+    "terminal_prompt_disabled": true,
+    "credential_free": true
+  },
+  "bindings": {
+    "implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:2a36627591b665ce3922534d1646ce3f926d28e15b007a78aaae84498a3cc29a","lock_id":"IS-TOPOLOGY-IMPLEMENTATION-LOCK-0010"},
+    "candidate_runtime_lock": {"path":"requirements/history/IS3-U08-reliability-candidate.runtime.lock.json","sha256":"sha256:69d2a23830e30e8b6318a8c3af7f8f0ea743b1ccdb0d2ccd1d040e5ba8e7c9e4","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0008"},
+    "retained_volumes_lock": {"path":"requirements/retained-runtime-volumes.lock.json","sha256":"sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"}
+  },
+  "checks": [
+    {"id":"project-control","status":"PASS","observed":{"custody":"PASS","control_valid":true,"milestone_valid":true,"active_units":["IS3-U08"]}},
+    {"id":"unit-tests","status":"PASS","observed":{"count":50}},
+    {"id":"static-implementation","status":"PASS","observed":{"verdict":"PASS"}},
+    {"id":"implementation-mutations","status":"PASS","observed":{"count":15,"verdict":"PASS"}},
+    {"id":"real-reliability","status":"PASS","observed":{"invocation_id":"62db3873-08f7-41e3-b970-4ffc4f6c62f8","process_exit_code":0,"check_count":14,"checks_pass":true}},
+    {"id":"state-separation","status":"PASS","observed":{"forced_verification":"FAIL","malformed_request":"INVALID","database_outage_lifecycle":"failed","host_stop_lifecycle":"cancelled","cancel_process_exit_code":137,"cancel_container_exit_code":137}},
+    {"id":"protected-volumes","status":"PASS","observed":{"count":3,"all_present":true}},
+    {"id":"disposable-teardown","status":"PASS","observed":{"containers_removed":true,"network_removed":true,"volume_removed":true}}
+  ],
+  "stable_digests": {
+    "tampered_receipt": "sha256:30517d896bfe27639a78fbfc9e4a198c534e24130afc8596698e0d9309027b11",
+    "python_invalid_output": "sha256:1061086bb37e4e68a4b7c36dfe99cfc6647fd849d964848f04927ebdaeeefaef",
+    "node_invalid_output": "sha256:9b5cea9f1de3b2540a683d37b2673a6973195503e7daaca54ec0e503d3dca18e",
+    "database_outage_output": "sha256:c9bd14522a7402128b8673cb0a70c0c93b5ceb777ce2daca19972cdb503d5069",
+    "cancellation_output": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "retained_invalid_harness_attempts": [
+    {"status":"INVALID","stage":"pre-execution","reason":"A combined clone, validation, runtime, and recursive-cleanup shell command was rejected by local command policy before execution."},
+    {"status":"INVALID","stage":"clone-validation","reason":"PowerShell ErrorAction Stop converted unittest's normal stderr summary into a NativeCommandError before exit-code inspection; no reliability command ran in that attempt."}
+  ],
+  "temporary_clone_custody": {
+    "path": "C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-u08-cleanclone-71dca263",
+    "canonical": false,
+    "onedrive": false,
+    "contains_secrets": false,
+    "cleanup_state": "retained-local-command-policy-denied-recursive-delete",
+    "affects_verification_verdict": false
+  },
+  "prohibited_claims": [
+    "This does not approve or execute a workflow manifest.",
+    "This does not verify dashboard, portable receipt recovery, registry publication, downloaded release, or image redistribution."
+  ]
+}

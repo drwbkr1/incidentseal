@@ -69,7 +69,7 @@
     {"id":"EXIT-DATABASE-SURFACE","status":"pass","evidence":["requirements/topology-runtime.lock.json","records/evaluations/IS-0003-U05-database-surface.json"]},
     {"id":"EXIT-PYTHON-RUNNER","status":"pass","evidence":["requirements/topology-runtime.lock.json","records/evaluations/IS-0003-U06-python-runner.json"]},
     {"id":"EXIT-NODE-RUNNER","status":"pass","evidence":["requirements/topology-runtime.lock.json","records/evaluations/IS-0003-U07-node-runner.json"]},
-    {"id":"EXIT-REAL-TOPOLOGY","status":"pending","evidence":[]},
+    {"id":"EXIT-REAL-TOPOLOGY","status":"pass","evidence":["requirements/topology-runtime.lock.json","records/evaluations/IS-0003-U08-reliability.json","records/surface-receipts/IS-0003-U08-clean-clone-reliability.json"]},
     {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
   ],
   "units": [
@@ -194,13 +194,13 @@
       "depends_on":["IS3-U07"],
       "action_class":"deterministic_validation",
       "human_gate":false,
-      "status":"in_progress",
+      "status":"complete",
       "inputs":["All verified real topology components"],
       "outputs":["Repeated topology evaluation","Clean-clone topology receipt","Resource cleanup receipt"],
-      "gates":{"protected_evidence_volumes":"pass","fresh_bootstrap":"pass","real_runners":"pass","forced_product_failure":"pass","invalid_input":"pass","execution_failure":"pass","host_cancellation":"pass","restart_persistence":"pass","orphan_detection":"pass","repeatability":"pass","teardown":"pass","clean_clone":"not_started"},
-      "disposition":null,
-      "retained_failures":[],
-      "exit_condition_delta":{"expected":["EXIT-REAL-TOPOLOGY"],"observed":[],"decision_value":"unknown","rationale":"End-to-end reliability and clean-clone topology behavior remain unverified."},
+      "gates":{"protected_evidence_volumes":"pass","fresh_bootstrap":"pass","real_runners":"pass","forced_product_failure":"pass","invalid_input":"pass","execution_failure":"pass","host_cancellation":"pass","restart_persistence":"pass","orphan_detection":"pass","repeatability":"pass","teardown":"pass","clean_clone":"pass"},
+      "disposition":"pass",
+      "retained_failures":["Two clean-clone harness attempts remain INVALID: one combined command was rejected before execution by local command policy, and one split attempt treated normal unittest stderr as a terminating PowerShell error before any real reliability command ran. The corrected split harness passed."],
+      "exit_condition_delta":{"expected":["EXIT-REAL-TOPOLOGY"],"observed":["EXIT-REAL-TOPOLOGY"],"decision_value":"advances_exit","rationale":"Two canonical runs and one exact credential-free public-clone run passed fresh bootstrap, exact runners and rows, distinct PASS/FAIL/INVALID/failed/cancelled states, recovery, restart persistence, orphan detection, protected-volume custody, repeatability, and disposable teardown."},
       "next_dependency":"IS3-U09"
     },
     {
@@ -209,7 +209,7 @@
       "depends_on":["IS3-U08"],
       "action_class":"git_push",
       "human_gate":false,
-      "status":"planned",
+      "status":"ready",
       "inputs":["Verified IS-0003 tree"],
       "outputs":["Verified remote main checkpoint","checkpoint-is-0003 marker","Public checkpoint receipt"],
       "gates":{},
@@ -240,12 +240,13 @@
       "Real container identity, privilege, capability, filesystem, mount, network and egress probes",
       "Real PostgreSQL migration, health, persistence and restart checks"
       ,"Real Python runner positive, negative, database, isolation, repeatability and teardown checks",
-      "Real Node runner positive, negative, cross-runner, database, isolation, repeatability and teardown checks"
+      "Real Node runner positive, negative, cross-runner, database, isolation, repeatability and teardown checks",
+      "Repeated canonical and credential-free clean-clone reliability, failure, invalidity, cancellation, recovery, restart, orphan and teardown checks"
     ]
   },
   "handoff": {
     "current_checkpoint":"IS-0003 active",
-    "next_action":"Implement and run the bounded U08 reliability surface for clean start, retained-state resume, forced product failure, cancellation, restart, teardown, orphan detection, and clean-clone topology replay without weakening the trust boundary.",
+    "next_action":"Execute U09: commit and push U08 closure, verify remote equality, clone the exact closure commit without credentials, replay the required bounded gates, create the checkpoint-is-0003 annotated marker, push it, and independently verify the public commit and tag without claiming later product surfaces.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not run an image merely because acquisition or metadata passed",

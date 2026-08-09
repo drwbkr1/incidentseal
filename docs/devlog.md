@@ -163,3 +163,13 @@ This closes only `EXIT-NODE-RUNNER`. `IS3-U08` owns clean-start, retained-state 
 Two canonical-checkout reliability runs passed. Each fresh-bootstrapped PostgreSQL, applied the migration, executed both real runners, verified exact rows, detected a tampered temporary receipt as verification `FAIL`, retained malformed requests as `INVALID`, observed a valid runner against a stopped database as lifecycle `failed`, recovered after restart, host-cancelled a bounded sleeping query with process and container exit `137`, verified three rows through another restart, detected no one-shot orphan, and removed the disposable container, network, and volume. All three retained volumes remained present.
 
 The U08 unit remains open. This candidate must be committed and pushed before an exact credential-free public clone can replay the same control, static, test, and real reliability surfaces.
+
+## 2026-08-09 - Credential-free reliability replay
+
+The in-progress U08 candidate was committed and pushed as `71dca263a1e696c454b3e48fcbb394cd04d802a0`, tree `44b0626b8cb33235c3c4482cc04ffc4ced0d71b3`. An exact public clone with Git credential helpers, askpass, and terminal prompting disabled passed project-control and milestone validation, 50 tests, the static implementation validator, all 15 implementation mutations, and real reliability invocation `62db3873-08f7-41e3-b970-4ffc4f6c62f8`.
+
+The public clone repeated all 14 real checks and the same stable digests for completed verification `FAIL`, malformed request `INVALID`, database-outage lifecycle `failed`, and host-stop lifecycle `cancelled` at process/container exit `137`. It removed the disposable container, network, and volume and preserved every protected evidence volume.
+
+Two harness attempts remain `INVALID`: one combined command was blocked before execution, and one split attempt let PowerShell treat unittest's normal stderr summary as a terminating error before the real probe ran. The corrected split harness passed. A later local command-policy gate denied recursive removal of the clean non-OneDrive temp clone, so that non-canonical diagnostic custody remains explicit rather than being misreported as cleaned.
+
+This closes `EXIT-REAL-TOPOLOGY`, not IS-0003 publication. `IS3-U09` must bind the closure commit, verify it from public custody, create and push `checkpoint-is-0003`, and independently verify the marker before the milestone closes.

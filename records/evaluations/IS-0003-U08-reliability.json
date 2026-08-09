@@ -1,0 +1,55 @@
+{
+  "schema_version": "incidentseal-reliability-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U08-RELIABILITY",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U08",
+  "observed_at_utc": "2026-08-09T22:25:13Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Repeated canonical and exact public clean-clone disposable topology behavior across fresh start, real runners, verification failure, invalid input, execution failure, recovery, cancellation, restart persistence, orphan detection, protected-volume custody, and teardown.",
+  "bindings": {
+    "implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:2a36627591b665ce3922534d1646ce3f926d28e15b007a78aaae84498a3cc29a","lock_id":"IS-TOPOLOGY-IMPLEMENTATION-LOCK-0010"},
+    "runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:8b9bbb6b7ad888a280a46ec0d591bc2470859471758fdbb33287c2ca5eeb216e","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0009"},
+    "local_evaluation": {"path":"records/evaluations/IS-0003-U08-reliability-local.json","sha256":"sha256:7f0f6c6e3d44b9bb6a13f229e332617a2dd643392395e46b0feb9352eb26f874"},
+    "clean_clone_receipt": {"path":"records/surface-receipts/IS-0003-U08-clean-clone-reliability.json","sha256":"sha256:d036110bd1a780bece01d5264fbcc05a05ba0e95e97016c79e2c5324614e8973"}
+  },
+  "invocations": [
+    {"custody":"canonical","invocation_id":"48718855-3b2c-4124-ba38-0c9f8ed7e3d4","verdict":"PASS","exit_code":0},
+    {"custody":"canonical-repeat","invocation_id":"629bfa3f-148c-4b3e-b8ad-4b8d0be6646f","verdict":"PASS","exit_code":0},
+    {"custody":"credential-free-public-clone","invocation_id":"62db3873-08f7-41e3-b970-4ffc4f6c62f8","verdict":"PASS","exit_code":0,"commit":"71dca263a1e696c454b3e48fcbb394cd04d802a0","tree":"44b0626b8cb33235c3c4482cc04ffc4ced0d71b3"}
+  ],
+  "results": {
+    "pass_count": 3,
+    "canonical_repeat_count": 2,
+    "clean_clone_count": 1,
+    "unit_tests_in_clone": 50,
+    "implementation_mutations_in_clone": 15,
+    "reliability_checks_per_attempt": 14,
+    "stable_receipt_digests": true,
+    "stable_state_distinctions": true,
+    "protected_volume_count": 3,
+    "disposable_resources_removed_after_every_attempt": true
+  },
+  "state_separation": [
+    {"scenario":"untampered exact result","lifecycle":"completed","verification_verdict":"PASS"},
+    {"scenario":"tampered temporary receipt","lifecycle":"completed","verification_verdict":"FAIL"},
+    {"scenario":"malformed request","lifecycle":"completed","verification_verdict":"INVALID"},
+    {"scenario":"valid runner with unavailable database","lifecycle":"failed","verification_verdict":null},
+    {"scenario":"host-stopped bounded query","lifecycle":"cancelled","verification_verdict":null,"process_exit_code":137,"container_exit_code":137}
+  ],
+  "retained_invalid_attempts": [
+    "The combined clone, validation, runtime, and recursive-cleanup shell command was rejected before execution by local command policy.",
+    "The first split clone harness treated unittest stderr as a PowerShell NativeCommandError before exit-code inspection; no real reliability command ran in that invalid attempt."
+  ],
+  "temporary_clone_custody": {
+    "canonical": false,
+    "onedrive": false,
+    "cleanup_state": "retained-local-command-policy-denied-recursive-delete",
+    "security_or_release_claim": false
+  },
+  "prohibited_claims": [
+    "No workflow manifest is approved or executed.",
+    "Dashboard, portable receipt recovery, registry publication, downloaded release, image redistribution, and release completion remain unverified."
+  ],
+  "decision": {"status":"advance","next_unit":"IS3-U09","reason":"The exact public candidate repeated every bounded real reliability gate without credentials, Docker residue, protected-volume drift, or state collapse."}
+}

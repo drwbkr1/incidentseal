@@ -12,7 +12,7 @@
   "bindings": {
     "topology_contract": {"path":"contracts/topology-v1.json","sha256":"sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351","revision":3},
     "implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:2a36627591b665ce3922534d1646ce3f926d28e15b007a78aaae84498a3cc29a","lock_id":"IS-TOPOLOGY-IMPLEMENTATION-LOCK-0010"},
-    "runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:69d2a23830e30e8b6318a8c3af7f8f0ea743b1ccdb0d2ccd1d040e5ba8e7c9e4","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0008"},
+    "runtime_lock": {"path":"requirements/history/IS3-U08-reliability-candidate.runtime.lock.json","sha256":"sha256:69d2a23830e30e8b6318a8c3af7f8f0ea743b1ccdb0d2ccd1d040e5ba8e7c9e4","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0008"},
     "retained_volumes_lock": {"path":"requirements/retained-runtime-volumes.lock.json","sha256":"sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"}
   },
   "invocations": [

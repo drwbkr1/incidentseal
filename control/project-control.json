@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0003",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit and push the in-progress U08 reliability candidate, then replay control, tests, static topology, and the real reliability surface from an exact credential-free public clone"
+    "next_action": "Execute U09 by publishing the U08 closure commit, verifying it from an exact credential-free public clone, then creating and independently verifying checkpoint-is-0003 without claiming later surfaces"
   }
 }

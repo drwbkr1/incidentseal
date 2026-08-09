@@ -35,12 +35,12 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U07` passed on its first two real evidence runs. The host CLI executes the shipped Node application command against the same read-only staged contract and narrow database role, verifies the exact Node result and row, and requires the retained Python row to share the canonical input digest while keeping language-bound result digests distinct. Malformed input produced no output or Node row. Both invocations passed exact image, numeric user, read-only root, dropped capability, no-new-privileges, narrow mount, internal network, sensitive-environment, Docker-endpoint, repeatability, and teardown gates. No container or network remains; the same revision-3 volume is retained.
 
-`IS3-U08` is in progress. Two canonical-checkout disposable runs passed fresh bootstrap, both real runners, exact rows, tampered-receipt `FAIL`, malformed-input `INVALID`, database-outage lifecycle `failed`, post-failure recovery, host cancellation at exit `137`, restart persistence, orphan detection, protection of all three retained volumes, and complete disposable teardown. The candidate must now be committed and replayed from an exact credential-free public clone before U08 closes.
+`IS3-U08` passed. Two canonical-checkout disposable runs and one exact credential-free public-clone run passed fresh bootstrap, both real runners, exact rows, tampered-receipt `FAIL`, malformed-input `INVALID`, database-outage lifecycle `failed`, post-failure recovery, host cancellation at exit `137`, restart persistence, orphan detection, protection of all three retained volumes, and complete disposable teardown. The clone also passed 50 tests and 15 implementation mutations. Two invalid harness attempts remain retained. Local command policy denied recursive deletion of the clean non-canonical temp clone, which remains outside OneDrive and outside canonical custody.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- The database and both real language application surfaces now pass, but cancellation, forced failure, restart recovery, orphan detection, and clean-clone topology remain unverified in `IS3-U08`.
+- The database, both real language surfaces, and bounded topology reliability now pass; the exact IS-0003 closure commit and public checkpoint marker remain pending in `IS3-U09`.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; their four revision-2 derived images ran only under the exact topology contract. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -50,4 +50,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Commit and push the in-progress `IS3-U08` candidate, then clone that exact public commit without credentials and replay control, unit, static topology, and the real disposable reliability surface. Do not close U08 from canonical-checkout evidence alone.
+Execute `IS3-U09`: publish the U08 closure commit, verify exact local/remote equality, replay the required bounded gates from its credential-free public clone, create annotated marker `checkpoint-is-0003`, push it, and independently verify the public commit and tag without claiming dashboard, receipt recovery, redistribution, or release completion.
