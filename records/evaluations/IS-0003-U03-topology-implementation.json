@@ -28,7 +28,7 @@
       "sha256": "sha256:a6443d83ae9eb463780a74f76e34db496a7731f0470fa6976a7678cc1a4eae82"
     },
     "implementation_lock": {
-      "path": "requirements/topology-implementation.lock.json",
+      "path": "requirements/history/IS3-U03-topology-implementation.lock.json",
       "sha256": "sha256:9812c11dc9dc14ba3d3577e3becc195728f90c47df9467306083db4467ff89d8",
       "lock_id": "IS-TOPOLOGY-IMPLEMENTATION-LOCK-0001"
     },

@@ -99,3 +99,11 @@ Two malformed read-only policy-status commands returned usage exit `64` and rema
 The implementation lock binds every executable and rendered product input. The real render preserved all frozen commands, environments, dependencies, health checks, tmpfs settings, staged mounts, labels, numeric users, read-only roots, dropped capabilities, PID limits, internal networking, and no-pull behavior. Python and Node self-tests independently produced the same canonical input digest. Forty-one tests and 13 recomputed-lock or stale-lock implementation mutations passed.
 
 The first full-model digest was rejected as unstable because generated staging paths changed between runs. The final model digest redacts only those generated source paths and repeated exactly. The first mutation-harness baseline also failed closed because its temporary copy omitted the locked runner fixture; the copy scope was corrected before any mutation result was accepted. No image built, and Docker shows no IncidentSeal container, network, volume, or derived image. `IS3-U04` owns the first runtime build and start.
+
+## 2026-08-09 - First runtime startup failure
+
+`IS3-U04` first reconciled a control-contract vocabulary defect: completed units used unsupported `completed` and `decision_value: high` values. The corrected contract validates and authorizes IS3-U04. The host CLI then built exact copy-only migration, Python, and Node images with build networking disabled and bound their local image IDs.
+
+Two topology-only runtime attempts failed at PostgreSQL health. The first orchestrator revision cleaned the failed container before retaining logs, so that diagnostic-loss defect was fixed. The second attempt verified and reused the exact images, resumed the labeled volume, and captured the root cause: `mkdir: can't create directory '/var/lib/postgresql/data/pgdata': Permission denied`. Docker creates the new named volume root-owned, while the explicit security gate correctly forces PostgreSQL to `70:70`.
+
+The project will not run PostgreSQL as root or use a privileged chown helper. Containers and network were removed; the failed labeled volume and three image IDs remain retained. The bounded remediation is a new exact-base, copy-only database image that establishes UID/GID 70 ownership at build time, followed by replay of every static and runtime gate.

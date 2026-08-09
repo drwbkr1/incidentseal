@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` through `IS3-U03` passed. Exact source-gated images, the mutation-tested topology contract, and the exact static implementation are frozen. The real host CLI and Docker Compose render match the normalized security projection, both runner sources agree on canonical input, and 13 implementation mutations fail closed. No image has been built and no container has started; runtime validation begins in `IS3-U04`.
+Progress: `IS3-U01` through `IS3-U03` passed. `IS3-U04` built three exact copy-only images, then retained two failed runtime attempts: PostgreSQL cannot initialize the root-owned named volume under required user `70:70`. Containers and network cleaned up, the failed volume and image IDs remain evidence, and the next bounded remediation is a copy-only ownership-seeding database image—not a weakened root runtime.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

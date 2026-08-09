@@ -11,6 +11,7 @@ from typing import Any, Sequence
 
 from .approval import ApprovalResult, inspect_document
 from .manifest import ALGORITHM, PROFILE, ManifestError, ManifestReadError, load_manifest
+from .runtime import runtime_probe
 from .topology import TopologyError, validate_platform_topology
 
 
@@ -27,6 +28,7 @@ COMMANDS = {
     ("policy", "status"): "policy.status",
     ("policy", "diff"): "policy.diff",
     ("topology", "validate"): "topology.validate",
+    ("topology", "runtime-probe"): "topology.runtime-probe",
 }
 
 
@@ -171,6 +173,15 @@ def _success(request: Request) -> dict[str, Any]:
             verdict="PASS",
             data=result.data,
             evidence=result.evidence,
+        )
+    if request.command == "topology.runtime-probe":
+        data = runtime_probe()
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=EXIT_SUCCESS,
+            verdict="PASS",
+            data=data,
         )
     assert request.manifest is not None
     document = load_manifest(request.manifest)

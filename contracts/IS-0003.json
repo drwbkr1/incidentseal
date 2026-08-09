@@ -79,7 +79,7 @@
       "depends_on":[],
       "action_class":"dependency_management",
       "human_gate":false,
-      "status":"completed",
+      "status":"complete",
       "inputs":["records/source-gates/2026-08-09-initial-images.json","Exact host platform inventory","Current vulnerability and license policies"],
       "outputs":["Exact-image lock","Acquisition receipts","SBOM and provenance receipts","Vulnerability and license disposition"],
       "gates":{"source":"pass","integrity":"pass","signature_provenance":"pass","sbom":"pass","vulnerability":"pass","license_local_use":"pass","runtime_execution":"not_started"},
@@ -90,7 +90,7 @@
         "Cosign's Authenticode-only bootstrap path was inconclusive because the executable was NotSigned; the separately source-gated Sigstore TUF artifact-key path passed before Cosign executed.",
         "The exact-image evaluation preserves failed and invalid evidence attempts separately from the final passing disposition."
       ],
-      "exit_condition_delta":{"expected":["EXIT-IMAGE-ACQUISITION-SCAN"],"observed":["EXIT-IMAGE-ACQUISITION-SCAN"],"decision_value":"high","rationale":"Four exact linux/amd64 images are digest-locked with local identity, source, signature or provenance, SBOM, vulnerability, license and conditional execution dispositions; no container was started."},
+      "exit_condition_delta":{"expected":["EXIT-IMAGE-ACQUISITION-SCAN"],"observed":["EXIT-IMAGE-ACQUISITION-SCAN"],"decision_value":"advances_exit","rationale":"Four exact linux/amd64 images are digest-locked with local identity, source, signature or provenance, SBOM, vulnerability, license and conditional execution dispositions; no container was started."},
       "next_dependency":"IS3-U02"
     },
     {
@@ -99,7 +99,7 @@
       "depends_on":["IS3-U01"],
       "action_class":"update_project_records",
       "human_gate":false,
-      "status":"completed",
+      "status":"complete",
       "inputs":["Passed exact-image disposition","INCIDENTSEAL-PRODUCT-001","Frozen workflow manifest authority"],
       "outputs":["Compose contract","Topology schemas and fixtures","ADR for host orchestration and staged custody","Mutation plan"],
       "gates":{"schema":"pass","digest_binding":"pass","authority":"pass","static_security":"pass","mutation":"pass","runtime_execution":"not_started"},
@@ -107,7 +107,7 @@
       "retained_failures":[
         "Two malformed read-only policy-status invocations returned stable usage exit 64 and remain distinct INVALID attempts. The correct invocation returned the expected MISSING approval state and INVALID verification verdict at exit 12."
       ],
-      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":["EXIT-COMPOSE-CONTRACT"],"decision_value":"high","rationale":"The exact-image-bound topology contract, normalized render contract, staged-custody model, host-only authority, evidence separation, and twelve fail-closed security mutations passed without starting Docker runtime surfaces."},
+      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":["EXIT-COMPOSE-CONTRACT"],"decision_value":"advances_exit","rationale":"The exact-image-bound topology contract, normalized render contract, staged-custody model, host-only authority, evidence separation, and twelve fail-closed security mutations passed without starting Docker runtime surfaces."},
       "next_dependency":"IS3-U03"
     },
     {
@@ -116,7 +116,7 @@
       "depends_on":["IS3-U02"],
       "action_class":"reversible_remediation",
       "human_gate":false,
-      "status":"completed",
+      "status":"complete",
       "inputs":["Frozen topology contract","Approved exact images"],
       "outputs":["Dockerfiles","Compose file","Locks","Migrations","Host CLI orchestration","Static topology receipts"],
       "gates":{"implementation_lock":"pass","real_cli":"pass","compose_render":"pass","runner_source":"pass","mutation":"pass","build_execution":"not_started","runtime_execution":"not_started"},
@@ -125,7 +125,7 @@
         "The initial full Compose model digest included generated temporary paths and was not stable. The final redacted model digest repeated exactly.",
         "The first mutation-harness copy omitted one locked fixture and failed with IS_TOPOLOGY_READ; the corrected bounded copy passed baseline and all thirteen mutations."
       ],
-      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":["EXIT-COMPOSE-CONTRACT"],"decision_value":"high","rationale":"The real host CLI rendered the exact locked Compose implementation, matched the frozen security projection, passed runner source probes and thirteen implementation mutations, and changed no Docker resource history."},
+      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":["EXIT-COMPOSE-CONTRACT"],"decision_value":"advances_exit","rationale":"The real host CLI rendered the exact locked Compose implementation, matched the frozen security projection, passed runner source probes and thirteen implementation mutations, and changed no Docker resource history."},
       "next_dependency":"IS3-U04"
     },
     {
@@ -134,13 +134,13 @@
       "depends_on":["IS3-U03"],
       "action_class":"deterministic_validation",
       "human_gate":false,
-      "status":"ready",
+      "status":"in_progress",
       "inputs":["Statically valid topology","Passed image execution gate"],
       "outputs":["Real Compose topology receipt","Runtime hardening receipt","Retained startup and teardown attempts"],
-      "gates":{},
+      "gates":{"derived_image_build":"pass","runtime_identity":"pass","database_health":"fail","runtime_security":"not_started","teardown":"pass_with_volume_retained"},
       "disposition":null,
-      "retained_failures":[],
-      "exit_condition_delta":{"expected":["EXIT-TOPOLOGY-SECURITY"],"observed":[],"decision_value":"unknown","rationale":"No real container surface has yet run."},
+      "retained_failures":["Two host-CLI runtime attempts returned IS_RUNTIME_HEALTH. The second captured confirmed PostgreSQL PGDATA permission denial under the required 70:70 runtime user. Three derived image IDs and the failed volume remain retained; containers and network were removed."],
+      "exit_condition_delta":{"expected":["EXIT-TOPOLOGY-SECURITY"],"observed":[],"decision_value":"risk_reduction","rationale":"Exact builds and cleanup passed, but runtime security remains unproven because the database cannot initialize the root-owned named volume as required user 70:70. A copy-only ownership-seeding database image is the bounded remediation."},
       "next_dependency":"IS3-U05"
     },
     {
@@ -241,7 +241,7 @@
   },
   "handoff": {
     "current_checkpoint":"IS-0003 active",
-    "next_action":"Execute IS3-U04: through the host CLI, build the three copy-only derived images without build network, bind their real local image IDs in a runtime lock, rerender, then start only the platform-validation topology and probe identity, privilege, filesystem, mount, network, egress, health, Docker-socket absence, and teardown.",
+    "next_action":"Remediate active IS3-U04 without weakening non-root execution: archive the topology v1 contract, add a copy-only exact-base database image that seeds UID/GID 70 volume ownership, replay static gates, then retry the host-CLI runtime probe against a clean evidence-bound volume.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not run an image merely because acquisition or metadata passed",
