@@ -1,0 +1,204 @@
+{
+  "schema_version": "incidentseal-image-lock/v1",
+  "lock_id": "IS-IMAGE-LOCK-0001",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U01",
+  "generated_at_utc": "2026-08-09T19:30:54Z",
+  "platform": {
+    "os": "linux",
+    "architecture": "amd64"
+  },
+  "policy": {
+    "mutable_tags_are_authority": false,
+    "index_and_platform_child_are_required": true,
+    "container_execution_before_this_lock": false,
+    "approved_scope": "Controlled IS-0003 build and runtime inspection under the active contract only.",
+    "redistribution_status": "INCONCLUSIVE",
+    "redistribution_note": "Do not publish or mirror these images until exact component notices, NOASSERTION entries, and release obligations are reconciled."
+  },
+  "images": [
+    {
+      "role": "dockerfile_frontend",
+      "name": "Dockerfile frontend 1.26.0",
+      "source_gate": "records/source-gates/2026-08-09-initial-images.json",
+      "index_reference": "docker.io/docker/dockerfile@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32",
+      "index_digest": "sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32",
+      "platform_child_digest": "sha256:34b128e419449565adc5ed7f487a6f503a73f1077012cfed86354c731338c44f",
+      "local_image_id": "sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32",
+      "local_size_bytes": 14151496,
+      "entrypoint": ["/bin/dockerfile-frontend"],
+      "user": null,
+      "provenance": {
+        "status": "PASS",
+        "source_revision": "f5d08d5a04381687203ced27ef877e0c417fd122",
+        "evidence": "records/source-gates/2026-08-09-initial-images.json"
+      },
+      "sbom": {
+        "path": "records/scans/IS-0003-U01/dockerfile-frontend-1.26.0.spdx.json",
+        "sha256": "8d342c9e534160832e11613d2ef0b6785e642e5c59c174e0c5334d814b19810e"
+      },
+      "vulnerability_scan": {
+        "path": "records/scans/IS-0003-U01/dockerfile-frontend-1.26.0.vuln.json",
+        "sha256": "f72ab00f4e773dd3a2dcdc4148c299c54aabdf8edf4962bf993e526cee794455",
+        "raw_findings": {"CRITICAL": 2, "HIGH": 3, "MEDIUM": 1, "UNKNOWN": 1},
+        "disposition": "PASS",
+        "note": "The findings target BuildKit daemon packages or an unlinked OpenPGP package. Non-running binary inspection found the Dockerfile frontend package and none of the affected daemon or OpenPGP package paths. The official CVE-2026-33747 advisory also states that the well-known docker/dockerfile frontend is not affected."
+      },
+      "license": {
+        "controlled_local_use": "PASS",
+        "redistribution": "INCONCLUSIVE"
+      },
+      "approved_for_next_unit": true,
+      "constraints": [
+        "Use only as an exact-digest Dockerfile syntax frontend.",
+        "Build only controlled local contexts; remote Git contexts and untrusted syntax overrides are forbidden.",
+        "Do not grant insecure entitlements or pass secrets as build arguments."
+      ]
+    },
+    {
+      "role": "postgresql",
+      "name": "Chainguard PostgreSQL 18.4",
+      "source_gate": "records/source-gates/2026-08-09-chainguard-postgres-evaluation.json",
+      "index_reference": "cgr.dev/chainguard/postgres@sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
+      "index_digest": "sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
+      "platform_child_digest": "sha256:fb7f999b914c2217128f1b3833524df362316ae9452ffd74d116b6c1b812a088",
+      "local_image_id": "sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
+      "local_size_bytes": 142973118,
+      "entrypoint": ["/usr/bin/docker-entrypoint.sh", "postgres"],
+      "user": "0",
+      "signature": {
+        "index_path": "records/attestations/IS-0003-U01/chainguard-postgres-index.signature.json",
+        "index_sha256": "d49fcbf019bb485c3a9289f24f7b91b75a189f07a4fb1bc2d69371dd11b63038",
+        "child_path": "records/attestations/IS-0003-U01/chainguard-postgres-amd64.signature.json",
+        "child_sha256": "31587e0e3d8f4eb50527d5acbb54ab633777f2b96bcbd087415918dc76fff705"
+      },
+      "provenance": {
+        "status": "PASS",
+        "builder": "https://github.com/chainguard-dev/terraform-provider-apko",
+        "build_type": "https://apko.dev/slsa-build-type@v1",
+        "slsa_path": "records/attestations/IS-0003-U01/chainguard-postgres-amd64.slsa-v1.dsse.json",
+        "slsa_sha256": "20980840abea1bf44d902dfce927be2bbff50e8a41877eda4dcd809dac8a15d1",
+        "apko_path": "records/attestations/IS-0003-U01/chainguard-postgres-amd64.apko-config.dsse.json",
+        "apko_sha256": "949c0e807eb883d787dc6820a14f57d63c48617975987af0c0ffb85a8024dbf1"
+      },
+      "sbom": {
+        "signed_path": "records/attestations/IS-0003-U01/chainguard-postgres-amd64.spdx.dsse.json",
+        "signed_sha256": "aa95b19af94b02118180b378e6d0d340dc1b64b7db3e16b0d8a9ea399d7b605b",
+        "scanner_path": "records/scans/IS-0003-U01/chainguard-postgres-18.4.spdx.json",
+        "scanner_sha256": "51952e134271284c6ad0ae95e3f4de8b29d54487f1b87627bbf08b21615d40c4"
+      },
+      "vulnerability_scan": {
+        "path": "records/scans/IS-0003-U01/chainguard-postgres-18.4.vuln.json",
+        "sha256": "2122218a0c6cd01ae4818027681ac21c2e4bf93192fae4a0c2c07f866e91e0b8",
+        "raw_findings": {},
+        "disposition": "PASS"
+      },
+      "license": {
+        "controlled_local_use": "PASS",
+        "redistribution": "INCONCLUSIVE"
+      },
+      "approved_for_next_unit": true,
+      "constraints": [
+        "Compose must force numeric user and group 70:70; root-default execution is forbidden.",
+        "Use an internal-only network with no published database port and no external egress.",
+        "Credential-free trust authentication is permitted only inside that isolated topology; no secret may be introduced.",
+        "Real initialization, health, persistence, restart, and ownership behavior remain unverified until later units."
+      ]
+    },
+    {
+      "role": "node_runner",
+      "name": "Google Distroless Node.js 24 Debian 13 nonroot",
+      "source_gate": "records/source-gates/2026-08-09-distroless-node24-evaluation.json",
+      "index_reference": "gcr.io/distroless/nodejs24-debian13@sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a",
+      "index_digest": "sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a",
+      "platform_child_digest": "sha256:f987682b3ea8d8e22497cb95edc5014d793612f7064e43df8104394db0ce19fe",
+      "local_image_id": "sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a",
+      "local_size_bytes": 54934819,
+      "entrypoint": ["/nodejs/bin/node"],
+      "working_directory": "/home/nonroot",
+      "user": "65532",
+      "signature": {
+        "index_path": "records/attestations/IS-0003-U01/distroless-node24-index.signature.json",
+        "index_sha256": "c0bb82769270c0f6a97228392a2b77c94776c500b5a99bd0ae0abccf920a670b",
+        "child_path": "records/attestations/IS-0003-U01/distroless-node24-amd64.signature.json",
+        "child_sha256": "e2662c2b4f05406c3e5d007b9704c89c1bb0ab7e52d678f5e5d2fd35515b2db4"
+      },
+      "provenance": {
+        "status": "PASS",
+        "evidence": "Keyless publisher signatures, exact OCI configuration, and reproducible Bazel layer history bind the public Distroless Node.js 24 artifact.",
+        "signed_slsa_availability": "INCONCLUSIVE"
+      },
+      "sbom": {
+        "path": "records/scans/IS-0003-U01/distroless-node24-debian13.spdx.json",
+        "sha256": "a838be58b49de7a9628fd94d2a697ca7fec2cf2d4e61d319c65c4817852acf0b"
+      },
+      "vulnerability_scan": {
+        "path": "records/scans/IS-0003-U01/distroless-node24-debian13.vuln.json",
+        "sha256": "fa74bfd3791bf5ba2e900acebd83214c59acced65e37ab609824e8ee40bafb3f",
+        "raw_findings": {"MEDIUM": 5, "LOW": 7},
+        "disposition": "PASS",
+        "note": "No HIGH or CRITICAL finding was detected. All MEDIUM and LOW findings remain retained and must be rechecked at later runtime and release gates."
+      },
+      "license": {
+        "controlled_local_use": "PASS",
+        "redistribution": "INCONCLUSIVE"
+      },
+      "approved_for_next_unit": true,
+      "constraints": [
+        "Run as numeric user and group 65532:65532.",
+        "No shell, package manager, dependency resolution, secret, Docker socket, broad mount, or external network.",
+        "The exact Node patch version and real runner behavior remain runtime verification claims, not acquisition claims."
+      ]
+    },
+    {
+      "role": "python_runner",
+      "name": "Chainguard Python 3.14.7",
+      "source_gate": "records/source-gates/2026-08-09-chainguard-python-evaluation.json",
+      "index_reference": "cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+      "index_digest": "sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+      "platform_child_digest": "sha256:15e66fa35e0b07095bbc4f4f0522718b780944709026687485f4e712cc6d5ae0",
+      "local_image_id": "sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+      "local_size_bytes": 26150256,
+      "entrypoint": ["/usr/bin/python"],
+      "user": "65532",
+      "signature": {
+        "index_path": "records/attestations/IS-0003-U01/chainguard-python-index.signature.json",
+        "index_sha256": "c3b250289add4feeb1e174a5ea19cf70a220a0cfe7f2a6b3e8c3ab0cda4d5e05",
+        "child_path": "records/attestations/IS-0003-U01/chainguard-python-amd64.signature.json",
+        "child_sha256": "e91a8f057c4f0477d0a9791c2e4e5ca7d218a5fcb1fad25b7ccf2ba126289d10"
+      },
+      "provenance": {
+        "status": "PASS",
+        "builder": "https://github.com/chainguard-dev/terraform-provider-apko",
+        "build_type": "https://apko.dev/slsa-build-type@v1",
+        "slsa_path": "records/attestations/IS-0003-U01/chainguard-python-amd64.slsa-v1.dsse.json",
+        "slsa_sha256": "3f4d5f992b85decad72de9df3038bf78c8fd300193c774c1f132a1f88177496e",
+        "apko_path": "records/attestations/IS-0003-U01/chainguard-python-amd64.apko-config.dsse.json",
+        "apko_sha256": "8cae7e8ab1692b0a8fd367cb501481a1921522a0c6f535d108bd8188183a4324"
+      },
+      "sbom": {
+        "signed_path": "records/attestations/IS-0003-U01/chainguard-python-amd64.spdx.dsse.json",
+        "signed_sha256": "940212f931f2d907d4c98bb9694af844cc7dbdf62ede6ee73e6672ff65f0c408",
+        "scanner_path": "records/scans/IS-0003-U01/chainguard-python-3.14.7.spdx.json",
+        "scanner_sha256": "9c139ab21278155ccd23e0456fa571b72a560130a73ce95c204f6ca15d7a511c"
+      },
+      "vulnerability_scan": {
+        "path": "records/scans/IS-0003-U01/chainguard-python-3.14.7.vuln.json",
+        "sha256": "2a3200b9ffa558e63581abce10e08f38c0f81bab44f8cc36afcdda65626ac71a",
+        "raw_findings": {},
+        "disposition": "PASS"
+      },
+      "license": {
+        "controlled_local_use": "PASS",
+        "redistribution": "INCONCLUSIVE"
+      },
+      "approved_for_next_unit": true,
+      "constraints": [
+        "Run as numeric user and group 65532:65532.",
+        "The runner must remain standard-library-only unless a separately source-gated offline dependency lock is approved.",
+        "No shell, pip, apk, secret, Docker socket, broad mount, or external network.",
+        "Real Python 3.14.7 runner compatibility remains a later runtime verification claim."
+      ]
+    }
+  ]
+}

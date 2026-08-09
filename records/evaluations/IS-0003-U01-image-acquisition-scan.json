@@ -1,0 +1,187 @@
+{
+  "schema_version": "incidentseal-image-acquisition-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U01-IMAGES",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U01",
+  "observed_at_utc": "2026-08-09T19:30:54Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Exact linux/amd64 image acquisition, artifact identity, source, signature, provenance, SBOM, vulnerability, license, and eligibility for later controlled execution. No container was started and no application behavior was verified.",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "contract": "contracts/IS-0003.json"
+  },
+  "tooling": {
+    "docker_engine": "29.4.3",
+    "docker_desktop": "4.74.0",
+    "compose": "5.1.3",
+    "trivy": {
+      "version": "0.73.0",
+      "executable_sha256": "3f8d0a3f4306a628cccb0704ab5f9ab6589a8ff17f89d943722d551cdf8940ef",
+      "database_schema": 2,
+      "database_updated_at": "2026-08-09T12:54:52.355618652Z",
+      "database_next_update": "2026-08-10T12:54:52.355618512Z",
+      "mode": "offline, skip database updates, Docker local image source"
+    },
+    "cosign": {
+      "version": "3.1.3",
+      "commit": "11926fa5bbbbde47e88fc006b625a17769b743b2",
+      "executable_sha256": "9fe59be0eca1271873ce019061335eb1ac419b7059202e797828467ddabe33be",
+      "bootstrap": "Sigstore TUF root 10 advanced to trusted root 15; CNG independently verified the ECDSA P-256 SHA-256 release signature with TUF target artifact.pub before Cosign executed; Cosign then verified its artifact-key bundle."
+    }
+  },
+  "selected_images": [
+    {
+      "role": "dockerfile_frontend",
+      "reference": "docker.io/docker/dockerfile@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32",
+      "platform_child": "sha256:34b128e419449565adc5ed7f487a6f503a73f1077012cfed86354c731338c44f",
+      "verification_verdict": "PASS",
+      "lifecycle_state": "retained",
+      "vulnerability_summary": {"raw_critical": 2, "raw_high": 3, "raw_medium": 1, "raw_unknown": 1, "applicable_critical": 0, "applicable_high": 0},
+      "reconciliation": [
+        "CVE-2026-33747 is explicitly not applicable to the well-known docker/dockerfile frontend in the publisher advisory.",
+        "CVE-2026-33748 targets BuildKit Git-source daemon code; the exact frontend executable does not contain github.com/moby/buildkit/source/git, and IncidentSeal forbids remote Git build contexts.",
+        "CVE-2024-23651, CVE-2024-23652, and CVE-2024-23653 target daemon cache, executor, or solver packages absent from the exact frontend executable.",
+        "GO-2026-5932 targets golang.org/x/crypto/openpgp, which is absent from the exact frontend executable.",
+        "The exact extracted frontend binary was inspected without execution: SHA-256 df4107b60b749dc240552b03f6e626de8fc408654cb784f477839963902e83dd."
+      ],
+      "evidence": [
+        "records/source-gates/2026-08-09-initial-images.json",
+        "records/scans/IS-0003-U01/dockerfile-frontend-1.26.0.vuln.json",
+        "records/scans/IS-0003-U01/dockerfile-frontend-1.26.0.spdx.json"
+      ]
+    },
+    {
+      "role": "postgresql",
+      "reference": "cgr.dev/chainguard/postgres@sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
+      "platform_child": "sha256:fb7f999b914c2217128f1b3833524df362316ae9452ffd74d116b6c1b812a088",
+      "verification_verdict": "PASS",
+      "lifecycle_state": "retained",
+      "vulnerability_summary": {},
+      "conditions": [
+        "Compose must override root-default execution with numeric 70:70.",
+        "The database must have no host port or external network.",
+        "Credential-free trust authentication is limited to the isolated internal topology.",
+        "Real initialization, persistence, restart, health, and ownership remain unverified."
+      ],
+      "evidence": [
+        "records/source-gates/2026-08-09-chainguard-postgres-evaluation.json",
+        "records/attestations/IS-0003-U01/chainguard-postgres-index.signature.json",
+        "records/attestations/IS-0003-U01/chainguard-postgres-amd64.signature.json",
+        "records/attestations/IS-0003-U01/chainguard-postgres-amd64.slsa-v1.dsse.json",
+        "records/attestations/IS-0003-U01/chainguard-postgres-amd64.apko-config.dsse.json",
+        "records/attestations/IS-0003-U01/chainguard-postgres-amd64.spdx.dsse.json",
+        "records/scans/IS-0003-U01/chainguard-postgres-18.4.vuln.json",
+        "records/scans/IS-0003-U01/chainguard-postgres-18.4.spdx.json"
+      ]
+    },
+    {
+      "role": "node_runner",
+      "reference": "gcr.io/distroless/nodejs24-debian13@sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a",
+      "platform_child": "sha256:f987682b3ea8d8e22497cb95edc5014d793612f7064e43df8104394db0ce19fe",
+      "verification_verdict": "PASS",
+      "lifecycle_state": "retained",
+      "vulnerability_summary": {"medium": 5, "low": 7, "high": 0, "critical": 0},
+      "limitations": [
+        "No official signed SLSA statement was located; exact keyless publisher signatures and reproducible Bazel history provide the retained provenance path.",
+        "The exact Node patch version is not claimed until later controlled runtime inspection.",
+        "All MEDIUM and LOW findings remain retained for runtime and release re-evaluation."
+      ],
+      "evidence": [
+        "records/source-gates/2026-08-09-distroless-node24-evaluation.json",
+        "records/attestations/IS-0003-U01/distroless-node24-index.signature.json",
+        "records/attestations/IS-0003-U01/distroless-node24-amd64.signature.json",
+        "records/scans/IS-0003-U01/distroless-node24-debian13.vuln.json",
+        "records/scans/IS-0003-U01/distroless-node24-debian13.spdx.json"
+      ]
+    },
+    {
+      "role": "python_runner",
+      "reference": "cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+      "platform_child": "sha256:15e66fa35e0b07095bbc4f4f0522718b780944709026687485f4e712cc6d5ae0",
+      "verification_verdict": "PASS",
+      "lifecycle_state": "retained",
+      "vulnerability_summary": {},
+      "conditions": [
+        "Use Python 3.14.7 as signed in the exact apko configuration and SPDX statement.",
+        "Keep the runner standard-library-only unless a separate exact offline dependency gate passes.",
+        "Real runner compatibility remains unverified."
+      ],
+      "evidence": [
+        "records/source-gates/2026-08-09-chainguard-python-evaluation.json",
+        "records/attestations/IS-0003-U01/chainguard-python-index.signature.json",
+        "records/attestations/IS-0003-U01/chainguard-python-amd64.signature.json",
+        "records/attestations/IS-0003-U01/chainguard-python-amd64.slsa-v1.dsse.json",
+        "records/attestations/IS-0003-U01/chainguard-python-amd64.apko-config.dsse.json",
+        "records/attestations/IS-0003-U01/chainguard-python-amd64.spdx.dsse.json",
+        "records/scans/IS-0003-U01/chainguard-python-3.14.7.vuln.json",
+        "records/scans/IS-0003-U01/chainguard-python-3.14.7.spdx.json"
+      ]
+    }
+  ],
+  "superseded_candidates": [
+    {
+      "role": "postgresql",
+      "reference": "docker.io/library/postgres:18.4-bookworm",
+      "verification_verdict": "FAIL",
+      "lifecycle_state": "superseded",
+      "reason": "The exact scan retained 358 vulnerability occurrences, including 20 CRITICAL occurrences; CVE-2025-68121 in the bundled gosu Go runtime could not be safely dismissed after artifact inspection.",
+      "evidence": ["records/scans/IS-0003-U01/postgres-18.4-bookworm.vuln.json", "records/scans/IS-0003-U01/postgres-18.4-bookworm.spdx.json"]
+    },
+    {
+      "role": "node_runner",
+      "reference": "docker.io/library/node:24.19.0-bookworm-slim",
+      "verification_verdict": "FAIL",
+      "lifecycle_state": "superseded",
+      "reason": "The exact scan retained 181 vulnerability occurrences, including six CRITICAL occurrences and fixable CRITICAL CVE-2026-59873 in tar 7.5.16.",
+      "evidence": ["records/scans/IS-0003-U01/node-24.19.0-bookworm-slim.vuln.json", "records/scans/IS-0003-U01/node-24.19.0-bookworm-slim.spdx.json"]
+    },
+    {
+      "role": "python_runner",
+      "reference": "docker.io/library/python:3.12.13-slim-bookworm",
+      "verification_verdict": "FAIL",
+      "lifecycle_state": "superseded",
+      "reason": "The exact scan retained 200 vulnerability occurrences, including six CRITICAL occurrences.",
+      "evidence": ["records/scans/IS-0003-U01/python-3.12.13-slim-bookworm.vuln.json", "records/scans/IS-0003-U01/python-3.12.13-slim-bookworm.spdx.json"]
+    }
+  ],
+  "license_disposition": {
+    "controlled_local_execution": "PASS",
+    "redistribution": "INCONCLUSIVE",
+    "note": "Selected SPDX evidence contains no AGPL identifier, but does contain GPL-family components and NOASSERTION entries. Local evaluation is permitted; publication requires exact notices and obligation reconciliation at the release gate."
+  },
+  "checks": [
+    {"id": "exact-index-and-child-binding", "status": "PASS", "result": "All four selected roles bind immutable OCI index and linux/amd64 child digests."},
+    {"id": "local-image-identity", "status": "PASS", "result": "Each local Docker image ID equals its approved OCI index digest and reports linux/amd64."},
+    {"id": "container-non-execution", "status": "PASS", "result": "No selected image was started. Artifact-only docker create inspections remained in created state and were removed."},
+    {"id": "signature-and-provenance", "status": "PASS", "result": "Chainguard index/child signatures and signed SLSA, apko, and SPDX subjects passed. Distroless index/child keyless signatures passed. Dockerfile registry provenance binds the exact source revision."},
+    {"id": "sbom-and-vulnerability", "status": "PASS", "result": "Independent offline Trivy JSON and SPDX evidence was retained for every selected exact local image."},
+    {"id": "critical-vulnerability-gate", "status": "PASS", "result": "No applicable CRITICAL or HIGH vulnerability remains in the selected execution surfaces; raw frontend module findings were reconciled against publisher scope and exact linked-package presence."},
+    {"id": "license-local-use", "status": "PASS", "result": "Exact component evidence permits controlled local evaluation; redistribution remains separately INCONCLUSIVE."},
+    {"id": "trust-boundary", "status": "PASS", "result": "No image received a Docker socket, secret, host mount, external runtime network, workflow approval, or repository authority."},
+    {"id": "temporary-custody-cleanup", "status": "PASS", "result": "Exact Cosign, Sigstore TUF, Trivy, database, and extracted frontend inspection custody was removed from four validated system-temp directories after evidence retention."}
+  ],
+  "retained_attempts": [
+    {"attempt": "Initial policy-status reconciliation invocation", "execution_state": "failed", "verification_verdict": "INVALID", "note": "The first invocation omitted the required manifest and returned usage exit 64. The corrected exact-manifest invocation returned MISSING/INVALID exit 12; no approval exists."},
+    {"attempt": "Docker Scout 1.24.0 execution gate", "execution_state": "failed", "verification_verdict": "FAIL", "note": "Published hashes passed but Authenticode was NotSigned. The candidate never executed and temporary custody was removed; the distinct receipt remains authoritative."},
+    {"attempt": "First exact Trivy database download", "execution_state": "failed", "verification_verdict": "INCONCLUSIVE", "note": "The initial registry transfer timed out on IPv6. The retry retrieved and bound the exact database before any scan."},
+    {"attempt": "Cosign Authenticode bootstrap path", "execution_state": "failed", "verification_verdict": "INCONCLUSIVE", "note": "The exact Cosign executable reported NotSigned and was not executed on that path. The separately gated Sigstore TUF artifact-key path later passed."},
+    {"attempt": "First Python TUF updater construction", "execution_state": "failed", "verification_verdict": "INVALID", "note": "TUF 7.0.0 required an explicit bootstrap keyword. The retry used bootstrap=None, advanced root 10 to root 15, and verified artifact.pub."},
+    {"attempt": "PostgreSQL non-running entrypoint extraction", "execution_state": "failed", "verification_verdict": "INCONCLUSIVE", "note": "Five Windows docker cp/path and PowerShell-variable attempts failed. Every inspection container remained created and was removed; direct exact-target extraction then verified the script and numeric-user path."},
+    {"attempt": "Dockerfile frontend Go metadata inspection", "execution_state": "failed", "verification_verdict": "INCONCLUSIVE", "note": "No local Go executable was available. The inspection container remained created and was removed; non-executing exact-binary byte inspection with rg established affected-package absence."}
+  ],
+  "decision": {
+    "status": "passed",
+    "image_lock": "requirements/images.lock.json",
+    "runtime_inspection_eligible": true,
+    "next_unit": "IS3-U02",
+    "next_action": "Freeze the Compose and service contract around these exact images and their mandatory users, networks, mounts, filesystems, health checks, and host-only Docker authority before implementing or starting the topology.",
+    "prohibited_claims": [
+      "No container or application behavior has been verified.",
+      "No Compose topology, database, runner, migration, persistence, recovery, or clean-clone surface exists yet.",
+      "No image redistribution or software release is approved.",
+      "No workflow manifest is approved."
+    ]
+  }
+}

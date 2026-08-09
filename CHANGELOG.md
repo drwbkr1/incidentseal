@@ -25,3 +25,4 @@ All notable IncidentSeal changes will be recorded here. The project follows Sema
 - Clean-copy CLI contract verification covering 38 tests, ten real-surface checks, and the 25-scenario/50-execution fail-closed matrix without Docker or real approval state.
 - Public IS-0002 checkpoint verification from an exact credential-free GitHub clone, including project controls, Git object integrity, secret scanning, and full CLI-contract replay.
 - Verified annotated checkpoint marker `checkpoint-is-0002` at the exact IS-0002 closure commit.
+- Exact linux/amd64 image lock with retained signatures, SLSA/apko/SPDX attestations, offline vulnerability scans, license limits, failed superseded candidates, and conditional runtime constraints for the Dockerfile frontend, PostgreSQL, Node, and Python roles.

@@ -21,17 +21,21 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Active unit
 
-`IS3-U01` is the sole eligible unit after the checkpoint marker is live-verified. It may revalidate the initial source gate and acquire the four exact image artifacts into local Docker custody without running them, then retain platform identity, SBOM, provenance, license, and vulnerability evidence. Image execution remains blocked until that disposition passes.
+`IS3-U01` passed without starting a container. The exact linux/amd64 Dockerfile frontend, Chainguard PostgreSQL 18.4, Distroless Node.js 24, and Chainguard Python 3.14.7 images are now bound in `requirements/images.lock.json` with platform children, local identities, signatures or provenance, SBOMs, vulnerability evidence, license limits, and mandatory runtime constraints.
+
+`IS3-U02` is the sole eligible unit. It must freeze the Compose and service contract around that lock before Dockerfiles, Compose configuration, migrations, runners, or host orchestration are implemented. No selected image may run merely because acquisition passed.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
 - No Compose topology or database exists.
 - No workflow digest is approved and workflow execution remains unavailable.
-- Four exact image artifacts passed the source gate only for digest recording and controlled acquisition; none has been pulled, scanned, executed, or approved for runtime use.
+- Four selected exact images have been pulled and scanned and are eligible only for later contract-controlled execution. None has been started.
+- Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
+- The Distroless Node image has retained MEDIUM and LOW findings and no located signed SLSA statement; its exact signatures, Bazel history, runtime version, and runner behavior remain explicitly bounded claims.
 - Direct Codex CLI execution currently fails with `Access is denied`.
-- The verified `IS-0001` tag and remote `main` both resolve to `55ad47d250041c2148c0f458d276e62d8f02a25d`.
+- The verified `checkpoint-is-0001` marker remains at `55ad47d250041c2148c0f458d276e62d8f02a25d`; remote `main` has advanced through current IS-0003 evidence work.
 
 ## Next eligible action
 
-Execute `IS3-U01` in `contracts/IS-0003.json`: revalidate the image source gate, acquire exact artifacts without running them, and retain SBOM, provenance, license, scan, and platform-digest evidence before any runtime decision.
+Execute `IS3-U02` in `contracts/IS-0003.json`: freeze the Compose, service identity, user, network, mount, filesystem, health, migration, runner, and host-orchestration contract around `requirements/images.lock.json` before implementation or runtime use.

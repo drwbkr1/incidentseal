@@ -63,7 +63,7 @@
     {"id":"ENTRY-TRUST-BOUNDARY","status":"pass","evidence":["docs/product-contract.md","docs/threat-model.md","docs/decisions/ADR-0001-host-authority-and-manifest-digest.md"]}
   ],
   "exit_conditions": [
-    {"id":"EXIT-IMAGE-ACQUISITION-SCAN","status":"pending","evidence":[]},
+    {"id":"EXIT-IMAGE-ACQUISITION-SCAN","status":"pass","evidence":["requirements/images.lock.json","records/evaluations/IS-0003-U01-image-acquisition-scan.json"]},
     {"id":"EXIT-COMPOSE-CONTRACT","status":"pending","evidence":[]},
     {"id":"EXIT-TOPOLOGY-SECURITY","status":"pending","evidence":[]},
     {"id":"EXIT-DATABASE-SURFACE","status":"pending","evidence":[]},
@@ -79,15 +79,18 @@
       "depends_on":[],
       "action_class":"dependency_management",
       "human_gate":false,
-      "status":"ready",
+      "status":"completed",
       "inputs":["records/source-gates/2026-08-09-initial-images.json","Exact host platform inventory","Current vulnerability and license policies"],
       "outputs":["Exact-image lock","Acquisition receipts","SBOM and provenance receipts","Vulnerability and license disposition"],
-      "gates":{},
-      "disposition":null,
+      "gates":{"source":"pass","integrity":"pass","signature_provenance":"pass","sbom":"pass","vulnerability":"pass","license_local_use":"pass","runtime_execution":"not_started"},
+      "disposition":"pass",
       "retained_failures":[
-        "Docker Scout CLI 1.24.0 matched its GitHub release digest and published checksum, but its extracted executable was not Authenticode-signed. Source Gate 003 blocked execution, and the unexecuted temporary custody was removed."
+        "Docker Scout CLI 1.24.0 matched its GitHub release digest and published checksum, but its extracted executable was not Authenticode-signed. Source Gate 003 blocked execution, and the unexecuted temporary custody was removed.",
+        "The initial Docker Official PostgreSQL, Node and Python candidates failed the applicable critical-vulnerability gate and were superseded without execution.",
+        "Cosign's Authenticode-only bootstrap path was inconclusive because the executable was NotSigned; the separately source-gated Sigstore TUF artifact-key path passed before Cosign executed.",
+        "The exact-image evaluation preserves failed and invalid evidence attempts separately from the final passing disposition."
       ],
-      "exit_condition_delta":{"expected":["EXIT-IMAGE-ACQUISITION-SCAN"],"observed":[],"decision_value":"unknown","rationale":"No candidate image has yet been acquired, scanned or approved for execution."},
+      "exit_condition_delta":{"expected":["EXIT-IMAGE-ACQUISITION-SCAN"],"observed":["EXIT-IMAGE-ACQUISITION-SCAN"],"decision_value":"high","rationale":"Four exact linux/amd64 images are digest-locked with local identity, source, signature or provenance, SBOM, vulnerability, license and conditional execution dispositions; no container was started."},
       "next_dependency":"IS3-U02"
     },
     {
@@ -96,7 +99,7 @@
       "depends_on":["IS3-U01"],
       "action_class":"update_project_records",
       "human_gate":false,
-      "status":"planned",
+      "status":"ready",
       "inputs":["Passed exact-image disposition","INCIDENTSEAL-PRODUCT-001","Frozen workflow manifest authority"],
       "outputs":["Compose contract","Topology schemas and fixtures","ADR for host orchestration and staged custody","Mutation plan"],
       "gates":{},
@@ -224,11 +227,14 @@
       "Repeated startup, failure, cancellation, cleanup and clean-clone validation",
       "Git diff, secret scan and post-push branch and tag verification"
     ],
-    "completed_checks":[]
+    "completed_checks":[
+      "Exact image source-gate revalidation and platform binding",
+      "SBOM, provenance, license and vulnerability disposition before execution"
+    ]
   },
   "handoff": {
     "current_checkpoint":"IS-0003 active",
-    "next_action":"Execute IS3-U01: revalidate the exact-image source gate, acquire exact artifacts without running them, bind platform digests, and retain SBOM, provenance, license and vulnerability evidence before deciding whether runtime inspection may proceed.",
+    "next_action":"Execute IS3-U02: freeze the Compose, service identity, user, network, mount, filesystem, health, migration, runner and host-orchestration contract around requirements/images.lock.json before implementation or runtime use.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not run an image merely because acquisition or metadata passed",

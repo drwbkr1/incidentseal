@@ -31,6 +31,8 @@ Status: complete
 
 Status: active
 
+Progress: `IS3-U01` passed. Four exact linux/amd64 artifacts are source-gated, locally acquired without execution, independently scanned, and frozen in the first image lock. The initial Docker Official PostgreSQL, Node, and Python candidates remain retained as failed and superseded evidence.
+
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and control service.
 - No Docker socket, secrets, broad mounts, or runtime egress.

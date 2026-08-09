@@ -1,0 +1,1779 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+  "documentNamespace": "http://trivy.dev/container_image/cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5-829fdcf5-8920-474f-a180-b257299ad971",
+  "creationInfo": {
+    "creators": [
+      "Organization: aquasecurity",
+      "Tool: trivy-0.73.0"
+    ],
+    "created": "2026-08-09T19:25:59Z"
+  },
+  "packages": [
+    {
+      "name": "cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+      "SPDXID": "SPDXRef-ContainerImage-f3fa14a19259950d",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:oci/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5?arch=amd64\u0026repository_url=cgr.dev%2Fchainguard%2Fpython"
+        }
+      ],
+      "primaryPackagePurpose": "CONTAINER",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:018d3987342beb49eeb6d78bbbce6a566905b259f716afb9f88e4e945631282d"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:059bbf8e4d785433d8a519d7235bea25d32fec8d6e4907dfe78e47fdec38b6cc"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:22516be037ba95896becac2dc910ccce5ba84af6db35b9ae4cd21dacb1a4b6d4"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:386bd609cc72f9cbcd2e5033df95dac3c012b25568b351ac43554988aecf6696"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:7de63fdd037bf24ee5fed6036c8229cdeb2d8f4462a990b00316814fc2927557"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:a7613bad6cfd5f641d591e4dde7e145962bcba6b37a924d859fe0c4b2203bcd9"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:c595efa270d88247a93c29fd513c3c7a1870f8c3e7e4f060a6c69351fadf019c"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:e20422a64152e6202092f14cf2a51cf6d6da5c5e33ba0fb1e9408676446cf90a"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:f466517c8afa7c59ebb03fed4606fdc8d14b8b7234c24243640cf346a2892caa"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "DiffID: sha256:fe2d79f38224db6597d1fb82f5753c2a42c091ed4920aa55f600419498c997bb"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "ImageID: sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Labels:dev.chainguard.image.title: python"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Labels:org.opencontainers.image.authors: Chainguard Team https://www.chainguard.dev/"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Labels:org.opencontainers.image.created: 2026-08-09T04:38:19Z"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Labels:org.opencontainers.image.source: https://github.com/chainguard-images/images/tree/main/images/python"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Labels:org.opencontainers.image.title: python"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Labels:org.opencontainers.image.url: https://images.chainguard.dev/directory/image/python/overview"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Labels:org.opencontainers.image.vendor: Chainguard"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Reference: cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "RepoDigest: cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "RepoTag: cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "SchemaVersion: 2"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Size: 67752448"
+        }
+      ]
+    },
+    {
+      "name": "ca-certificates-bundle",
+      "SPDXID": "SPDXRef-Package-8cda308f4d9bf1e4",
+      "versionInfo": "20260413-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "2b209d10bdb420a13e07b0ca5bdec62d7bb640b3"
+        }
+      ],
+      "sourceInfo": "built package from: ca-certificates 20260413-r0",
+      "licenseConcluded": "MPL-2.0 AND MIT",
+      "licenseDeclared": "MPL-2.0 AND MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/ca-certificates-bundle@20260413-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: ca-certificates-bundle@20260413-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "gdbm",
+      "SPDXID": "SPDXRef-Package-14bb05c0da8fcdfc",
+      "versionInfo": "1.26-r5",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "9b80910fc9429112e4ff08582306b6510b80f2e9"
+        }
+      ],
+      "sourceInfo": "built package from: gdbm 1.26-r5",
+      "licenseConcluded": "GPL-3.0-or-later",
+      "licenseDeclared": "GPL-3.0-or-later",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/gdbm@1.26-r5?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: gdbm@1.26-r5"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "glibc",
+      "SPDXID": "SPDXRef-Package-defb5b03e611d73",
+      "versionInfo": "2.43-r12",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "a1e665a23288e61129f3b0e873fc4d8d9b6a2b7f"
+        }
+      ],
+      "sourceInfo": "built package from: glibc 2.43-r12",
+      "licenseConcluded": "LGPL-2.1-or-later",
+      "licenseDeclared": "LGPL-2.1-or-later",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/glibc@2.43-r12?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:c595efa270d88247a93c29fd513c3c7a1870f8c3e7e4f060a6c69351fadf019c"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:5a4b39b3a1ab779d3b08e276f52b77c49e51c896ce8c70fb4e405c668ba7addb"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: glibc@2.43-r12"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "glibc-locale-posix",
+      "SPDXID": "SPDXRef-Package-b298cffd7e5607b3",
+      "versionInfo": "2.43-r12",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "3bd5e975415cec60132b9f16f09e33400df4f70c"
+        }
+      ],
+      "sourceInfo": "built package from: glibc 2.43-r12",
+      "licenseConcluded": "LGPL-2.1-or-later",
+      "licenseDeclared": "LGPL-2.1-or-later",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/glibc-locale-posix@2.43-r12?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:c595efa270d88247a93c29fd513c3c7a1870f8c3e7e4f060a6c69351fadf019c"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:5a4b39b3a1ab779d3b08e276f52b77c49e51c896ce8c70fb4e405c668ba7addb"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: glibc-locale-posix@2.43-r12"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "ld-linux",
+      "SPDXID": "SPDXRef-Package-b53c70b53d05d04",
+      "versionInfo": "2.43-r12",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "6f9d53d07f9f138eb5275d65ce644bb6b5798b01"
+        }
+      ],
+      "sourceInfo": "built package from: glibc 2.43-r12",
+      "licenseConcluded": "LGPL-2.1-or-later",
+      "licenseDeclared": "LGPL-2.1-or-later",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/ld-linux@2.43-r12?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:c595efa270d88247a93c29fd513c3c7a1870f8c3e7e4f060a6c69351fadf019c"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:5a4b39b3a1ab779d3b08e276f52b77c49e51c896ce8c70fb4e405c668ba7addb"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: ld-linux@2.43-r12"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libbz2-1",
+      "SPDXID": "SPDXRef-Package-728f7b42f466c0f1",
+      "versionInfo": "1.0.8-r23",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "7fc1bbc3ec68d43ae5212efbc33827d139624ada"
+        }
+      ],
+      "sourceInfo": "built package from: bzip2 1.0.8-r23",
+      "licenseConcluded": "MPL-2.0 AND MIT",
+      "licenseDeclared": "MPL-2.0 AND MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libbz2-1@1.0.8-r23?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libbz2-1@1.0.8-r23"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libcrypto3",
+      "SPDXID": "SPDXRef-Package-efe89bae22b5a6da",
+      "versionInfo": "3.6.3-r3",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "f1ccc9c0fa76f0f966ad4cba7af95c6b795f5e59"
+        }
+      ],
+      "sourceInfo": "built package from: openssl 3.6.3-r3",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libcrypto3@3.6.3-r3?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:018d3987342beb49eeb6d78bbbce6a566905b259f716afb9f88e4e945631282d"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:a66283bef8341905e19407212d297ba0eb9a8b0e1bd6024553e9edf6e4ef8d31"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libcrypto3@3.6.3-r3"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libexpat1",
+      "SPDXID": "SPDXRef-Package-8f89ffa2e9e3bddc",
+      "versionInfo": "2.8.2-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "ddbc0cb9663ee62418187fbfd7eba0f7990b46ed"
+        }
+      ],
+      "sourceInfo": "built package from: expat 2.8.2-r0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libexpat1@2.8.2-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libexpat1@2.8.2-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libffi",
+      "SPDXID": "SPDXRef-Package-dc43e07391b27527",
+      "versionInfo": "3.8.0-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "dcae8f3e491ac5364636d269c3b4ea0aeed2a8b5"
+        }
+      ],
+      "sourceInfo": "built package from: libffi 3.8.0-r0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libffi@3.8.0-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libffi@3.8.0-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libgcc",
+      "SPDXID": "SPDXRef-Package-f228653c2b6e8b96",
+      "versionInfo": "16.1.0-r4",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "bf816f44a036f5c393d96b405da599042cd15da5"
+        }
+      ],
+      "sourceInfo": "built package from: gcc 16.1.0-r4",
+      "licenseConcluded": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "licenseDeclared": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libgcc@16.1.0-r4?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:a7613bad6cfd5f641d591e4dde7e145962bcba6b37a924d859fe0c4b2203bcd9"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:998036137dfb7dacc2291fefcbe0a7d9de928b85df215d3028a5608c36de9a78"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libgcc@16.1.0-r4"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libssl3",
+      "SPDXID": "SPDXRef-Package-bc07e37e19fa9843",
+      "versionInfo": "3.6.3-r3",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "71f741e415cda06c41f7df0003a50d114433986e"
+        }
+      ],
+      "sourceInfo": "built package from: openssl 3.6.3-r3",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libssl3@3.6.3-r3?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:018d3987342beb49eeb6d78bbbce6a566905b259f716afb9f88e4e945631282d"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:a66283bef8341905e19407212d297ba0eb9a8b0e1bd6024553e9edf6e4ef8d31"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libssl3@3.6.3-r3"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libstdc++",
+      "SPDXID": "SPDXRef-Package-bb975ab06486fad2",
+      "versionInfo": "16.1.0-r4",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "d06fe4ce2badf0a118b76d9c2e27d16bd400f874"
+        }
+      ],
+      "sourceInfo": "built package from: gcc 16.1.0-r4",
+      "licenseConcluded": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "licenseDeclared": "GPL-3.0-or-later WITH GCC-exception-3.1",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libstdc%2B%2B@16.1.0-r4?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:a7613bad6cfd5f641d591e4dde7e145962bcba6b37a924d859fe0c4b2203bcd9"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:998036137dfb7dacc2291fefcbe0a7d9de928b85df215d3028a5608c36de9a78"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libstdc++@16.1.0-r4"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libuuid",
+      "SPDXID": "SPDXRef-Package-ff64eb499c646045",
+      "versionInfo": "2.42.2-r1",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "e711c779a0bea1cb05098c5e1a7d89301bd467dd"
+        }
+      ],
+      "sourceInfo": "built package from: util-linux 2.42.2-r1",
+      "licenseConcluded": "GPL-3.0-or-later AND GPL-2.0-or-later AND GPL-2.0-only AND GPL-1.0-only AND LGPL-2.1-or-later AND BSD-1-Clause AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause-UC AND MIT AND CC-PDDC",
+      "licenseDeclared": "GPL-3.0-or-later AND GPL-2.0-or-later AND GPL-2.0-only AND GPL-1.0-only AND LGPL-2.1-or-later AND BSD-1-Clause AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause-UC AND MIT AND CC-PDDC",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libuuid@2.42.2-r1?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libuuid@2.42.2-r1"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "libzstd1",
+      "SPDXID": "SPDXRef-Package-f823ef58f16ecd17",
+      "versionInfo": "1.5.7-r8",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "9c1ed493a132355aa22eadbc7f8f0b7a49cc2a2d"
+        }
+      ],
+      "sourceInfo": "built package from: zstd 1.5.7-r8",
+      "licenseConcluded": "BSD-2-Clause AND GPL-2.0-only",
+      "licenseDeclared": "BSD-2-Clause AND GPL-2.0-only",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/libzstd1@1.5.7-r8?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:7de63fdd037bf24ee5fed6036c8229cdeb2d8f4462a990b00316814fc2927557"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:bf6b830d643d3090163100882b3f8c796c6e46fc5cb1d2918eb289f137d7509a"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: libzstd1@1.5.7-r8"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "mpdecimal",
+      "SPDXID": "SPDXRef-Package-c37c995e6de4ee91",
+      "versionInfo": "4.0.1-r3",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "12885674e7ba1c71ee370a6876aedfd8c4f02ce4"
+        }
+      ],
+      "sourceInfo": "built package from: mpdecimal 4.0.1-r3",
+      "licenseConcluded": "BSD-2-Clause",
+      "licenseDeclared": "BSD-2-Clause",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/mpdecimal@4.0.1-r3?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: mpdecimal@4.0.1-r3"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "ncurses",
+      "SPDXID": "SPDXRef-Package-2b73def2198d889d",
+      "versionInfo": "6.6.20260808-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "976b65c8707e272f918aabe3aa5cf4e8a6ec669a"
+        }
+      ],
+      "sourceInfo": "built package from: ncurses 6.6.20260808-r0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/ncurses@6.6.20260808-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:386bd609cc72f9cbcd2e5033df95dac3c012b25568b351ac43554988aecf6696"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:661c4bde01096ea84aff59237d14623d79b7b09bd80adc595a0dbe2b25960ce0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: ncurses@6.6.20260808-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "ncurses-terminfo-base",
+      "SPDXID": "SPDXRef-Package-c6edda1bc8280502",
+      "versionInfo": "6.6.20260808-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "547a7dcbfe3a0901bfa27e6eba98071a23217926"
+        }
+      ],
+      "sourceInfo": "built package from: ncurses 6.6.20260808-r0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/ncurses-terminfo-base@6.6.20260808-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:386bd609cc72f9cbcd2e5033df95dac3c012b25568b351ac43554988aecf6696"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:661c4bde01096ea84aff59237d14623d79b7b09bd80adc595a0dbe2b25960ce0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: ncurses-terminfo-base@6.6.20260808-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "py3-pip-wheel",
+      "SPDXID": "SPDXRef-Package-8b543049595ed87c",
+      "versionInfo": "26.2.1-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "8104be7a1212f3343cf0d8363526848a34757252"
+        }
+      ],
+      "sourceInfo": "built package from: py3-pip 26.2.1-r0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/py3-pip-wheel@26.2.1-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:059bbf8e4d785433d8a519d7235bea25d32fec8d6e4907dfe78e47fdec38b6cc"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:159640b052a18991a7901973e4d454c2ae92c7c3f7db35e8291eec8071ad0bfe"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: py3-pip-wheel@26.2.1-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "python-3.14",
+      "SPDXID": "SPDXRef-Package-1fccebe8531691af",
+      "versionInfo": "3.14.7-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "3f7f59e359728f6dc55f1586061a061500bf9773"
+        }
+      ],
+      "sourceInfo": "built package from: python-3.14 3.14.7-r0",
+      "licenseConcluded": "PSF-2.0",
+      "licenseDeclared": "PSF-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/python-3.14@3.14.7-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:e20422a64152e6202092f14cf2a51cf6d6da5c5e33ba0fb1e9408676446cf90a"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:ab829568f4d889d5b8f47a097abadd325bc65cd57d529c6eb7156cd5c7078869"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: python-3.14@3.14.7-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "python-3.14-base",
+      "SPDXID": "SPDXRef-Package-90deea171411e3a9",
+      "versionInfo": "3.14.7-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "ecd38fb2751dcf341533c61e60a149fc9f1eaca4"
+        }
+      ],
+      "sourceInfo": "built package from: python-3.14 3.14.7-r0",
+      "licenseConcluded": "PSF-2.0",
+      "licenseDeclared": "PSF-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/python-3.14-base@3.14.7-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:e20422a64152e6202092f14cf2a51cf6d6da5c5e33ba0fb1e9408676446cf90a"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:ab829568f4d889d5b8f47a097abadd325bc65cd57d529c6eb7156cd5c7078869"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: python-3.14-base@3.14.7-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "readline",
+      "SPDXID": "SPDXRef-Package-51357586a00109a",
+      "versionInfo": "8.3-r2",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "d56465637768e392fd8e7bb9600a114d24dc8a66"
+        }
+      ],
+      "sourceInfo": "built package from: readline 8.3-r2",
+      "licenseConcluded": "GPL-3.0-or-later",
+      "licenseDeclared": "GPL-3.0-or-later",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/readline@8.3-r2?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: readline@8.3-r2"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "sqlite-libs",
+      "SPDXID": "SPDXRef-Package-2a72d5cd7b87863c",
+      "versionInfo": "3.53.4-r0",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "c7cfb175f533d65730a38b305fe9ff4018627c77"
+        }
+      ],
+      "sourceInfo": "built package from: sqlite 3.53.4-r0",
+      "licenseConcluded": "blessing",
+      "licenseDeclared": "blessing",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/sqlite-libs@3.53.4-r0?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:22516be037ba95896becac2dc910ccce5ba84af6db35b9ae4cd21dacb1a4b6d4"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:fa770a2e51ca0ac224816e55b792f0e33780744e7c79fc6f8e8c8cc229cec15e"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: sqlite-libs@3.53.4-r0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "wolfi-baselayout",
+      "SPDXID": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "versionInfo": "20230201-r29",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "9b1560903e3eaf5712512796a3a0a5920351d480"
+        }
+      ],
+      "sourceInfo": "built package from: wolfi-baselayout 20230201-r29",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/wolfi-baselayout@20230201-r29?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: wolfi-baselayout@20230201-r29"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "xz",
+      "SPDXID": "SPDXRef-Package-78ab36f05fb597e7",
+      "versionInfo": "5.8.3-r1",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "c4c6da02a44ac1afd3c747d15e1cfcf1dfb45773"
+        }
+      ],
+      "sourceInfo": "built package from: xz 5.8.3-r1",
+      "licenseConcluded": "GPL-3.0-or-later",
+      "licenseDeclared": "GPL-3.0-or-later",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/xz@5.8.3-r1?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:fe2d79f38224db6597d1fb82f5753c2a42c091ed4920aa55f600419498c997bb"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:d6ea4fd9fa0576197429038c4398b339dcd77d31f4efd296b1befff2a346edca"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: xz@5.8.3-r1"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "zlib",
+      "SPDXID": "SPDXRef-Package-4d587ea73c720623",
+      "versionInfo": "1.3.2-r4",
+      "supplier": "Organization: wolfi",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "baeaff1c02424b317f872b7e7df358aa2a86600b"
+        }
+      ],
+      "sourceInfo": "built package from: zlib 1.3.2-r4",
+      "licenseConcluded": "MPL-2.0 AND MIT",
+      "licenseDeclared": "MPL-2.0 AND MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:apk/wolfi/zlib@1.3.2-r4?arch=x86_64\u0026distro=20230201"
+        }
+      ],
+      "primaryPackagePurpose": "LIBRARY",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDiffID: sha256:ad9c53da18ac772b2e236ccca4cd8423a19016893429a5de88d235b249d358d0"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "LayerDigest: sha256:85dbddf11fdccac700fc236df9db110c3afd11bdb8ffaf5a815066d721c40c20"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgID: zlib@1.3.2-r4"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "PkgType: wolfi"
+        }
+      ]
+    },
+    {
+      "name": "wolfi",
+      "SPDXID": "SPDXRef-OperatingSystem-b11e4c3d759921ad",
+      "versionInfo": "20230201",
+      "downloadLocation": "NONE",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "primaryPackagePurpose": "OPERATING-SYSTEM",
+      "annotations": [
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Class: os-pkgs"
+        },
+        {
+          "annotator": "Tool: trivy-0.73.0",
+          "annotationDate": "2026-08-09T19:25:59Z",
+          "annotationType": "OTHER",
+          "comment": "Type: wolfi"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-ContainerImage-f3fa14a19259950d",
+      "relatedSpdxElement": "SPDXRef-OperatingSystem-b11e4c3d759921ad",
+      "relationshipType": "CONTAINS"
+    },
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relatedSpdxElement": "SPDXRef-ContainerImage-f3fa14a19259950d",
+      "relationshipType": "DESCRIBES"
+    },
+    {
+      "spdxElementId": "SPDXRef-OperatingSystem-b11e4c3d759921ad",
+      "relatedSpdxElement": "SPDXRef-Package-1fccebe8531691af",
+      "relationshipType": "CONTAINS"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-14bb05c0da8fcdfc",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-14bb05c0da8fcdfc",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-1fccebe8531691af",
+      "relatedSpdxElement": "SPDXRef-Package-90deea171411e3a9",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-2a72d5cd7b87863c",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-2b73def2198d889d",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-2b73def2198d889d",
+      "relatedSpdxElement": "SPDXRef-Package-c6edda1bc8280502",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-2b73def2198d889d",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-4d587ea73c720623",
+      "relatedSpdxElement": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-4d587ea73c720623",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-51357586a00109a",
+      "relatedSpdxElement": "SPDXRef-Package-2b73def2198d889d",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-51357586a00109a",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "relatedSpdxElement": "SPDXRef-Package-8cda308f4d9bf1e4",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-728f7b42f466c0f1",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-78ab36f05fb597e7",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-78ab36f05fb597e7",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-8cda308f4d9bf1e4",
+      "relatedSpdxElement": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-8f89ffa2e9e3bddc",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-14bb05c0da8fcdfc",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-2a72d5cd7b87863c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-2b73def2198d889d",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-4d587ea73c720623",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-51357586a00109a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-728f7b42f466c0f1",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-78ab36f05fb597e7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-8b543049595ed87c",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-8f89ffa2e9e3bddc",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-bc07e37e19fa9843",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-c37c995e6de4ee91",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-dc43e07391b27527",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-efe89bae22b5a6da",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-f823ef58f16ecd17",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-90deea171411e3a9",
+      "relatedSpdxElement": "SPDXRef-Package-ff64eb499c646045",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-b298cffd7e5607b3",
+      "relatedSpdxElement": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-b53c70b53d05d04",
+      "relatedSpdxElement": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-b53c70b53d05d04",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-bb975ab06486fad2",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-bb975ab06486fad2",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-bb975ab06486fad2",
+      "relatedSpdxElement": "SPDXRef-Package-f228653c2b6e8b96",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-bc07e37e19fa9843",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-bc07e37e19fa9843",
+      "relatedSpdxElement": "SPDXRef-Package-efe89bae22b5a6da",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-c37c995e6de4ee91",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-c37c995e6de4ee91",
+      "relatedSpdxElement": "SPDXRef-Package-bb975ab06486fad2",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-c37c995e6de4ee91",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-c37c995e6de4ee91",
+      "relatedSpdxElement": "SPDXRef-Package-f228653c2b6e8b96",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-dc43e07391b27527",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-defb5b03e611d73",
+      "relatedSpdxElement": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-defb5b03e611d73",
+      "relatedSpdxElement": "SPDXRef-Package-b298cffd7e5607b3",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-defb5b03e611d73",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-defb5b03e611d73",
+      "relatedSpdxElement": "SPDXRef-Package-f228653c2b6e8b96",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-efe89bae22b5a6da",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-f228653c2b6e8b96",
+      "relatedSpdxElement": "SPDXRef-Package-b53c70b53d05d04",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-f228653c2b6e8b96",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-f823ef58f16ecd17",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-ff64eb499c646045",
+      "relatedSpdxElement": "SPDXRef-Package-6c0b90f4e6a1c1aa",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-ff64eb499c646045",
+      "relatedSpdxElement": "SPDXRef-Package-defb5b03e611d73",
+      "relationshipType": "DEPENDS_ON"
+    }
+  ]
+}
