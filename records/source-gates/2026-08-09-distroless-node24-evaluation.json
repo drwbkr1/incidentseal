@@ -1,0 +1,211 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-008",
+  "assessed_at": "2026-08-09T19:20:59Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "verify the exact public image signature against the official Distroless keyless identity",
+      "retrieve public signature and registry metadata for the exact index and linux/amd64 child",
+      "pull the exact linux/amd64 image into local Docker custody without running it",
+      "scan the exact local image offline with the already gated Trivy database",
+      "decide whether the candidate may replace the blocked Docker Official Node artifact"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Evaluate the exact Google Distroless Node.js 24 Debian 13 nonroot image as a lower-attack-surface replacement for the blocked Docker Official Node artifact. This gate permits signature, metadata, license, SBOM and vulnerability inspection plus non-executing acquisition; it does not approve runtime use or redistribution.",
+    "planned_actions": [
+      "verify exact image signatures",
+      "pull exact linux/amd64 artifact without running it",
+      "scan exact local artifact offline",
+      "retain a runtime disposition"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "distroless-nodejs24-debian13-nonroot-20260809",
+      "name": "Google Distroless Node.js 24 Debian 13 nonroot exact image",
+      "locator": "gcr.io/distroless/nodejs24-debian13@sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a",
+      "platform": {
+        "os": "linux",
+        "architecture": "amd64",
+        "child_manifest": "sha256:f987682b3ea8d8e22497cb95edc5014d793612f7064e43df8104394db0ce19fe"
+      },
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect gcr.io/distroless/nodejs24-debian13:nonroot --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "The public discovery tag resolved to OCI index sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a with linux/amd64 child sha256:f987682b3ea8d8e22497cb95edc5014d793612f7064e43df8104394db0ce19fe."
+            },
+            {
+              "type": "live",
+              "locator": "https://github.com/GoogleContainerTools/distroless",
+              "observed_at": "2026-08-09T19:10:39Z",
+              "note": "The official project lists nodejs24-debian13 with nonroot as a current published image and documents architecture-specific variants."
+            }
+          ],
+          "note": "The mutable nonroot tag is discovery only; every approved action is bound to the exact index and linux/amd64 child digest."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/GoogleContainerTools/distroless",
+              "observed_at": "2026-08-09T19:10:39Z",
+              "note": "GoogleContainerTools publishes and documents the Distroless image family and its gcr.io registry location."
+            }
+          ],
+          "note": "Publisher authority is direct and independently signature-checkable."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect gcr.io/distroless/nodejs24-debian13:nonroot --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "Exact registry metadata was anonymously readable without a credential, account, purchase or terms interaction."
+            }
+          ],
+          "note": "Only anonymous public registry access is permitted."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/GoogleContainerTools/distroless/blob/main/LICENSE",
+              "observed_at": "2026-08-09T19:10:39Z",
+              "note": "The official Distroless repository is Apache-2.0 licensed."
+            }
+          ],
+          "note": "Controlled acquisition and evaluation are permitted. Redistribution remains blocked pending exact SBOM and component-license reconciliation."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/GoogleContainerTools/distroless#how-do-i-verify-distroless-images",
+              "observed_at": "2026-08-09T19:10:39Z",
+              "note": "The official project states that every Distroless image is keyless-signed and fixes the expected issuer to https://accounts.google.com and identity to keyless@distroless.iam.gserviceaccount.com."
+            },
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect gcr.io/distroless/nodejs24-debian13:nonroot --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "The reproducible 1970 timestamps and Bazel layer history identify Debian 13 inputs and the nodejs24 payload, but do not substitute for a signed SLSA build statement."
+            }
+          ],
+          "note": "Publisher provenance is independently verifiable. No official signed SLSA attestation was located during this gate, so full build provenance must remain a named limitation in the runtime disposition."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect gcr.io/distroless/nodejs24-debian13:nonroot --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "The exact 1,219-byte OCI index binds amd64 child sha256:f987682b3ea8d8e22497cb95edc5014d793612f7064e43df8104394db0ce19fe plus arm64, s390x and ppc64le children."
+            }
+          ],
+          "note": "The exact index signature, exact amd64 child and local image identity must match; no tag fallback is permitted."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/GoogleContainerTools/distroless",
+              "observed_at": "2026-08-09T19:10:39Z",
+              "note": "The project documents that standard Distroless images omit shells and package managers and currently supports Node.js 24 on Debian 13."
+            },
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect gcr.io/distroless/nodejs24-debian13:nonroot --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "The exact amd64 config declares User 65532, entrypoint /nodejs/bin/node and working directory /home/nonroot."
+            }
+          ],
+          "note": "The candidate fits a nonroot Node 24 runner, subject to exact offline vulnerability, license and runtime-contract checks."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "static",
+              "locator": "docs/threat-model.md",
+              "note": "Only public exact image metadata and signatures are accessed. The image remains unexecuted and receives no Docker socket, secret, mount, network or repository content."
+            }
+          ],
+          "note": "Registry and verification tools receive no private project input or approval state."
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [
+      "exact index signature",
+      "exact linux/amd64 child signature",
+      "anonymous exact pull",
+      "local platform identity",
+      "offline Trivy SBOM vulnerability and license disposition",
+      "runtime disposition that preserves the missing signed SLSA limitation"
+    ],
+    "approved_actions": [
+      "verify exact index and linux/amd64 child signatures",
+      "pull exact linux/amd64 artifact without running it",
+      "scan exact local artifact offline",
+      "retain a replacement disposition"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "anonymous read-only verification of the exact public digest and signatures",
+      "anonymous pull of only the exact public linux/amd64 artifact",
+      "non-executing local metadata inspection",
+      "offline scan with the already exact-pinned Trivy tool and database",
+      "retain exact signature SBOM vulnerability license and platform receipts"
+    ],
+    "requires_explicit_authorization": [
+      "authenticate, buy access or accept interactive terms",
+      "use nonroot or another floating tag after discovery",
+      "run the image before all execution gates pass",
+      "represent a publisher signature or Bazel history as signed SLSA provenance",
+      "publish, mirror, redistribute or treat project claims as final scan evidence"
+    ]
+  }
+}

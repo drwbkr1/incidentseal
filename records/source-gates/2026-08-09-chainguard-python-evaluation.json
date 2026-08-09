@@ -1,0 +1,227 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-009",
+  "assessed_at": "2026-08-09T19:20:59Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "verify the exact public image and attestation signatures",
+      "retrieve exact signed SPDX, SLSA and apko configuration attestations",
+      "pull the exact linux/amd64 image into local Docker custody without running it",
+      "scan the exact local image offline with the already gated Trivy database",
+      "decide whether the candidate may replace the blocked Docker Official Python artifact"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Evaluate the exact anonymous Chainguard Free Python candidate as a lower-vulnerability replacement for the blocked Docker Official Python artifact. This gate permits signature, attestation, license, SBOM and vulnerability inspection plus non-executing acquisition; it does not approve runtime use or redistribution.",
+    "planned_actions": [
+      "verify exact image signatures",
+      "verify and retain exact attestations",
+      "pull exact linux/amd64 artifact without running it",
+      "scan exact local artifact offline",
+      "retain a runtime disposition"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "chainguard-python-latest-20260809",
+      "name": "Chainguard Free Python exact 2026-08-09 image",
+      "locator": "cgr.dev/chainguard/python@sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+      "platform": {
+        "os": "linux",
+        "architecture": "amd64",
+        "child_manifest": "sha256:15e66fa35e0b07095bbc4f4f0522718b780944709026687485f4e712cc6d5ae0"
+      },
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect cgr.dev/chainguard/python:latest --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "The public tag resolved to OCI index sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5 created 2026-08-09T04:38:19Z with linux/amd64 child sha256:15e66fa35e0b07095bbc4f4f0522718b780944709026687485f4e712cc6d5ae0."
+            },
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/python/versions",
+              "observed_at": "2026-08-09T19:12:31Z",
+              "note": "Chainguard's public catalog exposes the free latest track and currently lists Python 3.14.7 version rows; the exact signed apko configuration will determine this digest's actual package version."
+            }
+          ],
+          "note": "The mutable latest tag and catalog version are discovery only; all approved actions use the exact index and platform child digest."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/python/versions",
+              "observed_at": "2026-08-09T19:12:31Z",
+              "note": "Chainguard's official image directory identifies this as the Python image packaged by Chainguard."
+            }
+          ],
+          "note": "Publisher authority is direct and independently signature-checkable."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://edu.chainguard.dev/chainguard/chainguard-images/about/images-categories/",
+              "observed_at": "2026-08-09T19:10:39Z",
+              "note": "Chainguard documents that public Free images require no authentication and are free to download and use."
+            },
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect cgr.dev/chainguard/python:latest --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "Exact registry metadata was anonymously readable without credentials."
+            }
+          ],
+          "note": "Authentication, private production tags, account creation and paid access are forbidden."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/chainguard-images/images/blob/main/LICENSE",
+              "observed_at": "2026-08-09T19:20:59Z",
+              "note": "The public image-definition repository is Apache-2.0 licensed."
+            },
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/python/sbom",
+              "observed_at": "2026-08-09T19:12:31Z",
+              "note": "The catalog exposes component-level licenses; exact notices and copyleft obligations remain pending signed-SBOM reconciliation."
+            }
+          ],
+          "note": "Controlled acquisition and evaluation are permitted. Redistribution remains blocked pending exact SBOM and notice review."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/python/provenance",
+              "observed_at": "2026-08-09T19:12:31Z",
+              "note": "Chainguard publishes Sigstore image signatures plus signed SLSA v1, apko configuration and SPDX attestations for the public Python image."
+            },
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/python/provenance#verifying-python-image-signatures",
+              "observed_at": "2026-08-09T19:12:31Z",
+              "note": "Official verification fixes the issuer to GitHub Actions OIDC and the identity to chainguard-images/images release.yaml on main."
+            }
+          ],
+          "note": "The exact image and each required attestation must verify against the fixed public release workflow before acquisition is treated as trusted."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "command: docker buildx imagetools inspect cgr.dev/chainguard/python:latest --format {{json .}}",
+              "observed_at": "2026-08-09T19:14:55Z",
+              "note": "The exact 1,123-byte OCI index binds amd64 child sha256:15e66fa35e0b07095bbc4f4f0522718b780944709026687485f4e712cc6d5ae0 and arm64 child sha256:139d6148422e5861af57c8db819551ece94cb3ef9bbbc9e9153668394fd316cb."
+            }
+          ],
+          "note": "The exact index signature, exact amd64 child and local image identity must all match; no tag fallback is permitted."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://images.chainguard.dev/directory/image/python/specifications",
+              "observed_at": "2026-08-09T19:12:31Z",
+              "note": "The image declares User 65532 and entrypoint /usr/bin/python and contains neither shell nor apk."
+            },
+            {
+              "type": "live",
+              "locator": "https://edu.chainguard.dev/get-started/migration/migration-guides/migrating-python/",
+              "observed_at": "2026-08-09T19:10:39Z",
+              "note": "Official guidance states that the standard latest image is nonroot and intentionally omits shell, pip and apk."
+            }
+          ],
+          "note": "The minimal nonroot runtime is promising, but exact Python version, stdlib behavior and dependency-free runner compatibility must be proven from signed metadata and later real-surface tests."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "static",
+              "locator": "docs/threat-model.md",
+              "note": "Only the public exact image and public attestations are accessed. The image remains unexecuted and receives no Docker socket, secret, mount, network or repository content."
+            }
+          ],
+          "note": "Registry and verification tools receive no private project input or approval state."
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [
+      "exact index signature",
+      "exact linux/amd64 child signature",
+      "exact SLSA attestation signature and subject",
+      "exact apko configuration attestation signature and subject",
+      "exact SPDX attestation signature and subject",
+      "anonymous exact pull",
+      "local platform identity",
+      "offline Trivy SBOM vulnerability and license disposition",
+      "exact Python-version and runner compatibility disposition"
+    ],
+    "approved_actions": [
+      "verify exact signatures and attestations",
+      "pull exact linux/amd64 artifact without running it",
+      "scan exact local artifact offline",
+      "retain a replacement disposition"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "anonymous read-only verification of the exact public digest and attestations",
+      "anonymous pull of only the exact public linux/amd64 artifact",
+      "non-executing local metadata inspection",
+      "offline scan with the already exact-pinned Trivy tool and database",
+      "retain exact SBOM provenance signature vulnerability license and platform receipts"
+    ],
+    "requires_explicit_authorization": [
+      "authenticate, create an account, select an entitlement, accept interactive terms, buy access or use a private production image",
+      "use latest or another floating tag after discovery",
+      "run the image before all execution gates pass",
+      "assume compatibility from a clean vulnerability scan",
+      "publish, mirror, redistribute or treat catalog claims as final scan evidence"
+    ]
+  }
+}
