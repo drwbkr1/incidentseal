@@ -19,7 +19,7 @@ Status: complete
 
 ### IS-0002 - Manifest authority and CLI contract
 
-Status: active
+Status: complete
 
 - Versioned manifest JSON Schema and deterministic canonicalization.
 - Operator-controlled digest approval store outside the repository.
@@ -29,7 +29,7 @@ Status: active
 
 ### IS-0003 - Hardened real topology
 
-Status: planned
+Status: active
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and control service.

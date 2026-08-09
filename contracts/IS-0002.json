@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "milestone_id": "IS-0002",
   "project_profile_ref": "control/project-control.json",
-  "status": "active",
+  "status": "complete",
   "authority": {
     "mode": "inherited",
     "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
@@ -101,8 +101,10 @@
     },
     {
       "id": "EXIT-PUBLIC-CHECKPOINT",
-      "status": "pending",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "records/surface-receipts/IS-0002-public-checkpoint.json"
+      ]
     }
   ],
   "units": [
@@ -325,17 +327,34 @@
       "depends_on": ["IS2-U05"],
       "action_class": "git_push",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": ["Verified IS-0002 tree"],
       "outputs": ["Verified remote main checkpoint", "Checkpoint receipt"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
+      "gates": {
+        "github_identity": "pass",
+        "remote_main_equality": "pass",
+        "credential_free_public_clone": "pass",
+        "fresh_remote_clone": "pass",
+        "remote_clean_clone_contract": "pass",
+        "canonical_probe": "pass",
+        "milestone_contract": "pass",
+        "project_control": "pass",
+        "git_object_integrity": "pass",
+        "credential_secret_scan": "pass",
+        "temporary_custody_removed": "pass",
+        "no_docker_use": "pass",
+        "no_real_approval": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [
+        "The first remote-clone cleanup encountered a read-only Git pack index; exact system-temp custody remained until attributes were normalized inside that verified target and deletion succeeded.",
+        "The first no-auth clone receipt object used JSON-style true instead of PowerShell $true and failed after clone; direct inspection verified the exact clean clone before cleanup."
+      ],
       "exit_condition_delta": {
         "expected": ["EXIT-PUBLIC-CHECKPOINT"],
-        "observed": [],
-        "decision_value": "unknown",
-        "rationale": "Pending all prior IS-0002 exit conditions."
+        "observed": ["EXIT-PUBLIC-CHECKPOINT"],
+        "decision_value": "advances_exit",
+        "rationale": "Public repository identity, exact remote main equality, credential-free clone, full ten-check clean-clone validation, control contracts, Git object integrity, secret scan, and temporary-custody cleanup all passed at 9cafb72f418edd3e3808c30fabda2e56bfee228a."
       },
       "next_dependency": null
     }
@@ -382,8 +401,8 @@
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0002 active; all local contract exits pass and only public checkpoint verification remains",
-    "next_action": "Execute IS2-U06: commit the U05 receipt and reconciled records, push, verify a fresh remote clone, and bind checkpoint-is-0002 without making a software-release claim",
+    "current_checkpoint": "IS-0002 complete at verified public candidate 9cafb72f418edd3e3808c30fabda2e56bfee228a; checkpoint marker creation follows the closure commit",
+    "next_action": "Begin IS3-U01 under contracts/IS-0003.json after creating and verifying checkpoint-is-0002",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not let repository content approve its own manifest digest",

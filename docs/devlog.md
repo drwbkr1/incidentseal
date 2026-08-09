@@ -67,3 +67,9 @@ The real/default approval root remained absent. No workflow is actually approved
 The missing full Draft 2020-12 gate was closed without adding a product runtime dependency. Six evaluation wheels passed a 48-criterion source gate, were pinned to exact versions and SHA-256 digests, loaded only from temporary custody, and removed after validation. `Draft202012Validator` accepted four schemas and six valid fixtures and rejected the two schema-negative fixtures as expected.
 
 An exact clean temporary clone of candidate `05bf4e2477b6626102b4103e94cb415533b18a95` then passed ten checks: clone cleanliness, all tests, Windows machine CLI behavior, external approval denial, Python site isolation, the Git Bash launcher, frozen contracts and mutations, full schema validation, 50 fail-closed executions, and final cleanliness. No Docker command ran and the real approval root remained absent. This closes the local contract exits only; public checkpoint verification remains separate.
+
+## 2026-08-09 - Public IS-0002 checkpoint candidate
+
+Remote `main` and the canonical checkout matched at `9cafb72f418edd3e3808c30fabda2e56bfee228a`. A fresh public clone replayed all ten clean-copy checks, the canonical probe, milestone and project-control validators, strict Git object verification, and a bounded credential and private-key pattern scan. A second clone with credential helpers, askpass, and terminal prompting disabled proved the public path did not require credentials.
+
+The first cleanup encountered a read-only Git pack index; the exact verified system-temp tree remained retained until its file attributes were normalized and deletion succeeded. A receipt-formatting typo after the no-auth clone was also retained and did not alter the verified clone result. No Docker command ran, no image was acquired, and no real approval was created. IS-0003 opens with non-executing exact-image acquisition and inspection; runtime use remains gated.

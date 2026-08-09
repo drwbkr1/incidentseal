@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0",
+  "milestone_id": "IS-0003",
+  "project_profile_ref": "control/project-control.json",
+  "status": "active",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_action_classes": [
+      "read_only_inspection",
+      "project_control",
+      "update_project_records",
+      "source_gate",
+      "dependency_management",
+      "reversible_remediation",
+      "deterministic_validation",
+      "version_control_write",
+      "git_push"
+    ],
+    "user_instruction": "Build and validate the hardened real local Compose topology one bounded surface at a time while the host CLI exclusively owns Docker and every executable source remains gated and exact-digest pinned.",
+    "repository_controls": [
+      "AGENTS.md",
+      "docs/product-contract.md",
+      "docs/threat-model.md",
+      "control/project-control.json"
+    ],
+    "active_contract": "contracts/IS-0003.json",
+    "verified_at_utc": "2026-08-09T18:20:08Z",
+    "expires_at_utc": null
+  },
+  "scope": {
+    "objective": "Acquire and inspect the already source-gated exact images, freeze a closed Compose contract, then implement and real-surface validate a host-controlled, network-denied PostgreSQL/Python/Node topology without weakening the manifest authority boundary.",
+    "allowed_paths": ["."],
+    "forbidden_work": [
+      "Any access to C:\\Users\\drewb\\OneDrive",
+      "Mounting a Docker or container-engine socket into any container",
+      "Giving containers secrets, privileged mode, host network, broad host mounts, or external runtime network",
+      "Executing an image before its exact artifact, SBOM, provenance, vulnerability and license evidence pass the applicable gate",
+      "Allowing repository content or an agent-facing command to approve or replace the workflow digest",
+      "Using floating image tags, unpinned build frontends, unpinned package dependencies, or online dependency resolution during a controlled build",
+      "Starting dashboard, recovery, publication, cloud, Kubernetes, multi-tenancy, or arbitrary remote execution work",
+      "Claiming a test or Compose config render proves a real service surface"
+    ],
+    "reversible_actions": [
+      "Acquire exact source-gated image digests into local Docker custody without running them",
+      "Inspect registry and local image metadata, SBOM, provenance, licenses and vulnerability scans",
+      "Create exact-pinned Dockerfiles, locks, Compose configuration, migrations, runner fixtures, host CLI code, tests and documentation",
+      "Start and stop the approved local topology only after acquisition and scan gates pass",
+      "Use narrow project-owned staging, volume and temporary evidence custody",
+      "Commit and push verified bounded improvements"
+    ],
+    "stop_conditions": [
+      "An image or dependency cannot pass source, integrity, license or critical vulnerability gates",
+      "The topology cannot preserve host-only Docker ownership or default-deny runtime egress",
+      "A required change alters the product promise, trust boundary, approval authority, or explicit security gate",
+      "A test would require a real secret, sensitive data, paid service, ownership change, irreversible action, or unsupported release claim",
+      "The checkpoint cannot be verified from clean local and public custody"
+    ]
+  },
+  "entry_conditions": [
+    {"id":"ENTRY-VERIFIED-IS-0002","status":"pass","evidence":["records/surface-receipts/IS-0002-public-checkpoint.json"]},
+    {"id":"ENTRY-IMAGE-SOURCE-GATE","status":"pass","evidence":["records/source-gates/2026-08-09-initial-images.json"]},
+    {"id":"ENTRY-TRUST-BOUNDARY","status":"pass","evidence":["docs/product-contract.md","docs/threat-model.md","docs/decisions/ADR-0001-host-authority-and-manifest-digest.md"]}
+  ],
+  "exit_conditions": [
+    {"id":"EXIT-IMAGE-ACQUISITION-SCAN","status":"pending","evidence":[]},
+    {"id":"EXIT-COMPOSE-CONTRACT","status":"pending","evidence":[]},
+    {"id":"EXIT-TOPOLOGY-SECURITY","status":"pending","evidence":[]},
+    {"id":"EXIT-DATABASE-SURFACE","status":"pending","evidence":[]},
+    {"id":"EXIT-PYTHON-RUNNER","status":"pending","evidence":[]},
+    {"id":"EXIT-NODE-RUNNER","status":"pending","evidence":[]},
+    {"id":"EXIT-REAL-TOPOLOGY","status":"pending","evidence":[]},
+    {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
+  ],
+  "units": [
+    {
+      "id":"IS3-U01",
+      "purpose":"Acquire the four already source-gated exact image artifacts without running them; bind platform child digests; retain registry and local identity, SBOM, provenance, license and vulnerability evidence; decide whether runtime inspection may proceed.",
+      "depends_on":[],
+      "action_class":"dependency_management",
+      "human_gate":false,
+      "status":"ready",
+      "inputs":["records/source-gates/2026-08-09-initial-images.json","Exact host platform inventory","Current vulnerability and license policies"],
+      "outputs":["Exact-image lock","Acquisition receipts","SBOM and provenance receipts","Vulnerability and license disposition"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-IMAGE-ACQUISITION-SCAN"],"observed":[],"decision_value":"unknown","rationale":"No candidate image has yet been acquired, scanned or approved for execution."},
+      "next_dependency":"IS3-U02"
+    },
+    {
+      "id":"IS3-U02",
+      "purpose":"Freeze the Compose, service identity, network, mount, user, filesystem, health, migration, runner and host-orchestration contracts before implementation.",
+      "depends_on":["IS3-U01"],
+      "action_class":"update_project_records",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["Passed exact-image disposition","INCIDENTSEAL-PRODUCT-001","Frozen workflow manifest authority"],
+      "outputs":["Compose contract","Topology schemas and fixtures","ADR for host orchestration and staged custody","Mutation plan"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":[],"decision_value":"unknown","rationale":"Pending a closed, mutation-tested topology contract."},
+      "next_dependency":"IS3-U03"
+    },
+    {
+      "id":"IS3-U03",
+      "purpose":"Implement exact-pinned Dockerfiles, offline dependency locks, Compose configuration, migrations, service probes and host-CLI orchestration without starting the topology.",
+      "depends_on":["IS3-U02"],
+      "action_class":"reversible_remediation",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["Frozen topology contract","Approved exact images"],
+      "outputs":["Dockerfiles","Compose file","Locks","Migrations","Host CLI orchestration","Static topology receipts"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-COMPOSE-CONTRACT"],"observed":[],"decision_value":"unknown","rationale":"Implementation must pass configuration and policy mutations before runtime use."},
+      "next_dependency":"IS3-U04"
+    },
+    {
+      "id":"IS3-U04",
+      "purpose":"Start the exact local topology through the real host CLI and probe container identity, users, capabilities, filesystems, mounts, networks, egress denial, health and Docker-socket absence.",
+      "depends_on":["IS3-U03"],
+      "action_class":"deterministic_validation",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["Statically valid topology","Passed image execution gate"],
+      "outputs":["Real Compose topology receipt","Runtime hardening receipt","Retained startup and teardown attempts"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-TOPOLOGY-SECURITY"],"observed":[],"decision_value":"unknown","rationale":"No real container surface has yet run."},
+      "next_dependency":"IS3-U05"
+    },
+    {
+      "id":"IS3-U05",
+      "purpose":"Validate one-shot migrations, PostgreSQL identity, health, least privilege, schema, persistence and restart behavior through the real topology.",
+      "depends_on":["IS3-U04"],
+      "action_class":"deterministic_validation",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["Running hardened topology","Migration contract"],
+      "outputs":["Database surface receipt","Migration and persistence evidence"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-DATABASE-SURFACE"],"observed":[],"decision_value":"unknown","rationale":"The database surface is unimplemented and unverified."},
+      "next_dependency":"IS3-U06"
+    },
+    {
+      "id":"IS3-U06",
+      "purpose":"Validate the real Python runner against approved staged input and PostgreSQL, with no secrets, egress, Docker control or writable source mounts.",
+      "depends_on":["IS3-U05"],
+      "action_class":"deterministic_validation",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["Verified database surface","Python runner contract"],
+      "outputs":["Python runner receipt","Positive and negative runner evidence"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-PYTHON-RUNNER"],"observed":[],"decision_value":"unknown","rationale":"The real Python runner does not yet exist."},
+      "next_dependency":"IS3-U07"
+    },
+    {
+      "id":"IS3-U07",
+      "purpose":"Validate the real Node runner against the same approved staged contract and isolation controls.",
+      "depends_on":["IS3-U06"],
+      "action_class":"deterministic_validation",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["Verified database and Python surfaces","Node runner contract"],
+      "outputs":["Node runner receipt","Cross-runner consistency and negative evidence"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-NODE-RUNNER"],"observed":[],"decision_value":"unknown","rationale":"The real Node runner does not yet exist."},
+      "next_dependency":"IS3-U08"
+    },
+    {
+      "id":"IS3-U08",
+      "purpose":"Run repeated clean-start, failure, cancellation, restart and teardown scenarios and verify the entire topology from a clean clone without orphaned resources or broadened trust.",
+      "depends_on":["IS3-U07"],
+      "action_class":"deterministic_validation",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["All verified real topology components"],
+      "outputs":["Repeated topology evaluation","Clean-clone topology receipt","Resource cleanup receipt"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-REAL-TOPOLOGY"],"observed":[],"decision_value":"unknown","rationale":"End-to-end reliability and clean-clone topology behavior remain unverified."},
+      "next_dependency":"IS3-U09"
+    },
+    {
+      "id":"IS3-U09",
+      "purpose":"Commit, push, fresh-clone, tag and independently verify the bounded IS-0003 checkpoint without claiming dashboard, recovery or release completion.",
+      "depends_on":["IS3-U08"],
+      "action_class":"git_push",
+      "human_gate":false,
+      "status":"planned",
+      "inputs":["Verified IS-0003 tree"],
+      "outputs":["Verified remote main checkpoint","checkpoint-is-0003 marker","Public checkpoint receipt"],
+      "gates":{},
+      "disposition":null,
+      "retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-PUBLIC-CHECKPOINT"],"observed":[],"decision_value":"unknown","rationale":"Pending every prior IS-0003 exit condition."},
+      "next_dependency":null
+    }
+  ],
+  "path_efficiency":{"max_consecutive_no_progress_units":2,"review_action_class":"project_control","review_human_gate":false},
+  "verification": {
+    "changed_risks":["security","runtime","package","data","public contract"],
+    "required_checks":[
+      "Exact image source-gate revalidation and platform binding",
+      "SBOM, provenance, license and vulnerability disposition before execution",
+      "Compose render and fail-closed mutation checks",
+      "Real container identity, privilege, capability, filesystem, mount, network and egress probes",
+      "Real PostgreSQL migration, health, persistence and restart checks",
+      "Real Python and Node runner positive and negative paths",
+      "Repeated startup, failure, cancellation, cleanup and clean-clone validation",
+      "Git diff, secret scan and post-push branch and tag verification"
+    ],
+    "completed_checks":[]
+  },
+  "handoff": {
+    "current_checkpoint":"IS-0003 active",
+    "next_action":"Execute IS3-U01: revalidate the exact-image source gate, acquire exact artifacts without running them, bind platform digests, and retain SBOM, provenance, license and vulnerability evidence before deciding whether runtime inspection may proceed.",
+    "do_not_carry_forward":[
+      "Do not use OneDrive",
+      "Do not run an image merely because acquisition or metadata passed",
+      "Do not mount Docker authority into containers",
+      "Do not add secrets, external runtime network, broad mounts or privileged execution",
+      "Do not let repository content approve its own workflow manifest",
+      "Do not collapse verification verdicts into lifecycle state"
+    ]
+  }
+}

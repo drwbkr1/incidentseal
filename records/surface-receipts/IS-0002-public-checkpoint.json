@@ -1,0 +1,61 @@
+{
+  "schema_version": "incidentseal-public-checkpoint/v1",
+  "receipt_id": "IS-RECEIPT-0004",
+  "checkpoint_id": "IS-0002",
+  "unit_id": "IS2-U06",
+  "observed_at_utc": "2026-08-09T18:20:08Z",
+  "disposition": "pass",
+  "repository": {
+    "name_with_owner": "drwbkr1/incidentseal",
+    "url": "https://github.com/drwbkr1/incidentseal",
+    "visibility": "PUBLIC",
+    "default_branch": "main",
+    "archived": false,
+    "origin": "https://github.com/drwbkr1/incidentseal.git"
+  },
+  "candidate": {
+    "commit": "9cafb72f418edd3e3808c30fabda2e56bfee228a",
+    "local_head": "9cafb72f418edd3e3808c30fabda2e56bfee228a",
+    "remote_main_head": "9cafb72f418edd3e3808c30fabda2e56bfee228a",
+    "heads_match": true,
+    "source_worktree_clean": true
+  },
+  "fresh_remote_clone": {
+    "status": "PASS",
+    "commit": "9cafb72f418edd3e3808c30fabda2e56bfee228a",
+    "initial_worktree_clean": true,
+    "final_worktree_clean": true,
+    "credential_helper_disabled_clone": true,
+    "terminal_prompt_disabled_clone": true,
+    "temporary_custody_removed": true,
+    "docker_invoked": false,
+    "real_approval_created": false
+  },
+  "checks": [
+    {"id":"github-identity","status":"PASS","result":"Authenticated owner drwbkr1; repository public, unarchived, and default branch main."},
+    {"id":"remote-main-equality","status":"PASS","result":"Local and remote main both resolved to 9cafb72f418edd3e3808c30fabda2e56bfee228a."},
+    {"id":"credential-free-clone","status":"PASS","result":"A second public clone completed with credential helper, askpass and terminal prompting disabled and resolved to the exact candidate."},
+    {"id":"remote-clean-clone-contract","status":"PASS","result":"The fresh remote clone passed all ten CLI-contract checks, including 38 tests, both launchers, full Draft 2020-12 validation and 50 fail-closed executions."},
+    {"id":"canonical-probe","status":"PASS","result":"Required files and custody passed from the fresh remote clone at the exact candidate."},
+    {"id":"milestone-contract","status":"PASS","result":"IS-0002 was valid, authority active, and IS2-U06 the sole authorized ready unit."},
+    {"id":"project-control","status":"PASS","result":"Project control was valid with no errors, warnings or gate findings."},
+    {"id":"git-object-integrity","status":"PASS","result":"git fsck --strict completed without findings."},
+    {"id":"credential-secret-scan","status":"PASS","result":"No tracked sensitive-file names or configured high-confidence credential and private-key patterns were found."},
+    {"id":"cleanup","status":"PASS","result":"Both public-clone custody roots and nested validation custody were removed from system temp."}
+  ],
+  "retained_failures": [
+    {"attempt":"First remote-clone cleanup","outcome":"failed","note":"System.IO.Directory.Delete encountered a read-only Git pack index; the verified system-temp tree remained present until file attributes were normalized within that exact tree and deletion succeeded."},
+    {"attempt":"First no-auth clone receipt object","outcome":"failed","note":"The public clone completed, but the PowerShell reporting object used JSON-style true instead of $true and failed after clone. Direct inspection verified the exact clean commit before cleanup."}
+  ],
+  "checkpoint_marker": {
+    "name": "checkpoint-is-0002",
+    "status_at_receipt_commit": "pending post-commit creation and live verification"
+  },
+  "limitations": [
+    "This is a checkpoint, not a software version or release.",
+    "No workflow manifest is approved and no workflow was executed.",
+    "No image was pulled or run; Compose, PostgreSQL, Python runner, Node runner, dashboard, receipt and recovery surfaces remain unimplemented.",
+    "The marker can only bind the closure commit after this receipt is committed; live tag verification is therefore post-record evidence."
+  ],
+  "scope_note": "This receipt proves the public IS-0002 candidate and real CLI contract from fresh remote custody. It does not prove any Docker-backed or release surface."
+}
