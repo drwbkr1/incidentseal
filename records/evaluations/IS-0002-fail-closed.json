@@ -1,0 +1,70 @@
+{
+  "schema_version": "incidentseal-fail-closed-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0002-U04",
+  "checkpoint_id": "IS-0002",
+  "unit_id": "IS2-U04",
+  "observed_at_utc": "2026-08-09T17:28:31Z",
+  "base_commit": "9e23af9c7d74768b3c0c8f3b2c876240cc3d0bbf",
+  "status": "PASS",
+  "scenario_count": 25,
+  "trials_per_scenario": 2,
+  "execution_count": 50,
+  "real_approval_created": false,
+  "third_party_dependencies": 0,
+  "interpretation": "Evaluation PASS means every scenario produced its expected product state or stable rejection. It does not convert MISMATCH, MISSING, EXPIRED, INVALID, or forbidden attempts into product PASS.",
+  "scenarios": [
+    {"id": "exact-approval", "expected": "MATCH", "observed": ["MATCH", "MATCH"], "status": "PASS"},
+    {"id": "reordered-format", "expected": "MATCH", "observed": ["MATCH", "MATCH"], "status": "PASS"},
+    {"id": "semantic-policy-drift", "expected": "MISMATCH", "observed": ["MISMATCH", "MISMATCH"], "status": "PASS"},
+    {"id": "repository-commit-drift", "expected": "MISMATCH", "observed": ["MISMATCH", "MISMATCH"], "status": "PASS"},
+    {"id": "manifest-path-drift", "expected": "MISMATCH", "observed": ["MISMATCH", "MISMATCH"], "status": "PASS"},
+    {"id": "approval-digest-drift", "expected": "MISMATCH", "observed": ["MISMATCH", "MISMATCH"], "status": "PASS"},
+    {"id": "approval-remote-drift", "expected": "MISMATCH", "observed": ["MISMATCH", "MISMATCH"], "status": "PASS"},
+    {"id": "expired-approval", "expected": "EXPIRED", "observed": ["EXPIRED", "EXPIRED"], "status": "PASS"},
+    {"id": "future-approval", "expected": "INVALID", "observed": ["INVALID", "INVALID"], "status": "PASS"},
+    {"id": "missing-approval", "expected": "MISSING:NO_WRITE", "observed": ["MISSING:NO_WRITE", "MISSING:NO_WRITE"], "status": "PASS"},
+    {"id": "malformed-approval", "expected": "INVALID", "observed": ["INVALID", "INVALID"], "status": "PASS"},
+    {"id": "repository-contained-store", "expected": "INVALID:NO_WRITE", "observed": ["INVALID:NO_WRITE", "INVALID:NO_WRITE"], "status": "PASS"},
+    {"id": "forbidden-root-overlap", "expected": "INVALID", "observed": ["INVALID", "INVALID"], "status": "PASS"},
+    {"id": "unverified-permissions", "expected": "INVALID", "observed": ["INVALID", "INVALID"], "status": "PASS"},
+    {"id": "case-ambiguous-directory", "expected": "INVALID", "observed": ["INVALID", "INVALID"], "status": "PASS"},
+    {"id": "case-ambiguous-filename", "expected": "INVALID", "observed": ["INVALID", "INVALID"], "status": "PASS"},
+    {"id": "junction-approval-root", "expected": "INVALID", "observed": ["INVALID", "INVALID"], "status": "PASS"},
+    {"id": "network-policy-drift", "expected": "INVALID:IS_MANIFEST_SCHEMA", "observed": ["INVALID:IS_MANIFEST_SCHEMA", "INVALID:IS_MANIFEST_SCHEMA"], "status": "PASS"},
+    {"id": "duplicate-key-manifest", "expected": "INVALID:IS_MANIFEST_DUPLICATE_KEY", "observed": ["INVALID:IS_MANIFEST_DUPLICATE_KEY", "INVALID:IS_MANIFEST_DUPLICATE_KEY"], "status": "PASS"},
+    {"id": "float-manifest", "expected": "INVALID:IS_MANIFEST_NUMBER_DOMAIN", "observed": ["INVALID:IS_MANIFEST_NUMBER_DOMAIN", "INVALID:IS_MANIFEST_NUMBER_DOMAIN"], "status": "PASS"},
+    {"id": "bom-manifest", "expected": "INVALID:IS_MANIFEST_ENCODING", "observed": ["INVALID:IS_MANIFEST_ENCODING", "INVALID:IS_MANIFEST_ENCODING"], "status": "PASS"},
+    {"id": "authority-mutation-attempt", "expected": "IS_AUTHORITY_MUTATION_FORBIDDEN:77", "observed": ["IS_AUTHORITY_MUTATION_FORBIDDEN:77", "IS_AUTHORITY_MUTATION_FORBIDDEN:77"], "status": "PASS"},
+    {"id": "approval-root-override-attempt", "expected": "IS_USAGE:64", "observed": ["IS_USAGE:64", "IS_USAGE:64"], "status": "PASS"},
+    {"id": "default-store-read-only", "expected": "MISSING:12:False:False", "observed": ["MISSING:12:False:False", "MISSING:12:False:False"], "status": "PASS"},
+    {"id": "windows-environment-shadow", "expected": "STABLE", "observed": ["STABLE", "STABLE"], "status": "PASS"}
+  ],
+  "evaluated_sha256": [
+    {"path": "scripts/evaluate_fail_closed.py", "sha256": "d2517a0e06d41cd1e82ec68d8854a5ec168679ad69e066260c8cb4439b2f7f62"},
+    {"path": "src/incidentseal/manifest.py", "sha256": "05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"},
+    {"path": "src/incidentseal/approval.py", "sha256": "3e11b9bdbbc0bcff5cf67f6cefc3f7c36d647c97b4d2b4d4c8019ee2a26b7af4"},
+    {"path": "src/incidentseal/cli.py", "sha256": "f218f5594cea316135f08f299742ca0c5e21cfc68a7b6fbe623ff55d53ff09fd"},
+    {"path": "schemas/workflow-manifest-v1.schema.json", "sha256": "74cef1e045df3825645e6a1fd35c8f8bbdab398ee8f69b31220324299ab934e2"},
+    {"path": "schemas/manifest-approval-v1.schema.json", "sha256": "8fd213cd8bf76c006780a79e18f27dca94f77f6dababf3582cbe5c6d758ae99a"},
+    {"path": "schemas/cli-envelope-v1.schema.json", "sha256": "47acf384afbbf2f44f29428ac52d6ee6c53332dc8461a82a7d59895717ea6e36"},
+    {"path": "fixtures/contracts/workflow.valid.minimal.json", "sha256": "a71e49936cf6dd8114edb3e768c203f26c51c0131dd237a9e3165f022c8db79e"},
+    {"path": "fixtures/contracts/workflow.valid.reordered.json", "sha256": "8ee5828e0d5ced8f30c95269871574c2b6c4649f3074167dbf610720d93cae0c"},
+    {"path": "fixtures/contracts/workflow.invalid.network.json", "sha256": "28d3a02c752c51e4a3ec0a7e2671046e529b7999f603c34ecee76caa5c1d6d9e"},
+    {"path": "fixtures/contracts/workflow.invalid.duplicate-key.json", "sha256": "9707a7489910034dda1862cd3fc46379587868cbba9fa157c38b3ec8dc45d4ae"},
+    {"path": "fixtures/contracts/workflow.invalid.float.json", "sha256": "a52eb77c88e3c220c9a35c8a7af887b611954c36941de6b13aba1253fc649fd9"},
+    {"path": "fixtures/contracts/approval.valid.json", "sha256": "424c77fa05fe9c002c42b26f25567d3bb1ea3b8d505e6ed120dcb52ffac1087f"}
+  ],
+  "retained_failures": [
+    {
+      "attempt": "First retained-record equivalence rerun",
+      "outcome": "timed_out",
+      "note": "The shell command used a one-second timeout and was terminated before the matrix could finish. No project or approval state changed; the rerun with a measured allowance passed all 50 executions and matched this record."
+    }
+  ],
+  "limitations": [
+    "Positive approval scenarios used temporary custody only; no real approval exists.",
+    "The operator-only interactive approval writer remains unimplemented and is now isolated in IS2-U04A before clean-copy validation.",
+    "Workflow verification, events, and execution remain unavailable.",
+    "This evaluation covers the IS-0002 policy boundary, not Docker-backed product surfaces."
+  ]
+}

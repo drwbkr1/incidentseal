@@ -88,8 +88,8 @@
     },
     {
       "id": "EXIT-FAIL-CLOSED-EVALUATION",
-      "status": "pending",
-      "evidence": []
+      "status": "pass",
+      "evidence": ["records/evaluations/IS-0002-fail-closed.json"]
     },
     {
       "id": "EXIT-PUBLIC-CHECKPOINT",
@@ -212,24 +212,54 @@
       "depends_on": ["IS2-U03"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": ["Implemented manifest and approval contracts"],
       "outputs": ["records/evaluations/IS-0002-fail-closed.json"],
+      "gates": {
+        "scenario_matrix": "pass",
+        "repeated_trials": "pass",
+        "expected_state_separation": "pass",
+        "policy_drift_rejection": "pass",
+        "custody_ambiguity_rejection": "pass",
+        "authority_mutation_rejection": "pass",
+        "no_real_approval": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [
+        "The first retained-record equivalence rerun used a one-second shell timeout and was terminated before the matrix finished; no state changed, and the measured-allowance rerun passed all 50 executions and matched the retained record."
+      ],
+      "exit_condition_delta": {
+        "expected": ["EXIT-FAIL-CLOSED-EVALUATION"],
+        "observed": ["EXIT-FAIL-CLOSED-EVALUATION"],
+        "decision_value": "advances_exit",
+        "rationale": "All 25 fail-closed scenarios produced their expected distinct product state or stable rejection in two trials, for 50 passing executions without a real approval."
+      },
+      "next_dependency": "IS2-U04A"
+    },
+    {
+      "id": "IS2-U04A",
+      "purpose": "Implement the already-specified operator-only interactive approval writer with fixed external custody, restrictive permissions, atomic replacement, and retained superseded records; validate only in isolated temporary custody.",
+      "depends_on": ["IS2-U04"],
+      "action_class": "reversible_remediation",
+      "human_gate": false,
+      "status": "ready",
+      "inputs": ["Read-only approval boundary", "IS-0002 fail-closed evaluation", "INCIDENTSEAL-MANIFEST-001"],
+      "outputs": ["Interactive operator approval implementation", "Atomic-write and supersession tests", "Non-interactive denial probes"],
       "gates": {},
       "disposition": null,
       "retained_failures": [],
       "exit_condition_delta": {
-        "expected": ["EXIT-FAIL-CLOSED-EVALUATION"],
+        "expected": ["EXIT-APPROVAL-BOUNDARY"],
         "observed": [],
         "decision_value": "unknown",
-        "rationale": "The read-only approval boundary passed; deterministic policy-drift, custody, ambiguity, and tampering scenarios are now the sole eligible unit."
+        "rationale": "The approved contract already specifies this sole write surface, but no implementation unit existed before clean-copy closure. This bounded correction preserves the trust boundary and uses temporary custody only."
       },
       "next_dependency": "IS2-U05"
     },
     {
       "id": "IS2-U05",
       "purpose": "Validate the packaged local CLI contract from a clean temporary copy without Docker runtime use.",
-      "depends_on": ["IS2-U04"],
+      "depends_on": ["IS2-U04A"],
       "action_class": "deterministic_validation",
       "human_gate": false,
       "status": "planned",
@@ -299,12 +329,13 @@
       "Python site-disabled dependency-isolation and approval no-write probes",
       "Twenty-six manifest, approval-boundary, and CLI tests",
       "Real agent-safe status, diff, and authority-mutation denial probes",
-      "Windows Known Folder, absolute system tool, ACL, and junction custody probes"
+      "Windows Known Folder, absolute system tool, ACL, and junction custody probes",
+      "Twenty-five fail-closed scenarios across fifty deterministic executions"
     ]
   },
   "handoff": {
     "current_checkpoint": "IS-0002 active",
-    "next_action": "Execute IS2-U04 deterministic fail-closed mutation evaluation",
+    "next_action": "Execute IS2-U04A operator-only interactive approval writer in temporary custody",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not let repository content approve its own manifest digest",

@@ -18,3 +18,4 @@ All notable IncidentSeal changes will be recorded here. The project follows Sema
 - Read-only `policy status` and `policy diff` commands with distinct MATCH, MISMATCH, MISSING, EXPIRED, and INVALID states.
 - External approval custody checks for repository/forbidden overlap, Windows ownership and ACLs, symlinks and reparse points, case ambiguity, and process-environment shadowing.
 - Stable exit-77 rejection for agent-facing approval mutation attempts.
+- Repeatable 25-scenario, 50-execution fail-closed policy and custody evaluation.
