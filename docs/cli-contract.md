@@ -18,10 +18,13 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 | `policy.diff` | `incidentseal policy diff --manifest PATH --json` | Explain bound-field and canonical policy differences without writing approval. |
 | `topology.validate` | `incidentseal topology validate --mode platform-validation --json` | Render and compare the real static Compose security projection without building or starting containers. |
 | `topology.runtime-probe` | `incidentseal topology runtime-probe --mode platform-validation --json` | Build or verify exact local images, run topology-only security probes, and clean containers/network while retaining evidence-bound database storage. |
-
-`topology.runtime-probe` remains narrower than workflow verification. A PASS binds exact local image IDs, runtime inspections, fixed isolation probes, retained-volume identity, and teardown state in `requirements/topology-runtime.lock.json`; it does not approve a manifest, execute repository input, prove the real migration or application runner commands, or authorize image publication.
+| `topology.database-probe` | `incidentseal topology database-probe --mode platform-validation --json` | Execute the real migration and evaluate PostgreSQL identity, role privilege, schema, bounded DML, forbidden DDL, restart persistence, and teardown. |
 | `verify` | `incidentseal verify --manifest PATH --json` | Execute only after approval status is `MATCH`. |
 | `run.events` | `incidentseal run events --run-id ID --jsonl` | Stream retained append-only events. |
+
+`topology.runtime-probe` remains narrower than workflow verification. A PASS binds exact local image IDs, runtime inspections, fixed isolation probes, retained-volume identity, and teardown state in `requirements/topology-runtime.lock.json`; it does not approve a manifest, execute repository input, prove the real migration or application runner commands, or authorize image publication.
+
+`topology.database-probe` returns a product `FAIL` with exit `10` when a valid database run exposes a failed gate; invalid locks, custody, or runtime state remain `INVALID` with exit `12`. Its bounded persistence rows are platform evidence, not a repository workflow.
 
 The separate operator surface is `incidentseal operator approve-manifest --manifest PATH`. It is deliberately interactive and is not part of the agent-safe machine path.
 

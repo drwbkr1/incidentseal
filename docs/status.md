@@ -29,10 +29,12 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U04` passed after preserving its two revision-1 runtime failures. Topology revision 2 added a fourth exact-base, copy-only database image whose ownership-seeded path lets a new named volume initialize under required user `70:70` without a root runtime or privileged helper. Four exact local image IDs are bound in `requirements/topology-runtime.lock.json`. All 14 contract and 14 implementation mutations failed closed. Two real host-CLI probes reached PostgreSQL health and passed container identity, capability, filesystem, staged-mount, internal-network, egress-denial, sensitive-environment, and Docker-endpoint checks; the second run verified image reuse and exact-volume resume. Both runs removed every container and network. The passing and failed labeled volumes remain separately retained.
 
+`IS3-U05` is active with a retained real product `FAIL`. The machine database probe returned exit `10`: PostgreSQL 18.4 health and identity, two idempotent migration runs, exact schema, bounded DML, restart persistence, and teardown passed. Least privilege failed because both application runners use the bootstrap superuser `incidentseal`; that role has superuser, role/database creation, replication, and bypass-RLS rights, and its forbidden `CREATE TABLE` succeeded. The probe dropped that table and removed all containers and network. The exact revision-2 volume remains retained.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- Topology-security PASS covers fixed platform-validation probes only. The real migration, PostgreSQL schema and persistence, and real Python and Node application commands remain unverified in `IS3-U05` through `IS3-U07`.
+- The real migration, schema, and restart persistence are now observed, but the database surface remains FAIL until distinct narrow admin and runner roles pass. Real Python and Node application commands remain unverified in `IS3-U06` and `IS3-U07`.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; their four revision-2 derived images ran only under the exact topology contract. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -42,4 +44,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS3-U05` against the exact revision-2 runtime lock: run the real one-shot migration and verify PostgreSQL identity, schema, least privilege, persistence, restart, and teardown. Do not promote the topology-only runner probes into application-runner claims.
+Archive the exact U05 failure inputs, version distinct `incidentseal_admin` and `incidentseal_runner` roles with explicit narrow grants and no public schema creation, then replay topology and database gates on a new digest-bound volume.

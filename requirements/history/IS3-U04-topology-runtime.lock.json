@@ -1,10 +1,9 @@
 {
   "schema_version": "incidentseal-topology-runtime-lock/v1",
-  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0002",
+  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0001",
   "checkpoint_id": "IS-0003",
-  "unit_id": "IS3-U05",
-  "generated_at_utc": "2026-08-09T21:12:54Z",
-  "supersedes": "requirements/history/IS3-U04-topology-runtime.lock.json",
+  "unit_id": "IS3-U04",
+  "generated_at_utc": "2026-08-09T20:58:19Z",
   "platform": "linux/amd64",
   "claim_scope": "topology-security-only",
   "publication_status": "not-authorized-redistribution-inconclusive",
@@ -19,7 +18,7 @@
   },
   "implementation_lock": {
     "path": "requirements/topology-implementation.lock.json",
-    "sha256": "sha256:113f279a4fcccce7034c3586e5bf1498aca1b0d82a69f3323c78c4a1d8833319"
+    "sha256": "sha256:4fe70ced1e940d78f4d0f54a1eb657470dcb184f70d2e0216888502513c10b57"
   },
   "build_policy": {
     "network": "none",

@@ -10,12 +10,14 @@ from datetime import UTC, datetime
 from typing import Any, Sequence
 
 from .approval import ApprovalResult, inspect_document
+from .database import database_probe
 from .manifest import ALGORITHM, PROFILE, ManifestError, ManifestReadError, load_manifest
 from .runtime import runtime_probe
 from .topology import TopologyError, validate_platform_topology
 
 
 EXIT_SUCCESS = 0
+EXIT_FAIL = 10
 EXIT_INVALID = 12
 EXIT_USAGE = 64
 EXIT_INTERNAL = 70
@@ -29,6 +31,7 @@ COMMANDS = {
     ("policy", "diff"): "policy.diff",
     ("topology", "validate"): "topology.validate",
     ("topology", "runtime-probe"): "topology.runtime-probe",
+    ("topology", "database-probe"): "topology.database-probe",
 }
 
 
@@ -181,6 +184,17 @@ def _success(request: Request) -> dict[str, Any]:
             command_status="succeeded",
             process_exit_code=EXIT_SUCCESS,
             verdict="PASS",
+            data=data,
+        )
+    if request.command == "topology.database-probe":
+        data = database_probe()
+        verdict = data["verdict"]
+        exit_code = EXIT_SUCCESS if verdict == "PASS" else EXIT_FAIL
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=exit_code,
+            verdict=verdict,
             data=data,
         )
     assert request.manifest is not None

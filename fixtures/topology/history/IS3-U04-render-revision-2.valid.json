@@ -1,0 +1,80 @@
+{
+  "schema_version": "incidentseal-topology-render/v1",
+  "contract_digest": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde",
+  "project_name": "incidentseal-0123456789abcdef",
+  "operation_mode": "platform-validation",
+  "services": [
+    {
+      "id": "database",
+      "image": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "user": "70:70",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "networks": ["data"],
+      "published_ports": [],
+      "mounts": [
+        {"kind": "named-volume", "target": "/var/lib/postgresql/incidentseal-data", "mode": "rw"},
+        {"kind": "tmpfs", "target": "/tmp", "mode": "rw"},
+        {"kind": "tmpfs", "target": "/var/run/postgresql", "mode": "rw"}
+      ],
+      "environment_names": ["PGDATA", "POSTGRES_DB", "POSTGRES_HOST_AUTH_METHOD", "POSTGRES_USER", "TZ"]
+    },
+    {
+      "id": "migration",
+      "image": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "user": "70:70",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "networks": ["data"],
+      "published_ports": [],
+      "mounts": [
+        {"kind": "tmpfs", "target": "/tmp", "mode": "rw"}
+      ],
+      "environment_names": ["PGCONNECT_TIMEOUT", "TZ"]
+    },
+    {
+      "id": "python-runner",
+      "image": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "user": "65532:65532",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "networks": ["data"],
+      "published_ports": [],
+      "mounts": [
+        {"kind": "staged-input", "target": "/incidentseal/input", "mode": "ro"},
+        {"kind": "staged-output", "target": "/incidentseal/output", "mode": "rw"},
+        {"kind": "tmpfs", "target": "/tmp", "mode": "rw"}
+      ],
+      "environment_names": ["HOME", "INCIDENTSEAL_INPUT", "INCIDENTSEAL_OUTPUT", "PGDATABASE", "PGHOST", "PGPORT", "PGUSER", "PYTHONDONTWRITEBYTECODE", "PYTHONHASHSEED", "TZ"]
+    },
+    {
+      "id": "node-runner",
+      "image": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "user": "65532:65532",
+      "read_only_root": true,
+      "privileged": false,
+      "no_new_privileges": true,
+      "cap_drop": ["ALL"],
+      "networks": ["data"],
+      "published_ports": [],
+      "mounts": [
+        {"kind": "staged-input", "target": "/incidentseal/input", "mode": "ro"},
+        {"kind": "staged-output", "target": "/incidentseal/output", "mode": "rw"},
+        {"kind": "tmpfs", "target": "/tmp", "mode": "rw"}
+      ],
+      "environment_names": ["HOME", "INCIDENTSEAL_INPUT", "INCIDENTSEAL_OUTPUT", "PGDATABASE", "PGHOST", "PGPORT", "PGUSER", "TZ"]
+    }
+  ],
+  "networks": [
+    {"id": "data", "driver": "bridge", "internal": true, "attachable": false, "external": false}
+  ],
+  "volumes": [
+    {"id": "database-data", "driver": "local", "external": false}
+  ]
+}

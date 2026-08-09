@@ -17,19 +17,19 @@
   },
   "bindings": {
     "topology_contract": {
-      "path": "contracts/topology-v1.json",
+      "path": "contracts/history/IS3-U04-topology-revision-2.json",
       "sha256": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde",
       "revision": 2
     },
     "topology_contract_lock": {
-      "path": "requirements/topology-contract.lock.json",
+      "path": "requirements/history/IS3-U04-topology-contract.lock.json",
       "sha256": "sha256:887f923253a9b91d31ac8c7c640979cd3fb1270d22beb8aabba71efb436becc9"
     },
     "implementation_lock": {
-      "path": "requirements/topology-implementation.lock.json",
+      "path": "requirements/history/IS3-U04-topology-implementation.lock.json",
       "sha256": "sha256:4fe70ced1e940d78f4d0f54a1eb657470dcb184f70d2e0216888502513c10b57"
     },
-    "runtime_lock": "requirements/topology-runtime.lock.json"
+    "runtime_lock": "requirements/history/IS3-U04-topology-runtime.lock.json"
   },
   "checks": [
     {"id": "revision-2-source", "status": "PASS", "result": "Revision 1, its normalized render, contract lock, and the failed U04 implementation lock remain archived byte-for-byte. Revision 2 adds only an exact-base copy-only database image and a new ownership-seeded volume path."},

@@ -36,6 +36,13 @@ class TopologyTests(unittest.TestCase):
                     runtime._runtime_lock_images(runtime._sha256_file(CONTRACT_PATH))
         self.assertEqual("IS_RUNTIME_LOCK", raised.exception.code)
 
+    def test_database_product_failure_uses_fail_verdict_and_exit(self) -> None:
+        with patch("incidentseal.cli.database_probe", return_value={"verdict": "FAIL"}):
+            envelope, exit_code = execute(["topology", "database-probe", "--mode", "platform-validation", "--json"])
+        self.assertEqual(10, exit_code)
+        self.assertEqual("succeeded", envelope["command_status"])
+        self.assertEqual("FAIL", envelope["verdict"])
+
     def test_non_platform_mode_is_rejected_before_docker(self) -> None:
         envelope, exit_code = execute(["topology", "validate", "--mode", "workflow-execution", "--json"])
         self.assertEqual(64, exit_code)

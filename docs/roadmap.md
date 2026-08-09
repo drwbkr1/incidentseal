@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` through `IS3-U04` passed. U04 retained its two failed revision-1 startup attempts, then topology revision 2 added a copy-only ownership-seeding database image without weakening non-root execution. Four exact local image IDs are runtime-locked; two real probes passed PostgreSQL health, isolation, egress denial, exact-volume resume, and teardown. `IS3-U05` owns real migration, schema, persistence, restart, and least-privilege validation next.
+Progress: `IS3-U01` through `IS3-U04` passed. `IS3-U05` retained a real database-surface FAIL: migration idempotency, PostgreSQL identity, schema, bounded DML, restart persistence, and teardown passed, but the application runners share the bootstrap superuser and can create tables. U05 remains active for distinct admin and runner roles with narrow grants; the exact failed disposition and revision-2 volume remain retained.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

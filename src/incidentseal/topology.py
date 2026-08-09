@@ -43,6 +43,7 @@ IMPLEMENTATION_FILES = (
     "containers/node-runner/node_runner.mjs",
     "fixtures/topology/runner-request.valid.json",
     "src/incidentseal/cli.py",
+    "src/incidentseal/database.py",
     "src/incidentseal/runtime.py",
     "src/incidentseal/topology.py",
 )
