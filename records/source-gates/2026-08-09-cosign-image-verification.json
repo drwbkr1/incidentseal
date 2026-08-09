@@ -1,0 +1,205 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-005",
+  "assessed_at": "2026-08-09T18:59:04Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "download the exact Cosign Windows binary and its two Sigstore bundles into system temp",
+      "verify exact GitHub digests, the release checksum, Authenticode status and official artifact-key or keyless signature evidence",
+      "execute the exact Cosign binary only after its bootstrap integrity gate passes",
+      "verify exact public container-image signatures without signing, publishing or authenticating",
+      "remove all temporary Cosign custody after the bounded image evaluation"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Bootstrap patched Cosign 3.1.3 from exact temporary Windows custody, then use it only to verify exact anonymous public image signatures for IS3-U01. Cosign receives no signing key, identity token, repository source, secret, approval state or publication authority.",
+    "planned_actions": [
+      "download exact release assets",
+      "verify the bootstrap artifact before execution",
+      "verify exact image signatures",
+      "remove temporary tooling custody"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "cosign-3.1.3-windows-amd64",
+      "name": "Sigstore Cosign 3.1.3 Windows amd64 release binary",
+      "locator": "https://github.com/sigstore/cosign/releases/download/v3.1.3/cosign-windows-amd64.exe#sha256=9fe59be0eca1271873ce019061335eb1ac419b7059202e797828467ddabe33be",
+      "criteria": [
+        {
+          "id": "identity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/cosign/releases/tags/v3.1.3",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "GitHub identifies immutable release v3.1.3 published 2026-08-06 and the exact 198,819,314-byte Windows amd64 binary plus bundle and checksum assets."
+            }
+          ],
+          "note": "Version, platform, filename, size and digest are exact."
+        },
+        {
+          "id": "authority",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/sigstore/cosign/releases/tag/v3.1.3",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "The release is published by the official Sigstore Cosign repository."
+            }
+          ],
+          "note": "Publisher authority is direct and public."
+        },
+        {
+          "id": "access",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/cosign/releases/tags/v3.1.3",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "The binary, checksum list and Sigstore bundles are anonymous public GitHub release assets."
+            }
+          ],
+          "note": "No account, secret, purchase or terms interaction is approved."
+        },
+        {
+          "id": "rights",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://github.com/sigstore/cosign/blob/v3.1.3/LICENSE",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "Cosign is Apache-2.0 licensed; this gate permits temporary local verification use only."
+            }
+          ],
+          "note": "The downloaded executable is not redistributed or committed."
+        },
+        {
+          "id": "provenance",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/cosign/git/tags/2f3a85b04907df5b770eb049d7e4d08d4b018d86",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "Annotated tag v3.1.3 has a valid GitHub-verified SSH signature and resolves to commit 11926fa5bbbbde47e88fc006b625a17769b743b2."
+            },
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/cosign/commits/11926fa5bbbbde47e88fc006b625a17769b743b2",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "The release commit has a valid GitHub-verified signature."
+            },
+            {
+              "type": "live",
+              "locator": "https://docs.sigstore.dev/cosign/system_config/installation/",
+              "observed_at": "2026-08-09T18:58:08Z",
+              "note": "Official installation guidance requires verifying Cosign 3.x with its TUF-distributed artifact key or an already trusted Cosign identity path before use."
+            }
+          ],
+          "note": "Execution is conditional on an independent bootstrap integrity path, not the downloaded executable verifying itself."
+        },
+        {
+          "id": "integrity",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/cosign/releases/tags/v3.1.3",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "GitHub publishes binary SHA-256 9fe59be0eca1271873ce019061335eb1ac419b7059202e797828467ddabe33be, keyless-bundle SHA-256 2422e19bb32d4dacc57d8979b3313badd61940b0e10720ae97a53b50e6ffbe2d, artifact-key-bundle SHA-256 c7e2e2185aa760e2a6b3be66a91e0fb448b0e26f9aa60add209f1df0e3cb2c9d and checksum-list SHA-256 aec2a6f68d307b09ae196e388dc691a146fa8bdba7fcce9ca4ca41b918adfa63."
+            }
+          ],
+          "note": "Exact hashes and either valid Authenticode or the official artifact-key verification path must pass before execution."
+        },
+        {
+          "id": "fitness",
+          "required": true,
+          "requires_live": true,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "live",
+              "locator": "https://api.github.com/repos/sigstore/cosign/security-advisories/GHSA-fx35-mq7g-6g98",
+              "observed_at": "2026-08-09T18:57:14Z",
+              "note": "The current high-severity legacy-bundle verification bypass affects versions through 3.1.2 and is patched in exact 3.1.3."
+            },
+            {
+              "type": "live",
+              "locator": "https://edu.chainguard.dev/chainguard/chainguard-images/how-to-use/verifying-chainguard-images-and-metadata-signatures-with-cosign/",
+              "observed_at": "2026-08-09T18:58:08Z",
+              "note": "Chainguard's official procedure uses Cosign with fixed GitHub Actions OIDC issuer and release-workflow certificate identity for public image signatures."
+            }
+          ],
+          "note": "Version 3.1.3 supports the exact keyless image-verification operation required by this unit."
+        },
+        {
+          "id": "privacy-security",
+          "required": true,
+          "requires_live": false,
+          "status": "pass",
+          "evidence": [
+            {
+              "type": "static",
+              "locator": "docs/threat-model.md",
+              "note": "Cosign receives only public exact image references and fixed expected identities; no signing, OIDC login, repository source, secrets, private images or approval data are permitted."
+            }
+          ],
+          "note": "The tool is restricted to anonymous read-only verification and removed temporary custody."
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [
+      "downloaded release hashes",
+      "published checksum match",
+      "valid Authenticode or official artifact-key bootstrap verification",
+      "exact version output after the bootstrap gate"
+    ],
+    "approved_actions": [
+      "download the four exact public release assets into verified system temp",
+      "verify exact hashes, checksum and bootstrap signature evidence",
+      "execute only if the bootstrap gate passes",
+      "verify exact public image signatures",
+      "remove temporary custody"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "download exact Cosign 3.1.3 Windows amd64 assets into verified system temp",
+      "perform non-executing digest, checksum, archive and Windows signer inspection",
+      "execute the binary only after the independent bootstrap gate passes",
+      "perform anonymous read-only verification of exact public image signatures",
+      "retain bounded verification receipts and remove all temporary tool custody"
+    ],
+    "requires_explicit_authorization": [
+      "execute an unsigned, hash-mismatched, floating or bootstrap-unverified Cosign artifact",
+      "use Cosign 3.1.2 or earlier",
+      "sign, attest, upload, publish, authenticate or request an identity token",
+      "access private images, secrets, repository content or approval state",
+      "persist the executable in the repository or outside removed temporary custody"
+    ]
+  }
+}
