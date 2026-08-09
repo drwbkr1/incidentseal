@@ -122,7 +122,7 @@ def main() -> int:
         test_output = (tests.stdout + tests.stderr).decode("utf-8", errors="replace")
         require(tests.returncode == 0, "clean-clone test suite failed")
         match = re.search(r"Ran ([0-9]+) tests", test_output)
-        require(match is not None and int(match.group(1)) >= 38, "clean-clone test count was below 38")
+        require(match is not None and int(match.group(1)) >= 54, "clean-clone test count was below 54")
         checks.append(Check("clean-clone-tests", "PASS", f"tests={match.group(1)}"))
 
         windows_launcher = (
@@ -242,6 +242,43 @@ def main() -> int:
         require(mutations.returncode == 0, "frozen contract mutation validator failed")
         checks.append(Check("frozen-contracts", "PASS", "schemas=4; bound_fixtures=5; mutations=4"))
 
+        bounded_validators = (
+            ("topology-contract", "scripts/validate_topology_contract.py", "verdict", "PASS", None),
+            ("topology-contract-mutations", "scripts/test_topology_contract_mutations.py", "verdict", "PASS", 16),
+            ("topology-implementation", "scripts/validate_topology_implementation.py", "verdict", "PASS", None),
+            ("topology-implementation-mutations", "scripts/test_topology_implementation_mutations.py", "verdict", "PASS", 15),
+            ("receipt-contract", "scripts/validate_receipt_contract.py", "verdict", "PASS", None),
+            ("receipt-contract-mutations", "scripts/test_receipt_contract_mutations.py", "verdict", "PASS", 14),
+            ("receipt-implementation", "scripts/validate_receipt_implementation.py", "verdict", "PASS", None),
+            ("receipt-implementation-mutations", "scripts/test_receipt_implementation_mutations.py", "verdict", "PASS", 12),
+        )
+        bounded_results: dict[str, dict[str, Any]] = {}
+        for check_id, script, field, expected, mutation_count in bounded_validators:
+            completed = run(
+                [sys.executable, script],
+                cwd=clone,
+                environment=environment,
+                timeout=300,
+            )
+            require(completed.returncode == 0, f"{check_id} failed in clean clone")
+            require(completed.stderr == b"", f"{check_id} wrote stderr")
+            result = json.loads(completed.stdout.decode("utf-8"))
+            require(result.get(field) == expected, f"{check_id} result differed")
+            if mutation_count is not None:
+                observed = result.get("mutation_count", len(result.get("mutations", [])))
+                require(observed == mutation_count, f"{check_id} count differed")
+            bounded_results[check_id] = result
+        checks.append(Check("topology-contracts", "PASS", "contract_mutations=16; implementation_mutations=15; runtime_started=false"))
+        checks.append(Check("portable-receipts", "PASS", "contract_mutations=14; implementation_mutations=12; runtime_dependencies=0"))
+        require(
+            bounded_results["receipt-implementation"].get("runtime_self_binding") == "PASS",
+            "receipt runtime self-binding did not pass",
+        )
+        require(
+            bounded_results["receipt-implementation"].get("temporary_custody_removed") is True,
+            "receipt implementation temporary custody remained",
+        )
+
         meta = run(
             [sys.executable, "scripts/run_meta_validation.py", "--root", str(clone)],
             cwd=clone,
@@ -251,12 +288,12 @@ def main() -> int:
         require(meta.returncode == 0, "full Draft 2020-12 meta-validation failed")
         meta_result = json.loads(meta.stdout.decode("utf-8"))
         require(meta_result.get("status") == "PASS", "schema meta-validation status was not PASS")
-        require(meta_result.get("schema_count") == 4, "schema meta-validation count drifted")
-        require(meta_result.get("fixture_count") == 8, "schema fixture validation count drifted")
+        require(meta_result.get("schema_count") == 6, "schema meta-validation count drifted")
+        require(meta_result.get("fixture_count") == 11, "schema fixture validation count drifted")
         require(meta_result.get("artifact_count") == 6, "schema evaluator artifact count drifted")
         require(meta_result.get("artifact_hashes_verified") is True, "schema evaluator hashes were not verified")
         require(meta_result.get("temporary_custody_removed") is True, "schema evaluator custody was not removed")
-        checks.append(Check("full-schema-meta-validation", "PASS", "draft=2020-12; schemas=4; fixtures=8; artifacts=6"))
+        checks.append(Check("full-schema-meta-validation", "PASS", "draft=2020-12; schemas=6; fixtures=11; artifacts=6"))
 
         matrix = run(
             [sys.executable, "scripts/evaluate_fail_closed.py"],
@@ -271,6 +308,10 @@ def main() -> int:
         require(matrix_result.get("real_approval_created") is False, "matrix claimed a real approval")
         checks.append(Check("fail-closed-matrix", "PASS", "scenarios=25; executions=50"))
 
+        integrity = run([git, "fsck", "--strict"], cwd=clone)
+        require(integrity.returncode == 0 and integrity.stderr == b"", "clean-clone Git object integrity failed")
+        checks.append(Check("git-object-integrity", "PASS", "git_fsck_strict=true"))
+
         final_status = subprocess.check_output([git, "status", "--porcelain=v1"], cwd=clone, text=True).strip()
         require(final_status == "", "clean clone became dirty after verification")
         require(not approval_root.exists(), "clean-copy validation created real approval state")
@@ -284,7 +325,8 @@ def main() -> int:
         "platform": sys.platform,
         "python": sys.version.split()[0],
         "check_count": len(checks),
-        "docker_invoked": False,
+        "docker_invoked": True,
+        "docker_runtime_started": False,
         "real_approval_created": False,
         "checks": [check.__dict__ for check in checks],
     }
