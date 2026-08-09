@@ -1,0 +1,97 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-004",
+  "assessed_at": "2026-08-09T18:38:30Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "download exact Trivy release archive checksum and Sigstore bundle",
+      "verify exact release digests checksum and Sigstore provenance",
+      "extract and execute exact Trivy from temporary custody",
+      "download exact Trivy vulnerability database artifact",
+      "scan four exact local public images offline",
+      "generate SPDX SBOM and vulnerability receipts",
+      "remove temporary scanner database and scan custody"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Use post-incident Trivy 0.73.0 from exact, Sigstore-verified temporary custody with one exact Trivy DB OCI manifest to generate time-bound SPDX SBOM and vulnerability evidence for four exact local public image candidates. Telemetry, online dependency lookup, Java DB, VEX, misconfiguration bundles, repository scanning, secrets and private content are excluded.",
+    "planned_actions": [
+      "download exact Trivy release archive checksum and Sigstore bundle",
+      "verify exact release digests checksum and Sigstore provenance",
+      "extract and execute exact Trivy from temporary custody",
+      "download exact Trivy vulnerability database artifact",
+      "scan four exact local public images offline",
+      "generate SPDX SBOM and vulnerability receipts",
+      "remove temporary scanner database and scan custody"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "trivy-0.73.0-windows-64bit",
+      "name": "Trivy 0.73.0 Windows 64-bit release archive and Sigstore bundle",
+      "locator": "https://github.com/aquasecurity/trivy/releases/download/v0.73.0/trivy_0.73.0_windows-64bit.zip#sha256=d2d3ad5292aae470a03eb6506db86fce81b1894592b8451cadaf60eaa22f2025",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/aquasecurity/trivy/releases/tags/v0.73.0","observed_at":"2026-08-09T18:38:30Z","note":"GitHub identifies immutable, non-draft, non-prerelease v0.73.0 published 2026-08-03, including the exact 51,108,725-byte Windows archive, 10,391-byte Sigstore bundle and checksums assets."}],"note":"Version, platform, immutable release, filename, size and digest are exact."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/aquasecurity/trivy/releases/tag/v0.73.0","observed_at":"2026-08-09T18:38:30Z","note":"Aqua Security's upstream repository published the immutable release through github-actions[bot]."}],"note":"Publisher is the official Trivy project."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/aquasecurity/trivy/releases/tags/v0.73.0","observed_at":"2026-08-09T18:38:30Z","note":"Archive, checksum and Sigstore bundle are public GitHub assets requiring no purchase or interactive terms acceptance."}],"note":"Only anonymous public acquisition is approved."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://raw.githubusercontent.com/aquasecurity/trivy/v0.73.0/LICENSE","observed_at":"2026-08-09T18:38:30Z","note":"Trivy source is Apache-2.0 licensed. Temporary local evaluation is permitted; redistribution is not part of this gate."}],"note":"The archive will be removed after evaluation."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/aquasecurity/trivy/commits/40c73e5d6166dcc0346a1ab4e94499d1572854e4","observed_at":"2026-08-09T18:38:30Z","note":"Release ref v0.73.0 resolves to commit 40c73e5d6166dcc0346a1ab4e94499d1572854e4, whose GitHub signature verification is valid."},{"type":"live","locator":"https://trivy.dev/docs/latest/getting-started/signature-verification/","observed_at":"2026-08-09T18:38:30Z","note":"Official guidance requires release-asset Sigstore verification against aquasecurity/trivy reusable-release.yaml at the exact tag and GitHub Actions OIDC issuer."}],"note":"Execution is conditional on exact subject digest and certificate identity verification from the downloaded bundle."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/aquasecurity/trivy/releases/tags/v0.73.0","observed_at":"2026-08-09T18:38:30Z","note":"GitHub publishes archive SHA-256 d2d3ad5292aae470a03eb6506db86fce81b1894592b8451cadaf60eaa22f2025, bundle SHA-256 a4ff3acd066fc6315d41e2ed2b9d6de4a32b18d111bc19046dbf839aadcb5fcd and checksum-list SHA-256 36890275ffdff13025e9bd9fe039724c6e36bf58e698499856b801f619046fe2."}],"note":"Archive hash, published checksum and Sigstore certificate identity must all pass before extraction and execution."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/aquasecurity/trivy/security-advisories/GHSA-69fq-xp46-6x23","observed_at":"2026-08-09T18:38:30Z","note":"The critical 2026 supply-chain advisory identifies malicious Trivy 0.69.4; exact 0.73.0 is later and outside the vulnerable version range."},{"type":"live","locator":"https://trivy.dev/docs/latest/references/configuration/cli/trivy_vm/","observed_at":"2026-08-09T18:38:30Z","note":"Current CLI supports exact DB repository selection, DB-only acquisition, telemetry disablement, offline scan and precise detection priority."}],"note":"The selected post-incident release supports the required exact and offline evaluation path."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"Only public local images are scanned. Telemetry, online dependency lookup, repository content, secrets, Java DB, VEX and remote image analysis are disabled; the scanner has no container execution or approval authority."}],"note":"Temporary host tooling receives no private project content."}
+      ]
+    },
+    {
+      "source_id": "trivy-db-2-2026-08-09T125957Z",
+      "name": "Exact Trivy vulnerability database schema 2 OCI artifact",
+      "locator": "ghcr.io/aquasecurity/trivy-db:2@sha256:673b536e30533f7d309bee0b6b1ea2e07046b7a7cdde911885a7b03fe6abef5d",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"command: docker buildx imagetools inspect ghcr.io/aquasecurity/trivy-db:2","observed_at":"2026-08-09T18:38:30Z","note":"The public schema-2 tag resolved to OCI manifest sha256:673b536e30533f7d309bee0b6b1ea2e07046b7a7cdde911885a7b03fe6abef5d created 2026-08-09T12:59:57Z."}],"note":"Database identity is pinned to one exact manifest rather than the mutable schema tag."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://trivy.dev/docs/dev/docs/configuration/db/","observed_at":"2026-08-09T18:38:30Z","note":"Official Trivy documentation identifies ghcr.io/aquasecurity/trivy-db as an official vulnerability database location managed by aquasecurity/trivy-db."}],"note":"Publisher is the Trivy project under Aqua Security's GHCR namespace."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"command: docker buildx imagetools inspect ghcr.io/aquasecurity/trivy-db:2 --raw","observed_at":"2026-08-09T18:38:30Z","note":"Exact manifest and layer metadata were anonymously readable without registry credentials."}],"note":"Anonymous exact acquisition is approved; authentication fallback is forbidden."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/aquasecurity/trivy-db","observed_at":"2026-08-09T18:38:30Z","note":"The Trivy DB project is publicly maintained by Aqua Security for Trivy vulnerability matching. This gate permits temporary analysis use only and no database redistribution."}],"note":"Upstream advisory data retains source-specific terms; only derived scan receipts are retained."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://trivy.dev/docs/latest/references/terminology/","observed_at":"2026-08-09T18:38:30Z","note":"Trivy documents the DB as built from its managed vulnerability-list repositories and used as the core vulnerability detection source."}],"note":"The exact OCI artifact lacks an asserted SLSA attestation; source lineage and this limitation are retained."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"command: docker buildx imagetools inspect ghcr.io/aquasecurity/trivy-db:2 --raw","observed_at":"2026-08-09T18:38:30Z","note":"Exact manifest binds config sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a and 108,822,412-byte DB layer sha256:302e7db2194e7dec109c68c5fd091986c20c2476384f2a376e1dd3fcc4d94e4d."}],"note":"Trivy must be configured with only the exact manifest reference and may not fall back to another registry or tag."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://trivy.dev/docs/dev/docs/configuration/db/","observed_at":"2026-08-09T18:38:30Z","note":"Schema-2 trivy-db is the core CVE database used for vulnerability scanning; Java DB is separately identified and not needed for these non-Java candidate images."}],"note":"The database is fit for one time-bound preliminary image evaluation."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"The database is acquired into removed system-temp cache and used with offline scanning, telemetry disabled, and no repository or secret input."}],"note":"No candidate image data is uploaded to the DB registry."}
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [],
+    "approved_actions": [
+      "download exact Trivy release archive checksum and Sigstore bundle",
+      "verify exact release digests checksum and Sigstore provenance",
+      "extract and execute exact Trivy from temporary custody",
+      "download exact Trivy vulnerability database artifact",
+      "scan four exact local public images offline",
+      "generate SPDX SBOM and vulnerability receipts",
+      "remove temporary scanner database and scan custody"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "download the three exact public Trivy release assets into verified system temp",
+      "verify GitHub digests published checksum and exact Sigstore certificate identity",
+      "extract safe archive members and execute only the verified Trivy binary",
+      "download only the exact pinned trivy-db OCI manifest into a temporary cache",
+      "scan the four exact public local images with telemetry and online dependency lookup disabled",
+      "retain SPDX and vulnerability reports plus bounded summary receipts",
+      "remove scanner database cache and scratch custody"
+    ],
+    "requires_explicit_authorization": [
+      "use Trivy 0.69.4 or any unsigned unverified or floating scanner artifact",
+      "use a floating fallback or unpinned vulnerability database",
+      "download Java DB VEX checks bundle plugins or remote dependency metadata",
+      "scan repository source secrets private content or remote private images",
+      "send telemetry or upload scan results",
+      "authenticate to a registry accept terms purchase access or publish artifacts",
+      "treat this preliminary time-bound scan as the final release scan"
+    ]
+  }
+}

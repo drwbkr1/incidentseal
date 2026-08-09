@@ -84,7 +84,9 @@
       "outputs":["Exact-image lock","Acquisition receipts","SBOM and provenance receipts","Vulnerability and license disposition"],
       "gates":{},
       "disposition":null,
-      "retained_failures":[],
+      "retained_failures":[
+        "Docker Scout CLI 1.24.0 matched its GitHub release digest and published checksum, but its extracted executable was not Authenticode-signed. Source Gate 003 blocked execution, and the unexecuted temporary custody was removed."
+      ],
       "exit_condition_delta":{"expected":["EXIT-IMAGE-ACQUISITION-SCAN"],"observed":[],"decision_value":"unknown","rationale":"No candidate image has yet been acquired, scanned or approved for execution."},
       "next_dependency":"IS3-U02"
     },

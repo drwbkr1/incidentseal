@@ -37,7 +37,7 @@
         {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/releases/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"Release metadata and the public GitHub asset are readable without a GitHub credential, purchase or interactive terms action."}],"note":"Only public anonymous acquisition is approved."},
         {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://raw.githubusercontent.com/docker/scout-cli/v1.24.0/LICENSE","observed_at":"2026-08-09T18:30:44Z","note":"The release is governed by the Docker Subscription Service Agreement. This gate permits temporary local use through the already installed Docker product only; it does not approve redistribution, enrollment, purchase or acceptance of new terms."}],"note":"No new terms action is taken and the archive is not redistributed."},
         {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/git/ref/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"The v1.24.0 release ref resolves to source commit c7ac4ce317eafa536bf2421d1c223908e2200dce; the release is automation-published, but no independent build attestation is asserted."}],"note":"Source and release publisher are attributable; the missing build attestation remains a limitation."},
-        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/releases/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"GitHub provides the exact archive SHA-256 and a separate 630-byte checksums asset with GitHub digest sha256:a3e776082b77b2d9d5319b956c27d93966cd60672da9801098a21a1378ee13a6."},{"type":"static","locator":"local:C:/Program Files/Docker/Docker/resources/cli-plugins/docker-scout.exe","note":"The installed 1.20.4 comparison binary has a valid Docker Inc Authenticode signature and SHA-256 ce738ac98a95c08664a661de8e38479d6c424a29946db5b5f53a23e67ae05e28; the acquired 1.24.0 executable must independently match the release hashes and Docker signer before use."}],"note":"All three checks—GitHub artifact digest, published checksum, and extracted-binary Authenticode signer—are mandatory before execution."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"fail","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/releases/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"The downloaded 63,513,745-byte archive matched GitHub SHA-256 1b7afb489e9224411fafe848eb5002cdc5c59a5cf2b77d6ccffcb44ffdf4f350, and the checksums asset matched GitHub SHA-256 a3e776082b77b2d9d5319b956c27d93966cd60672da9801098a21a1378ee13a6 and repeated that archive digest."},{"type":"live","locator":"local:system-temp/incidentseal-is3-u01-scout/tool/docker-scout.exe","observed_at":"2026-08-09T18:34:50Z","note":"The extracted docker-scout.exe had SHA-256 48ddfcf97535822e7bb27eed2796fa55728e5e0f163c7490d3fb90e621e8c09a but Authenticode status NotSigned and no signer certificate. The executable was not run, and its entire temporary custody was removed."}],"note":"The mandatory Docker Authenticode signer condition failed despite matching release hashes. Execution is blocked; using release provenance alone would weaken the committed gate."},
         {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/reference/cli/docker/scout/cves/","observed_at":"2026-08-09T18:30:44Z","note":"Docker documents local-image resolution, linux/amd64 selection, vulnerability severity and fixed-version filtering, and SBOM/SARIF output."},{"type":"live","locator":"https://docs.docker.com/scout/how-tos/view-create-sboms/","observed_at":"2026-08-09T18:30:44Z","note":"Docker documents attached-SBOM preference and SPDX SBOM generation for images."}],"note":"The current Windows CLI directly covers the bounded SBOM and CVE evaluation."},
         {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"The scanner receives only exact public image content and no secrets, repository source, Docker socket mount, private registry credential or sensitive data. It runs on the host from removed temporary custody."}],"note":"No private project content is in scanner scope."}
       ]
@@ -59,26 +59,21 @@
     }
   ],
   "decision": {
-    "status": "ready",
-    "blocking_reasons": [],
-    "live_verification_pending": [],
-    "approved_actions": [
-      "download the exact Docker Scout CLI archive",
-      "verify release digest checksum and Authenticode signer",
-      "extract and execute Docker Scout CLI from temporary custody",
-      "generate SBOMs for four exact public images",
-      "query current vulnerability matches for four exact public images",
-      "retain timestamped scan receipts"
-    ]
+    "status": "blocked",
+    "blocking_reasons": [
+      "Docker Scout CLI 1.24.0 release archive matched both published hashes, but the extracted executable was not Authenticode-signed, so the mandatory three-way integrity gate failed before execution."
+    ],
+    "live_verification_pending": [
+      "docker-scout-cli-1.24.0-windows-amd64:integrity"
+    ],
+    "approved_actions": []
   },
   "write_boundary": {
     "permitted_without_further_authorization": [
       "download exact public release archive and checksum into system temp",
       "verify archive checksum and extracted executable Authenticode signer",
-      "execute exact scanner from system temp against four exact public local images",
-      "transmit public-image package URLs and layer digests for current vulnerability matching",
-      "retain SBOM scan and source-gate receipts",
-      "remove scanner and scan scratch custody after evaluation"
+      "retain the failed integrity assessment",
+      "remove the unexecuted scanner and scan scratch custody"
     ],
     "requires_explicit_authorization": [
       "accept new terms or purchase a Docker feature",
@@ -87,6 +82,7 @@
       "upload images SBOMs policies VEX exceptions or evidence",
       "treat a time-bound scan as release-time evidence without rescanning",
       "redistribute the Docker Scout binary or advisory database"
+      ,"execute Docker Scout CLI 1.24.0 from the assessed release archive"
     ]
   }
 }
