@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` through `IS3-U07` passed. Two identical real Node runs passed exact output and PostgreSQL evidence, shared canonical input identity with the retained Python row, distinct language result identity, malformed-input rejection, isolation, repeatability, and teardown. `IS3-U08` owns reliability, recovery behavior, orphan detection, and clean-clone topology replay next.
+Progress: `IS3-U01` through `IS3-U07` passed. U08 has two local disposable reliability PASS runs covering fresh start, real runners, distinct FAIL/INVALID/failed/cancelled states, recovery, restart, orphan detection, protected evidence volumes, and teardown. Its committed public clean-clone replay remains pending.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

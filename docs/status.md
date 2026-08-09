@@ -35,6 +35,8 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U07` passed on its first two real evidence runs. The host CLI executes the shipped Node application command against the same read-only staged contract and narrow database role, verifies the exact Node result and row, and requires the retained Python row to share the canonical input digest while keeping language-bound result digests distinct. Malformed input produced no output or Node row. Both invocations passed exact image, numeric user, read-only root, dropped capability, no-new-privileges, narrow mount, internal network, sensitive-environment, Docker-endpoint, repeatability, and teardown gates. No container or network remains; the same revision-3 volume is retained.
 
+`IS3-U08` is in progress. Two canonical-checkout disposable runs passed fresh bootstrap, both real runners, exact rows, tampered-receipt `FAIL`, malformed-input `INVALID`, database-outage lifecycle `failed`, post-failure recovery, host cancellation at exit `137`, restart persistence, orphan detection, protection of all three retained volumes, and complete disposable teardown. The candidate must now be committed and replayed from an exact credential-free public clone before U08 closes.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
@@ -48,4 +50,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS3-U08` as a bounded reliability surface: exercise clean start, retained-state resume, forced product failure, cancellation, restart, teardown, orphan detection, and clean-clone topology replay without approving a workflow or deleting retained evidence volumes.
+Commit and push the in-progress `IS3-U08` candidate, then clone that exact public commit without credentials and replay control, unit, static topology, and the real disposable reliability surface. Do not close U08 from canonical-checkout evidence alone.

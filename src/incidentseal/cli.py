@@ -14,6 +14,7 @@ from .database import database_probe
 from .manifest import ALGORITHM, PROFILE, ManifestError, ManifestReadError, load_manifest
 from .node_surface import node_probe
 from .python_surface import python_probe
+from .reliability_surface import reliability_probe
 from .runtime import runtime_probe
 from .topology import TopologyError, validate_platform_topology
 
@@ -36,6 +37,7 @@ COMMANDS = {
     ("topology", "database-probe"): "topology.database-probe",
     ("topology", "python-probe"): "topology.python-probe",
     ("topology", "node-probe"): "topology.node-probe",
+    ("topology", "reliability-probe"): "topology.reliability-probe",
 }
 
 
@@ -214,6 +216,17 @@ def _success(request: Request) -> dict[str, Any]:
         )
     if request.command == "topology.node-probe":
         data = node_probe()
+        verdict = data["verdict"]
+        exit_code = EXIT_SUCCESS if verdict == "PASS" else EXIT_FAIL
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=exit_code,
+            verdict=verdict,
+            data=data,
+        )
+    if request.command == "topology.reliability-probe":
+        data = reliability_probe()
         verdict = data["verdict"]
         exit_code = EXIT_SUCCESS if verdict == "PASS" else EXIT_FAIL
         return _envelope(

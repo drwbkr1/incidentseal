@@ -1,0 +1,44 @@
+{
+  "schema_version": "incidentseal-reliability-surface-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U08-RELIABILITY-LOCAL",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U08",
+  "observed_at_utc": "2026-08-09T22:17:20Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "process_exit_code": 0,
+  "command_status": "succeeded",
+  "claim_scope": "Two canonical-checkout disposable topology runs: protected retained-volume custody, fresh bootstrap, real language runners, database rows, forced verification failure, invalid input, execution failure, recovery, host cancellation, restart persistence, orphan detection, and teardown.",
+  "bindings": {
+    "topology_contract": {"path":"contracts/topology-v1.json","sha256":"sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351","revision":3},
+    "implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:2a36627591b665ce3922534d1646ce3f926d28e15b007a78aaae84498a3cc29a","lock_id":"IS-TOPOLOGY-IMPLEMENTATION-LOCK-0010"},
+    "runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:69d2a23830e30e8b6318a8c3af7f8f0ea743b1ccdb0d2ccd1d040e5ba8e7c9e4","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0008"},
+    "retained_volumes_lock": {"path":"requirements/retained-runtime-volumes.lock.json","sha256":"sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"}
+  },
+  "invocations": [
+    {"command":"topology.reliability-probe","invocation_id":"48718855-3b2c-4124-ba38-0c9f8ed7e3d4","process_exit_code":0,"verdict":"PASS"},
+    {"command":"topology.reliability-probe","invocation_id":"629bfa3f-148c-4b3e-b8ad-4b8d0be6646f","process_exit_code":0,"verdict":"PASS"}
+  ],
+  "checks": [
+    {"id":"fresh-bootstrap","status":"PASS","observed":{"fresh_volume_created":true,"database_healthy":true,"migration_applied":true}},
+    {"id":"real-runners","status":"PASS","observed":{"python_result_file_digest":"sha256:2bc54ac1b2bf5ab2f318777c434c847d8ab5059afddd20b7e50d04c22872c07f","node_result_file_digest":"sha256:b6f0a11208afdee0e6d9bd3bcc670fd108bbfbb642cd8eeb02d19061d34dcb24","database_rows":2}},
+    {"id":"forced-verification-failure","status":"PASS","observed":{"lifecycle":"completed","verification_verdict":"FAIL","tampered_file_digest":"sha256:30517d896bfe27639a78fbfc9e4a198c534e24130afc8596698e0d9309027b11"}},
+    {"id":"invalid-input-distinct","status":"PASS","observed":{"lifecycle":"completed","verification_verdict":"INVALID","python_output_digest":"sha256:1061086bb37e4e68a4b7c36dfe99cfc6647fd849d964848f04927ebdaeeefaef","node_output_digest":"sha256:9b5cea9f1de3b2540a683d37b2673a6973195503e7daaca54ec0e503d3dca18e","database_rows_unchanged":true}},
+    {"id":"execution-failure-distinct","status":"PASS","observed":{"lifecycle":"failed","verification_verdict":null,"exit_code":1,"output_digest":"sha256:c9bd14522a7402128b8673cb0a70c0c93b5ceb777ce2daca19972cdb503d5069","database_row_created":false}},
+    {"id":"post-failure-recovery","status":"PASS","observed":{"result_file_digest":"sha256:c3fd3c2370afc627b5e86dcbb42b03b55a73a4c99deb28c8ad2d67e57dc47f3a","database_row_created":true}},
+    {"id":"host-cancellation-distinct","status":"PASS","observed":{"lifecycle":"cancelled","verification_verdict":null,"process_exit_code":137,"container_exit_code":137,"output_digest":"sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}},
+    {"id":"restart-persistence","status":"PASS","observed":{"exact_row_count":3}},
+    {"id":"orphan-detection","status":"PASS","observed":{"remaining_before_teardown":["database"]}},
+    {"id":"protected-volumes-unchanged","status":"PASS","observed":{"protected_count":3}},
+    {"id":"disposable-teardown","status":"PASS","observed":{"containers_removed":true,"network_removed":true,"disposable_volume_removed":true}},
+    {"id":"repeatability","status":"PASS","observed":{"pass_count":2,"receipt_digests_stable":true,"state_distinctions_stable":true,"teardown_stable":true}}
+  ],
+  "protected_volumes": [
+    "incidentseal-57ca5f96d527da1b_database-data",
+    "incidentseal-a6443d83ae9eb463_database-data",
+    "incidentseal-e10983c7309c56a0_database-data"
+  ],
+  "disposable_volume": {"name":"incidentseal-57ca5f96d527da1b-reliability_database-data","removed_after_each_attempt":true,"sensitive_data":false},
+  "remaining_gate": {"id":"clean-clone","status":"pending","reason":"The candidate implementation must be committed and pushed before the exact public clone can replay the real surface."},
+  "decision": {"status":"advance-within-unit","next_action":"Commit and push the in-progress U08 candidate, then clone that exact public commit without credentials and replay control, static, unit, and real reliability checks."}
+}

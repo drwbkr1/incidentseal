@@ -1,12 +1,12 @@
 {
   "schema_version": "incidentseal-topology-runtime-lock/v1",
-  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0008",
+  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0007",
   "checkpoint_id": "IS-0003",
-  "unit_id": "IS3-U08",
-  "generated_at_utc": "2026-08-09T22:14:18Z",
-  "supersedes": "requirements/history/IS3-U07-node-runner.runtime.lock.json",
+  "unit_id": "IS3-U07",
+  "generated_at_utc": "2026-08-09T22:01:59Z",
+  "supersedes": "requirements/history/IS3-U06-python-runner.runtime.lock.json",
   "platform": "linux/amd64",
-  "claim_scope": "topology-database-runners-and-reliability-validation",
+  "claim_scope": "topology-database-python-and-node-validation",
   "publication_status": "not-authorized-redistribution-inconclusive",
   "contract": {
     "path": "contracts/topology-v1.json",
@@ -19,7 +19,7 @@
   },
   "implementation_lock": {
     "path": "requirements/topology-implementation.lock.json",
-    "sha256": "sha256:2a36627591b665ce3922534d1646ce3f926d28e15b007a78aaae84498a3cc29a"
+    "sha256": "sha256:e2851faf3627d9926e7ff7749b3cc0660e4478fe8aafa32ce3ae029c5aede5c1"
   },
   "build_policy": {
     "network": "none",
@@ -80,10 +80,6 @@
     "node_probe_state": "pass",
     "node_pass_invocation_id": "b309909c-1d9b-49f6-b49b-2dc2da04b50f",
     "node_repeat_pass_invocation_id": "0693f7ab-2b74-4919-852e-d6dd41cb52ec",
-    "reliability_probe_state": "local-pass",
-    "reliability_pass_invocation_id": "48718855-3b2c-4124-ba38-0c9f8ed7e3d4",
-    "reliability_repeat_pass_invocation_id": "629bfa3f-148c-4b3e-b8ad-4b8d0be6646f",
-    "reliability_clean_clone_state": "not-started",
     "containers_retained": [],
     "network_retained": null
   }

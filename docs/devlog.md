@@ -155,3 +155,11 @@ The retained Python and new Node rows share canonical input digest `47963fda...f
 Forty-eight tests, the real static implementation validator, and all 15 implementation mutations passed. Two identical real Node invocations produced stable result, database, cross-runner, negative-output, and teardown evidence. Every container and network was removed after each run; the exact database volume remains retained.
 
 This closes only `EXIT-NODE-RUNNER`. `IS3-U08` owns clean-start, retained-state resume, forced failure, cancellation, restart, orphan detection, teardown, and clean-clone topology behavior. No workflow, dashboard, receipt-recovery, redistribution, or release claim advances from U07.
+
+## 2026-08-09 - Disposable reliability candidate
+
+`IS3-U08` first archived the exact U07 locks and froze three retained evidence volumes as immutable runtime custody. A separate fixed Compose project may create and remove only its own non-sensitive disposable volume; it cannot mount, rename, relabel, or delete the retained startup-FAIL, least-privilege-FAIL, or revision-3 PASS volumes.
+
+Two canonical-checkout reliability runs passed. Each fresh-bootstrapped PostgreSQL, applied the migration, executed both real runners, verified exact rows, detected a tampered temporary receipt as verification `FAIL`, retained malformed requests as `INVALID`, observed a valid runner against a stopped database as lifecycle `failed`, recovered after restart, host-cancelled a bounded sleeping query with process and container exit `137`, verified three rows through another restart, detected no one-shot orphan, and removed the disposable container, network, and volume. All three retained volumes remained present.
+
+The U08 unit remains open. This candidate must be committed and pushed before an exact credential-free public clone can replay the same control, static, test, and real reliability surfaces.

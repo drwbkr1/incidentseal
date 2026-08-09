@@ -1,0 +1,7 @@
+{
+  "schema_version": "incidentseal-runner-request/v1",
+  "run_id": "isrun-1111111111111111",
+  "payload": {
+    "probe": "recovery"
+  }
+}

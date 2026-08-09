@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0003",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Implement and run the U08 reliability surface for clean start, retained-state resume, forced product failure, cancellation, restart, teardown, orphan detection, and clean-clone topology replay"
+    "next_action": "Commit and push the in-progress U08 reliability candidate, then replay control, tests, static topology, and the real reliability surface from an exact credential-free public clone"
   }
 }

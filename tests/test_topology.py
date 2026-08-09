@@ -15,7 +15,7 @@ SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
 from incidentseal.cli import execute  # noqa: E402
-from incidentseal import python_surface, runtime  # noqa: E402
+from incidentseal import python_surface, reliability_surface, runtime  # noqa: E402
 from incidentseal.topology import CONTRACT_PATH, TopologyError  # noqa: E402
 
 
@@ -75,6 +75,19 @@ class TopologyTests(unittest.TestCase):
         self.assertEqual(10, exit_code)
         self.assertEqual("succeeded", envelope["command_status"])
         self.assertEqual("FAIL", envelope["verdict"])
+
+    def test_reliability_product_failure_uses_fail_verdict_and_exit(self) -> None:
+        with patch("incidentseal.cli.reliability_probe", return_value={"verdict": "FAIL"}):
+            envelope, exit_code = execute(["topology", "reliability-probe", "--mode", "platform-validation", "--json"])
+        self.assertEqual(10, exit_code)
+        self.assertEqual("succeeded", envelope["command_status"])
+        self.assertEqual("FAIL", envelope["verdict"])
+
+    def test_reliability_receipt_failure_remains_distinct(self) -> None:
+        expected = {"result_digest": "sha256:" + "1" * 64}
+        tampered = {"result_digest": "sha256:" + "0" * 64}
+        self.assertEqual("PASS", reliability_surface._receipt_verdict(expected, expected))
+        self.assertEqual("FAIL", reliability_surface._receipt_verdict(tampered, expected))
 
     def test_python_raw_compose_suppresses_transport_progress(self) -> None:
         completed = subprocess.CompletedProcess([], 0, "", "")

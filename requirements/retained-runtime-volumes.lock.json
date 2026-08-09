@@ -1,0 +1,37 @@
+{
+  "schema_version": "incidentseal-retained-runtime-volumes-lock/v1",
+  "lock_id": "IS-RETAINED-RUNTIME-VOLUMES-0001",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U08",
+  "generated_at_utc": "2026-08-09T22:09:14Z",
+  "policy": {
+    "delete": false,
+    "rename": false,
+    "relabel": false,
+    "mount_in_disposable_reliability_project": false,
+    "required_before_and_after_each_attempt": true
+  },
+  "volumes": [
+    {
+      "name": "incidentseal-a6443d83ae9eb463_database-data",
+      "disposition": "retained-fail",
+      "evidence": {"path":"records/evaluations/IS-0003-U04-runtime-startup-failure.json","sha256":"sha256:2ce331c0c9e4619d0a9be000e57d1682224bfea95055fe131eb797b5e0f0953a"}
+    },
+    {
+      "name": "incidentseal-e10983c7309c56a0_database-data",
+      "disposition": "retained-fail",
+      "evidence": {"path":"records/evaluations/IS-0003-U05-database-least-privilege-failure.json","sha256":"sha256:8c3e1bd6980870ed23e863e18cbf46a60298fedae6babfd6b26b5b6d25fcc46a"}
+    },
+    {
+      "name": "incidentseal-57ca5f96d527da1b_database-data",
+      "disposition": "retained-pass",
+      "evidence": {"path":"records/evaluations/IS-0003-U07-node-runner.json","sha256":"sha256:6dfc52259ca9f770953b5158ecce5771596ead7c7db5e1c858e547798b65dca9"}
+    }
+  ],
+  "disposable_project": {
+    "name": "incidentseal-57ca5f96d527da1b-reliability",
+    "volume": "incidentseal-57ca5f96d527da1b-reliability_database-data",
+    "delete_after_verified_teardown": true,
+    "contains_only_fixed_non-sensitive_test_rows": true
+  }
+}

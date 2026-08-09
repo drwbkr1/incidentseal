@@ -21,6 +21,7 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 | `topology.database-probe` | `incidentseal topology database-probe --mode platform-validation --json` | Execute the real migration and evaluate PostgreSQL identity, role privilege, schema, bounded DML, forbidden DDL, restart persistence, and teardown. |
 | `topology.python-probe` | `incidentseal topology python-probe --mode platform-validation --json` | Execute the shipped Python application command and evaluate exact staged input, result receipt, PostgreSQL row, malformed-input rejection, runtime isolation, repeatability, and teardown. |
 | `topology.node-probe` | `incidentseal topology node-probe --mode platform-validation --json` | Execute the shipped Node application command and evaluate exact staged input, result receipt, PostgreSQL row, Python-row consistency, malformed-input rejection, runtime isolation, repeatability, and teardown. |
+| `topology.reliability-probe` | `incidentseal topology reliability-probe --mode platform-validation --json` | Exercise a protected disposable topology through fresh start, real runners, distinct failure/cancellation states, recovery, restart, orphan detection, and teardown. |
 | `verify` | `incidentseal verify --manifest PATH --json` | Execute only after approval status is `MATCH`. |
 | `run.events` | `incidentseal run events --run-id ID --jsonl` | Stream retained append-only events. |
 
@@ -31,6 +32,8 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 `topology.python-probe` has the same product-failure semantics. A PASS proves only the exact Python application surface bound in the active runtime lock. It does not prove Node behavior, approve or run a workflow, or verify cancellation, recovery, dashboard, clean-clone, redistribution, or release claims.
 
 `topology.node-probe` has the same product-failure semantics and additionally binds the Node result to the retained Python row through the shared canonical input digest. A PASS proves only the exact Node and bounded cross-runner surface; it does not approve or run a workflow or verify cancellation, recovery, dashboard, clean-clone, redistribution, or release claims.
+
+`topology.reliability-probe` operates only on the exact disposable project named by the retained-volume lock. It may delete only that non-sensitive disposable volume after verified teardown. Its machine output keeps verification `FAIL` and `INVALID` separate from lifecycle `failed` and `cancelled`. A canonical-checkout PASS does not prove the clean-clone gate.
 
 The separate operator surface is `incidentseal operator approve-manifest --manifest PATH`. It is deliberately interactive and is not part of the agent-safe machine path.
 

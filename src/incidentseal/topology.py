@@ -43,10 +43,13 @@ IMPLEMENTATION_FILES = (
     "containers/node-runner/node_runner.mjs",
     "fixtures/topology/runner-request.valid.json",
     "fixtures/topology/runner-request.invalid.extra.json",
+    "fixtures/topology/runner-request.recovery.json",
+    "requirements/retained-runtime-volumes.lock.json",
     "src/incidentseal/cli.py",
     "src/incidentseal/database.py",
     "src/incidentseal/node_surface.py",
     "src/incidentseal/python_surface.py",
+    "src/incidentseal/reliability_surface.py",
     "src/incidentseal/runtime.py",
     "src/incidentseal/topology.py",
 )

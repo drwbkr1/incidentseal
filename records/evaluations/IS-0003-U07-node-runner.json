@@ -19,8 +19,8 @@
   "bindings": {
     "topology_contract": {"path":"contracts/topology-v1.json","sha256":"sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351","revision":3},
     "topology_contract_lock": {"path":"requirements/topology-contract.lock.json","sha256":"sha256:64d0e87f5f702218f43ae8d992bca20b55f4d0ec69eef22091d584ce1591b860"},
-    "implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:e2851faf3627d9926e7ff7749b3cc0660e4478fe8aafa32ce3ae029c5aede5c1","lock_id":"IS-TOPOLOGY-IMPLEMENTATION-LOCK-0009"},
-    "runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:e73eafebadb8cca36da987b200dd12e9d8fdc71ab74460a05c71d3cf07adc8c6","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0007"},
+    "implementation_lock": {"path":"requirements/history/IS3-U07-node-runner.implementation.lock.json","sha256":"sha256:e2851faf3627d9926e7ff7749b3cc0660e4478fe8aafa32ce3ae029c5aede5c1","lock_id":"IS-TOPOLOGY-IMPLEMENTATION-LOCK-0009"},
+    "runtime_lock": {"path":"requirements/history/IS3-U07-node-runner.runtime.lock.json","sha256":"sha256:e73eafebadb8cca36da987b200dd12e9d8fdc71ab74460a05c71d3cf07adc8c6","lock_id":"IS-TOPOLOGY-RUNTIME-LOCK-0007"},
     "python_evaluation": {"path":"records/evaluations/IS-0003-U06-python-runner.json","sha256":"sha256:cfd2e79cf7f63a1940bf1ec445b5ec0d2eeda16a70cb981cefe000b5755f5d28"},
     "valid_fixture": {"path":"fixtures/topology/runner-request.valid.json","sha256":"sha256:88ad829882ff996342dcbd081d513d087564839bd21593aea3e31cc261046a54"},
     "invalid_fixture": {"path":"fixtures/topology/runner-request.invalid.extra.json","sha256":"sha256:7fc0c870546b7cd103709b4298e07ccc360d5dd3f9c90117c500b6e98ca97b36"}

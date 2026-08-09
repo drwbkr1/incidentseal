@@ -124,6 +124,10 @@ def copy_root(destination: Path) -> None:
     shutil.copy2(ROOT / "contracts" / "topology-v1.json", destination / "contracts" / "topology-v1.json")
     shutil.copy2(ROOT / "requirements" / "images.lock.json", destination / "requirements" / "images.lock.json")
     shutil.copy2(
+        ROOT / "requirements" / "retained-runtime-volumes.lock.json",
+        destination / "requirements" / "retained-runtime-volumes.lock.json",
+    )
+    shutil.copy2(
         ROOT / "requirements" / "topology-implementation.lock.json",
         destination / "requirements" / "topology-implementation.lock.json",
     )
@@ -139,6 +143,10 @@ def copy_root(destination: Path) -> None:
     shutil.copy2(
         ROOT / "fixtures" / "topology" / "runner-request.invalid.extra.json",
         destination / "fixtures" / "topology" / "runner-request.invalid.extra.json",
+    )
+    shutil.copy2(
+        ROOT / "fixtures" / "topology" / "runner-request.recovery.json",
+        destination / "fixtures" / "topology" / "runner-request.recovery.json",
     )
     shutil.copy2(ROOT / "fixtures" / "topology" / "mutations.json", destination / "fixtures" / "topology" / "mutations.json")
     for name in ("topology-contract-v1.schema.json", "topology-render-v1.schema.json"):
