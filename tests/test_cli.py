@@ -100,6 +100,45 @@ class CliTests(unittest.TestCase):
         self.assertEqual(74, completed.returncode)
         self.assertEqual("IS_MANIFEST_READ", envelope["errors"][0]["code"])
 
+    def test_default_approval_status_is_missing_and_read_only(self) -> None:
+        approval_root = Path(os.environ["LOCALAPPDATA"]) / "IncidentSeal" / "approvals" / "v1"
+        self.assertFalse(approval_root.exists(), "test requires no real IncidentSeal approval store")
+        for command in ("status", "diff"):
+            with self.subTest(command=command):
+                completed, envelope = self.run_cli(
+                    "policy", command, "--manifest", str(FIXTURES / "workflow.valid.minimal.json"), "--json"
+                )
+                self.assertEqual(12, completed.returncode)
+                self.assertEqual("MISSING", envelope["policy"]["approval_status"])
+                self.assertEqual("INVALID", envelope["verdict"])
+                self.assertEqual("IS_APPROVAL_MISSING", envelope["errors"][0]["code"])
+        self.assertFalse(approval_root.exists())
+
+    def test_agent_facing_approval_attempt_is_forbidden(self) -> None:
+        completed, envelope = self.run_cli(
+            "operator",
+            "approve-manifest",
+            "--manifest",
+            str(FIXTURES / "workflow.valid.minimal.json"),
+            "--json",
+        )
+        self.assertEqual(77, completed.returncode)
+        self.assertEqual("operator.approve-manifest", envelope["command"])
+        self.assertEqual("IS_AUTHORITY_MUTATION_FORBIDDEN", envelope["errors"][0]["code"])
+
+    def test_agent_cannot_select_an_approval_root(self) -> None:
+        completed, envelope = self.run_cli(
+            "policy",
+            "status",
+            "--manifest",
+            str(FIXTURES / "workflow.valid.minimal.json"),
+            "--approval-root",
+            str(ROOT / "fixtures"),
+            "--json",
+        )
+        self.assertEqual(64, completed.returncode)
+        self.assertEqual("IS_USAGE", envelope["errors"][0]["code"])
+
     @unittest.skipUnless(os.name == "nt", "Windows launcher probe")
     def test_windows_launcher_runs_real_cli(self) -> None:
         completed = subprocess.run(

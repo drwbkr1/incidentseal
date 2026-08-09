@@ -181,17 +181,28 @@
       "depends_on": ["IS2-U02"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "ready",
+      "status": "complete",
       "inputs": ["Manifest digest implementation", "Temporary isolated test custody"],
       "outputs": ["Approval-store implementation", "Boundary probes", "Threat-model update"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
+      "gates": {
+        "distinct_approval_states": "pass",
+        "agent_paths_read_only": "pass",
+        "authority_mutation_denied": "pass",
+        "custody_overlap_denied": "pass",
+        "reparse_boundary": "pass",
+        "ownership_and_permissions": "pass",
+        "environment_shadow_resistance": "pass",
+        "default_store_untouched": "pass"
+      },
+      "disposition": "pass",
+      "retained_failures": [
+        "The initial Windows temporary-custody run returned INVALID for five positive comparison cases because user control was represented by OWNER RIGHTS; owner verification and bounded OWNER RIGHTS handling corrected it, and the full rerun passed."
+      ],
       "exit_condition_delta": {
         "expected": ["EXIT-APPROVAL-BOUNDARY"],
         "observed": [],
-        "decision_value": "unknown",
-        "rationale": "The deterministic manifest digest and stable envelope implementation passed; the external approval boundary is now the sole eligible unit."
+        "decision_value": "enables_dependency",
+        "rationale": "The read-only external approval boundary distinguishes all five statuses, rejects unsafe custody and agent writes, and releases deterministic fail-closed mutation evaluation. No real approval or execution authority exists."
       },
       "next_dependency": "IS2-U04"
     },
@@ -201,7 +212,7 @@
       "depends_on": ["IS2-U03"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "planned",
+      "status": "ready",
       "inputs": ["Implemented manifest and approval contracts"],
       "outputs": ["records/evaluations/IS-0002-fail-closed.json"],
       "gates": {},
@@ -211,7 +222,7 @@
         "expected": ["EXIT-FAIL-CLOSED-EVALUATION"],
         "observed": [],
         "decision_value": "unknown",
-        "rationale": "Pending approval-boundary implementation."
+        "rationale": "The read-only approval boundary passed; deterministic policy-drift, custody, ambiguity, and tampering scenarios are now the sole eligible unit."
       },
       "next_dependency": "IS2-U05"
     },
@@ -285,12 +296,15 @@
       "Four fail-closed contract mutation probes",
       "Thirteen manifest and CLI implementation tests",
       "Real Windows lint and digest launcher probes",
-      "Python site-disabled dependency-isolation and approval no-write probes"
+      "Python site-disabled dependency-isolation and approval no-write probes",
+      "Twenty-six manifest, approval-boundary, and CLI tests",
+      "Real agent-safe status, diff, and authority-mutation denial probes",
+      "Windows Known Folder, absolute system tool, ACL, and junction custody probes"
     ]
   },
   "handoff": {
     "current_checkpoint": "IS-0002 active",
-    "next_action": "Execute IS2-U03 operator-owned approval-store implementation and boundary probes",
+    "next_action": "Execute IS2-U04 deterministic fail-closed mutation evaluation",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not let repository content approve its own manifest digest",

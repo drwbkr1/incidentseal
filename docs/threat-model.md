@@ -71,10 +71,19 @@ Networked acquisition is a separate host-side action. Runtime egress is denied b
 | Dashboard or prose overstates evidence | Dashboard derives from receipt schema; release claim matrix is explicit | Compare rendered claims with receipt and current release matrix |
 | Registry loses or rewrites attestations | Verify remote digest and attestations after push and after download | Registry round-trip verification |
 
+## Implemented approval-boundary controls
+
+As of `IS2-U03`, the agent-facing host CLI has read-only `policy status` and `policy diff` paths. They derive the external approval location from the platform default, do not accept an approval-root override, never create a missing store, and expose no approval write function. A non-interactive attempt to invoke `operator approve-manifest` is rejected with stable exit `77` and `IS_AUTHORITY_MUTATION_FORBIDDEN`.
+
+Approval inspection rejects repository-overlapping and configured-forbidden custody, symlinks and Windows reparse points, ambiguous case resolution, unexpected writers, unreadable paths, malformed or ambiguous JSON, invalid timestamps, and non-closed record fields. Windows custody requires the current principal to own each object and permits write grants only for owner/creator-owner rights, SYSTEM, and Administrators. POSIX custody requires current-user ownership, no group/other writes, and no extended access ACL; macOS extended-ACL verification currently fails closed. Exact digest comparison uses a constant-time primitive after record validation.
+
+Temporary-custody probes distinguish `MATCH`, `MISMATCH`, `MISSING`, `EXPIRED`, and `INVALID`; test repository and forbidden-root overlap, unverified permissions, and a real Windows junction; and confirm the default operator store is absent before and after agent-facing inspection. These probes create no real approval and authorize no workflow.
+
 ## Explicit limitations
 
 - Docker authority is effectively host-root authority on common systems. A compromised host CLI or unrestricted same-user process is outside the protection offered by container hardening.
 - A non-secret local approval record is tamper-evident and outside the normal repository write scope; it is not strong identity proof against a fully privileged same-user attacker.
+- Windows approval inspection depends on local PowerShell and `icacls` read access and fails closed if ownership or ACL evidence cannot be interpreted. macOS approval matching remains unavailable until extended ACLs can be verified without weakening this gate.
 - Container isolation reduces risk but is not a proof that the Docker engine or kernel is free of vulnerabilities.
 - Vulnerability scans depend on advisory freshness and coverage. A clean scan is not proof of absence.
 - Reproducible procedure and digest-pinned inputs do not imply bit-for-bit reproducible outputs until measured.

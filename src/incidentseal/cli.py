@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from typing import Any, Sequence
 
+from .approval import ApprovalResult, inspect_document
 from .manifest import ALGORITHM, PROFILE, ManifestError, ManifestReadError, load_manifest
 
 
@@ -17,10 +18,13 @@ EXIT_INVALID = 12
 EXIT_USAGE = 64
 EXIT_INTERNAL = 70
 EXIT_IO = 74
+EXIT_FORBIDDEN = 77
 
 COMMANDS = {
     ("policy", "lint"): "policy.lint",
     ("policy", "digest"): "policy.digest",
+    ("policy", "status"): "policy.status",
+    ("policy", "diff"): "policy.diff",
 }
 
 
@@ -56,6 +60,7 @@ def _envelope(
     policy: dict[str, Any] | None = None,
     data: dict[str, Any] | None = None,
     errors: list[dict[str, Any]] | None = None,
+    evidence: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     return {
         "schema_version": "incidentseal-cli-envelope/v1",
@@ -69,13 +74,13 @@ def _envelope(
         "policy": policy,
         "data": data or {},
         "errors": errors or [],
-        "evidence": [],
+        "evidence": evidence or [],
     }
 
 
 def _parse(argv: Sequence[str]) -> Request:
     if len(argv) < 2 or tuple(argv[:2]) not in COMMANDS:
-        raise UsageError("expected 'policy lint' or 'policy digest'")
+        raise UsageError("expected 'policy lint', 'policy digest', 'policy status', or 'policy diff'")
     command = COMMANDS[tuple(argv[:2])]
     manifest: str | None = None
     json_requested = False
@@ -102,6 +107,42 @@ def _parse(argv: Sequence[str]) -> Request:
     return Request(command=command, manifest=manifest)
 
 
+def _approval_envelope(request: Request, document: Any, result: ApprovalResult) -> dict[str, Any]:
+    policy = {
+        "workflow_id": document.value["workflow_id"],
+        "manifest_digest": document.digest,
+        "approved_digest": result.approved_digest,
+        "approval_status": result.status,
+    }
+    data: dict[str, Any] = {
+        "approved": result.approved,
+        "differences": list(result.differences),
+    }
+    if request.command == "policy.diff":
+        data["comparison"] = "exact-bound-fields"
+    if result.approved:
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=EXIT_SUCCESS,
+            policy=policy,
+            data=data,
+            evidence=result.evidence(),
+        )
+    error_code = result.error_code or "IS_APPROVAL_INVALID"
+    message = result.message or "approval is invalid"
+    return _envelope(
+        request.command,
+        command_status="rejected",
+        process_exit_code=EXIT_INVALID,
+        verdict="INVALID",
+        policy=policy,
+        data=data,
+        errors=[_error(error_code, message, {"differences": list(result.differences)}, False)],
+        evidence=result.evidence(),
+    )
+
+
 def _success(request: Request) -> dict[str, Any]:
     document = load_manifest(request.manifest)
     common = {
@@ -117,18 +158,20 @@ def _success(request: Request) -> dict[str, Any]:
             process_exit_code=EXIT_SUCCESS,
             data={**common, "valid": True},
         )
-    return _envelope(
-        request.command,
-        command_status="succeeded",
-        process_exit_code=EXIT_SUCCESS,
-        data={
-            **common,
-            "algorithm": ALGORITHM,
-            "profile": PROFILE,
-            "canonical_byte_count": len(document.canonical),
-            "manifest_digest": document.digest,
-        },
-    )
+    if request.command == "policy.digest":
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=EXIT_SUCCESS,
+            data={
+                **common,
+                "algorithm": ALGORITHM,
+                "profile": PROFILE,
+                "canonical_byte_count": len(document.canonical),
+                "manifest_digest": document.digest,
+            },
+        )
+    return _approval_envelope(request, document, inspect_document(document))
 
 
 def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
@@ -136,6 +179,22 @@ def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
 
     command = "cli.usage"
     try:
+        if tuple(argv[:2]) == ("operator", "approve-manifest"):
+            envelope = _envelope(
+                "operator.approve-manifest",
+                command_status="rejected",
+                process_exit_code=EXIT_FORBIDDEN,
+                verdict="INVALID",
+                errors=[
+                    _error(
+                        "IS_AUTHORITY_MUTATION_FORBIDDEN",
+                        "operator approval is unavailable through the agent-facing CLI",
+                        None,
+                        False,
+                    )
+                ],
+            )
+            return envelope, EXIT_FORBIDDEN
         request = _parse(argv)
         command = request.command
         envelope = _success(request)

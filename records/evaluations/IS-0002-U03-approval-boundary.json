@@ -1,0 +1,101 @@
+{
+  "schema_version": "incidentseal-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0002-U03",
+  "checkpoint_id": "IS-0002",
+  "unit_id": "IS2-U03",
+  "observed_at_utc": "2026-08-09T17:23:20Z",
+  "base_commit": "870764634a2a9dd2aafe8c45ebf7f95e5884648b",
+  "disposition": "pass",
+  "environment": {
+    "project_root": "C:/Projects/Active/incidentseal",
+    "python": "3.12.10",
+    "platform": "Windows",
+    "default_approval_root_created": false,
+    "real_approval_created": false,
+    "third_party_dependencies": 0
+  },
+  "checks": [
+    {
+      "id": "approval-and-cli-tests",
+      "status": "PASS",
+      "command": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "result": "26 tests passed, including exact MATCH, bound-field MISMATCH, MISSING without creation, EXPIRED, malformed-record INVALID, schema-bound CLI output, and all prior manifest and CLI regressions."
+    },
+    {
+      "id": "real-agent-status-and-diff",
+      "status": "PASS",
+      "command": ".\\incidentseal.cmd policy status|diff --manifest fixtures\\contracts\\workflow.valid.minimal.json --json",
+      "result": "Both commands returned exit 12, verdict INVALID, and approval_status MISSING because the fixed external store does not exist; neither command created it."
+    },
+    {
+      "id": "authority-mutation-denial",
+      "status": "PASS",
+      "command": ".\\incidentseal.cmd operator approve-manifest --manifest fixtures\\contracts\\workflow.valid.minimal.json --json",
+      "result": "The agent-facing process returned exit 77 and IS_AUTHORITY_MUTATION_FORBIDDEN without writing state."
+    },
+    {
+      "id": "root-override-denial",
+      "status": "PASS",
+      "command": "policy status with --approval-root",
+      "result": "The uncontracted root override was rejected as usage error exit 64."
+    },
+    {
+      "id": "custody-overlap",
+      "status": "PASS",
+      "command": "Temporary approval-store probes",
+      "result": "Repository-contained and configured-forbidden root overlaps returned INVALID before creating state."
+    },
+    {
+      "id": "reparse-boundary",
+      "status": "PASS",
+      "command": "Temporary Windows junction approval-root probe",
+      "result": "A real junction was detected from its lexical path and returned INVALID."
+    },
+    {
+      "id": "ownership-and-permissions",
+      "status": "PASS",
+      "command": "Windows owner and ACL probes plus forced-unverified-permission mutation",
+      "result": "Temporary exact approval passed only with current-owner evidence and bounded writers; an unverifiable permission result returned INVALID."
+    },
+    {
+      "id": "process-environment-shadowing",
+      "status": "PASS",
+      "command": "Override LOCALAPPDATA and PATH during temporary exact-approval inspection",
+      "result": "The Windows Known Folder API retained the platform approval root, absolute system custody tools remained in use, and the isolated exact approval still evaluated correctly."
+    },
+    {
+      "id": "constant-time-digest-and-evidence",
+      "status": "PASS",
+      "command": "Temporary exact and changed-digest probes",
+      "result": "Validated digest comparison used hmac.compare_digest; valid external records were referenced by absolute path and exact file SHA-256."
+    }
+  ],
+  "observed_sha256": [
+    {"path": "AGENTS.md", "sha256": "c62ef1bb3a43c4a3068e3e31d25f26c37754a32a1a46ff472850cbf173df8195"},
+    {"path": "docs/threat-model.md", "sha256": "f8c8930efbd69922f0cbc35e2c35a9a3c50882f0cde6440471fe3906465033d4"},
+    {"path": "src/incidentseal/approval.py", "sha256": "3e11b9bdbbc0bcff5cf67f6cefc3f7c36d647c97b4d2b4d4c8019ee2a26b7af4"},
+    {"path": "src/incidentseal/cli.py", "sha256": "f218f5594cea316135f08f299742ca0c5e21cfc68a7b6fbe623ff55d53ff09fd"},
+    {"path": "tests/test_approval.py", "sha256": "c0848b212108ec0f5ee5cfceff1de653c3bd5b5cb951c27e56528e82bcb6e419"},
+    {"path": "tests/test_cli.py", "sha256": "aee9ca6bf2729e309b487a000445af8e7411b8194c5c07140603f1606a2050c9"}
+  ],
+  "remediations": [
+    "The Windows ACL checker now verifies the current owner before accepting OWNER RIGHTS and still rejects any unexpected writer.",
+    "Approval roots retain their lexical path for symlink and junction inspection; resolved paths are used only for custody-overlap comparison.",
+    "Windows Local AppData and custody tools now come from Known Folder and system-directory APIs rather than caller-controlled LOCALAPPDATA or PATH values.",
+    "Unreadable directories and permission-check errors now return policy INVALID instead of an internal CLI error."
+  ],
+  "retained_failures": [
+    {
+      "attempt": "Initial Windows temporary-custody test run",
+      "outcome": "failed",
+      "note": "Five expected MATCH, MISMATCH, and EXPIRED cases returned INVALID because inherited ACLs represented user control through OWNER RIGHTS. No real approval state existed. Owner verification and bounded OWNER RIGHTS handling corrected the implementation; the full rerun passed."
+    }
+  ],
+  "limitations": [
+    "No product approval writer is implemented and no real manifest approval exists; all positive approvals were temporary test fixtures.",
+    "macOS extended-ACL verification currently fails closed, so MATCH is unavailable there until a verified custody implementation exists.",
+    "A fully privileged or unrestricted same-user process remains outside the defended boundary.",
+    "Workflow verification and execution remain unimplemented and forbidden."
+  ],
+  "scope_note": "This evidence closes only the read-only IS2-U03 approval boundary. It authorizes fail-closed mutation evaluation next, not workflow execution or a checkpoint/release claim."
+}

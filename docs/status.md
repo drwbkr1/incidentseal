@@ -21,11 +21,11 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Active unit
 
-`IS2-U01` froze the machine contracts. `IS2-U02` implemented and locally validated the dependency-free `policy lint` and `policy digest` commands, strict manifest parser, RFC 8785 canonicalizer, stable JSON envelope, and repository guidance. `IS2-U03` is now the active unit: implement and probe the operator-owned approval store outside repository custody.
+`IS2-U01` froze the machine contracts, `IS2-U02` implemented lint and digest, and `IS2-U03` implemented and locally validated read-only external approval inspection through `policy status` and `policy diff`. `IS2-U04` is now the active unit: run the deterministic fail-closed mutation evaluation across policy drift, stale and malformed approval, custody ambiguity, and repository tampering.
 
 ## Known limitations
 
-- The executable checkout CLI currently implements only `policy lint` and `policy digest`; approval status, diff, verification, events, and operator approval remain unimplemented.
+- The executable checkout CLI implements `policy lint`, `policy digest`, `policy status`, and `policy diff`; verification, events, and operator approval remain unimplemented.
 - No Compose topology or database exists.
 - The `IS2-U01` contract artifacts passed their bounded local gate, but the full `IS-0002` checkpoint remains active and no workflow digest is approved.
 - Four exact image artifacts passed the source gate only for digest recording and controlled acquisition; none has been pulled, scanned, executed, or approved for runtime use.
@@ -34,4 +34,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Execute `IS2-U03` in `contracts/IS-0002.json`: implement external approval-store inspection and comparison with fail-closed custody checks, using only isolated test custody and without exposing approval mutation to agent-facing commands.
+Execute `IS2-U04` in `contracts/IS-0002.json`: retain deterministic results for golden, malformed-input, policy-drift, stale-approval, ambiguous-custody, repository-overlap, environment-shadow, and authority-mutation scenarios.
