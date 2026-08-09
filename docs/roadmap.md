@@ -29,9 +29,9 @@ Status: complete
 
 ### IS-0003 - Hardened real topology
 
-Status: active
+Status: complete
 
-Progress: `IS3-U01` through `IS3-U08` passed. U08 has two canonical and one exact credential-free public-clone reliability PASS covering fresh start, real runners, distinct FAIL/INVALID/failed/cancelled states, recovery, restart, orphan detection, protected evidence volumes, and teardown. `IS3-U09` owns the closure commit and public checkpoint marker.
+Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-0003` freezes exact verified closure commit `a0c05070dd1d147aecae6b4ed686440414a3aa27` after credential-free real-surface, integrity, and secret-scan replay.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

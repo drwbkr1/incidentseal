@@ -1,21 +1,21 @@
 # IncidentSeal status
 
 - Current checkpoint: `IS-0003`
-- Latest verified checkpoint: `IS-0002`
-- State: active
+- Latest verified checkpoint: `IS-0003`
+- State: checkpoint complete; next milestone not yet opened
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
 - Expected branch: `main`
-- Latest verified checkpoint commit: `e8b9823f63e3505f87490cbd87894705221a33cd` on local and remote `main`
-- Verified checkpoint marker: `checkpoint-is-0002` tag object `630bc88f0860de56c51d0637260953429a6df172` -> `e8b9823f63e3505f87490cbd87894705221a33cd`
+- Latest verified checkpoint commit: `a0c05070dd1d147aecae6b4ed686440414a3aa27`
+- Verified checkpoint marker: `checkpoint-is-0003` tag object `28eea260147265e7dd0328dcd072e134586a2ff0` -> `a0c05070dd1d147aecae6b4ed686440414a3aa27`
 - Approved workflow manifest digest: not established
-- Application surfaces: topology security, PostgreSQL, Python, Node, and cross-runner consistency are verified; end-to-end reliability remains pending
+- Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, and bounded topology reliability are verified
 - Release state: unreleased
 
 ## Current truth
 
-The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `IS-0002` now establishes the public manifest authority and real host CLI contract: exact local and public clean clones passed both checkout launchers, 38 tests, full Draft 2020-12 schema validation, approval denial, frozen mutations, and 50 fail-closed executions without Docker or real approval state.
+The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `IS-0003` now establishes the verified public hardened-topology checkpoint on top of the `IS-0002` manifest authority and machine CLI contract.
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
@@ -37,17 +37,19 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U08` passed. Two canonical-checkout disposable runs and one exact credential-free public-clone run passed fresh bootstrap, both real runners, exact rows, tampered-receipt `FAIL`, malformed-input `INVALID`, database-outage lifecycle `failed`, post-failure recovery, host cancellation at exit `137`, restart persistence, orphan detection, protection of all three retained volumes, and complete disposable teardown. The clone also passed 50 tests and 15 implementation mutations. Two invalid harness attempts remain retained. Local command policy denied recursive deletion of the clean non-canonical temp clone, which remains outside OneDrive and outside canonical custody.
 
+`IS3-U09` passed. Exact closure commit `a0c05070...` and tree `67c05a10...` passed the full credential-free clone matrix, Git object integrity, secret scanning, and real reliability invocation `73711f49...`. Annotated marker object `28eea260...` was pushed and independently fetched from public custody, peeling to the exact closure commit. IS-0003 is complete.
+
 ## Known limitations
 
-- The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- The database, both real language surfaces, and bounded topology reliability now pass; the exact IS-0003 closure commit and public checkpoint marker remain pending in `IS3-U09`.
+- The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, and bounded platform-validation probes; approved-workflow verification and its run-event stream remain unimplemented.
+- The database, both real language surfaces, bounded topology reliability, exact public closure commit, and annotated checkpoint marker pass. Evidence/recovery, dashboard, packaging, and release gates remain pending in later milestones.
 - No workflow digest is approved and workflow execution remains unavailable.
-- Four selected base images have been pulled and scanned; their four revision-2 derived images ran only under the exact topology contract. The base artifacts were not started directly.
+- Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
 - The Distroless Node image has retained MEDIUM and LOW findings and no located signed SLSA statement; its exact signatures, Bazel history, runtime version, and runner behavior remain explicitly bounded claims.
 - Direct Codex CLI execution currently fails with `Access is denied`.
-- The historical `checkpoint-is-0001` marker remains at `55ad47d250041c2148c0f458d276e62d8f02a25d`; `checkpoint-is-0002` is the latest verified marker, while remote `main` has advanced through current IS-0003 evidence work.
+- Historical markers `checkpoint-is-0001` and `checkpoint-is-0002` remain intact; `checkpoint-is-0003` is the latest verified marker. Remote `main` may advance with post-marker receipts and the next milestone while the marker continues to freeze its exact closure commit.
 
 ## Next eligible action
 
-Execute `IS3-U09`: publish the U08 closure commit, verify exact local/remote equality, replay the required bounded gates from its credential-free public clone, create annotated marker `checkpoint-is-0003`, push it, and independently verify the public commit and tag without claiming dashboard, receipt recovery, redistribution, or release completion.
+Open and validate a new `IS-0004` evidence-and-recovery milestone from `checkpoint-is-0003`. Preserve the stable machine CLI and trust boundary while adding append-only receipts, idempotency, durable cancellation/failure records, crash recovery, verified PostgreSQL backup/restore, and an independent offline receipt verifier one bounded unit at a time.

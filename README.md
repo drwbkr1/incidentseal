@@ -8,7 +8,7 @@ IncidentSeal does not claim to be a complete sandbox, vulnerability scanner, rel
 
 ## Current state
 
-`IS-0002` is the latest verified public checkpoint. `IS-0003` is active: exact source-gated images and the frozen topology contract have passed, and the host CLI now has a static `topology validate` surface for the implemented Compose, migration, Python, and Node sources. The implementation has not built an image or started a container yet; database and runner behavior remain unverified runtime claims.
+`checkpoint-is-0003` is the latest verified public checkpoint. It freezes an exact-image hardened Compose topology, least-privilege PostgreSQL, the shipped Python and Node commands, state-separated reliability behavior, and a credential-free public-clone replay. IncidentSeal remains unreleased at `0.0.0`; evidence recovery, the dashboard, release packaging, and release supply-chain gates are still planned.
 
 Current truth is recorded in:
 
@@ -18,13 +18,13 @@ Current truth is recorded in:
 - [`docs/threat-model.md`](docs/threat-model.md)
 - [`control/project-control.json`](control/project-control.json)
 
-The current static real-surface check is:
+The static topology check is:
 
 ```powershell
 .\incidentseal.cmd topology validate --mode platform-validation --json
 ```
 
-It renders Compose and returns one machine envelope. A PASS is explicitly topology-only and uses synthetic derived-image identities; it is not runtime, workflow, or release proof.
+It renders Compose and returns one machine envelope. A PASS from that command is explicitly topology-only. Separate host-owned probes validate the database, Python runner, Node runner, and disposable recovery topology; none of those platform-validation probes approves or executes a workflow manifest.
 
 ## Intended workflow
 

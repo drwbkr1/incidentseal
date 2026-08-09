@@ -1,0 +1,45 @@
+{
+  "schema_version": "incidentseal-public-checkpoint-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U09-PUBLIC-CHECKPOINT",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U09",
+  "observed_at_utc": "2026-08-09T22:33:16Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "bindings": {
+    "public_checkpoint_receipt": {"path":"records/surface-receipts/IS-0003-public-checkpoint.json","sha256":"sha256:d8e50a611895993467325399f111ea02eca35c893881b58aa8e65ba4b51b3a06"},
+    "checkpoint_marker_receipt": {"path":"records/surface-receipts/IS-0003-checkpoint-marker.json","sha256":"sha256:89c9047d4f21bce93ae567781f93bc8b514bf94db9c80a5b06be011e1e6111c8"}
+  },
+  "checkpoint": {
+    "commit": "a0c05070dd1d147aecae6b4ed686440414a3aa27",
+    "tree": "67c05a1090aef5f301525dbba6786c1050635629",
+    "tag": "checkpoint-is-0003",
+    "tag_object": "28eea260147265e7dd0328dcd072e134586a2ff0",
+    "tag_type": "annotated",
+    "remote_main_equal_before_marker": true,
+    "remote_tag_object_equal": true,
+    "remote_peeled_commit_equal": true
+  },
+  "clean_clone": {
+    "credential_free": true,
+    "worktree_clean": true,
+    "unit_tests": 50,
+    "machine_contract_mutations": 4,
+    "topology_contract_mutations": 16,
+    "implementation_mutations": 15,
+    "real_reliability_invocation_id": "73711f49-91a7-4edc-ac09-99a59cab2e3d",
+    "real_reliability_checks": 14,
+    "git_object_integrity": "PASS",
+    "secret_scan": "PASS",
+    "docker_residue": "PASS"
+  },
+  "retained_invalid_attempts": [
+    "The first remote tag-absence command used unquoted peeled-tag braces and was INVALID under PowerShell; a quoted credential-free retry established absence before the marker was created."
+  ],
+  "prohibited_claims": [
+    "checkpoint-is-0003 is not a versioned software release.",
+    "No workflow manifest is approved or executed.",
+    "Dashboard, portable receipt recovery, image redistribution, registry publication, downloaded release, and v0.1.0 remain unverified."
+  ],
+  "decision": {"status":"close-checkpoint","reason":"Every IS-0003 exit condition and the exact public annotated marker passed without broadening the trust boundary."}
+}

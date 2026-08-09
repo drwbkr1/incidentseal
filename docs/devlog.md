@@ -173,3 +173,13 @@ The public clone repeated all 14 real checks and the same stable digests for com
 Two harness attempts remain `INVALID`: one combined command was blocked before execution, and one split attempt let PowerShell treat unittest's normal stderr summary as a terminating error before the real probe ran. The corrected split harness passed. A later local command-policy gate denied recursive removal of the clean non-OneDrive temp clone, so that non-canonical diagnostic custody remains explicit rather than being misreported as cleaned.
 
 This closes `EXIT-REAL-TOPOLOGY`, not IS-0003 publication. `IS3-U09` must bind the closure commit, verify it from public custody, create and push `checkpoint-is-0003`, and independently verify the marker before the milestone closes.
+
+## 2026-08-09 - Public IS-0003 checkpoint
+
+Exact closure commit `a0c05070dd1d147aecae6b4ed686440414a3aa27`, tree `67c05a1090aef5f301525dbba6786c1050635629`, was cloned from public GitHub with credential helpers, askpass, and terminal prompting disabled. The clean clone passed project controls, the milestone contract, 50 tests, machine contracts and four mutations, topology contracts and 16 mutations, implementation validation and 15 mutations, Git object integrity, high-confidence secret scanning, and real reliability invocation `73711f49-91a7-4edc-ac09-99a59cab2e3d` with all 14 checks.
+
+Annotated tag `checkpoint-is-0003` was created at that exact commit, pushed, and fetched independently in the credential-free clone. Local and public tag object `28eea260147265e7dd0328dcd072e134586a2ff0` both peel to `a0c05070dd1d147aecae6b4ed686440414a3aa27`. The first remote tag-absence query remains `INVALID` because its peeled ref was not quoted for PowerShell; the quoted retry established absence before tag creation.
+
+No IncidentSeal container or network remains, and all three protected evidence volumes remain. The non-canonical U08 and U09 temp clones remain in non-OneDrive local temp custody because local command policy denied recursive cleanup; neither is canonical or a release artifact.
+
+IS-0003 is complete, but IncidentSeal remains `0.0.0` and unreleased. The next bounded milestone is evidence and recovery: append-only portable receipts, idempotency, durable cancellation/failure records, crash recovery, verified backup/restore, and independent offline verification.
