@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U02` in progress
+- State: active; `IS4-U02` complete; `IS4-U03` next eligible
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -43,7 +43,9 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact evaluation-only wheels passed their saved source gate and hashes in temporary custody, but local policy denied removal of `C:\Users\drewb\AppData\Local\Temp\incidentseal-is4-u01-meta-6ccc178db91e40fa9c6b695f32eddcf0`. That path is non-canonical, outside OneDrive, and not a runtime or release dependency.
 
-`IS4-U02` is in progress. The dependency-free real CLI candidate atomically materializes a canonical bundle under its receipt digest, verifies and reuses it idempotently, and independently verifies without writes. Fifty-four tests and the locked real Windows launcher pass exact `PASS`, unbound `INCONCLUSIVE`, identity-mismatch `INVALID`, corrupt-artifact `FAIL`, missing-artifact `INCONCLUSIVE`, repository-output denial, temporary cleanup, and unchanged Docker/approval state. All twelve implementation mutations now fail closed, including stale runtime source, semantic verdict promotion, artifact-state promotion, event and run-summary bypasses, custody bypass, idempotency drift, corrupt-source acceptance, and both runtime-lock entry bypasses. The additive receipt CLI was reviewed into archived and active topology locks; all fifteen topology implementation mutations still pass without runtime start. Four evaluator attempts remain distinctly `INVALID`. U02 is not yet complete: the exact committed candidate must reproduce from credential-free public clean custody.
+`IS4-U02` passed. The dependency-free real CLI atomically materializes a canonical bundle under its receipt digest, verifies and reuses it idempotently, and independently verifies without writes. Fifty-four tests and the real Windows launcher preserve exact `PASS`, unbound `INCONCLUSIVE`, identity-mismatch `INVALID`, corrupt-artifact `FAIL`, missing-artifact `INCONCLUSIVE`, invalid event/run-state `INVALID`, repository-output denial, temporary cleanup, and unchanged Docker/approval state. All twelve implementation mutations fail closed, including both runtime-lock entry bypasses before any materialization custody can be written.
+
+Exact public commit `3cdbf132225cf48e85a8413574c7e8e1d060aca0`, tree `c62c5cc29ff72d36ddd9acc31a685c0712d996aa`, reproduced thirteen reusable clean-copy checks with credential helpers and prompts disabled. Project and milestone controls, 54 tests, all machine/topology/receipt validators and mutations, six-schema/eleven-fixture exact-wheel meta-validation, 50 policy trials, Git object integrity, and four high-confidence secret patterns passed. Approval remained `MISSING` at exit `12`; no workflow ran; Docker containers, networks, and volumes were unchanged; all three protected volumes remained; temporary clone custody was removed. Five evaluator attempts remain distinctly `INVALID` and retained. `IS4-U03` is now eligible.
 
 ## Known limitations
 
@@ -58,4 +60,4 @@ The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact ev
 
 ## Next eligible action
 
-Continue `IS4-U02`: commit and push the exact mutation-passing candidate, then replay the complete materialize/verify matrix from credential-free public clean custody before closing the unit.
+Begin `IS4-U03`: freeze the append-only event journal, deterministic idempotency key, duplicate replay, and explicit stale and superseded transition contract before implementing persistence.

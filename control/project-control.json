@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit and push the exact IS4-U02 mutation-passing candidate, then replay the complete receipt surface from a credential-free public clean clone"
+    "next_action": "Begin IS4-U03 by freezing append-only event journal, idempotency, duplicate replay, stale, and superseded transition rules before implementation"
   }
 }

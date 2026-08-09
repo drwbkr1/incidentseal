@@ -1,0 +1,80 @@
+{
+  "schema_version": "incidentseal-receipt-implementation-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U02-RECEIPT-IMPLEMENTATION",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U02",
+  "observed_at_utc": "2026-08-09T23:44:25Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Dependency-free atomic content-addressed receipt materialization and independent read-only offline verification from the real checkout CLI and exact credential-free public custody.",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "commit": "3cdbf132225cf48e85a8413574c7e8e1d060aca0",
+    "tree": "c62c5cc29ff72d36ddd9acc31a685c0712d996aa"
+  },
+  "bindings": {
+    "receipt_contract_lock": {"path":"requirements/receipt-contract.lock.json","sha256":"sha256:7bd0abd1923b6e03ba99f02bfde9beca551fb789a837ff41098a570674c501e3"},
+    "receipt_implementation_lock": {"path":"requirements/receipt-implementation.lock.json","sha256":"sha256:d580ad9e53b8a2c64608d3b0fd9e3f3726eada87b61c5a6072225745fa305ff0"},
+    "initial_candidate_evaluation": {"path":"records/evaluations/IS-0004-U02-receipt-implementation-candidate.json","sha256":"sha256:46f6285ddbee9a32adcb95253b8e92bb52588dd2c3a2dbbd5a2af049d19bce63"},
+    "mutation_evaluation": {"path":"records/evaluations/IS-0004-U02-receipt-implementation-mutations.json","sha256":"sha256:717e35be026b0bd8d2fd48f61c44b628f11d7a2d0de8ab96a9ee6263d2ca9c11"},
+    "public_replay_receipt": {"path":"records/surface-receipts/IS-0004-U02-public-receipt-replay.json","sha256":"sha256:cae828900e9102ded324dc573c2045042caacef1aac18433041d63cd81a47025"}
+  },
+  "results": {
+    "unit_tests": 54,
+    "real_cli_states": {
+      "exact_bound_receipt": "PASS",
+      "unbound_receipt": "INCONCLUSIVE",
+      "identity_mismatch": "INVALID",
+      "present_corruption": "FAIL",
+      "missing_required_evidence": "INCONCLUSIVE",
+      "stored_event_digest_mutation": "INVALID",
+      "run_summary_mutation": "INVALID"
+    },
+    "atomic_first_write": "PASS",
+    "idempotent_reuse": "PASS",
+    "read_only_verification": "PASS",
+    "runtime_self_binding": "PASS",
+    "repository_output_denial": "PASS",
+    "receipt_contract_mutations": 14,
+    "receipt_implementation_mutations": 12,
+    "machine_contract_mutations": 4,
+    "topology_contract_mutations": 16,
+    "topology_implementation_mutations": 15,
+    "full_schema_count": 6,
+    "full_fixture_count": 11,
+    "public_clean_copy_checks": 13,
+    "credential_free_public_replays": 1,
+    "git_object_integrity": "PASS",
+    "bounded_secret_scan": "PASS"
+  },
+  "trust_boundary": {
+    "runtime_dependencies": 0,
+    "docker_runtime_started": false,
+    "docker_state_unchanged": true,
+    "database_accessed": false,
+    "receipt_runtime_network_accessed": false,
+    "secrets_accessed": false,
+    "approval_status": "MISSING",
+    "approval_written": false,
+    "workflow_executed": false,
+    "temporary_public_clone_removed": true,
+    "protected_volumes_present": 3
+  },
+  "retained_invalid_attempts": [
+    "The first expanded local evaluator read state-separated verifier errors from the outer command-error array rather than data.errors.",
+    "The first local mutation pass exposed a missing assertion that runtime-lock rejection occurs before materialization writes custody.",
+    "A direct base-interpreter meta-validator invocation lacked the intentionally evaluation-only jsonschema package; the governed exact-wheel evaluator passed.",
+    "The first wider local suite rejected the intentional additive receipt CLI against the prior topology implementation lock; prior locks were archived before reviewed rebinding.",
+    "The first public replay wrapper used an incorrect abbreviated candidate prefix and stopped before any clone or runtime action."
+  ],
+  "limitations": [
+    "Receipt PASS authenticates only when the caller supplies the independently retained expected receipt digest.",
+    "This unit does not persist run events in PostgreSQL or prove interruption, backup, restore, dashboard, registry, redistribution, or release behavior.",
+    "No workflow manifest is approved or executed."
+  ],
+  "decision": {
+    "status": "advance",
+    "next_unit": "IS4-U03",
+    "reason": "The exact public candidate reproduced atomic receipt custody, independent state-separated verification, runtime self-binding, all bounded mutations, clean-copy integrity, and unchanged authority/runtime custody without credentials."
+  }
+}

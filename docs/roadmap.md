@@ -42,7 +42,7 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 Status: active
 
-Progress: `IS4-U01` passed with two closed receipt schemas, 17 locked files, full Draft 2020-12 validation, exact canonical and artifact identities, and 14 fail-closed mutations. `IS4-U02` has a locked dependency-free atomic writer and read-only verifier candidate passing 54 tests, the full real-CLI state matrix, runtime self-binding, and all 12 implementation mutations. Credential-free public clean-copy replay remains before U02 may close.
+Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed with a dependency-free atomic writer, independent read-only verifier, runtime source binding, 54 tests, all 12 implementation mutations, and an exact credential-free public replay of 13 clean-copy checks with unchanged Docker and approval custody. `IS4-U03` is next for append-only durable event idempotency and explicit stale/superseded behavior.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.

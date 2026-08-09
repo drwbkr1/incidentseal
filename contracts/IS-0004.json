@@ -100,8 +100,8 @@
   ],
   "exit_conditions": [
     {"id":"EXIT-RECEIPT-CONTRACT","status":"pass","evidence":["requirements/receipt-contract.lock.json","schemas/portable-receipt-v1.schema.json","schemas/receipt-verification-v1.schema.json","records/evaluations/IS-0004-U01-receipt-contract.json"]},
-    {"id":"EXIT-PORTABLE-RECEIPTS","status":"pending","evidence":[]},
-    {"id":"EXIT-INDEPENDENT-VERIFIER","status":"pending","evidence":[]},
+    {"id":"EXIT-PORTABLE-RECEIPTS","status":"pass","evidence":["requirements/receipt-implementation.lock.json","records/evaluations/IS-0004-U02-receipt-implementation.json","records/surface-receipts/IS-0004-U02-public-receipt-replay.json"]},
+    {"id":"EXIT-INDEPENDENT-VERIFIER","status":"pass","evidence":["requirements/receipt-implementation.lock.json","records/evaluations/IS-0004-U02-receipt-implementation.json","records/surface-receipts/IS-0004-U02-public-receipt-replay.json"]},
     {"id":"EXIT-IDEMPOTENT-EVENTS","status":"pending","evidence":[]},
     {"id":"EXIT-INTERRUPTION-RECOVERY","status":"pending","evidence":[]},
     {"id":"EXIT-BACKUP-RESTORE","status":"pending","evidence":[]},
@@ -130,13 +130,13 @@
       "depends_on": ["IS4-U01"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "in_progress",
+      "status": "complete",
       "inputs": ["Frozen receipt contract"],
       "outputs": ["Host receipt writer", "Offline verifier CLI", "Content-addressed artifact custody", "Implementation mutations"],
-      "gates": {"receipt_contract":"pass","real_cli_matrix":"pass","runtime_self_binding":"pass","implementation_mutations":"pass_12_of_12","regression_tests":"pass_54","cross_surface_topology_locks":"pass","clean_public_replay":"pending","runtime_execution":"not_started"},
-      "disposition": null,
+      "gates": {"receipt_contract":"pass","real_cli_matrix":"pass","runtime_self_binding":"pass","implementation_mutations":"pass_12_of_12","regression_tests":"pass_54","cross_surface_topology_locks":"pass","clean_public_replay":"pass_13_checks","git_integrity":"pass","secret_scan":"pass","runtime_execution":"not_started"},
+      "disposition": "pass",
       "retained_failures": ["Four evaluator attempts remain INVALID: state-separated error lookup, pre-write custody detection, direct base-interpreter meta-validation, and intentional receipt CLI drift rejected by the prior topology implementation lock. Corrected governed paths pass without erasing those attempts."],
-      "exit_condition_delta": {"expected":["EXIT-PORTABLE-RECEIPTS","EXIT-INDEPENDENT-VERIFIER"],"observed":[],"decision_value":"unknown","rationale":"A portable receipt is not trusted until clean custody and a separate read-only verifier reject corruption."},
+      "exit_condition_delta": {"expected":["EXIT-PORTABLE-RECEIPTS","EXIT-INDEPENDENT-VERIFIER"],"observed":["EXIT-PORTABLE-RECEIPTS","EXIT-INDEPENDENT-VERIFIER"],"decision_value":"advances_exit","rationale":"The exact public candidate reproduced atomic content-addressed custody, independent state-separated verification, runtime self-binding, twelve implementation mutations, and clean-copy integrity without credentials or runtime authority."},
       "next_dependency": "IS4-U03"
     },
     {
@@ -237,12 +237,13 @@
       "Dependency-free receipt contract validator and fourteen fail-closed mutations",
       "Full Draft 2020-12 meta-validation of six schemas and eleven fixtures",
       "Fifty regression tests and original four-schema machine-contract validation",
-      "Dependency-free real receipt materialization and offline verification with twelve implementation mutations"
+      "Dependency-free real receipt materialization and offline verification with twelve implementation mutations",
+      "Credential-free public receipt replay with thirteen clean-copy checks, Git integrity, secret scanning, and unchanged Docker and approval custody"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U02 locked receipt implementation and all twelve mutations pass locally; workflow approval remains MISSING and execution remains unavailable",
-    "next_action": "Commit and push the exact IS4-U02 mutation-passing candidate, then replay its complete receipt surface from a credential-free public clean clone before closing the unit.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U02 portable receipt and independent verifier passed exact credential-free public replay; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Begin IS4-U03 by freezing the monotonic append-only event journal, deterministic idempotency, duplicate replay, stale, and superseded transition contract before implementation.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",
