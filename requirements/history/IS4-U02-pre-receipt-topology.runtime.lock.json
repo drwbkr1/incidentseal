@@ -1,10 +1,10 @@
 {
   "schema_version": "incidentseal-topology-runtime-lock/v1",
-  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0010",
-  "checkpoint_id": "IS-0004",
-  "unit_id": "IS4-U02",
-  "generated_at_utc": "2026-08-09T23:32:00Z",
-  "supersedes": "requirements/history/IS4-U02-pre-receipt-topology.runtime.lock.json",
+  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0009",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U08",
+  "generated_at_utc": "2026-08-09T22:25:13Z",
+  "supersedes": "requirements/history/IS3-U08-reliability-candidate.runtime.lock.json",
   "platform": "linux/amd64",
   "claim_scope": "topology-database-runners-and-reliability-validation",
   "publication_status": "not-authorized-redistribution-inconclusive",
@@ -19,7 +19,7 @@
   },
   "implementation_lock": {
     "path": "requirements/topology-implementation.lock.json",
-    "sha256": "sha256:7d6794731b408b17b0bd2d41005900cec60da04ef6e05a29f5ee348c994218e6"
+    "sha256": "sha256:2a36627591b665ce3922534d1646ce3f926d28e15b007a78aaae84498a3cc29a"
   },
   "build_policy": {
     "network": "none",

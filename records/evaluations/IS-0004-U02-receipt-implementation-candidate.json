@@ -6,8 +6,9 @@
   "observed_at_utc": "2026-08-09T23:10:00Z",
   "execution_state": "running",
   "verification_verdict": null,
+  "candidate_commit": "504f8eab4c420ad3b6dfb7928ff7a9569555a7fa",
   "implementation": {
-    "lock": "requirements/receipt-implementation.lock.json",
+    "lock": "requirements/history/IS4-U02-receipt-implementation-candidate.lock.json",
     "lock_digest": "sha256:4beb0e11f321c66cc65deb5d5ed54fcda581c293cc904de91615517305ac7594",
     "contract_digest": "sha256:7bd0abd1923b6e03ba99f02bfde9beca551fb789a837ff41098a570674c501e3",
     "runtime_dependencies": 0,

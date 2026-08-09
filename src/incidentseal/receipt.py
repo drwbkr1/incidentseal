@@ -19,6 +19,7 @@ UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[
 SAFE_PATH_RE = re.compile(r"^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$")
 GENESIS = "sha256:" + "0" * 64
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+IMPLEMENTATION_LOCK = PROJECT_ROOT / "requirements" / "receipt-implementation.lock.json"
 LIFECYCLES = {"queued", "running", "completed", "cancelled", "failed", "stale", "superseded"}
 VERDICTS = {"PASS", "FAIL", "INCONCLUSIVE", "INVALID"}
 TERMINAL = {"completed", "cancelled", "failed", "stale", "superseded"}
@@ -90,6 +91,38 @@ def _read_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         _reject("IS_RECEIPT_SCHEMA", "receipt root is not an object")
     return value
+
+
+def _validate_implementation_lock() -> None:
+    try:
+        lock = strict_load_bytes(IMPLEMENTATION_LOCK.read_bytes())
+    except OSError as error:
+        raise ReceiptError("IS_RECEIPT_IMPLEMENTATION", "receipt implementation lock is unavailable") from error
+    except ManifestError as error:
+        raise ReceiptError("IS_RECEIPT_IMPLEMENTATION", "receipt implementation lock is invalid") from error
+    if not isinstance(lock, dict) or lock.get("schema_version") != "incidentseal-receipt-implementation-lock/v1":
+        _reject("IS_RECEIPT_IMPLEMENTATION", "receipt implementation lock version differs")
+    entries = lock.get("files")
+    runtime_files = lock.get("runtime_files")
+    if not isinstance(entries, list) or not isinstance(runtime_files, list) or not runtime_files:
+        _reject("IS_RECEIPT_IMPLEMENTATION", "receipt implementation lock file sets are invalid")
+    mapped = {
+        entry.get("path"): entry.get("sha256")
+        for entry in entries
+        if isinstance(entry, dict) and isinstance(entry.get("path"), str)
+    }
+    if len(mapped) != len(entries) or len(runtime_files) != len(set(runtime_files)):
+        _reject("IS_RECEIPT_IMPLEMENTATION", "receipt implementation lock contains duplicate paths")
+    for relative in runtime_files:
+        if relative not in mapped:
+            _reject("IS_RECEIPT_IMPLEMENTATION", f"runtime file is absent from implementation lock: {relative}")
+        path = PROJECT_ROOT / relative
+        try:
+            actual = _digest(path.read_bytes())
+        except OSError as error:
+            raise ReceiptError("IS_RECEIPT_IMPLEMENTATION", f"runtime file is unavailable: {relative}") from error
+        if actual != mapped[relative]:
+            _reject("IS_RECEIPT_IMPLEMENTATION", f"runtime file digest differs: {relative}")
 
 
 def _is_reparse(path: Path) -> bool:
@@ -284,6 +317,7 @@ def _artifact_state(receipt: dict[str, Any], artifacts: list[dict[str, Any]], bu
 
 
 def verify_bundle(receipt_path: str | Path, bundle_root: str | Path, expected_digest: str | None) -> dict[str, Any]:
+    _validate_implementation_lock()
     path = Path(receipt_path).resolve(strict=False)
     root = Path(bundle_root).resolve(strict=False)
     receipt = _read_json(path)
@@ -321,6 +355,7 @@ def verify_bundle(receipt_path: str | Path, bundle_root: str | Path, expected_di
 
 
 def materialize_bundle(receipt_path: str | Path, source_root: str | Path, output_root: str | Path) -> dict[str, Any]:
+    _validate_implementation_lock()
     receipt_source = Path(receipt_path).resolve(strict=True)
     source = Path(source_root).resolve(strict=True)
     output = Path(output_root).resolve(strict=False)

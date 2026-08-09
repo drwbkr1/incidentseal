@@ -133,9 +133,9 @@
       "status": "in_progress",
       "inputs": ["Frozen receipt contract"],
       "outputs": ["Host receipt writer", "Offline verifier CLI", "Content-addressed artifact custody", "Implementation mutations"],
-      "gates": {},
+      "gates": {"receipt_contract":"pass","real_cli_matrix":"pass","runtime_self_binding":"pass","implementation_mutations":"pass_12_of_12","regression_tests":"pass_54","cross_surface_topology_locks":"pass","clean_public_replay":"pending","runtime_execution":"not_started"},
       "disposition": null,
-      "retained_failures": [],
+      "retained_failures": ["Four evaluator attempts remain INVALID: state-separated error lookup, pre-write custody detection, direct base-interpreter meta-validation, and intentional receipt CLI drift rejected by the prior topology implementation lock. Corrected governed paths pass without erasing those attempts."],
       "exit_condition_delta": {"expected":["EXIT-PORTABLE-RECEIPTS","EXIT-INDEPENDENT-VERIFIER"],"observed":[],"decision_value":"unknown","rationale":"A portable receipt is not trusted until clean custody and a separate read-only verifier reject corruption."},
       "next_dependency": "IS4-U03"
     },
@@ -236,12 +236,13 @@
       "Closed receipt and verification schemas with exact RFC 8785 canonical identities",
       "Dependency-free receipt contract validator and fourteen fail-closed mutations",
       "Full Draft 2020-12 meta-validation of six schemas and eleven fixtures",
-      "Fifty regression tests and original four-schema machine-contract validation"
+      "Fifty regression tests and original four-schema machine-contract validation",
+      "Dependency-free real receipt materialization and offline verification with twelve implementation mutations"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U01 receipt contract passed; workflow approval remains MISSING and execution remains unavailable",
-    "next_action": "Execute IS4-U02 by implementing the locked atomic portable receipt writer and independent read-only offline verifier without Docker, PostgreSQL, network, secrets, approval writes, or repository writes at runtime.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U02 locked receipt implementation and all twelve mutations pass locally; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Commit and push the exact IS4-U02 mutation-passing candidate, then replay its complete receipt surface from a credential-free public clean clone before closing the unit.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

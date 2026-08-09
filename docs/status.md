@@ -43,7 +43,7 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact evaluation-only wheels passed their saved source gate and hashes in temporary custody, but local policy denied removal of `C:\Users\drewb\AppData\Local\Temp\incidentseal-is4-u01-meta-6ccc178db91e40fa9c6b695f32eddcf0`. That path is non-canonical, outside OneDrive, and not a runtime or release dependency.
 
-`IS4-U02` is in progress. The dependency-free real CLI candidate atomically materializes a canonical bundle under its receipt digest, verifies and reuses it idempotently, and independently verifies without writes. Fifty-four tests and the locked real Windows launcher pass exact `PASS`, unbound `INCONCLUSIVE`, identity-mismatch `INVALID`, corrupt-artifact `FAIL`, missing-artifact `INCONCLUSIVE`, repository-output denial, temporary cleanup, and unchanged Docker/approval state. U02 is not yet complete: implementation mutations and credential-free clean-copy replay remain.
+`IS4-U02` is in progress. The dependency-free real CLI candidate atomically materializes a canonical bundle under its receipt digest, verifies and reuses it idempotently, and independently verifies without writes. Fifty-four tests and the locked real Windows launcher pass exact `PASS`, unbound `INCONCLUSIVE`, identity-mismatch `INVALID`, corrupt-artifact `FAIL`, missing-artifact `INCONCLUSIVE`, repository-output denial, temporary cleanup, and unchanged Docker/approval state. All twelve implementation mutations now fail closed, including stale runtime source, semantic verdict promotion, artifact-state promotion, event and run-summary bypasses, custody bypass, idempotency drift, corrupt-source acceptance, and both runtime-lock entry bypasses. The additive receipt CLI was reviewed into archived and active topology locks; all fifteen topology implementation mutations still pass without runtime start. Four evaluator attempts remain distinctly `INVALID`. U02 is not yet complete: the exact committed candidate must reproduce from credential-free public clean custody.
 
 ## Known limitations
 
@@ -58,4 +58,4 @@ The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact ev
 
 ## Next eligible action
 
-Continue `IS4-U02`: run fail-closed mutations against the exact locked real CLI, then replay the complete materialize/verify matrix from clean credential-free custody before closing the unit.
+Continue `IS4-U02`: commit and push the exact mutation-passing candidate, then replay the complete materialize/verify matrix from credential-free public clean custody before closing the unit.

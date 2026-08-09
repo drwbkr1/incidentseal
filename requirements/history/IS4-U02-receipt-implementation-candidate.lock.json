@@ -8,21 +8,12 @@
     {"path":"incidentseal","sha256":"sha256:fd9a913aa2f9e3f88daa5bcea4660aec501ea45e0015aa5a380625432448a16e"},
     {"path":"incidentseal.cmd","sha256":"sha256:48f6374a6c5320fed187717c0ce03a9ef28f9d68384ed53c980000b0b2e785a2"},
     {"path":"requirements/receipt-contract.lock.json","sha256":"sha256:7bd0abd1923b6e03ba99f02bfde9beca551fb789a837ff41098a570674c501e3"},
-    {"path":"scripts/test_receipt_implementation_mutations.py","sha256":"sha256:bef5ac3920fbf1707fd470017ffd048daa206e3e9fb4081a1a69919bdc66a47c"},
-    {"path":"scripts/validate_receipt_implementation.py","sha256":"sha256:6f984bbecf8f71fd9d9e3804fb7108a54bcb939f66723d8d1e26bb512482265e"},
+    {"path":"scripts/validate_receipt_implementation.py","sha256":"sha256:53e26cee019c20f7747fe2b453e9a6de2a48ccc416d24ede0097b580529b507f"},
     {"path":"src/incidentseal/__main__.py","sha256":"sha256:50a6f8044ffdbd04abd40e6464510ff6bf72e63f9870d958357e7bb0171d4cf6"},
     {"path":"src/incidentseal/cli.py","sha256":"sha256:ddbfd9bb93ec94cedde4425ad32244fd8c26c1d959c8f65a300a63c429229e3e"},
     {"path":"src/incidentseal/manifest.py","sha256":"sha256:05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"},
-    {"path":"src/incidentseal/receipt.py","sha256":"sha256:3c550f82023a330ee7ccbc4a28987ed27aac2ef8233b5a80ec04f9714576404f"},
+    {"path":"src/incidentseal/receipt.py","sha256":"sha256:06178e42c82e5ee11aeb750e5fe0371c44d0e4d4fbacc6908821949aab078ca9"},
     {"path":"tests/test_receipt.py","sha256":"sha256:e4aab4d0a0093f51582c3f4d0a04d7c437e8b6ed9f116a64bec9f703f49906e7"}
-  ],
-  "runtime_files": [
-    "incidentseal",
-    "incidentseal.cmd",
-    "src/incidentseal/__main__.py",
-    "src/incidentseal/cli.py",
-    "src/incidentseal/manifest.py",
-    "src/incidentseal/receipt.py"
   ],
   "commands": ["receipt.materialize", "receipt.verify"],
   "runtime_dependencies": [],

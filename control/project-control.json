@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Execute IS4-U02 by implementing the locked atomic portable receipt writer and independent read-only offline verifier"
+    "next_action": "Commit and push the exact IS4-U02 mutation-passing candidate, then replay the complete receipt surface from a credential-free public clean clone"
   }
 }
