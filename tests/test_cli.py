@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 FIXTURES = ROOT / "fixtures" / "contracts"
+GIT_BASH = Path(r"C:\Program Files\Git\bin\bash.exe")
 sys.path.insert(0, str(ROOT))
 
 from scripts.validate_machine_contracts import (  # noqa: E402
@@ -184,6 +185,27 @@ class CliTests(unittest.TestCase):
         self.assertEqual(b"", completed.stdout)
         self.assertIn(b"interactive terminal is required", completed.stderr)
         self.assertFalse(approval_root.exists())
+
+    @unittest.skipUnless(os.name == "nt" and GIT_BASH.exists(), "Git Bash launcher probe")
+    def test_posix_launcher_selects_a_working_python_on_windows(self) -> None:
+        completed = subprocess.run(
+            [
+                str(GIT_BASH),
+                "./incidentseal",
+                "policy",
+                "digest",
+                "--manifest",
+                "fixtures/contracts/workflow.valid.minimal.json",
+                "--json",
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr.decode(errors="replace"))
+        self.assertEqual(b"", completed.stderr)
+        envelope = json.loads(completed.stdout.decode("utf-8"))
+        self.assertEqual(EXPECTED, envelope["data"]["manifest_digest"])
 
 
 if __name__ == "__main__":

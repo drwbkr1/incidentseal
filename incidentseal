@@ -1,10 +1,26 @@
 #!/usr/bin/env sh
 set -eu
 INCIDENTSEAL_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-if [ -n "${PYTHONPATH:-}" ]; then
-  PYTHONPATH="${INCIDENTSEAL_ROOT}/src:${PYTHONPATH}"
+if command -v python3 >/dev/null 2>&1 && python3 -c 'import sys' >/dev/null 2>&1; then
+  INCIDENTSEAL_PYTHON=python3
+elif command -v python >/dev/null 2>&1 && python -c 'import sys' >/dev/null 2>&1; then
+  INCIDENTSEAL_PYTHON=python
 else
-  PYTHONPATH="${INCIDENTSEAL_ROOT}/src"
+  echo "IncidentSeal requires Python 3." >&2
+  exit 127
+fi
+INCIDENTSEAL_SOURCE="${INCIDENTSEAL_ROOT}/src"
+INCIDENTSEAL_SEPARATOR=:
+if [ "$("${INCIDENTSEAL_PYTHON}" -c 'import os; print(os.name)')" = "nt" ]; then
+  if command -v cygpath >/dev/null 2>&1; then
+    INCIDENTSEAL_SOURCE=$(cygpath -w "${INCIDENTSEAL_SOURCE}")
+  fi
+  INCIDENTSEAL_SEPARATOR=';'
+fi
+if [ -n "${PYTHONPATH:-}" ]; then
+  PYTHONPATH="${INCIDENTSEAL_SOURCE}${INCIDENTSEAL_SEPARATOR}${PYTHONPATH}"
+else
+  PYTHONPATH="${INCIDENTSEAL_SOURCE}"
 fi
 export PYTHONPATH
-exec python3 -m incidentseal "$@"
+exec "${INCIDENTSEAL_PYTHON}" -m incidentseal "$@"
