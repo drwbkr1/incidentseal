@@ -1,0 +1,92 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-003",
+  "assessed_at": "2026-08-09T18:30:44Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": [
+      "download the exact Docker Scout CLI archive",
+      "verify release digest checksum and Authenticode signer",
+      "extract and execute Docker Scout CLI from temporary custody",
+      "generate SBOMs for four exact public images",
+      "query current vulnerability matches for four exact public images",
+      "retain timestamped scan receipts"
+    ],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Use exact Docker Scout CLI 1.24.0 from removed temporary custody to generate SPDX SBOMs and timestamped vulnerability matches for the four exact public IncidentSeal image candidates. Local analysis is limited to public-image package URLs and layer digests; no repository source, secrets, private image, organization enrollment, policy upload, exception, or paid feature is authorized.",
+    "planned_actions": [
+      "download the exact Docker Scout CLI archive",
+      "verify release digest checksum and Authenticode signer",
+      "extract and execute Docker Scout CLI from temporary custody",
+      "generate SBOMs for four exact public images",
+      "query current vulnerability matches for four exact public images",
+      "retain timestamped scan receipts"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "docker-scout-cli-1.24.0-windows-amd64",
+      "name": "Docker Scout CLI 1.24.0 Windows amd64 release archive",
+      "locator": "https://github.com/docker/scout-cli/releases/download/v1.24.0/docker-scout_1.24.0_windows_amd64.zip#sha256=1b7afb489e9224411fafe848eb5002cdc5c59a5cf2b77d6ccffcb44ffdf4f350",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/releases/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"The non-draft, non-prerelease Docker release published 2026-07-30 identifies the 63,513,745-byte Windows amd64 zip and GitHub artifact digest sha256:1b7afb489e9224411fafe848eb5002cdc5c59a5cf2b77d6ccffcb44ffdf4f350."}],"note":"Version, platform, filename, size and digest are exact."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://github.com/docker/scout-cli/releases/tag/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"The artifact is published from Docker's docker/scout-cli repository by docker-scout-ci[bot]."}],"note":"Publisher identity is the upstream Docker project."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/releases/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"Release metadata and the public GitHub asset are readable without a GitHub credential, purchase or interactive terms action."}],"note":"Only public anonymous acquisition is approved."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://raw.githubusercontent.com/docker/scout-cli/v1.24.0/LICENSE","observed_at":"2026-08-09T18:30:44Z","note":"The release is governed by the Docker Subscription Service Agreement. This gate permits temporary local use through the already installed Docker product only; it does not approve redistribution, enrollment, purchase or acceptance of new terms."}],"note":"No new terms action is taken and the archive is not redistributed."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/git/ref/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"The v1.24.0 release ref resolves to source commit c7ac4ce317eafa536bf2421d1c223908e2200dce; the release is automation-published, but no independent build attestation is asserted."}],"note":"Source and release publisher are attributable; the missing build attestation remains a limitation."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://api.github.com/repos/docker/scout-cli/releases/tags/v1.24.0","observed_at":"2026-08-09T18:30:44Z","note":"GitHub provides the exact archive SHA-256 and a separate 630-byte checksums asset with GitHub digest sha256:a3e776082b77b2d9d5319b956c27d93966cd60672da9801098a21a1378ee13a6."},{"type":"static","locator":"local:C:/Program Files/Docker/Docker/resources/cli-plugins/docker-scout.exe","note":"The installed 1.20.4 comparison binary has a valid Docker Inc Authenticode signature and SHA-256 ce738ac98a95c08664a661de8e38479d6c424a29946db5b5f53a23e67ae05e28; the acquired 1.24.0 executable must independently match the release hashes and Docker signer before use."}],"note":"All three checks—GitHub artifact digest, published checksum, and extracted-binary Authenticode signer—are mandatory before execution."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/reference/cli/docker/scout/cves/","observed_at":"2026-08-09T18:30:44Z","note":"Docker documents local-image resolution, linux/amd64 selection, vulnerability severity and fixed-version filtering, and SBOM/SARIF output."},{"type":"live","locator":"https://docs.docker.com/scout/how-tos/view-create-sboms/","observed_at":"2026-08-09T18:30:44Z","note":"Docker documents attached-SBOM preference and SPDX SBOM generation for images."}],"note":"The current Windows CLI directly covers the bounded SBOM and CVE evaluation."},
+        {"id":"privacy-security","required":true,"requires_live":false,"status":"pass","evidence":[{"type":"static","locator":"docs/threat-model.md","note":"The scanner receives only exact public image content and no secrets, repository source, Docker socket mount, private registry credential or sensitive data. It runs on the host from removed temporary custody."}],"note":"No private project content is in scanner scope."}
+      ]
+    },
+    {
+      "source_id": "docker-scout-advisory-matching-2026-08-09",
+      "name": "Docker Scout advisory database and vulnerability matching service",
+      "locator": "https://docs.docker.com/scout/deep-dive/advisory-db-sources/",
+      "criteria": [
+        {"id":"identity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/scout/deep-dive/advisory-db-sources/","observed_at":"2026-08-09T18:30:44Z","note":"Docker identifies the Scout advisory database as a continuously updated multi-source vulnerability matching service."}],"note":"Scan results are a time-bound live evaluation, not a frozen database artifact."},
+        {"id":"authority","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/scout/","observed_at":"2026-08-09T18:30:44Z","note":"Docker's official product documentation identifies Docker Scout and its advisory service."}],"note":"Service authority is Docker's official documentation and CLI."},
+        {"id":"access","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/reference/cli/docker/scout/cves/","observed_at":"2026-08-09T18:30:44Z","note":"Docker documents direct local-image CVE analysis. The approved probe must remain credential-free and must not enroll an organization or invoke a paid repository feature."}],"note":"A credential prompt, enrollment requirement or paid gate invalidates this access decision."},
+        {"id":"rights","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://raw.githubusercontent.com/docker/scout-cli/v1.24.0/LICENSE","observed_at":"2026-08-09T18:30:44Z","note":"Use is governed by Docker's existing service agreement. This gate authorizes local analysis of public upstream images only and no redistribution of advisory data or service output as a standalone database."}],"note":"No new terms, purchase, organization enablement or exception publication is authorized."},
+        {"id":"provenance","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/scout/deep-dive/advisory-db-sources/","observed_at":"2026-08-09T18:30:44Z","note":"Docker documents vendor advisory sources, NIST fallback scoring, CVSS v4 preference and PURL-based matching across Debian, JavaScript, Python and other supported ecosystems."}],"note":"Each retained finding must preserve its source, severity, affected range and fix availability when emitted."},
+        {"id":"integrity","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/scout/deep-dive/advisory-db-sources/","observed_at":"2026-08-09T18:30:44Z","note":"Docker documents source-priority and PURL matching rules, but provides no digest for the continuously updated advisory snapshot."}],"note":"The missing database snapshot digest prevents bit-for-bit replay; every receipt must bind scanner version, image digest and UTC observation, and release gates must rescan."},
+        {"id":"fitness","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/scout/deep-dive/advisory-db-sources/","observed_at":"2026-08-09T18:30:44Z","note":"Supported ecosystems include Debian packages plus Python and JavaScript packages used by the candidate images."}],"note":"The source is fit for a preliminary acquisition gate; it is not the sole release-time scanner evidence."},
+        {"id":"privacy-security","required":true,"requires_live":true,"status":"pass","evidence":[{"type":"live","locator":"https://docs.docker.com/scout/deep-dive/data-handling/","observed_at":"2026-08-09T18:30:44Z","note":"Docker states that local analysis transmits only package URLs and layer digests and does not persist that data on the Scout platform. IncidentSeal limits the input to public upstream images."}],"note":"No repository source, secret, private image, private package or deployment metadata is approved for transmission."}
+      ]
+    }
+  ],
+  "decision": {
+    "status": "ready",
+    "blocking_reasons": [],
+    "live_verification_pending": [],
+    "approved_actions": [
+      "download the exact Docker Scout CLI archive",
+      "verify release digest checksum and Authenticode signer",
+      "extract and execute Docker Scout CLI from temporary custody",
+      "generate SBOMs for four exact public images",
+      "query current vulnerability matches for four exact public images",
+      "retain timestamped scan receipts"
+    ]
+  },
+  "write_boundary": {
+    "permitted_without_further_authorization": [
+      "download exact public release archive and checksum into system temp",
+      "verify archive checksum and extracted executable Authenticode signer",
+      "execute exact scanner from system temp against four exact public local images",
+      "transmit public-image package URLs and layer digests for current vulnerability matching",
+      "retain SBOM scan and source-gate receipts",
+      "remove scanner and scan scratch custody after evaluation"
+    ],
+    "requires_explicit_authorization": [
+      "accept new terms or purchase a Docker feature",
+      "authenticate enroll or enable a Docker Scout organization or repository",
+      "scan or transmit repository source secrets private images private packages or deployment metadata",
+      "upload images SBOMs policies VEX exceptions or evidence",
+      "treat a time-bound scan as release-time evidence without rescanning",
+      "redistribute the Docker Scout binary or advisory database"
+    ]
+  }
+}
