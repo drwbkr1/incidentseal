@@ -15,9 +15,9 @@
     "workflow_execution_state": "INVALID"
   },
   "contract": {
-    "path": "contracts/topology-v1.json",
+    "path": "contracts/history/IS3-U02-topology-revision-1.json",
     "sha256": "sha256:a6443d83ae9eb463780a74f76e34db496a7731f0470fa6976a7678cc1a4eae82",
-    "file_lock": "requirements/topology-contract.lock.json",
+    "file_lock": "requirements/history/IS3-U02-topology-contract.lock.json",
     "image_lock": "requirements/images.lock.json",
     "image_lock_sha256": "sha256:8a816cbf072ec87f4495a7a9cf4c9f538a919178cbcfb245fa501b64e91d4ab8",
     "third_party_dependencies": 0

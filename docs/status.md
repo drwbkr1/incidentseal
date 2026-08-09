@@ -10,7 +10,7 @@
 - Latest verified checkpoint commit: `e8b9823f63e3505f87490cbd87894705221a33cd` on local and remote `main`
 - Verified checkpoint marker: `checkpoint-is-0002` tag object `630bc88f0860de56c51d0637260953429a6df172` -> `e8b9823f63e3505f87490cbd87894705221a33cd`
 - Approved workflow manifest digest: not established
-- Application surfaces: static topology implemented; runtime surfaces not yet verified
+- Application surfaces: static topology and topology-only runtime security verified; real migration, database persistence, and application runners remain pending
 - Release state: unreleased
 
 ## Current truth
@@ -27,14 +27,14 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS3-U03` passed without building an image or starting a container. The real Windows CLI rendered `compose.yaml` through Docker Compose 5.1.3, matched the frozen normalized security projection, repeated the stable redacted-model digest, validated the exact implementation lock, and rejected all 13 real implementation mutations. Python and Node source self-tests agreed on the same canonical input digest; 41 unit tests passed.
 
-`IS3-U04` is active after two retained runtime failures. The three copy-only migration, Python, and Node images built and have exact local IDs. PostgreSQL correctly ran as required user `70:70` but could not create `PGDATA` in Docker's root-owned new named volume. The second attempt retained the exact permission-denied log; containers and network were removed, while the labeled failed volume remains for evidence. Non-root execution was not weakened.
+`IS3-U04` passed after preserving its two revision-1 runtime failures. Topology revision 2 added a fourth exact-base, copy-only database image whose ownership-seeded path lets a new named volume initialize under required user `70:70` without a root runtime or privileged helper. Four exact local image IDs are bound in `requirements/topology-runtime.lock.json`. All 14 contract and 14 implementation mutations failed closed. Two real host-CLI probes reached PostgreSQL health and passed container identity, capability, filesystem, staged-mount, internal-network, egress-denial, sensitive-environment, and Docker-endpoint checks; the second run verified image reuse and exact-volume resume. Both runs removed every container and network. The passing and failed labeled volumes remain separately retained.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, and the TTY-only operator approval command; verification and run events remain unimplemented.
-- Three derived images have been built, but the database did not reach health and runner security probes did not start. Runtime PASS remains unproven.
+- Topology-security PASS covers fixed platform-validation probes only. The real migration, PostgreSQL schema and persistence, and real Python and Node application commands remain unverified in `IS3-U05` through `IS3-U07`.
 - No workflow digest is approved and workflow execution remains unavailable.
-- Four selected exact images have been pulled and scanned and are eligible only for later contract-controlled execution. None has been started.
+- Four selected base images have been pulled and scanned; their four revision-2 derived images ran only under the exact topology contract. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
 - The Distroless Node image has retained MEDIUM and LOW findings and no located signed SLSA statement; its exact signatures, Bazel history, runtime version, and runner behavior remain explicitly bounded claims.
 - Direct Codex CLI execution currently fails with `Access is denied`.
@@ -42,4 +42,4 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 ## Next eligible action
 
-Remediate active `IS3-U04` without weakening non-root execution: version a copy-only exact-base database image that seeds UID/GID 70 ownership, replay all static gates, then retry the host-CLI runtime probe against a clean evidence-bound volume.
+Execute `IS3-U05` against the exact revision-2 runtime lock: run the real one-shot migration and verify PostgreSQL identity, schema, least privilege, persistence, restart, and teardown. Do not promote the topology-only runner probes into application-runner claims.

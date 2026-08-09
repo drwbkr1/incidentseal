@@ -1,7 +1,7 @@
 {
   "schema_version": "incidentseal-topology/v1",
   "topology_id": "incidentseal.local-verification",
-  "revision": 2,
+  "revision": 1,
   "platform": "linux/amd64",
   "image_lock": {
     "path": "requirements/images.lock.json",
@@ -21,7 +21,6 @@
     "frontend": "docker.io/docker/dockerfile@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32",
     "network": "none",
     "contexts": [
-      "containers/database",
       "containers/migration",
       "containers/python-runner",
       "containers/node-runner"
@@ -70,9 +69,9 @@
     {
       "id": "database",
       "lifecycle": "persistent",
-      "image_source": "runtime-lock",
+      "image_source": "image-lock",
       "image_role": "postgresql",
-      "build_context": "containers/database",
+      "build_context": null,
       "user": "70:70",
       "read_only_root": true,
       "privileged": false,
@@ -85,7 +84,7 @@
       "entrypoint": ["/usr/bin/docker-entrypoint.sh", "postgres"],
       "command": [],
       "environment": {
-        "PGDATA": "/var/lib/postgresql/incidentseal-data/pgdata",
+        "PGDATA": "/var/lib/postgresql/data/pgdata",
         "POSTGRES_DB": "incidentseal",
         "POSTGRES_HOST_AUTH_METHOD": "trust",
         "POSTGRES_USER": "incidentseal",
@@ -95,7 +94,7 @@
         {
           "kind": "named-volume",
           "source": "database-data",
-          "target": "/var/lib/postgresql/incidentseal-data",
+          "target": "/var/lib/postgresql/data",
           "mode": "rw"
         }
       ],

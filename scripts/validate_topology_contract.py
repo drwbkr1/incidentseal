@@ -107,6 +107,7 @@ def validate_build(contract: dict[str, Any], images: dict[str, dict[str, Any]]) 
         "frontend": images["dockerfile_frontend"]["index_reference"],
         "network": "none",
         "contexts": [
+            "containers/database",
             "containers/migration",
             "containers/python-runner",
             "containers/node-runner",
@@ -189,7 +190,7 @@ def validate_services(contract: dict[str, Any]) -> dict[str, dict[str, Any]]:
         fail("IS_TOPOLOGY_SERVICE", "service set or order differs from v1")
     by_id = {service["id"]: service for service in services}
     expected_identity = {
-        "database": ("image-lock", "postgresql", None, "70:70", "persistent"),
+        "database": ("runtime-lock", "postgresql", "containers/database", "70:70", "persistent"),
         "migration": ("runtime-lock", "postgresql", "containers/migration", "70:70", "one-shot"),
         "python-runner": (
             "runtime-lock",
@@ -238,13 +239,22 @@ def validate_services(contract: dict[str, Any]) -> dict[str, dict[str, Any]]:
             if "docker.sock" in flattened or "docker_engine" in flattened:
                 fail("IS_TOPOLOGY_SERVICE", f"{service_id} exposes a container-engine endpoint")
     if by_id["database"]["environment"] != {
-        "PGDATA": "/var/lib/postgresql/data/pgdata",
+        "PGDATA": "/var/lib/postgresql/incidentseal-data/pgdata",
         "POSTGRES_DB": "incidentseal",
         "POSTGRES_HOST_AUTH_METHOD": "trust",
         "POSTGRES_USER": "incidentseal",
         "TZ": "UTC",
     }:
         fail("IS_TOPOLOGY_SERVICE", "database authentication is not the frozen internal-only configuration")
+    if by_id["database"]["mounts"] != [
+        {
+            "kind": "named-volume",
+            "source": "database-data",
+            "target": "/var/lib/postgresql/incidentseal-data",
+            "mode": "rw",
+        }
+    ]:
+        fail("IS_TOPOLOGY_SERVICE", "database volume does not use the ownership-seeded mount path")
     if by_id["migration"]["depends_on"] != [
         {"service": "database", "condition": "service_healthy"}
     ]:
@@ -344,8 +354,8 @@ def validate_render(
         if not SHA256_RE.fullmatch(item["image"]):
             fail("IS_TOPOLOGY_RENDER", f"rendered {item['id']} is not bound to an exact local image ID")
         image_ids.append(item["image"])
-    if render["services"][0]["image"] != images["postgresql"]["local_image_id"]:
-        fail("IS_TOPOLOGY_RENDER", "database render does not use the locked PostgreSQL image")
+    if render["services"][0]["image"] == images["postgresql"]["local_image_id"]:
+        fail("IS_TOPOLOGY_RENDER", "database render bypasses the required ownership-seeding image")
     if len(set(image_ids)) != len(image_ids):
         fail("IS_TOPOLOGY_RENDER", "rendered service image identities are not distinct")
 
@@ -379,6 +389,8 @@ def run(root: Path) -> dict[str, Any]:
         "topology-render-v1.schema.json",
         documents,
     )
+    if contract["revision"] != 2:
+        fail("IS_TOPOLOGY_DIGEST", "active topology contract is not revision 2")
     images = validate_image_lock(root, contract)
     validate_authority(contract)
     validate_build(contract, images)

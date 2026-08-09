@@ -6,6 +6,8 @@
     {"id": "platform-repository-input", "target": "contract", "pointer": "/orchestration/platform_validation/repository_input", "value": "allowed", "expected_error": "IS_TOPOLOGY_AUTHORITY"},
     {"id": "external-data-network", "target": "contract", "pointer": "/networks/0/internal", "value": false, "expected_error": "IS_TOPOLOGY_NETWORK"},
     {"id": "root-database", "target": "contract", "pointer": "/services/0/user", "value": "0:0", "expected_error": "IS_SCHEMA_INSTANCE"},
+    {"id": "database-direct-base", "target": "contract", "pointer": "/services/0/image_source", "value": "image-lock", "expected_error": "IS_TOPOLOGY_SERVICE"},
+    {"id": "database-unseeded-mount", "target": "contract", "pointer": "/services/0/mounts/0/target", "value": "/var/lib/postgresql/data", "expected_error": "IS_TOPOLOGY_SERVICE"},
     {"id": "privileged-runner", "target": "contract", "pointer": "/services/2/privileged", "value": true, "expected_error": "IS_TOPOLOGY_SERVICE"},
     {"id": "repository-mount", "target": "contract", "pointer": "/staging/repository_mount", "value": "allowed", "expected_error": "IS_TOPOLOGY_STAGING"},
     {"id": "build-network", "target": "contract", "pointer": "/build_policy/network", "value": "default", "expected_error": "IS_TOPOLOGY_BUILD"},

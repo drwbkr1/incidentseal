@@ -1,12 +1,12 @@
 {
   "schema_version": "incidentseal-topology-render/v1",
-  "contract_digest": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde",
+  "contract_digest": "sha256:a6443d83ae9eb463780a74f76e34db496a7731f0470fa6976a7678cc1a4eae82",
   "project_name": "incidentseal-0123456789abcdef",
   "operation_mode": "platform-validation",
   "services": [
     {
       "id": "database",
-      "image": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "image": "sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
       "user": "70:70",
       "read_only_root": true,
       "privileged": false,
@@ -15,7 +15,7 @@
       "networks": ["data"],
       "published_ports": [],
       "mounts": [
-        {"kind": "named-volume", "target": "/var/lib/postgresql/incidentseal-data", "mode": "rw"},
+        {"kind": "named-volume", "target": "/var/lib/postgresql/data", "mode": "rw"},
         {"kind": "tmpfs", "target": "/tmp", "mode": "rw"},
         {"kind": "tmpfs", "target": "/var/run/postgresql", "mode": "rw"}
       ],

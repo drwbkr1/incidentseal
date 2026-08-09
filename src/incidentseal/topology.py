@@ -26,12 +26,15 @@ SHA256_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 PROJECT_NAME = "incidentseal-0123456789abcdef"
 RUN_ID = "isrun-0123456789abcdef"
 SYNTHETIC_IMAGES = {
+    "database": "sha256:" + "0" * 64,
     "migration": "sha256:" + "1" * 64,
     "python-runner": "sha256:" + "2" * 64,
     "node-runner": "sha256:" + "3" * 64,
 }
 IMPLEMENTATION_FILES = (
     "compose.yaml",
+    "containers/database/Dockerfile",
+    "containers/database/volume-seed/owner.txt",
     "containers/migration/Dockerfile",
     "containers/migration/001-schema.sql",
     "containers/python-runner/Dockerfile",
@@ -134,6 +137,10 @@ def _validate_dockerfiles(contract: dict[str, Any]) -> None:
     except (KeyError, TypeError) as error:
         raise TopologyError("IS_TOPOLOGY_CONTRACT", "topology image-lock shape is invalid") from error
     expected = {
+        "containers/database": (
+            f"ARG INCIDENTSEAL_POSTGRES_IMAGE={images['postgresql']['index_reference']}",
+            "FROM ${INCIDENTSEAL_POSTGRES_IMAGE}",
+        ),
         "containers/migration": (
             f"ARG INCIDENTSEAL_POSTGRES_IMAGE={images['postgresql']['index_reference']}",
             "FROM ${INCIDENTSEAL_POSTGRES_IMAGE}",
@@ -152,13 +159,18 @@ def _validate_dockerfiles(contract: dict[str, Any]) -> None:
     allowed = set(contract["build_policy"]["allowed_instructions"])
     frontend = f"# syntax={contract['build_policy']['frontend']}"
     expected_files = {
+        "containers/database": {"Dockerfile", "volume-seed/owner.txt"},
         "containers/migration": {"Dockerfile", "001-schema.sql"},
         "containers/python-runner": {"Dockerfile", "python_runner.py"},
         "containers/node-runner": {"Dockerfile", "node_runner.mjs"},
     }
     for context in expected:
         directory = ROOT / context
-        actual_files = {item.name for item in directory.iterdir() if item.is_file()}
+        actual_files = {
+            item.relative_to(directory).as_posix()
+            for item in directory.rglob("*")
+            if item.is_file()
+        }
         if actual_files != expected_files[context]:
             raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", f"unexpected files in {context}")
         text = (directory / "Dockerfile").read_text(encoding="utf-8")
@@ -174,6 +186,17 @@ def _validate_dockerfiles(contract: dict[str, Any]) -> None:
             raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", f"{context} uses a forbidden Dockerfile instruction")
         if "FROM" not in instructions or "COPY" not in instructions or "USER" not in instructions:
             raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", f"{context} is missing a required copy-only instruction")
+    database_lines = (ROOT / "containers" / "database" / "Dockerfile").read_text(encoding="utf-8").splitlines()
+    required_database_lines = {
+        "COPY --chown=70:70 volume-seed /var/lib/postgresql/incidentseal-data",
+        "USER 70:70",
+        "WORKDIR /var/lib/postgresql/incidentseal-data",
+    }
+    if not required_database_lines <= set(database_lines):
+        raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", "database image does not seed the non-root volume path")
+    seed = (ROOT / "containers" / "database" / "volume-seed" / "owner.txt").read_text(encoding="utf-8")
+    if seed != "incidentseal-volume-owner=70:70\n":
+        raise TopologyError("IS_TOPOLOGY_IMPLEMENTATION", "database ownership seed differs from the contract")
 
 
 def _compose_environment(contract: dict[str, Any], custody: Path) -> dict[str, str]:
@@ -193,7 +216,7 @@ def _compose_environment(contract: dict[str, Any], custody: Path) -> dict[str, s
             "INCIDENTSEAL_CONTRACT_DIGEST": _sha256_file(CONTRACT_PATH),
             "INCIDENTSEAL_MANIFEST_DIGEST": "not-used",
             "INCIDENTSEAL_RUN_ID": RUN_ID,
-            "INCIDENTSEAL_POSTGRES_IMAGE": postgresql["local_image_id"],
+            "INCIDENTSEAL_DATABASE_IMAGE": SYNTHETIC_IMAGES["database"],
             "INCIDENTSEAL_MIGRATION_IMAGE": SYNTHETIC_IMAGES["migration"],
             "INCIDENTSEAL_PYTHON_IMAGE": SYNTHETIC_IMAGES["python-runner"],
             "INCIDENTSEAL_NODE_IMAGE": SYNTHETIC_IMAGES["node-runner"],

@@ -31,7 +31,7 @@ Status: complete
 
 Status: active
 
-Progress: `IS3-U01` through `IS3-U03` passed. `IS3-U04` built three exact copy-only images, then retained two failed runtime attempts: PostgreSQL cannot initialize the root-owned named volume under required user `70:70`. Containers and network cleaned up, the failed volume and image IDs remain evidence, and the next bounded remediation is a copy-only ownership-seeding database image—not a weakened root runtime.
+Progress: `IS3-U01` through `IS3-U04` passed. U04 retained its two failed revision-1 startup attempts, then topology revision 2 added a copy-only ownership-seeding database image without weakening non-root execution. Four exact local image IDs are runtime-locked; two real probes passed PostgreSQL health, isolation, egress denial, exact-volume resume, and teardown. `IS3-U05` owns real migration, schema, persistence, restart, and least-privilege validation next.
 
 - Canonical Compose topology with exact-digest images.
 - PostgreSQL, one-shot migrations, Python runner, Node runner, and host-CLI control plane.

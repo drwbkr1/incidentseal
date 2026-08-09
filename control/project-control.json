@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0003",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Remediate active IS3-U04 with a copy-only non-root database image, replay static gates, and retry the host-CLI runtime security probe"
+    "next_action": "Execute IS3-U05 with the exact revision-2 runtime lock and verify real migration, PostgreSQL schema, least privilege, persistence, restart, and teardown"
   }
 }

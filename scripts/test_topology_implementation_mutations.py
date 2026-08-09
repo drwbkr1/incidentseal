@@ -30,6 +30,13 @@ class Mutation:
 
 
 MUTATIONS = (
+    Mutation(
+        "database-seed-owner-drift",
+        "containers/database/Dockerfile",
+        "COPY --chown=70:70 volume-seed /var/lib/postgresql/incidentseal-data\n",
+        "COPY --chown=0:0 volume-seed /var/lib/postgresql/incidentseal-data\n",
+        "IS_TOPOLOGY_IMPLEMENTATION",
+    ),
     Mutation("privileged-database", "compose.yaml", "    privileged: false\n", "    privileged: true\n", "IS_TOPOLOGY_RENDER"),
     Mutation("external-data-network", "compose.yaml", "    internal: true\n", "    internal: false\n", "IS_TOPOLOGY_RENDER"),
     Mutation("mutable-pull", "compose.yaml", "    pull_policy: never\n", "    pull_policy: always\n", "IS_TOPOLOGY_RENDER"),

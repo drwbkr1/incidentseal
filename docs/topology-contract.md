@@ -1,11 +1,11 @@
 # Hardened topology contract
 
 - Contract: `INCIDENTSEAL-TOPOLOGY-001`
-- Version: `1.0`
+- Version: `1.1` (machine revision 2)
 - Machine instance: `contracts/topology-v1.json`
 - Schema: `schemas/topology-contract-v1.schema.json`
 - Image authority: `requirements/images.lock.json`
-- Status: frozen by `IS3-U02`
+- Status: revision 1 frozen by `IS3-U02`; revision 2 bounded remediation verified by `IS3-U04`
 
 ## User-facing promise
 
@@ -21,7 +21,7 @@ The roadmap's control service is the host CLI. There is deliberately no orchestr
 
 ## Build boundary
 
-Derived migration and runner images use the exact Dockerfile frontend and base images in the image lock. Build contexts are three narrow container directories. Dockerfiles are copy-and-configure only: `RUN`, remote `ADD`, build secrets, SSH mounts, online dependency resolution, and build networking are denied. The Python and Node runners use only their standard libraries, including a deliberately small PostgreSQL v3 client for fixed, parameter-bounded result operations.
+Derived database, migration, and runner images use the exact Dockerfile frontend and base images in the image lock. Build contexts are four narrow container directories. Dockerfiles are copy-and-configure only: `RUN`, remote `ADD`, build secrets, SSH mounts, online dependency resolution, and build networking are denied. The database image copies a fixed ownership marker into a new `/var/lib/postgresql/incidentseal-data` path as UID/GID `70:70`; Docker's empty-volume copy-up therefore seeds non-root ownership without a root runtime or privileged helper. The Python and Node runners use only their standard libraries, including a deliberately small PostgreSQL v3 client for fixed, parameter-bounded result operations.
 
 The host records each derived local image ID in a runtime lock and sets `pull_policy: never`. A mutable local tag is never sufficient authority. If Compose cannot use and verify the expected local image ID, the implementation fails rather than falling back to a floating tag.
 
@@ -29,7 +29,7 @@ The host records each derived local image ID in a runtime lock and sets `pull_po
 
 The Compose model contains four container services:
 
-- `database`: persistent PostgreSQL 18.4, forced to UID/GID `70:70`, with one named data volume and bounded tmpfs paths;
+- `database`: persistent PostgreSQL 18.4 in a copy-only derived image, forced to UID/GID `70:70`, with one ownership-seeded named data volume and bounded tmpfs paths;
 - `migration`: one-shot `psql` from a copy-only derived PostgreSQL image;
 - `python-runner`: one-shot Python 3.14.7, UID/GID `65532:65532`;
 - `node-runner`: one-shot Distroless Node.js 24, UID/GID `65532:65532`.

@@ -4,8 +4,10 @@ import json
 import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,9 +15,27 @@ SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
 from incidentseal.cli import execute  # noqa: E402
+from incidentseal import runtime  # noqa: E402
+from incidentseal.topology import CONTRACT_PATH, TopologyError  # noqa: E402
 
 
 class TopologyTests(unittest.TestCase):
+    def test_active_runtime_lock_binds_all_exact_image_roles(self) -> None:
+        images = runtime._runtime_lock_images(runtime._sha256_file(CONTRACT_PATH))
+        self.assertEqual(["database", "migration", "python-runner", "node-runner"], list(images))
+        self.assertTrue(all(item["image_id"].startswith("sha256:") for item in images.values()))
+
+    def test_runtime_lock_contract_drift_fails_closed(self) -> None:
+        lock = json.loads(runtime.RUNTIME_LOCK_PATH.read_text(encoding="utf-8"))
+        lock["contract"]["sha256"] = "sha256:" + "f" * 64
+        with tempfile.TemporaryDirectory(prefix="incidentseal-runtime-lock-test-") as temporary:
+            path = Path(temporary) / "runtime.lock.json"
+            path.write_text(json.dumps(lock), encoding="utf-8")
+            with patch.object(runtime, "RUNTIME_LOCK_PATH", path):
+                with self.assertRaises(TopologyError) as raised:
+                    runtime._runtime_lock_images(runtime._sha256_file(CONTRACT_PATH))
+        self.assertEqual("IS_RUNTIME_LOCK", raised.exception.code)
+
     def test_non_platform_mode_is_rejected_before_docker(self) -> None:
         envelope, exit_code = execute(["topology", "validate", "--mode", "workflow-execution", "--json"])
         self.assertEqual(64, exit_code)

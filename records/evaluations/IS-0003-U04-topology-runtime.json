@@ -1,0 +1,97 @@
+{
+  "schema_version": "incidentseal-topology-runtime-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0003-U04-TOPOLOGY-RUNTIME",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U04",
+  "observed_at_utc": "2026-08-09T20:58:19Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Exact local platform-validation topology security only. No repository workflow, real migration, application runner, database persistence, dashboard, recovery, clean-clone, or release claim is included.",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "contract": "contracts/IS-0003.json",
+    "workflow_approval_state": "MISSING",
+    "workflow_execution_state": "INVALID",
+    "platform_validation_manifest_digest": "not-used"
+  },
+  "bindings": {
+    "topology_contract": {
+      "path": "contracts/topology-v1.json",
+      "sha256": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde",
+      "revision": 2
+    },
+    "topology_contract_lock": {
+      "path": "requirements/topology-contract.lock.json",
+      "sha256": "sha256:887f923253a9b91d31ac8c7c640979cd3fb1270d22beb8aabba71efb436becc9"
+    },
+    "implementation_lock": {
+      "path": "requirements/topology-implementation.lock.json",
+      "sha256": "sha256:4fe70ced1e940d78f4d0f54a1eb657470dcb184f70d2e0216888502513c10b57"
+    },
+    "runtime_lock": "requirements/topology-runtime.lock.json"
+  },
+  "checks": [
+    {"id": "revision-2-source", "status": "PASS", "result": "Revision 1, its normalized render, contract lock, and the failed U04 implementation lock remain archived byte-for-byte. Revision 2 adds only an exact-base copy-only database image and a new ownership-seeded volume path."},
+    {"id": "contract-mutations", "status": "PASS", "result": "All 14 contract mutations failed closed, including direct database-base use and the prior unseeded mount path."},
+    {"id": "implementation-mutations", "status": "PASS", "result": "All 14 real implementation mutations failed closed, including UID/GID ownership-seed drift. No mutation built an image or started a container."},
+    {"id": "exact-offline-builds", "status": "PASS", "result": "Four exact-base images built with BuildKit network none, pull disabled, no cache, locked frontend, contract labels, numeric users, and exact local image IDs recorded in the runtime lock."},
+    {"id": "database-startup", "status": "PASS", "result": "The ownership-seeded named volume initialized PostgreSQL and reached healthy while the container ran as 70:70 with a read-only root."},
+    {"id": "runtime-identity", "status": "PASS", "result": "Database, migration, Python, and Node containers used the four exact runtime-lock image IDs and required numeric users."},
+    {"id": "runtime-hardening", "status": "PASS", "result": "All four containers were non-privileged, read-only-root, cap-drop ALL, no-new-privileges, unpublished, and attached only to the internal data bridge, with no Docker endpoint mount."},
+    {"id": "runner-isolation", "status": "PASS", "result": "Fixed Python and Node probes denied root and staged-input writes, allowed only staged-output writes, denied external egress, exposed no sensitive environment name, and found no Docker or Podman endpoint."},
+    {"id": "repeatability", "status": "PASS", "result": "A second host-CLI invocation verified and reused all four image IDs, resumed the exact labeled volume, repeated every hardening probe, and passed."},
+    {"id": "teardown", "status": "PASS", "result": "Both successful invocations removed every IncidentSeal container and the internal network. The exact labeled database volume remains retained by policy."}
+  ],
+  "retained_attempts": [
+    {
+      "evidence": "records/evaluations/IS-0003-U04-runtime-startup-failure.json",
+      "execution_state": "failed",
+      "verification_verdict": "FAIL",
+      "note": "Two pre-remediation runtime attempts remain distinct and retained; neither is rewritten as a pass. The original failed volume remains retained and was not reused by revision 2."
+    },
+    {
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "error_code": "IS_TOPOLOGY_IMPLEMENTATION",
+      "note": "The first revision-2 static implementation attempt found a generated Python __pycache__ byte inside the exact build context. The validator rejected it before any build, and the cache was moved intact to recoverable non-OneDrive temp custody before the passing replay."
+    },
+    {
+      "invocation_id": "ed384e3c-3cbf-4238-b1dc-f164381af336",
+      "execution_state": "completed",
+      "verification_verdict": "PASS",
+      "resumed_volume": false
+    },
+    {
+      "invocation_id": "5bb5c05b-250a-4785-af85-6908bae31e77",
+      "execution_state": "completed",
+      "verification_verdict": "PASS",
+      "resumed_volume": true
+    },
+    {
+      "invocation_id": "145ff739-3121-4b89-9488-6c7a41c631ac",
+      "execution_state": "completed",
+      "verification_verdict": "PASS",
+      "resumed_volume": true,
+      "runtime_lock_enforced": true
+    }
+  ],
+  "runtime_state": {
+    "retained_images": 4,
+    "retained_pass_volume": "incidentseal-e10983c7309c56a0_database-data",
+    "retained_failed_volume": "incidentseal-a6443d83ae9eb463_database-data",
+    "containers_retained": [],
+    "networks_retained": []
+  },
+  "decision": {
+    "status": "passed",
+    "next_unit": "IS3-U05",
+    "next_action": "Use the exact runtime lock and retained revision-2 volume to validate the real one-shot migration, PostgreSQL identity, schema, least privilege, persistence, restart, and teardown behavior.",
+    "prohibited_claims": [
+      "The migration probe executed psql --version only; the real migration is not yet verified.",
+      "The isolation probes overrode the runner commands; real Python and Node application behavior is not yet verified.",
+      "No workflow manifest is approved and no repository input or command was executed.",
+      "The derived images remain local and must not be published while redistribution is INCONCLUSIVE."
+    ]
+  }
+}

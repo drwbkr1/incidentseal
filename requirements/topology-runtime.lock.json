@@ -1,0 +1,78 @@
+{
+  "schema_version": "incidentseal-topology-runtime-lock/v1",
+  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0001",
+  "checkpoint_id": "IS-0003",
+  "unit_id": "IS3-U04",
+  "generated_at_utc": "2026-08-09T20:58:19Z",
+  "platform": "linux/amd64",
+  "claim_scope": "topology-security-only",
+  "publication_status": "not-authorized-redistribution-inconclusive",
+  "contract": {
+    "path": "contracts/topology-v1.json",
+    "sha256": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde",
+    "revision": 2
+  },
+  "topology_contract_lock": {
+    "path": "requirements/topology-contract.lock.json",
+    "sha256": "sha256:887f923253a9b91d31ac8c7c640979cd3fb1270d22beb8aabba71efb436becc9"
+  },
+  "implementation_lock": {
+    "path": "requirements/topology-implementation.lock.json",
+    "sha256": "sha256:4fe70ced1e940d78f4d0f54a1eb657470dcb184f70d2e0216888502513c10b57"
+  },
+  "build_policy": {
+    "network": "none",
+    "pull": false,
+    "no_cache": true,
+    "frontend": "docker.io/docker/dockerfile@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32"
+  },
+  "images": [
+    {
+      "role": "database",
+      "tag": "incidentseal-local/database:e10983c7309c56a0",
+      "image_id": "sha256:283b33070814684f3fad806b8df3305ee22738d746c2e09a15993f7f951f3004",
+      "base_role": "postgresql",
+      "base_image_id": "sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
+      "user": "70:70",
+      "build_log_digest": "sha256:f1c96038ba7294e069d116176c34516a1080c7365b80e2b3b3f365bf6eabe157"
+    },
+    {
+      "role": "migration",
+      "tag": "incidentseal-local/migration:e10983c7309c56a0",
+      "image_id": "sha256:54e9d9551c1a305b8245bf23037fa99e776aec94c8b2f1e2416fa610ffb4e3f6",
+      "base_role": "postgresql",
+      "base_image_id": "sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
+      "user": "70:70",
+      "build_log_digest": "sha256:b50dad93cdbc7b20a824bceca0b6f81c479578b7707fca008b7ecae1ffed4901"
+    },
+    {
+      "role": "python-runner",
+      "tag": "incidentseal-local/python-runner:e10983c7309c56a0",
+      "image_id": "sha256:2266127f5d63d8589a4133bf16b68ec9859f4925e7e17cc990c94f92c6ae5ed8",
+      "base_role": "python_runner",
+      "base_image_id": "sha256:69437de912cc3b5d36a2480b8fb0c3f658f151d8bc1978d19a6412be3a4983d5",
+      "user": "65532:65532",
+      "build_log_digest": "sha256:5d4013e0dd499633556bd84ccb6cdb5b14ec63ac05f5a3c2036583a81784b477"
+    },
+    {
+      "role": "node-runner",
+      "tag": "incidentseal-local/node-runner:e10983c7309c56a0",
+      "image_id": "sha256:f0ca01bf35bc2b7a35752ca475aac75049db64b74552d4d8dc815055edacd3bc",
+      "base_role": "node_runner",
+      "base_image_id": "sha256:fbbdda866ea71aef98c4abece17e3d61fbf820cc2ef3961522caa2478716171a",
+      "user": "65532:65532",
+      "build_log_digest": "sha256:19411c27e3f6e5a0255105cf736d9f8dce206577d5253339f4b2a2aefc1bf885"
+    }
+  ],
+  "runtime": {
+    "project_name": "incidentseal-e10983c7309c56a0",
+    "manifest_digest": "not-used",
+    "retained_volume": "incidentseal-e10983c7309c56a0_database-data",
+    "volume_created_at": "2026-08-09T20:57:23Z",
+    "first_pass_invocation_id": "ed384e3c-3cbf-4238-b1dc-f164381af336",
+    "reuse_pass_invocation_id": "5bb5c05b-250a-4785-af85-6908bae31e77",
+    "lock_enforced_pass_invocation_id": "145ff739-3121-4b89-9488-6c7a41c631ac",
+    "containers_retained": [],
+    "network_retained": null
+  }
+}

@@ -18,6 +18,8 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 | `policy.diff` | `incidentseal policy diff --manifest PATH --json` | Explain bound-field and canonical policy differences without writing approval. |
 | `topology.validate` | `incidentseal topology validate --mode platform-validation --json` | Render and compare the real static Compose security projection without building or starting containers. |
 | `topology.runtime-probe` | `incidentseal topology runtime-probe --mode platform-validation --json` | Build or verify exact local images, run topology-only security probes, and clean containers/network while retaining evidence-bound database storage. |
+
+`topology.runtime-probe` remains narrower than workflow verification. A PASS binds exact local image IDs, runtime inspections, fixed isolation probes, retained-volume identity, and teardown state in `requirements/topology-runtime.lock.json`; it does not approve a manifest, execute repository input, prove the real migration or application runner commands, or authorize image publication.
 | `verify` | `incidentseal verify --manifest PATH --json` | Execute only after approval status is `MATCH`. |
 | `run.events` | `incidentseal run events --run-id ID --jsonl` | Stream retained append-only events. |
 

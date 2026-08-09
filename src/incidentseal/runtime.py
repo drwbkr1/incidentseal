@@ -15,7 +15,9 @@ from typing import Any
 from .topology import (
     COMPOSE_PATH,
     CONTRACT_PATH,
+    IMPLEMENTATION_LOCK_PATH,
     ROOT,
+    TOPOLOGY_LOCK_PATH,
     TopologyError,
     _docker_executable,
     _load,
@@ -23,6 +25,9 @@ from .topology import (
     _sha256_file,
     validate_platform_topology,
 )
+
+
+RUNTIME_LOCK_PATH = ROOT / "requirements" / "topology-runtime.lock.json"
 
 
 PYTHON_PROBE = textwrap.dedent("""
@@ -75,11 +80,45 @@ def _image_lock(contract: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {item["role"]: item for item in _load(ROOT / contract["image_lock"]["path"])["images"]}
 
 
+def _runtime_lock_images(contract_digest: str) -> dict[str, dict[str, Any]]:
+    if not RUNTIME_LOCK_PATH.exists():
+        return {}
+    lock = _load(RUNTIME_LOCK_PATH)
+    try:
+        valid = all(
+            [
+                lock["schema_version"] == "incidentseal-topology-runtime-lock/v1",
+                lock["contract"] == {
+                    "path": "contracts/topology-v1.json",
+                    "sha256": contract_digest,
+                    "revision": 2,
+                },
+                lock["topology_contract_lock"] == {
+                    "path": "requirements/topology-contract.lock.json",
+                    "sha256": _sha256_file(TOPOLOGY_LOCK_PATH),
+                },
+                lock["implementation_lock"] == {
+                    "path": "requirements/topology-implementation.lock.json",
+                    "sha256": _sha256_file(IMPLEMENTATION_LOCK_PATH),
+                },
+            ]
+        )
+        images = lock["images"]
+        by_role = {item["role"]: item for item in images}
+    except (KeyError, TypeError) as error:
+        raise TopologyError("IS_RUNTIME_LOCK", "runtime lock shape is invalid") from error
+    if not valid or list(by_role) != ["database", "migration", "python-runner", "node-runner"]:
+        raise TopologyError("IS_RUNTIME_LOCK", "runtime lock does not bind the active topology inputs")
+    return by_role
+
+
 def _build_images(docker: str, contract: dict[str, Any]) -> tuple[dict[str, str], list[dict[str, Any]]]:
     digest = _sha256_file(CONTRACT_PATH)
+    locked_images = _runtime_lock_images(digest)
     short = digest.split(":", 1)[1][:16]
     images = _image_lock(contract)
     builds = {
+        "database": ("containers/database", "INCIDENTSEAL_POSTGRES_IMAGE", images["postgresql"]["index_reference"], "70:70"),
         "migration": ("containers/migration", "INCIDENTSEAL_POSTGRES_IMAGE", images["postgresql"]["index_reference"], "70:70"),
         "python-runner": ("containers/python-runner", "INCIDENTSEAL_PYTHON_IMAGE", images["python_runner"]["index_reference"], "65532:65532"),
         "node-runner": ("containers/node-runner", "INCIDENTSEAL_NODE_IMAGE", images["node_runner"]["index_reference"], "65532:65532"),
@@ -95,9 +134,17 @@ def _build_images(docker: str, contract: dict[str, Any]) -> tuple[dict[str, str]
             inspected = json.loads(existing.stdout)[0]
             labels = inspected["Config"].get("Labels") or {}
             if inspected["Config"].get("User") == expected_user and labels.get("dev.incidentseal.contract-digest") == digest and labels.get("dev.incidentseal.build-role") == role:
+                if locked_images and (
+                    locked_images[role].get("tag") != tag
+                    or locked_images[role].get("image_id") != inspected["Id"]
+                    or locked_images[role].get("user") != expected_user
+                ):
+                    raise TopologyError("IS_RUNTIME_LOCK", f"{role} local image differs from the runtime lock")
                 identities[role] = inspected["Id"]
                 receipts.append({"role": role, "tag": tag, "image_id": inspected["Id"], "build_status": "reused-verified", "build_log_digest": None})
                 continue
+        if locked_images:
+            raise TopologyError("IS_RUNTIME_STALE", f"{role} runtime-lock image is unavailable or invalid")
         result = _run(docker, ["build", "--network=none", "--pull=false", "--no-cache", "--progress=plain", "--label", f"dev.incidentseal.contract-digest={digest}", "--label", f"dev.incidentseal.build-role={role}", "--build-arg", f"{arg_name}={base}", "--tag", tag, str(ROOT / context)], env=environment, timeout=300)
         inspected = json.loads(_run(docker, ["image", "inspect", tag]).stdout)[0]
         image_id = inspected["Id"]
@@ -113,7 +160,6 @@ def _compose_env(contract: dict[str, Any], identities: dict[str, str], custody: 
     suffix = contract_digest.split(":", 1)[1][:16]
     project = f"incidentseal-{suffix}"
     run_id = f"isrun-{suffix}"
-    images = _image_lock(contract)
     env = os.environ.copy()
     for key in list(env):
         if key.upper().startswith(("INCIDENTSEAL_", "COMPOSE_")) or key.upper() in {"DOCKER_HOST", "DOCKER_CONTEXT"}:
@@ -123,7 +169,7 @@ def _compose_env(contract: dict[str, Any], identities: dict[str, str], custody: 
         "INCIDENTSEAL_CONTRACT_DIGEST": contract_digest,
         "INCIDENTSEAL_MANIFEST_DIGEST": "not-used",
         "INCIDENTSEAL_RUN_ID": run_id,
-        "INCIDENTSEAL_POSTGRES_IMAGE": images["postgresql"]["local_image_id"],
+        "INCIDENTSEAL_DATABASE_IMAGE": identities["database"],
         "INCIDENTSEAL_MIGRATION_IMAGE": identities["migration"],
         "INCIDENTSEAL_PYTHON_IMAGE": identities["python-runner"],
         "INCIDENTSEAL_NODE_IMAGE": identities["node-runner"],
@@ -167,7 +213,18 @@ def runtime_probe() -> dict[str, Any]:
         custody = Path(temporary).resolve(strict=True)
         for name in ("input", "python-output", "node-output"):
             (custody / name).mkdir()
-        (custody / "input" / "request.json").write_text('{"schema_version":"incidentseal-runner-request/v1","run_id":"isrun-a6443d83ae9eb463","payload":{"probe":"incidentseal"}}\n', encoding="utf-8")
+        contract_suffix = _sha256_file(CONTRACT_PATH).split(":", 1)[1][:16]
+        (custody / "input" / "request.json").write_text(
+            json.dumps(
+                {
+                    "schema_version": "incidentseal-runner-request/v1",
+                    "run_id": f"isrun-{contract_suffix}",
+                    "payload": {"probe": "incidentseal"},
+                },
+                separators=(",", ":"),
+            ) + "\n",
+            encoding="utf-8",
+        )
         env_file = custody / "empty.env"
         env_file.write_text("", encoding="utf-8")
         env, project, run_id = _compose_env(contract, identities, custody)
@@ -191,7 +248,7 @@ def runtime_probe() -> dict[str, Any]:
             model = json.loads(_run(docker, [*base, "config", "--format", "json"], env=env).stdout)
             normalized = _normalize(model, _sha256_file(CONTRACT_PATH))
             by_id = {item["id"]: item for item in normalized["services"]}
-            expected_ids = {"database": _image_lock(contract)["postgresql"]["local_image_id"], **identities}
+            expected_ids = identities
             if any(by_id[key]["image"] != value for key, value in expected_ids.items()):
                 raise TopologyError("IS_RUNTIME_IMAGE", "runtime Compose render differs from actual image identities")
             _run(docker, [*base, "up", "-d", "--no-deps", "database"], env=env)

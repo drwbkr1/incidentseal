@@ -15,7 +15,7 @@
     "workflow_execution_state": "INVALID"
   },
   "implementation_lock": {
-    "path": "requirements/topology-implementation.lock.json",
+    "path": "requirements/history/IS3-U04-runtime-startup-failure.lock.json",
     "sha256": "sha256:cc2f93d76bcb83cc0aff24b73d419457064cf1c99eed4f1aa2932db3ace6455d",
     "lock_id": "IS-TOPOLOGY-IMPLEMENTATION-LOCK-0002"
   },

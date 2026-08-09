@@ -24,7 +24,7 @@
   },
   "bindings": {
     "topology_contract": {
-      "path": "contracts/topology-v1.json",
+      "path": "contracts/history/IS3-U02-topology-revision-1.json",
       "sha256": "sha256:a6443d83ae9eb463780a74f76e34db496a7731f0470fa6976a7678cc1a4eae82"
     },
     "implementation_lock": {

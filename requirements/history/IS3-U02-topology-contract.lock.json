@@ -1,13 +1,13 @@
 {
   "schema_version": "incidentseal-topology-lock/v1",
-  "lock_id": "IS-TOPOLOGY-LOCK-0002",
+  "lock_id": "IS-TOPOLOGY-LOCK-0001",
   "checkpoint_id": "IS-0003",
-  "unit_id": "IS3-U04",
-  "generated_at_utc": "2026-08-09T20:52:36Z",
+  "unit_id": "IS3-U02",
+  "generated_at_utc": "2026-08-09T19:54:24Z",
   "files": [
     {
       "path": "contracts/topology-v1.json",
-      "sha256": "sha256:e10983c7309c56a0ae71d74f7dd05665f1c7e9675ab4d1975a624e4d8fccbcde"
+      "sha256": "sha256:a6443d83ae9eb463780a74f76e34db496a7731f0470fa6976a7678cc1a4eae82"
     },
     {
       "path": "schemas/topology-contract-v1.schema.json",
@@ -19,11 +19,11 @@
     },
     {
       "path": "fixtures/topology/render.valid.json",
-      "sha256": "sha256:a5e15befbaa9dd6af42dcc5428af3f4264db28072ae3928d6a9057c302d0e3a8"
+      "sha256": "sha256:19c5aa442d2cd8eb81a56fdf927b6ef87cde72c16461652df5ec334d4d37a2a3"
     },
     {
       "path": "fixtures/topology/mutations.json",
-      "sha256": "sha256:9b187c78fdf0a1309f5406ea412fb435d1341087c1165d72a36b0ba7a0223c86"
+      "sha256": "sha256:88024d14f5b64046e15b4c2f80c25f56c8f2e7d977c00013ebdecb8d4749a98e"
     },
     {
       "path": "requirements/images.lock.json",

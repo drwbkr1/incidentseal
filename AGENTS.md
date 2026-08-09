@@ -36,11 +36,12 @@
 - Call `policy status` to inspect the fixed external approval location and `policy diff` to list mismatched bound fields. Neither command accepts an approval-root override or writes approval state.
 - Call `.\incidentseal.cmd topology validate --mode platform-validation --json` for the real static Compose surface. It accepts no manifest, uses only generated staging paths and synthetic derived-image IDs, starts no container, and can claim only topology shape.
 - `topology runtime-probe --mode platform-validation --json` is a state-changing host-only command. Invoke it only for the active contract unit after static locks pass; it cannot run a workflow or substitute for approval.
+- Bind successful runtime identities to `requirements/topology-runtime.lock.json`. A local tag or matching label alone is not image authority, and runtime-lock images remain local while redistribution is `INCONCLUSIVE`.
 - Treat stdout as one `incidentseal-cli-envelope/v1` JSON document and verify that `process_exit_code` equals the process exit code.
 - `policy lint` and `policy digest` are inspection-only. They do not approve a manifest, access Docker, execute workflow steps, or create evidence claims.
 - Never invoke or automate `operator approve-manifest`; operator approval is interactive authority outside the agent-safe surface.
 - Do not infer approval from a valid manifest or digest. Only `policy status` value `MATCH` can satisfy the approval gate, and workflow execution remains forbidden until the later `verify` surface is implemented and validated.
-- Never treat `topology validate` as proof that images built, containers started, PostgreSQL migrated, or runners executed. Those claims require their later real-surface units.
+- Never treat `topology validate` as proof that images built or containers started. Never treat `topology runtime-probe` as proof that the real migration, PostgreSQL persistence, or application runner commands passed; those claims require their later real-surface units.
 
 ## Working discipline
 
