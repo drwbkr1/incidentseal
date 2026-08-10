@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U04` passed; the `IS4-U05` real backup/clean-restore implementation passes locally and exact public implementation reproduction is next
+- State: active; `IS4-U05` and `EXIT-BACKUP-RESTORE` pass from exact public custody; `IS4-U06` integrated receipt and recovery evaluation is ready
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -75,10 +75,12 @@ Exact public commit `30513b70a9c7a2e283e4643232fa5c8b13f650c2`, tree `faebf8d3d6
 
 The fixed host-only implementation now passes locally under final-lock invocation `e38826ae-8d6f-4d24-a033-bd6a298d0f8e`. The host created and fsynced a `52800`-byte exact custom archive (`sha256:8b5a3ac0e886c22cba2353855a41238703431b6830c74fc7a7c20a2857d2f5e8`), normalized and rejected unsafe TOC content, then restored into a different clean volume. All ten checks passed: frozen source state and write fencing, archive and TOC identity, clean target, exact schema/journal/result/role equivalence, five denied runner privileges, restart persistence, three protected-volume identities, and full teardown. Eighty-six tests, 21 implementation mutations, and every prior cross-surface suite pass. Seven implementation attempts remain `INVALID`, and calibration invocation `523ca659-8b99-4b55-8255-e68e2f4efec9` remains `superseded`; neither is rewritten as PASS. Approval stayed `MISSING`, no workflow ran, and no disposable container, network, volume, or archive remains. This is a local candidate only until its exact commit reproduces from public custody.
 
+Exact credential-free public commit `f8c2526389ea73c157f535c2d6651ba86b8169ac`, tree `02bf08a09895b27db42bbbedab238b9e7a3679ad`, reproduced all 86 tests, every validator and mutation suite, the 25-scenario/50-execution authority matrix, offline one-schema/two-fixture validation from six rehashed source-gated wheels, strict Git integrity, and a zero-match four-pattern secret scan. Public runtime invocation `72cda586-8994-489b-8295-043aac2b294d` passed all ten real checks. Its newly created archive has its own exact digest `sha256:0fca8bf4b3881e17013f82ba64a099638279a8360edc6849daf188622cc91b26`; its normalized TOC and all schema, journal, verification-result, and role digests match the local candidate exactly. Approval remained `MISSING` / `INVALID` at exit `12` before and after, no workflow ran, no archive custody remains, all disposable runtime was removed, and the three protected volume identities remain exact. Three public or closure harness attempts remain `INVALID`; the third was a no-execution push-wrapper parser error after the product replay. `EXIT-BACKUP-RESTORE` passes and `IS4-U06` is ready.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, and fixed synthetic recovery pass from public custody. Backup/restore passes locally but still needs exact public implementation replay; integrated recovery, dashboard, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, fixed synthetic recovery, and fixed backup/clean restore pass from public custody. Integrated recovery, dashboard, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -88,4 +90,4 @@ The fixed host-only implementation now passes locally under final-lock invocatio
 
 ## Next eligible action
 
-Commit and push the locally verified `IS4-U05` implementation candidate, then reproduce all 86 tests, validators, mutations, integrity and secret gates, missing-approval boundary, protected-volume identity, and the ten real backup/restore checks from that exact credential-free public commit before claiming `EXIT-BACKUP-RESTORE`.
+Freeze the bounded `IS4-U06` integrated matrix over real receipts, PostgreSQL journal, both runners, corruption, interruption recovery, clean restore, state separation, repeatability, protected-volume identity, and teardown. Then implement and run one exact measurable matrix improvement at a time.

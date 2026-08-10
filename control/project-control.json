@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit and push the locally verified IS4-U05 backup and clean-restore implementation candidate, then reproduce all static and real gates from the exact credential-free public commit before closing EXIT-BACKUP-RESTORE"
+    "next_action": "Begin ready unit IS4-U06 by freezing the bounded integrated receipt and recovery matrix, then run one exact real-surface improvement at a time with state separation, repeatability, protected-volume identity, and teardown"
   }
 }
