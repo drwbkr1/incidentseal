@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U05` and `EXIT-BACKUP-RESTORE` pass from exact public custody; `IS4-U06` integrated receipt and recovery evaluation is ready
+- State: active; `IS4-U05` and `EXIT-BACKUP-RESTORE` pass from exact public custody; the `IS4-U06` integrated matrix contract passes locally without runtime and public contract replay is next
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -77,6 +77,8 @@ The fixed host-only implementation now passes locally under final-lock invocatio
 
 Exact credential-free public commit `f8c2526389ea73c157f535c2d6651ba86b8169ac`, tree `02bf08a09895b27db42bbbedab238b9e7a3679ad`, reproduced all 86 tests, every validator and mutation suite, the 25-scenario/50-execution authority matrix, offline one-schema/two-fixture validation from six rehashed source-gated wheels, strict Git integrity, and a zero-match four-pattern secret scan. Public runtime invocation `72cda586-8994-489b-8295-043aac2b294d` passed all ten real checks. Its newly created archive has its own exact digest `sha256:0fca8bf4b3881e17013f82ba64a099638279a8360edc6849daf188622cc91b26`; its normalized TOC and all schema, journal, verification-result, and role digests match the local candidate exactly. Approval remained `MISSING` / `INVALID` at exit `12` before and after, no workflow ran, no archive custody remains, all disposable runtime was removed, and the three protected volume identities remain exact. Three public or closure harness attempts remain `INVALID`; the third was a no-execution push-wrapper parser error after the product replay. `EXIT-BACKUP-RESTORE` passes and `IS4-U06` is ready.
 
+`IS4-U06` now has a locally locked runtime-free contract for the integrated receipt and recovery matrix. It composes five isolated host-owned stages—portable receipt states, real reliability with both runners, journal streaming, fenced recovery, and backup/clean restore—without adding a workflow executor, arbitrary arguments, or a Docker-owning container. Twenty exact cases preserve PASS, FAIL, INCONCLUSIVE, INVALID, completed, cancelled, failed, stale, and superseded evidence. The entire sequence must repeat twice with stable image, contract, receipt, journal, recovery, normalized TOC, restored-state, privilege, protection, and teardown semantics; each raw archive remains bound only by its own receipt. All 28 mutations, 93 tests, and one Draft 2020-12 schema across two fixtures pass from six rehashed source-gated wheels without network. Five contract-cycle attempts remain `INVALID`, including the malformed schema and two read-only secret-scan harness defects. Docker and PostgreSQL were not started. Exact public contract replay remains before implementation.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
@@ -90,4 +92,4 @@ Exact credential-free public commit `f8c2526389ea73c157f535c2d6651ba86b8169ac`, 
 
 ## Next eligible action
 
-Freeze the bounded `IS4-U06` integrated matrix over real receipts, PostgreSQL journal, both runners, corruption, interruption recovery, clean restore, state separation, repeatability, protected-volume identity, and teardown. Then implement and run one exact measurable matrix improvement at a time.
+Commit and push the exact `IS4-U06` contract candidate, reproduce its 20 cases, 28 mutations, 93 tests, full-schema gate, Git integrity, secret scan, missing-approval boundary, and unchanged Docker custody from a credential-free public clone without runtime, then implement the fixed host-owned composite matrix.

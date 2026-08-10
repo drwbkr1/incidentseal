@@ -1,0 +1,17 @@
+{
+  "schema_version":"incidentseal-invalid-attempts/v1",
+  "evaluation_id":"IS-EVAL-0004-U06-INTEGRATED-RECOVERY-CONTRACT-INVALID-ATTEMPTS",
+  "checkpoint_id":"IS-0004",
+  "unit_id":"IS4-U06",
+  "observed_at_utc":"2026-08-10T04:29:00Z",
+  "execution_state":"completed",
+  "verification_verdict":"INVALID",
+  "attempts":[
+    {"id":"prelock-meta-malformed-schema","category":"contract-candidate","executed_product":false,"note":"The first exact-wheel Draft 2020-12 wrapper returned INVALID because the new crossCycle schema definition was missing one closing JSON brace. The wrapper initially suppressed the child traceback; no runtime, approval, or workflow action occurred."},
+    {"id":"prelock-direct-meta-missing-dependency","category":"diagnostic-harness","executed_product":false,"note":"A direct diagnostic invocation used the dependency-free project Python environment and returned ModuleNotFoundError for jsonschema. It did not validate the schema and remains INVALID; full-schema evaluation must use the source-gated temporary evaluator."},
+    {"id":"prelock-meta-malformed-schema-diagnostic","category":"contract-candidate","executed_product":false,"note":"After the wrapper was changed to retain child diagnostics, the exact source-gated evaluator reproduced JSONDecodeError at schema line 32. Adding the missing brace corrected the candidate; the next exact-wheel run passed and removed temporary custody."},
+    {"id":"candidate-secret-scan-regex-engine","category":"read-only-wrapper","executed_product":false,"note":"The first final candidate wrapper passed tests, schema, authority, and Docker inventory, then supplied a PCRE inline case flag to Git grep's POSIX extended-regex engine. Git rejected the pattern before a valid secret-scan result existed. No runtime or workflow executed; the corrected scan uses Git's explicit case-insensitive option and validates every pattern exit."},
+    {"id":"candidate-secret-scan-validator-literal-false-positive","category":"read-only-wrapper","executed_product":false,"note":"The next valid POSIX scan overmatched a source assertion that the literal marker PGPASSWORD= must be absent. It found no credential value but returned a false positive because the pattern allowed arbitrary quoted prose after the equals marker. The corrected high-confidence pattern requires a quoted token-like value of at least twelve characters."}
+  ],
+  "retention":"The corrected locked contract passes. These attempts remain distinct INVALID evidence and did not start Docker, PostgreSQL, a runner, a recovery action, a dump, a restore, or a workflow."
+}

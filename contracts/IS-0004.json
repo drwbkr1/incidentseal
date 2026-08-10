@@ -190,13 +190,13 @@
       "depends_on": ["IS4-U05"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "ready",
+      "status": "in_progress",
       "inputs": ["All implemented IS-0004 surfaces"],
       "outputs": ["Repeated real recovery evaluation", "State-separation matrix", "Resource and protected-volume custody receipt"],
-      "gates": {},
+      "gates": {"integrated_recovery_contract_lock":"pass","closed_schema":"pass_1","state_cases":"pass_20","complete_repetitions":"required_2","stage_isolation":"pass_5_stages","fixed_commands":"pass_6","contract_mutations":"pass_28_of_28","full_draft_2020_12":"pass_1_schema_2_fixtures","regression_tests":"pass_93","existing_surface_bindings":"pass_6","runtime_execution":"not_started","clean_public_contract_replay":"pending"},
       "disposition": null,
-      "retained_failures": [],
-      "exit_condition_delta": {"expected":["EXIT-REAL-RECOVERY"],"observed":[],"decision_value":"unknown","rationale":"Integrated PASS requires repeated real-surface behavior, mutation rejection, recovery, and complete disposable teardown."},
+      "retained_failures": ["Five contract-cycle attempts remain INVALID in records/evaluations/IS-0004-U06-integrated-recovery-contract-invalid-attempts.json: the malformed schema candidate, a direct diagnostic without the source-gated dependency, the exact malformed-schema reproduction, a secret-scan regex-engine mismatch, and a secret-scan false positive on a validator literal. The corrected locked schema, all 28 mutations, and narrowed bounded scan pass without runtime."],
+      "exit_condition_delta": {"expected":["EXIT-REAL-RECOVERY"],"observed":[],"decision_value":"enables_dependency","rationale":"The contract freezes two complete repetitions of twenty state-separated cases across five isolated fixed host-owned stages. Exact public contract replay and real composite implementation remain required before EXIT-REAL-RECOVERY can pass."},
       "next_dependency": "IS4-U07"
     },
     {
@@ -248,8 +248,8 @@
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U05 and EXIT-BACKUP-RESTORE pass from exact credential-free public custody; workflow approval remains MISSING and execution remains unavailable; IS4-U06 is ready for the bounded integrated receipt and recovery matrix",
-    "next_action": "Begin IS4-U06 by freezing the integrated real-surface matrix over receipts, journal, recovery, both runners, corruption, interruption, backup restore, state separation, repeatability, protected-volume identity, and teardown before running it.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U05 and EXIT-BACKUP-RESTORE pass from exact credential-free public custody; IS4-U06 has a locally passing runtime-free integrated matrix contract; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Commit and push the exact IS4-U06 integrated matrix contract, reproduce its 20 cases, 28 mutations, schema, integrity, secret, authority, and custody gates from credential-free public custody without runtime, then implement the fixed host-owned composite matrix.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

@@ -42,7 +42,7 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 Status: active
 
-Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and independent verifier. `IS4-U03` passed immutable PostgreSQL history. `IS4-U04` passed fixed host-only recovery. `IS4-U05` passed fixed host-only backup and clean restore from exact credential-free public custody. Public commit `f8c2526389ea73c157f535c2d6651ba86b8169ac` reproduced 86 tests, all cross-surface validators and mutations, offline schema validation, and ten real source-fence/archive/TOC/restore/equivalence/privilege/restart/protection/teardown checks. Seven implementation INVALID attempts, three public or closure harness INVALID attempts, and one superseded calibration PASS remain distinct. `IS4-U06` is ready for the bounded integrated receipt and recovery matrix.
+Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and independent verifier. `IS4-U03` passed immutable PostgreSQL history. `IS4-U04` passed fixed host-only recovery. `IS4-U05` passed fixed host-only backup and clean restore from exact credential-free public custody. `IS4-U06` now has a locally passing runtime-free integrated contract: 20 state-separated cases, five isolated fixed stages, six existing commands, two complete repetitions, 28 fail-closed mutations, 93 tests, and offline full-schema validation. Five contract-cycle attempts remain INVALID. Exact public contract replay is next; composite runtime has not started.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.

@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/integrated-recovery-matrix-v1.schema.json",
+  "title":"IncidentSeal integrated receipt and recovery matrix v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","matrix_id","created_at_utc","authority","composition","cases","cross_cycle","custody","verification_verdict","matrix_digest"],
+  "properties":{
+    "schema_version":{"const":"incidentseal-integrated-recovery-matrix/v1"},
+    "matrix_id":{"const":"IS4-U06-INTEGRATED-RECOVERY-001"},
+    "created_at_utc":{"$ref":"#/$defs/time"},
+    "authority":{"$ref":"#/$defs/authority"},
+    "composition":{"$ref":"#/$defs/composition"},
+    "cases":{"type":"array","minItems":20,"maxItems":20,"items":{"$ref":"#/$defs/case"}},
+    "cross_cycle":{"$ref":"#/$defs/crossCycle"},
+    "custody":{"$ref":"#/$defs/custody"},
+    "verification_verdict":{"const":"PASS"},
+    "matrix_digest":{"$ref":"#/$defs/sha256"}
+  },
+  "$defs":{
+    "sha256":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "time":{"type":"string","pattern":"^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$"},
+    "verdict":{"enum":["PASS","FAIL","INCONCLUSIVE","INVALID",null]},
+    "lifecycle":{"enum":["queued","running","completed","cancelled","failed","stale","superseded",null]},
+    "authority":{"type":"object","additionalProperties":false,"required":["mode","approved_workflow_required","workflow_executed","host_cli_owns_docker"],"properties":{"mode":{"const":"platform-validation"},"approved_workflow_required":{"const":false},"workflow_executed":{"const":false},"host_cli_owns_docker":{"const":true}}},
+    "composition":{"type":"object","additionalProperties":false,"required":["repetitions","stage_order","commands","arbitrary_arguments","stage_isolation"],"properties":{"repetitions":{"const":2},"stage_order":{"type":"array","minItems":5,"maxItems":5,"items":{"enum":["receipt-state-matrix","reliability-probe","journal-probe","recovery-probe","backup-restore-probe"]}},"commands":{"type":"array","minItems":6,"maxItems":6,"items":{"enum":["receipt.materialize","receipt.verify","topology.reliability-probe","topology.journal-probe","topology.recovery-probe","topology.backup-restore-probe"]}},"arbitrary_arguments":{"const":false},"stage_isolation":{"const":true}}},
+    "case":{"type":"object","additionalProperties":false,"required":["id","surface","expected_lifecycle","expected_run_verdict","expected_observation_verdict","expected_exit_code","repetitions"],"properties":{"id":{"type":"string","pattern":"^[a-z][a-z0-9-]{2,63}$"},"surface":{"enum":["receipt","reliability","journal","recovery","backup_restore"]},"expected_lifecycle":{"$ref":"#/$defs/lifecycle"},"expected_run_verdict":{"$ref":"#/$defs/verdict"},"expected_observation_verdict":{"$ref":"#/$defs/verdict"},"expected_exit_code":{"type":"integer","enum":[0,10,11,12,20,21,22,23]},"repetitions":{"const":2}}},
+    "crossCycle":{"type":"object","additionalProperties":false,"required":["same_exact_images","same_contract_digest","same_semantic_receipts","same_journal_streams","same_recovery_decisions","archive_identity_mode","same_normalized_toc","same_restored_state","same_negative_privileges","protected_volumes_unchanged","teardown_between_stages","teardown_after_cycle","comparison_excludes"],"properties":{"same_exact_images":{"const":true},"same_contract_digest":{"const":true},"same_semantic_receipts":{"const":true},"same_journal_streams":{"const":true},"same_recovery_decisions":{"const":true},"archive_identity_mode":{"const":"per-receipt-raw-plus-stable-normalized-toc"},"same_normalized_toc":{"const":true},"same_restored_state":{"const":true},"same_negative_privileges":{"const":true},"protected_volumes_unchanged":{"const":true},"teardown_between_stages":{"const":true},"teardown_after_cycle":{"const":true},"comparison_excludes":{"type":"array","minItems":6,"maxItems":6,"items":{"enum":["archive_digest","backup_id","container_id","created_at_utc","invocation_id","receipt_digest"]}}}},
+    "custody":{"type":"object","additionalProperties":false,"required":["docker_socket_in_containers","container_secrets","broad_host_mounts","external_runtime_network","protected_volumes_mounted","temporary_custody","temporary_custody_removed","disposable_only"],"properties":{"docker_socket_in_containers":{"const":false},"container_secrets":{"const":false},"broad_host_mounts":{"const":false},"external_runtime_network":{"const":false},"protected_volumes_mounted":{"const":false},"temporary_custody":{"const":"host-temp-outside-repository-and-onedrive"},"temporary_custody_removed":{"const":true},"disposable_only":{"const":true}}}
+  }
+}

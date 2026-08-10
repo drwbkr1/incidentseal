@@ -1,0 +1,86 @@
+{
+  "schema_version":"incidentseal-integrated-recovery-contract-evaluation/v1",
+  "evaluation_id":"IS-EVAL-0004-U06-INTEGRATED-RECOVERY-CONTRACT-CANDIDATE",
+  "checkpoint_id":"IS-0004",
+  "unit_id":"IS4-U06",
+  "observed_at_utc":"2026-08-10T04:29:00Z",
+  "execution_state":"running",
+  "verification_verdict":"PASS",
+  "claim_scope":"Dependency-free integrated receipt and recovery matrix contract only; exact public contract replay and all composite runtime behavior remain pending.",
+  "bindings":{
+    "integrated_recovery_contract_lock":{"path":"requirements/integrated-recovery-contract.lock.json","sha256":"sha256:0801b75569937f84cb86e04e6cde945ee076ce630febae3f20466199f3e08fff"},
+    "matrix_schema":{"path":"schemas/integrated-recovery-matrix-v1.schema.json","sha256":"sha256:b77c9bd3f4594aba2e0b6c190990c654bc3bf12390037752f06d0b727c811f4b"},
+    "matrix_fixture":{"path":"fixtures/integrated-recovery/matrix.valid.json","sha256":"sha256:c4527e7067253d9bdf4a6ce933864b9f1bcfb63330279144c1175845d2c67c4d"},
+    "mutation_manifest":{"path":"fixtures/integrated-recovery/mutations.json","sha256":"sha256:7bee710a15c013c5961837d1be0f1021670ca66f8934a05680c6443917f33eed"},
+    "invalid_attempts":{"path":"records/evaluations/IS-0004-U06-integrated-recovery-contract-invalid-attempts.json","sha256":"sha256:c7f790f58f828b87c3145c5d140c421eb4aebcf2e99d7925b8e171a84045f3c9"},
+    "topology_runtime_lock":{"path":"requirements/topology-runtime.lock.json","sha256":"sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"},
+    "receipt_implementation_lock":{"path":"requirements/receipt-implementation.lock.json","sha256":"sha256:22557098f98a925264b44aaad767784488e3151f417a2d141c47a468cb0a5ffd"},
+    "event_journal_implementation_lock":{"path":"requirements/event-journal-implementation.lock.json","sha256":"sha256:c2e6bd0611bdbc82f275a46d7d735860abbb91e91733a06ca9e378c53fa505c7"},
+    "recovery_implementation_lock":{"path":"requirements/recovery-implementation.lock.json","sha256":"sha256:d6c5fe9ec8ce55a633f4b7a664daf6ccba27c0d45e2d3b83adfce94cda196896"},
+    "backup_restore_implementation_lock":{"path":"requirements/backup-restore-implementation.lock.json","sha256":"sha256:5b32514e3bb1215f86ae3ce37f4839c8ad14dfd2cdbaa3178af449ecdca7ce7c"},
+    "protected_volume_lock":{"path":"requirements/retained-runtime-volumes.lock.json","sha256":"sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"}
+  },
+  "results":{
+    "matrix_digest":"sha256:31d04759cdeb4ec5030872087f549e4c31bb1c6d5235955622781bfa50f12b22",
+    "stages":5,
+    "commands":6,
+    "cases":20,
+    "repetitions":2,
+    "contract_mutations":28,
+    "unit_tests":93,
+    "full_schema_count":1,
+    "full_fixture_count":2,
+    "source_gated_wheels":6,
+    "network_used_for_validation":false,
+    "temporary_evaluation_custody_removed":true,
+    "runtime_started":false
+  },
+  "state_contract":{
+    "verification_verdicts":["PASS","FAIL","INCONCLUSIVE","INVALID"],
+    "lifecycle_states":["queued","running","completed","cancelled","failed","stale","superseded"],
+    "completed_fail_distinct_from_failed_lifecycle":true,
+    "cancelled_failed_stale_superseded_run_verdicts_null":true,
+    "ambiguous_recovery_inconclusive":true,
+    "conflicting_recovery_fail":true,
+    "corrupt_receipt_fail":true,
+    "invalid_identity_invalid":true
+  },
+  "repeatability_contract":{
+    "complete_cycles":2,
+    "same_exact_images":true,
+    "same_contract_digest":true,
+    "same_semantic_receipts":true,
+    "same_journal_streams":true,
+    "same_recovery_decisions":true,
+    "archive_identity_mode":"per-receipt-raw-plus-stable-normalized-toc",
+    "same_restored_state":true,
+    "same_negative_privileges":true,
+    "teardown_between_stages":true,
+    "teardown_after_cycle":true
+  },
+  "trust_boundary":{
+    "host_cli_owns_docker":true,
+    "docker_socket_in_containers":false,
+    "container_secrets":false,
+    "broad_host_mounts":false,
+    "external_runtime_network":false,
+    "protected_volumes_mounted":false,
+    "arbitrary_stage_arguments":false,
+    "approval_accessed":false,
+    "approval_written":false,
+    "workflow_executed":false,
+    "docker_runtime_started":false,
+    "postgresql_started":false
+  },
+  "retained_invalid_attempts":5,
+  "limitations":[
+    "The contract has not run the composite matrix, Docker, PostgreSQL, either runner, recovery, dump, or restore.",
+    "The fixed host-owned composite CLI implementation remains unbuilt.",
+    "Exact credential-free public contract replay remains required before implementation begins.",
+    "No approved repository workflow was executed."
+  ],
+  "decision":{
+    "status":"continue",
+    "next":"Commit and push the exact contract candidate, reproduce all contract, mutation, schema, integrity, secret, authority, and custody gates from a credential-free public clone without runtime, then implement the fixed host-owned composite matrix."
+  }
+}

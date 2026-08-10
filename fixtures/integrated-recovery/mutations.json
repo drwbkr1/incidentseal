@@ -1,0 +1,33 @@
+{
+  "schema_version":"incidentseal-integrated-recovery-mutations/v1",
+  "mutations":[
+    {"id":"unknown-matrix-field","expected_error":"IS_INTEGRATED_SCHEMA"},
+    {"id":"workflow-authority-smuggled","expected_error":"IS_INTEGRATED_AUTHORITY"},
+    {"id":"workflow-execution-enabled","expected_error":"IS_INTEGRATED_AUTHORITY"},
+    {"id":"container-docker-socket","expected_error":"IS_INTEGRATED_CUSTODY"},
+    {"id":"container-secret","expected_error":"IS_INTEGRATED_CUSTODY"},
+    {"id":"external-runtime-network","expected_error":"IS_INTEGRATED_CUSTODY"},
+    {"id":"protected-volume-mounted","expected_error":"IS_INTEGRATED_CUSTODY"},
+    {"id":"repository-temporary-custody","expected_error":"IS_INTEGRATED_CUSTODY"},
+    {"id":"single-repetition","expected_error":"IS_INTEGRATED_REPEATABILITY"},
+    {"id":"stage-removed","expected_error":"IS_INTEGRATED_COMPOSITION"},
+    {"id":"stage-reordered","expected_error":"IS_INTEGRATED_COMPOSITION"},
+    {"id":"arbitrary-arguments-enabled","expected_error":"IS_INTEGRATED_AUTHORITY"},
+    {"id":"receipt-unbound-promoted","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"receipt-corruption-promoted","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"receipt-invalid-collapsed","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"completed-fail-collapsed-to-failed","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"cancelled-run-gains-verdict","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"failed-run-gains-verdict","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"stale-run-gains-verdict","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"superseded-case-removed","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"ambiguous-recovery-promoted","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"conflicting-recovery-promoted","expected_error":"IS_INTEGRATED_STATE"},
+    {"id":"raw-archive-forced-stable","expected_error":"IS_INTEGRATED_REPEATABILITY"},
+    {"id":"normalized-toc-not-stable","expected_error":"IS_INTEGRATED_REPEATABILITY"},
+    {"id":"restored-state-not-stable","expected_error":"IS_INTEGRATED_REPEATABILITY"},
+    {"id":"protected-volume-change-allowed","expected_error":"IS_INTEGRATED_CUSTODY"},
+    {"id":"interstage-teardown-disabled","expected_error":"IS_INTEGRATED_CUSTODY"},
+    {"id":"matrix-digest-tampered","expected_error":"IS_INTEGRATED_IDENTITY"}
+  ]
+}

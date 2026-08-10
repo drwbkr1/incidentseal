@@ -5,7 +5,7 @@
 | Packaged host CLI | Checkout CLI verified; package not built | Fresh install plus retained real JSON/JSONL schema and exit-code receipts |
 | Manifest authority | Digest and operator boundary verified; no manifest approved | Approved digest, mutation rejection, agent-safe approval denial |
 | Compose topology | Local and public-clone runtime verified; images not redistributed | Canonical rendered config, exact image digests, live identity and health |
-| PostgreSQL | Migration, persistence, least privilege, journal, and backup/restore contract verified locally; dump/restore runtime pending | Real custom archive, exact clean restore, measured roles, equivalence, negative privileges, restart, and custody receipts |
+| PostgreSQL | Migration, persistence, least privilege, journal, and fixed logical backup/clean restore verified from exact public custody | Integrated repeated recovery plus later packaged and downloaded-release verification |
 | Python runner | Synthetic real runner verified | Real isolated execution and output receipt |
 | Node runner | Synthetic real runner verified | Real isolated execution and output receipt |
 | Dashboard | Not implemented | Rendered visual QA, evidence fidelity, loopback-only exposure |
