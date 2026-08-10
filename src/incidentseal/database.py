@@ -253,7 +253,7 @@ def database_probe() -> dict[str, Any]:
             _check(
                 checks,
                 "migration-record",
-                migration_record == {"row_count": 1, "migration_id": "001-schema-v2"},
+                migration_record == {"row_count": 2, "migration_id": "002-event-journal-v1"},
                 migration_record,
             )
 

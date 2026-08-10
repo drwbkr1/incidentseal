@@ -148,10 +148,10 @@
       "status": "in_progress",
       "inputs": ["Verified receipt store and offline verifier", "Run-event v1 schema"],
       "outputs": ["Durable event journal", "Idempotency and duplicate policy", "Stale and superseded evidence"],
-      "gates": {"journal_contract_lock":"pass","canonical_vectors":"pass_3_cases_7_records","exact_replay":"pass_3_of_3","full_draft_2020_12":"pass_3_schemas_3_fixtures","contract_mutations":"pass_16_of_16","durable_transactional_store":"pending","run_events_cli":"pending","real_postgresql_replay":"pending","clean_public_replay":"pending"},
+      "gates": {"journal_contract_lock":"pass","canonical_vectors":"pass_3_cases_7_records","exact_replay":"pass_3_of_3","full_draft_2020_12":"pass_3_schemas_3_fixtures","contract_mutations":"pass_16_of_16","durable_transactional_store":"pass_candidate","run_events_cli":"pass_completed_0_stale_22_superseded_23","implementation_mutations":"pass_8_of_8","regression_tests":"pass_62","real_postgresql_replay":"pass_candidate","protected_volume_identity":"unchanged","disposable_teardown":"pass","clean_public_replay":"pending"},
       "disposition": null,
-      "retained_failures": [],
-      "exit_condition_delta": {"expected":["EXIT-IDEMPOTENT-EVENTS"],"observed":[],"decision_value":"unknown","rationale":"Duplicate and superseding attempts must be observable without rewriting the earlier event chain."},
+      "retained_failures": ["The resume inspection retained an invalid PowerShell Git-tree wrapper and an IS_USAGE policy-status call before corrected read-only observations passed.","The first implementation mutation harness incorrectly accepted a broadened SECURITY DEFINER search path; the tightened validator then rejected all eight mutations.","The first real PostgreSQL probe reused an occupied sequence for authority drift and correctly returned IS_JOURNAL_CONFLICT before the intended authority gate; corrected isolated custody passes."],
+      "exit_condition_delta": {"expected":["EXIT-IDEMPOTENT-EVENTS"],"observed":[],"decision_value":"enables_dependency","rationale":"The canonical candidate proves atomic immutable PostgreSQL append, exact replay, conflicts, stale/superseded JSONL, restart persistence, least privilege, protected-volume identity, and teardown; exact credential-free public replay remains before the exit passes."},
       "next_dependency": "IS4-U04"
     },
     {
@@ -242,8 +242,8 @@
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U03 journal contract passes 3 cases, 7 records, exact replay, and 16 mutations; workflow approval remains MISSING and execution remains unavailable",
-    "next_action": "Implement the locked IS4-U03 journal as an atomic durable store with unique event, idempotency, and run-sequence constraints plus read-only ordered streaming, then validate it in disposable PostgreSQL custody.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; the IS4-U03 durable journal candidate passes atomic immutable PostgreSQL append, exact replay/conflicts, completed/stale/superseded JSONL, restart persistence, and disposable custody; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Commit and push the exact IS4-U03 candidate, then replay static, mutation, JSONL, PostgreSQL, custody, Git-integrity, and secret-scan gates from credential-free public custody.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

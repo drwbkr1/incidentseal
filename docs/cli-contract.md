@@ -22,6 +22,7 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 | `topology.python-probe` | `incidentseal topology python-probe --mode platform-validation --json` | Execute the shipped Python application command and evaluate exact staged input, result receipt, PostgreSQL row, malformed-input rejection, runtime isolation, repeatability, and teardown. |
 | `topology.node-probe` | `incidentseal topology node-probe --mode platform-validation --json` | Execute the shipped Node application command and evaluate exact staged input, result receipt, PostgreSQL row, Python-row consistency, malformed-input rejection, runtime isolation, repeatability, and teardown. |
 | `topology.reliability-probe` | `incidentseal topology reliability-probe --mode platform-validation --json` | Exercise a protected disposable topology through fresh start, real runners, distinct failure/cancellation states, recovery, restart, orphan detection, and teardown. |
+| `topology.journal-probe` | `incidentseal topology journal-probe --mode platform-validation --json` | Exercise fixed synthetic append, exact replay/conflict rejection, real ordered JSONL streaming, restart persistence, immutability, protected-volume identity, and disposable teardown. |
 | `receipt.materialize` | `incidentseal receipt materialize --receipt PATH --source-root PATH --output-root PATH --json` | Validate exact source receipt/artifact bytes and atomically create or idempotently reuse a content-addressed portable bundle outside repository and OneDrive custody. |
 | `receipt.verify` | `incidentseal receipt verify --receipt PATH --bundle-root PATH [--expected-digest SHA256] --json` | Read-only offline verification; exact identity may pass, unbound identity is inconclusive, corruption fails, and unsafe custody is invalid. |
 | `verify` | `incidentseal verify --manifest PATH --json` | Execute only after approval status is `MATCH`. |
@@ -36,6 +37,8 @@ The v1 Codex integration surface is the local `incidentseal` executable plus rep
 `topology.node-probe` has the same product-failure semantics and additionally binds the Node result to the retained Python row through the shared canonical input digest. A PASS proves only the exact Node and bounded cross-runner surface; it does not approve or run a workflow or verify cancellation, recovery, dashboard, clean-clone, redistribution, or release claims.
 
 `topology.reliability-probe` operates only on the exact disposable project named by the retained-volume lock. It may delete only that non-sensitive disposable volume after verified teardown. Its machine output keeps verification `FAIL` and `INVALID` separate from lifecycle `failed` and `cancelled`. A canonical-checkout PASS does not prove the clean-clone gate.
+
+`topology.journal-probe` uses the same fixed disposable custody and no repository workflow input. Its records are the frozen platform-validation vectors, not evidence of workflow approval or execution. It must compare protected volume identities before and after and remove the disposable volume. The agent-facing CLI exposes no append command.
 
 The separate operator surface is `incidentseal operator approve-manifest --manifest PATH`. It is deliberately interactive and is not part of the agent-safe machine path.
 
@@ -58,6 +61,8 @@ For `--jsonl`:
 - already retained events are not rewritten;
 - stderr remains outside the event stream; and
 - cancellation, execution failure, staleness, and supersession remain lifecycle values rather than verification verdicts.
+
+`run events` streams the exact canonical event bytes retained by PostgreSQL. Its final event determines the stable lifecycle or verdict exit code. An empty matching run is `INCONCLUSIVE` at `11`; unavailable active journal custody is an evidence-read error at `74`. No JSON envelope is inserted into the event stream.
 
 All machine timestamps are second-precision UTC in `YYYY-MM-DDTHH:MM:SSZ`. All content digests use lowercase `sha256:` form. UUIDs are lowercase RFC 4122 version 4 strings in v1 fixtures and envelopes.
 

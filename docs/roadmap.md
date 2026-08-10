@@ -42,7 +42,7 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 Status: active
 
-Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed the atomic writer and independent verifier. `IS4-U03` is active: its locked journal contract passes three stable completed/stale/superseded chains, seven records, exact replay, three full Draft 2020-12 schemas/fixtures, and all 16 conflict/state mutations. Durable transactional persistence and real ordered streaming remain.
+Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed the atomic writer and independent verifier. `IS4-U03` is active: its canonical candidate adds immutable transactional PostgreSQL history and real read-only ordered JSONL, passes 62 tests plus 8 journal, 15 topology, and 12 receipt mutations, and preserves all three protected volume identities through disposable restart and teardown. Credential-free public replay remains before U03 closes.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.

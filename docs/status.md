@@ -49,11 +49,15 @@ Exact public commit `3cdbf132225cf48e85a8413574c7e8e1d060aca0`, tree `c62c5cc29f
 
 `IS4-U03` is in progress. Contract `INCIDENTSEAL-EVENT-JOURNAL-001` freezes an immutable journal record around the existing run-event schema. Event, predecessor-link, and domain-separated idempotency identities use RFC 8785 and SHA-256. Exact record replay is a no-op; changed bytes under an idempotency key, event ID, or run sequence are conflicts. Sequences and authority are contiguous and constant. Completed, stale, and superseded vectors retain seven exact records under three stable roots without collapsing lifecycle and verdict.
 
-The dependency-free contract validator passed three cases and three exact replays. All sixteen semantic mutations returned their expected distinct error, and the existing exact six-wheel evaluator passed three Draft 2020-12 schemas and three fixtures in removed temporary custody. No Docker runtime, PostgreSQL, approval, or workflow was accessed. U03 remains open for transactional persistence, ordered `run events` streaming, disposable real-PostgreSQL replay, and clean-public verification.
+The dependency-free contract validator passed three cases and three exact replays. All sixteen semantic mutations returned their expected distinct error, and the existing exact six-wheel evaluator passed three Draft 2020-12 schemas and three fixtures in removed temporary custody. That contract-freeze stage accessed no Docker runtime, PostgreSQL, approval, or workflow; it now governs the implementation candidate below.
+
+The canonical U03 implementation candidate now passes. PostgreSQL stores immutable canonical record and event bytes behind a per-run transaction lock, exact replay, unique idempotency/event/sequence constraints, fixed-search-path `SECURITY DEFINER` append, and update/delete/truncate denial. The runner receives no journal privilege and the agent-facing CLI exposes only read-only `run events --run-id ID --jsonl`.
+
+The real fixed disposable probe inserted seven frozen records, replayed three without new rows, rejected idempotency, event-ID, run-sequence, terminal, and authority conflicts, denied runner reads and all row mutation, then reproduced byte-identical completed, stale, and superseded streams at exits `0`, `22`, and `23` after restart. All 14 probe checks passed, the disposable volume was removed, and the three protected volume identities remained exact. Sixty-two tests, 8 journal implementation mutations, 15 topology mutations, and 12 receipt mutations pass. The first search-path mutation validator and first authority-drift probe remain `INVALID`; U03 still needs committed credential-free public replay before closure.
 
 ## Known limitations
 
-- The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, and bounded platform-validation probes; approved-workflow verification and its run-event stream remain unimplemented.
+- The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
 - The database, both real language surfaces, bounded topology reliability, exact public closure commit, and annotated checkpoint marker pass. Evidence/recovery, dashboard, packaging, and release gates remain pending in later milestones.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
@@ -64,4 +68,4 @@ The dependency-free contract validator passed three cases and three exact replay
 
 ## Next eligible action
 
-Continue `IS4-U03`: implement the locked append-only journal transaction and read-only ordered event stream, then validate exact replay and conflicts in disposable PostgreSQL custody without touching protected volumes.
+Continue `IS4-U03`: commit and push the exact durable journal candidate, then replay static, mutation, real JSONL/PostgreSQL, custody, Git-integrity, and secret-scan gates from credential-free public custody.

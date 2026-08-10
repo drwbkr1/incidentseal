@@ -232,6 +232,14 @@ This closes `EXIT-PORTABLE-RECEIPTS` and `EXIT-INDEPENDENT-VERIFIER`. It does no
 
 The host allocates event ID and timestamp once and retries the exact same record. Exact replay returns `replayed` without increasing count or changing root. Different bytes under an idempotency key, event ID, or run sequence fail as a conflict. Sequences begin with queued at genesis, remain contiguous, keep one authority digest, follow explicit lifecycle transitions, and cannot append after a terminal event. Stale and superseded outcomes are terminal events on the original run and never rewrite it.
 
+## 2026-08-10 - Durable journal candidate passes real PostgreSQL
+
+The host-only implementation now stores exact canonical record and event bytes in PostgreSQL. A fixed-search-path security-definer function serializes each run, accepts only exact replay as a no-op, and rejects conflicting idempotency keys, event IDs, run sequences, terminal appends, and authority drift. Update, delete, and truncate triggers keep retained rows immutable. The application runner has no journal-table access, and there is no agent-facing append command.
+
+The first implementation mutation run was `INVALID`: broadening the append function search path slipped past a validator that found the safe text on a different function. The corrected validator binds the append declaration itself and all eight implementation mutations now fail closed. The first real probe was also `INVALID` because its authority test reused an occupied sequence and correctly reached the conflict gate first. A distinct two-event test run corrected the evaluator without weakening either gate.
+
+The corrected fixed disposable probe passed 14 checks. It inserted all seven frozen completed/stale/superseded records, replayed three without new rows, exercised the real canonical JSONL CLI at exits 0, 22, and 23, denied table mutation and runner reads, and reproduced the completed stream after PostgreSQL restart. Cleanup removed every disposable resource and the exact identities of all three protected volumes remained unchanged. No approval was read or written and no workflow ran. The candidate is ready for commit and credential-free public replay; U03 is not yet closed.
+
 Three vectors retain seven records for completed `PASS`, stale authority, and superseded attempt histories under stable roots. Three exact replays were no-ops. All sixteen bounded mutations returned the expected schema, identity, link, sequence, conflict, state, terminal, or authority error. The dependency-free contract validator passed, and the existing six exact source-gated evaluation wheels validated three Draft 2020-12 schemas and three fixtures from removed temporary custody. No runtime or workflow executed.
 
 U03 remains active. The next bounded improvement is the transactional durable store and read-only ordered stream in a disposable PostgreSQL project; protected volumes remain out of scope.

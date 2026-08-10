@@ -1,0 +1,29 @@
+{
+  "schema_version": "incidentseal-cycle-inspection-attempt/v1",
+  "evaluation_id": "IS-EVAL-0004-U03-RESUME-INSPECTION-INVALID",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-10T00:06:36Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "attempts": [
+    {
+      "id": "git-tree-powershell-brace-parsing",
+      "error": "The unquoted HEAD^{tree} revision was altered by PowerShell parsing and did not produce a valid tree identity.",
+      "state_changed": false,
+      "corrected_observation": "6e92f0d8248935a9a2a108305fdcaa5a4ead3ded"
+    },
+    {
+      "id": "policy-status-missing-manifest",
+      "error": "The first read-only policy status invocation omitted the required manifest and returned IS_USAGE at exit 64.",
+      "state_changed": false,
+      "corrected_observation": "MISSING/INVALID at envelope exit 12 for fixtures/contracts/workflow.valid.minimal.json"
+    }
+  ],
+  "custody": {
+    "workflow_executed": false,
+    "approval_written": false,
+    "docker_state_changed": false,
+    "onedrive_accessed": false
+  }
+}

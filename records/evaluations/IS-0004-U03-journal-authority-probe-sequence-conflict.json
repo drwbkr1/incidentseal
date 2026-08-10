@@ -1,0 +1,26 @@
+{
+  "schema_version": "incidentseal-event-journal-runtime-attempt/v1",
+  "evaluation_id": "IS-EVAL-0004-U03-JOURNAL-AUTHORITY-SEQUENCE-CONFLICT",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-10T00:29:33Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "invocation_id": "30a2f8ac-f008-4cda-b108-7e6b35f2ec63",
+  "stage": "real-disposable-postgresql-probe",
+  "error": {
+    "code": "IS_JOURNAL_PROBE",
+    "message": "The authority-drift test expected IS_JOURNAL_AUTHORITY but reused an occupied run sequence, so PostgreSQL correctly rejected the earlier conflict gate."
+  },
+  "observed": {
+    "expected_error": "IS_JOURNAL_AUTHORITY",
+    "actual_error": "IS_JOURNAL_CONFLICT",
+    "product_defect": false,
+    "evaluator_defect": true,
+    "workflow_executed": false,
+    "approval_accessed": false,
+    "disposable_resources_removed": true,
+    "protected_volumes_present_after": 3
+  },
+  "remediation": "Allocate a distinct two-event nonterminal synthetic run before testing authority drift."
+}

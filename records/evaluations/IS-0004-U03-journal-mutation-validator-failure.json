@@ -1,0 +1,26 @@
+{
+  "schema_version": "incidentseal-event-journal-implementation-attempt/v1",
+  "evaluation_id": "IS-EVAL-0004-U03-JOURNAL-MUTATION-VALIDATOR-FAILURE",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-10T00:20:00Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "stage": "implementation-mutation-validation",
+  "error": {
+    "code": "IS_JOURNAL_IMPLEMENTATION_VALIDATOR_FALSE_NEGATIVE",
+    "message": "The first mutation harness accepted a broadened SECURITY DEFINER search path because a separate trigger function still contained the expected safe fragment."
+  },
+  "retained_observation": {
+    "mutation_id": "security-definer-search-path-broadened",
+    "incorrect_baseline_verdict": "PASS",
+    "runtime_started": false,
+    "database_accessed": false,
+    "container_history_changed": false
+  },
+  "remediation": {
+    "status": "completed",
+    "change": "Require exactly two fixed search-path clauses and bind the append function's adjacent LANGUAGE, SECURITY DEFINER, and search-path declaration.",
+    "corrected_result": "PASS_8_OF_8"
+  }
+}

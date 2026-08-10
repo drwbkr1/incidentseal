@@ -124,6 +124,10 @@ def copy_root(destination: Path) -> None:
     shutil.copy2(ROOT / "contracts" / "topology-v1.json", destination / "contracts" / "topology-v1.json")
     shutil.copy2(ROOT / "requirements" / "images.lock.json", destination / "requirements" / "images.lock.json")
     shutil.copy2(
+        ROOT / "requirements" / "event-journal-implementation.lock.json",
+        destination / "requirements" / "event-journal-implementation.lock.json",
+    )
+    shutil.copy2(
         ROOT / "requirements" / "retained-runtime-volumes.lock.json",
         destination / "requirements" / "retained-runtime-volumes.lock.json",
     )

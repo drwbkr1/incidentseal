@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Implement the locked IS4-U03 journal as an atomic durable store with exact replay and read-only ordered streaming in disposable PostgreSQL custody"
+    "next_action": "Commit and push the exact IS4-U03 durable journal candidate, then replay its real PostgreSQL and JSONL evidence from credential-free public custody"
   }
 }

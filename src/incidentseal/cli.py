@@ -40,6 +40,7 @@ COMMANDS = {
     ("topology", "python-probe"): "topology.python-probe",
     ("topology", "node-probe"): "topology.node-probe",
     ("topology", "reliability-probe"): "topology.reliability-probe",
+    ("topology", "journal-probe"): "topology.journal-probe",
     ("receipt", "materialize"): "receipt.materialize",
     ("receipt", "verify"): "receipt.verify",
 }
@@ -309,6 +310,19 @@ def _success(request: Request) -> dict[str, Any]:
             verdict=verdict,
             data=data,
         )
+    if request.command == "topology.journal-probe":
+        from .journal_surface import journal_probe
+
+        data = journal_probe()
+        verdict = data["verdict"]
+        exit_code = EXIT_SUCCESS if verdict == "PASS" else EXIT_FAIL
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=exit_code,
+            verdict=verdict,
+            data=data,
+        )
     assert request.manifest is not None
     document = load_manifest(request.manifest)
     common = {
@@ -422,6 +436,10 @@ def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
 
 def main(argv: Sequence[str] | None = None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
+    if tuple(arguments[:2]) == ("run", "events"):
+        from .journal_surface import run_events_cli
+
+        return run_events_cli(arguments[2:])
     if tuple(arguments[:2]) == ("operator", "approve-manifest") and "--json" not in arguments:
         from .operator import main as operator_main
 

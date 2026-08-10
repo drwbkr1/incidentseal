@@ -1,0 +1,60 @@
+{
+  "schema_version": "incidentseal-event-journal-implementation-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U03-JOURNAL-IMPLEMENTATION-CANDIDATE",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-10T00:39:25Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "invocation_id": "08f885c7-95b5-416d-bec8-4bad6f47b0c7",
+  "prior_pass_invocation_id": "161dc18a-ea41-47b8-a9e6-1e627150dddf",
+  "locks": {
+    "journal_implementation": "sha256:09054cf62489809d5d328b5f8fbd99b5c47e033129b5040c4cf67d4ab5cd081e",
+    "topology_implementation": "sha256:27e3cc83398f4ffc1346f7e7ca4ce3c588db13aea24012eb0cb642b1aef39bb5",
+    "topology_runtime": "sha256:b071657c08cec5789e75880342969e40bcc04e24d9cf50de3579258050b3d8d4",
+    "receipt_implementation": "sha256:bb98246301ac15a7309e5fb8d5ca6aea3d465ff04bc2c85dcd80267b4833dde9"
+  },
+  "runtime": {
+    "database_image_id": "sha256:da7f3a6b1f8ab31e9ad0180f0166914e1c2503c1b2892b1d6991c832033e3cbb",
+    "migration_image_id": "sha256:eca3b5ea4bf5b8739133f856ee8adf5f084c732c15d9a12e6860aed20493524d",
+    "migration_build_policy": {"network":"none","pull":false,"no_cache":true},
+    "project": "incidentseal-57ca5f96d527da1b-reliability",
+    "runtime_started": true,
+    "workflow_executed": false,
+    "approval_accessed": false
+  },
+  "checks": {
+    "unit_tests": "PASS_62",
+    "journal_implementation_mutations": "PASS_8_OF_8",
+    "topology_implementation_mutations": "PASS_15_OF_15",
+    "receipt_implementation_mutations": "PASS_12_OF_12",
+    "inserted_frozen_records": 7,
+    "exact_no_op_replays": 3,
+    "idempotency_conflict": "PASS",
+    "event_id_conflict": "PASS",
+    "run_sequence_conflict": "PASS",
+    "terminal_append_rejection": "PASS",
+    "authority_drift_rejection": "PASS",
+    "update_delete_truncate_denied": "PASS",
+    "runner_table_read_denied": "PASS",
+    "restart_persistence": "PASS",
+    "protected_volume_identity": "UNCHANGED",
+    "disposable_teardown": "PASS"
+  },
+  "jsonl_streams": {
+    "completed": {"exit_code":0,"lines":3,"digest":"sha256:36f275d65f2d13b94416256d44adbdf9f5ad6eea0a583c40daef7491f3209602"},
+    "stale": {"exit_code":22,"lines":2,"digest":"sha256:cce24ea6de3f66029d259bab9f70e117c1d3d0542feb7dc0c28244108f14f7a7"},
+    "superseded": {"exit_code":23,"lines":2,"digest":"sha256:54e682f6a1dba03da3c7400921dd259334bc4deef4b13133dff7dc79db9827ab"}
+  },
+  "protected_volume_identity": {
+    "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
+    "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
+    "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
+  },
+  "limitations": [
+    "This is canonical-checkout candidate evidence; credential-free public clean-copy replay is still pending.",
+    "The append function is internal host-control-plane authority and no agent-facing append command exists.",
+    "No approved workflow was executed."
+  ],
+  "decision": {"status":"continue","next":"Commit and push the exact candidate, then replay static, mutation, JSONL, PostgreSQL, custody, Git, and secret-scan gates from credential-free public custody."}
+}
