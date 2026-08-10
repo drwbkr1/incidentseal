@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U04` recovery contract frozen and publicly replayed; host implementation in progress
+- State: active; `IS4-U04` local host-recovery implementation passes; credential-free public implementation replay pending
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -10,7 +10,7 @@
 - Latest verified checkpoint commit: `a0c05070dd1d147aecae6b4ed686440414a3aa27`
 - Verified checkpoint marker: `checkpoint-is-0003` tag object `28eea260147265e7dd0328dcd072e134586a2ff0` -> `a0c05070dd1d147aecae6b4ed686440414a3aa27`
 - Approved workflow manifest digest: not established
-- Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded topology reliability, portable receipts, offline verification, and durable journal streaming are verified
+- Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded topology reliability, portable receipts, offline verification, durable journal streaming, and fixed synthetic local recovery are verified
 - Release state: unreleased
 
 ## Current truth
@@ -63,10 +63,14 @@ Only an expired lease and exactly owned runtime can authorize `stop_owned_and_wa
 
 Exact credential-free public commit `5fa894cb57c8c69fab85946827be241f522acb87`, tree `0958adae2ea4d2019653058358f4ac806ea2f155`, reproduced 68 tests, all 16 prior static validator and mutation suites, 12 recovery cases, 20 recovery mutations, and full Draft 2020-12 validation of 2 schemas and 26 fixtures. Strict Git integrity and four high-confidence secret patterns passed. Approval remained `MISSING` / `INVALID` at exit `12`; no approval store appeared, no workflow ran, no runtime started, and the three protected volume identities remained exact. Nine attempts remain `INVALID`, including a policy-denied cleanup command and a no-execution closure parser error; the clean noncanonical public clone remains in local temporary custody outside OneDrive and runtime custody. This closes only the contract replay gate—no real recovery behavior is claimed yet.
 
+The local host-only implementation candidate adds a separate PostgreSQL recovery fence without granting the runner read or mutation access. Recovery decisions and exact journal records are durably staged outside the repository before mutation. A runtime stop requires the exact workflow token, active recovery token, container ID, name, locked image, numeric user, contract and run labels, read-only root, `network=none`, all capabilities dropped, `no-new-privileges`, and no mounts. Every stop is followed by a new observation before replay or terminalization. The agent-facing CLI exposes only the fixed argument-free `topology recovery-probe --mode platform-validation --json`; it has no arbitrary recover or append command.
+
+Passing invocation `e65374af-535f-47df-b8f2-40b5b9459885` completed 15 real checks in the locked disposable project. Active and unowned runtimes deferred without mutation; an exactly owned orphan was fenced, stopped, reobserved, and replayed once; cancellation, nonzero failure, authority drift, conflicting effects, and ambiguous effects retained distinct exits; crash-after-evidence resumed under a new holder after expiry; a concurrent holder was rejected; runner recovery-state reads were denied; lifecycle streams survived PostgreSQL restart; and no non-completed row gained a verification verdict. Teardown removed every disposable container, network, volume, and temporary state path while the three protected volume identities stayed exact. Seventy-four tests and all 17 implementation mutations pass. Fourteen implementation-cycle attempts remain `INVALID`, including the first real probe's fail-closed mismatch against Docker's canonical `SecurityOpt` value and one no-execution final-gate parser error. Exact credential-free public implementation replay is still required.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, and durable journal pass. Interruption recovery, backup/restore, dashboard, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, and local fixed synthetic recovery pass. Public recovery replay, backup/restore, dashboard, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -76,4 +80,4 @@ Exact credential-free public commit `5fa894cb57c8c69fab85946827be241f522acb87`, 
 
 ## Next eligible action
 
-Implement the host-only `IS4-U04` fenced recovery surface against the exact frozen contract, then exercise it only in fixed disposable custody with protected-volume identity, journal, restart, and credential-free public replay gates.
+Commit and push the exact passing `IS4-U04` recovery candidate, then reproduce its static and real Docker/PostgreSQL recovery matrix from credential-free public custody before passing `EXIT-INTERRUPTION-RECOVERY`.

@@ -136,8 +136,8 @@ def main() -> int:
             shutil.copytree(base, case)
             path = case / mutation.path
             value = path.read_text(encoding="utf-8")
-            if value.count(mutation.old) != 1:
-                raise RuntimeError(f"mutation anchor count differs: {mutation.id}")
+            if mutation.old not in value:
+                raise RuntimeError(f"mutation anchor is absent: {mutation.id}")
             path.write_text(value.replace(mutation.old, mutation.new, 1), encoding="utf-8", newline="\n")
             if mutation.refresh_lock:
                 refresh_lock(case, mutation.path)

@@ -58,6 +58,10 @@ def main() -> int:
         "REVOKE ALL ON FUNCTION public.incidentseal_append_event(bytea, bytea) FROM PUBLIC",
     ):
         require(fragment in sql, f"required SQL journal boundary is absent: {fragment}")
+    require(
+        sql.count("PERFORM pg_catalog.pg_advisory_xact_lock(pg_catalog.hashtextextended(v_run_id::text, 0));") == 1,
+        "journal per-run advisory-lock count differs",
+    )
     for forbidden in (
         "GRANT UPDATE ON TABLE incidentseal_run_events",
         "GRANT DELETE ON TABLE incidentseal_run_events",
@@ -65,9 +69,12 @@ def main() -> int:
         "GRANT EXECUTE ON FUNCTION public.incidentseal_append_event",
     ):
         require(forbidden not in sql, f"forbidden SQL journal authority is present: {forbidden}")
-    require(sql.count("SET search_path = pg_catalog, public") == 2, "journal function search-path count differs")
+    append_start = sql.index("CREATE OR REPLACE FUNCTION public.incidentseal_append_event")
+    append_end = sql.index("CREATE OR REPLACE FUNCTION public.incidentseal_acquire_recovery_fence", append_start)
+    append_sql = sql[append_start:append_end]
+    require(sql.count("SET search_path = pg_catalog, public") == 4, "journal and recovery function search-path count differs")
     require(
-        "LANGUAGE plpgsql\nSECURITY DEFINER\nSET search_path = pg_catalog, public\nAS $incidentseal$" in sql,
+        append_sql.count("LANGUAGE plpgsql\nSECURITY DEFINER\nSET search_path = pg_catalog, public\nAS $incidentseal$") == 1,
         "append function does not bind its SECURITY DEFINER search path",
     )
     for fragment in (

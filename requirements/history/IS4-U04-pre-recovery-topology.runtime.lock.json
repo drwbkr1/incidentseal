@@ -1,12 +1,12 @@
 {
   "schema_version": "incidentseal-topology-runtime-lock/v1",
-  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0012",
+  "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0011",
   "checkpoint_id": "IS-0004",
-  "unit_id": "IS4-U04",
-  "generated_at_utc": "2026-08-10T02:09:52Z",
-  "supersedes": "requirements/history/IS4-U04-pre-recovery-topology.runtime.lock.json",
+  "unit_id": "IS4-U03",
+  "generated_at_utc": "2026-08-10T00:48:40Z",
+  "supersedes": "requirements/history/IS4-U03-pre-journal-topology.runtime.lock.json",
   "platform": "linux/amd64",
-  "claim_scope": "recovery-candidate-images-plus-verified-historical-topology-custody",
+  "claim_scope": "verified-journal-plus-historical-topology-custody",
   "publication_status": "not-authorized-redistribution-inconclusive",
   "contract": {
     "path": "contracts/topology-v1.json",
@@ -19,7 +19,7 @@
   },
   "implementation_lock": {
     "path": "requirements/topology-implementation.lock.json",
-    "sha256": "sha256:b58849d35575fc24138f46d349bfb696beb2fd161ec31514f90786a8920af313"
+    "sha256": "sha256:27e3cc83398f4ffc1346f7e7ca4ce3c588db13aea24012eb0cb642b1aef39bb5"
   },
   "build_policy": {
     "network": "none",
@@ -40,11 +40,11 @@
     {
       "role": "migration",
       "tag": "incidentseal-local/migration:57ca5f96d527da1b",
-      "image_id": "sha256:4185699c4010b6f7f5e16d1831ceeca11919abdd9630f762f1246b277e7a174b",
+      "image_id": "sha256:eca3b5ea4bf5b8739133f856ee8adf5f084c732c15d9a12e6860aed20493524d",
       "base_role": "postgresql",
       "base_image_id": "sha256:64c33dd94e09026bb01639329e46f2944dc1f794b04d3d2191f268ba7352fab9",
       "user": "70:70",
-      "build_log_digest": "sha256:9970bd7bfd6b9c0ba49c59a69e156f53ce0bbc3fca7110f754ee317cc458500c"
+      "build_log_digest": "sha256:8f0c3773388f3d0d25b8c97bd5ca78ab1f2404bbc87a3efef66605976f5624c7"
     },
     {
       "role": "python-runner",
@@ -68,30 +68,12 @@
   "runtime": {
     "project_name": "incidentseal-57ca5f96d527da1b",
     "manifest_digest": "not-used",
-    "protected_volume_history": "requirements/history/IS4-U04-pre-recovery-topology.runtime.lock.json",
+    "protected_volume_history": "requirements/history/IS4-U03-pre-journal-topology.runtime.lock.json",
     "database_probe_state": "stale-after-migration-image-change",
     "python_probe_state": "stale-after-migration-image-change",
     "node_probe_state": "stale-after-migration-image-change",
     "reliability_probe_state": "stale-after-migration-image-change",
-    "journal_probe_state": "stale-after-recovery-migration-change",
-    "recovery_probe_state": "pass",
-    "recovery_probe_invocation_id": "e65374af-535f-47df-b8f2-40b5b9459885",
-    "recovery_probe_prior_invalid_invocation_id": "c31a006d-878f-40e5-8c48-302c54c47ff3",
-    "recovery_implementation_lock_digest": "sha256:e6b1f0d28b3ac3d501237b692eed83b2de396851d1c3d7a65cee3aae7d778c85",
-    "recovery_probe_check_count": 15,
-    "recovery_probe_archived_decisions": 9,
-    "recovery_probe_protected_volume_identity": {
-      "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
-      "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
-      "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
-    },
-    "recovery_probe_containers_removed": true,
-    "recovery_probe_network_removed": true,
-    "recovery_probe_disposable_volume_removed": true,
-    "recovery_probe_state_custody_removed": true,
-    "recovery_migration_prior_image_id": "sha256:eca3b5ea4bf5b8739133f856ee8adf5f084c732c15d9a12e6860aed20493524d",
-    "recovery_migration_prior_image_tag": "incidentseal-history/migration:pre-is4-u04-eca3b5ea4bf5",
-    "recovery_migration_candidate_image_id": "sha256:4185699c4010b6f7f5e16d1831ceeca11919abdd9630f762f1246b277e7a174b",
+    "journal_probe_state": "pass",
     "journal_probe_invocation_id": "08f885c7-95b5-416d-bec8-4bad6f47b0c7",
     "journal_probe_prior_pass_invocation_id": "161dc18a-ea41-47b8-a9e6-1e627150dddf",
     "journal_probe_prior_invalid_invocation_id": "30a2f8ac-f008-4cda-b108-7e6b35f2ec63",

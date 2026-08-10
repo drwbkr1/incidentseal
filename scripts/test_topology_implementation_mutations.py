@@ -128,6 +128,10 @@ def copy_root(destination: Path) -> None:
         destination / "requirements" / "event-journal-implementation.lock.json",
     )
     shutil.copy2(
+        ROOT / "requirements" / "recovery-implementation.lock.json",
+        destination / "requirements" / "recovery-implementation.lock.json",
+    )
+    shutil.copy2(
         ROOT / "requirements" / "retained-runtime-volumes.lock.json",
         destination / "requirements" / "retained-runtime-volumes.lock.json",
     )

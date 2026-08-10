@@ -60,6 +60,17 @@ CREATE TABLE IF NOT EXISTS incidentseal_run_events (
     CHECK ((lifecycle = 'completed' AND verdict IS NOT NULL) OR (lifecycle <> 'completed' AND verdict IS NULL))
 );
 
+CREATE TABLE IF NOT EXISTS incidentseal_recovery_fences (
+    run_id uuid PRIMARY KEY,
+    workflow_holder_id uuid NOT NULL,
+    workflow_fence_token bigint NOT NULL CHECK (workflow_fence_token BETWEEN 0 AND 9007199254740991),
+    workflow_expires_at timestamptz NOT NULL,
+    recovery_holder_id uuid,
+    recovery_fence_token bigint NOT NULL DEFAULT 0 CHECK (recovery_fence_token BETWEEN 0 AND 9007199254740991),
+    recovery_expires_at timestamptz,
+    CHECK ((recovery_holder_id IS NULL) = (recovery_expires_at IS NULL))
+);
+
 CREATE OR REPLACE FUNCTION public.incidentseal_deny_event_mutation()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -274,15 +285,108 @@ EXCEPTION WHEN unique_violation THEN
 END
 $incidentseal$;
 
+CREATE OR REPLACE FUNCTION public.incidentseal_acquire_recovery_fence(
+    p_run_id uuid,
+    p_workflow_fence_token bigint,
+    p_recovery_holder_id uuid,
+    p_recovery_expires_at timestamptz
+)
+RETURNS TABLE (
+    workflow_holder_id uuid,
+    workflow_fence_token bigint,
+    workflow_expires_at timestamptz,
+    recovery_holder_id uuid,
+    recovery_fence_token bigint,
+    recovery_expires_at timestamptz
+)
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public
+AS $incidentseal$
+DECLARE
+    v_fence public.incidentseal_recovery_fences%ROWTYPE;
+BEGIN
+    IF p_workflow_fence_token NOT BETWEEN 0 AND 9007199254740991
+       OR p_recovery_expires_at <= CURRENT_TIMESTAMP
+       OR p_recovery_expires_at > CURRENT_TIMESTAMP + interval '5 minutes' THEN
+        RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = 'IS_RECOVERY_FENCE: recovery fence request is invalid';
+    END IF;
+    PERFORM pg_catalog.pg_advisory_xact_lock(pg_catalog.hashtextextended(p_run_id::text, 1));
+    SELECT f.* INTO v_fence
+    FROM public.incidentseal_recovery_fences AS f
+    WHERE f.run_id = p_run_id
+    FOR UPDATE;
+    IF NOT FOUND THEN
+        RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = 'IS_RECOVERY_LEASE_UNAVAILABLE: workflow lease is missing';
+    END IF;
+    IF v_fence.workflow_fence_token <> p_workflow_fence_token THEN
+        RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = 'IS_RECOVERY_FENCE: workflow fence token changed';
+    END IF;
+    IF v_fence.workflow_expires_at > CURRENT_TIMESTAMP THEN
+        RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = 'IS_RECOVERY_ACTIVE_OWNER: workflow lease is active';
+    END IF;
+    IF v_fence.recovery_expires_at > CURRENT_TIMESTAMP THEN
+        IF v_fence.recovery_holder_id <> p_recovery_holder_id THEN
+            RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = 'IS_RECOVERY_ACTIVE_OWNER: another recovery holder is active';
+        END IF;
+    ELSE
+        UPDATE public.incidentseal_recovery_fences AS f
+        SET recovery_holder_id = p_recovery_holder_id,
+            recovery_fence_token = f.recovery_fence_token + 1,
+            recovery_expires_at = p_recovery_expires_at
+        WHERE f.run_id = p_run_id
+        RETURNING f.* INTO v_fence;
+    END IF;
+    RETURN QUERY SELECT
+        v_fence.workflow_holder_id,
+        v_fence.workflow_fence_token,
+        v_fence.workflow_expires_at,
+        v_fence.recovery_holder_id,
+        v_fence.recovery_fence_token,
+        v_fence.recovery_expires_at;
+END
+$incidentseal$;
+
+CREATE OR REPLACE FUNCTION public.incidentseal_release_recovery_fence(
+    p_run_id uuid,
+    p_recovery_holder_id uuid,
+    p_recovery_fence_token bigint
+)
+RETURNS boolean
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public
+AS $incidentseal$
+DECLARE
+    v_updated bigint;
+BEGIN
+    PERFORM pg_catalog.pg_advisory_xact_lock(pg_catalog.hashtextextended(p_run_id::text, 1));
+    UPDATE public.incidentseal_recovery_fences AS f
+    SET recovery_expires_at = CURRENT_TIMESTAMP
+    WHERE f.run_id = p_run_id
+      AND f.recovery_holder_id = p_recovery_holder_id
+      AND f.recovery_fence_token = p_recovery_fence_token
+      AND f.recovery_expires_at > CURRENT_TIMESTAMP;
+    GET DIAGNOSTICS v_updated = ROW_COUNT;
+    IF v_updated <> 1 THEN
+        RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = 'IS_RECOVERY_FENCE: recovery fence release did not match the active holder';
+    END IF;
+    RETURN true;
+END
+$incidentseal$;
+
 REVOKE ALL ON TABLE verification_results FROM PUBLIC;
 REVOKE ALL ON TABLE incidentseal_schema_migrations FROM PUBLIC;
 REVOKE ALL ON TABLE incidentseal_run_events FROM PUBLIC;
+REVOKE ALL ON TABLE incidentseal_recovery_fences FROM PUBLIC;
 REVOKE ALL ON FUNCTION public.incidentseal_append_event(bytea, bytea) FROM PUBLIC;
 REVOKE ALL ON FUNCTION public.incidentseal_deny_event_mutation() FROM PUBLIC;
+REVOKE ALL ON FUNCTION public.incidentseal_acquire_recovery_fence(uuid, bigint, uuid, timestamptz) FROM PUBLIC;
+REVOKE ALL ON FUNCTION public.incidentseal_release_recovery_fence(uuid, uuid, bigint) FROM PUBLIC;
 GRANT SELECT, INSERT, UPDATE ON TABLE verification_results TO incidentseal_runner;
 
 INSERT INTO incidentseal_schema_migrations (migration_id)
-VALUES ('001-schema-v2'), ('002-event-journal-v1')
+VALUES ('001-schema-v2'), ('002-event-journal-v1'), ('003-recovery-fence-v1')
 ON CONFLICT (migration_id) DO NOTHING;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA public REVOKE ALL ON TABLES FROM PUBLIC;

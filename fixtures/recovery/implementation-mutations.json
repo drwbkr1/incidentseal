@@ -1,0 +1,22 @@
+{
+  "schema_version": "incidentseal-recovery-implementation-mutations/v1",
+  "mutations": [
+    {"id":"sql-advisory-lock-removed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"sql-row-lock-weakened","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"sql-active-workflow-allowed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"sql-active-recoverer-allowed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"sql-fence-not-incremented","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"sql-runner-fence-read","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"repository-custody-allowed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"atomic-replace-removed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"pre-action-drift-inverted","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"runtime-network-ownership-removed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"runtime-no-new-privileges-removed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"runtime-mount-ownership-removed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"runtime-fence-label-removed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"active-recovery-fence-ignored","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"protected-volume-comparison-weakened","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"arbitrary-run-recover-exposed","expected_error":"IS_RECOVERY_IMPLEMENTATION"},
+    {"id":"implementation-lock-digest-tampered","expected_error":"IS_RECOVERY_IMPLEMENTATION"}
+  ]
+}

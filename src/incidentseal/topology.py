@@ -45,6 +45,7 @@ IMPLEMENTATION_FILES = (
     "fixtures/topology/runner-request.invalid.extra.json",
     "fixtures/topology/runner-request.recovery.json",
     "requirements/event-journal-implementation.lock.json",
+    "requirements/recovery-implementation.lock.json",
     "requirements/retained-runtime-volumes.lock.json",
     "src/incidentseal/cli.py",
     "src/incidentseal/database.py",
@@ -53,6 +54,9 @@ IMPLEMENTATION_FILES = (
     "src/incidentseal/node_surface.py",
     "src/incidentseal/python_surface.py",
     "src/incidentseal/reliability_surface.py",
+    "src/incidentseal/recovery.py",
+    "src/incidentseal/recovery_probe.py",
+    "src/incidentseal/recovery_surface.py",
     "src/incidentseal/runtime.py",
     "src/incidentseal/topology.py",
 )
