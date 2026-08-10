@@ -1,0 +1,79 @@
+{
+  "schema_version": "incidentseal-u04-public-recovery-implementation-replay/v1",
+  "receipt_id": "IS-RECEIPT-0004-U04-PUBLIC-RECOVERY-IMPLEMENTATION-REPLAY",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U04",
+  "observed_at_utc": "2026-08-10T02:54:30Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Credential-free public reproduction of the fixed synthetic host-only fenced recovery implementation and its exact static, Docker, PostgreSQL, journal, custody, integrity, and authority boundaries.",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "branch": "main",
+    "commit": "7c6278f6a906bd665279fd1bc9068dc4aac2776a",
+    "tree": "58a4b2bc766ba03ae2a289e55ab12233e884e6ec",
+    "clone_clean_before_and_after": true,
+    "credential_helpers_disabled": true,
+    "terminal_prompt_disabled": true,
+    "credential_free": true
+  },
+  "bindings": {
+    "recovery_contract_lock": {"path":"requirements/recovery-contract.lock.json","sha256":"sha256:82f91fecf137525c90f6bed3140178a155a4e30ab3274600ecc9a8d2308c75b0"},
+    "recovery_implementation_lock": {"path":"requirements/recovery-implementation.lock.json","sha256":"sha256:e6b1f0d28b3ac3d501237b692eed83b2de396851d1c3d7a65cee3aae7d778c85"},
+    "candidate_runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:b6e5b32a0f19a5072110023d63c1c685c6398b9a771f674df319d2a69733793b"},
+    "candidate_evaluation": {"path":"records/evaluations/IS-0004-U04-recovery-implementation-candidate.json","sha256":"sha256:dece5047df6c25e9f179580b0987b9df61d49a985757d79773ad2a339dac0f3c"},
+    "implementation_invalid_attempts": {"path":"records/evaluations/IS-0004-U04-recovery-implementation-invalid-attempts.json","sha256":"sha256:0bac22d9582ea86f72cd5eda27a604b8dc0d8047553921500639fa74d08601cd"},
+    "contract_public_replay": {"path":"records/surface-receipts/IS-0004-U04-public-recovery-contract-replay.json","sha256":"sha256:89d34e779ad948cf646faba59e5dd30b407351dede412e8a1120dada93255431"}
+  },
+  "checks": [
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"exact_commit":true,"exact_tree":true,"clean_before_and_after":true}},
+    {"id":"project-control","status":"PASS","observed":{"profile_valid":true,"milestone_valid":true,"active_units":["IS4-U04"]}},
+    {"id":"unit-tests","status":"PASS","observed":{"tests":74}},
+    {"id":"machine-contract","status":"PASS","observed":{"mutations":4}},
+    {"id":"topology-contract","status":"PASS","observed":{"mutations":16}},
+    {"id":"topology-implementation","status":"PASS","observed":{"mutations":15}},
+    {"id":"receipt-contract","status":"PASS","observed":{"mutations":14}},
+    {"id":"receipt-implementation","status":"PASS","observed":{"mutations":12}},
+    {"id":"event-journal-contract","status":"PASS","observed":{"mutations":16}},
+    {"id":"event-journal-implementation","status":"PASS","observed":{"mutations":8}},
+    {"id":"recovery-contract","status":"PASS","observed":{"cases":12,"mutations":20,"run_verdicts":"ALL_NULL"}},
+    {"id":"recovery-implementation","status":"PASS","observed":{"mutations":17,"implementation_lock_digest":"sha256:e6b1f0d28b3ac3d501237b692eed83b2de396851d1c3d7a65cee3aae7d778c85"}},
+    {"id":"recovery-full-schema-meta-validation","status":"PASS","observed":{"schemas":2,"fixtures":26,"exact_source_gated_wheels":6,"network_used":false,"temporary_evaluation_custody_removed":true}},
+    {"id":"real-recovery-matrix","status":"PASS","observed":{"invocation_id":"84ceb376-b2bb-43e7-a93f-46129c3472f0","checks":15,"archived_recovery_decisions":9,"noncompleted_verdict_rows":0}},
+    {"id":"state-separated-lifecycle","status":"PASS","observed":{"cancelled_exit":20,"failed_exit":21,"stale_exit":22,"ambiguous_exit":11,"conflicting_effects_exit":21}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"authority-boundary","status":"PASS","observed":{"before_invocation_id":"7bd1d1d2-29fd-48d2-8a26-b45e8214cef9","after_invocation_id":"0d1b4193-8dd0-4804-a484-6580c9f7520e","approval_status":"MISSING","verification_verdict":"INVALID","policy_status_exit":12,"approval_written":false,"workflow_executed":false}},
+    {"id":"docker-custody","status":"PASS","observed":{"containers_after":0,"networks_after":0,"protected_volumes_present":3,"protected_volume_identity_unchanged":true,"disposable_volume_removed":true,"state_custody_removed":true}}
+  ],
+  "runtime_images": {
+    "database": "sha256:da7f3a6b1f8ab31e9ad0180f0166914e1c2503c1b2892b1d6991c832033e3cbb",
+    "migration": "sha256:4185699c4010b6f7f5e16d1831ceeca11919abdd9630f762f1246b277e7a174b",
+    "python_runner": "sha256:6e4050c67295a90ca3591bf1674317e59b698a89ce86e8ce64579d34182c3e71",
+    "node_runner": "sha256:78edf27e115551fd0128201e13486363ff595076b0446d8479cf2ddd2aa7b6a1"
+  },
+  "protected_volume_identity": {
+    "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
+    "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
+    "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
+  },
+  "temporary_clone_custody": {
+    "path": "C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is4-u04-implementation-7c6278f",
+    "canonical": false,
+    "onedrive": false,
+    "runtime_custody": false,
+    "cleanup_state": "retained_no_cleanup_attempt",
+    "clean": true,
+    "commit": "7c6278f6a906bd665279fd1bc9068dc4aac2776a",
+    "tree": "58a4b2bc766ba03ae2a289e55ab12233e884e6ec",
+    "affects_verification_verdict": false
+  },
+  "retained_invalid_attempts": [
+    "Fourteen canonical implementation-cycle attempts remain in their own INVALID record.",
+    "Three closure and public-harness attempts remain in records/evaluations/IS-0004-U04-public-recovery-implementation-invalid-attempts.json; none executed a product workflow."
+  ],
+  "prohibited_claims": [
+    "This does not approve or execute a repository workflow manifest.",
+    "This does not expose arbitrary agent-directed recovery or journal append authority.",
+    "This does not prove PostgreSQL backup and clean restore, integrated recovery, dashboard behavior, image redistribution, registry publication, packaging, or a software release."
+  ]
+}

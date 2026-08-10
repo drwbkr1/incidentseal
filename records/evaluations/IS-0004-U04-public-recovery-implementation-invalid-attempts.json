@@ -1,0 +1,15 @@
+{
+  "schema_version": "incidentseal-invalid-attempts/v1",
+  "evaluation_id": "IS-EVAL-0004-U04-PUBLIC-RECOVERY-IMPLEMENTATION-INVALID-ATTEMPTS",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U04",
+  "observed_at_utc": "2026-08-10T02:54:30Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "attempts": [
+    {"id":"post-commit-tree-revision-unquoted","category":"read-only-wrapper","executed_product":false,"note":"The post-commit tree read left HEAD^{tree} unquoted in PowerShell and misparsed after the candidate commit succeeded; the quoted revision returned exact tree 58a4b2bc."},
+    {"id":"public-probe-detached-head","category":"public-harness","executed_product":false,"note":"The first public project-control probe called Trim on an empty detached-HEAD branch value; the exact public main branch at the same commit and tree corrected custody before any later check ran."},
+    {"id":"public-python-reserved-args","category":"public-harness","executed_product":false,"note":"The first static replay helper used PowerShell's reserved Args variable and launched interactive Python without executing the requested scripts. Prompt output exposed the false positive; the corrected PyArgs helper then ran every command and passed."}
+  ],
+  "retention": "These attempts do not alter the public replay PASS, the fourteen earlier implementation-cycle INVALID attempts, or any product FAIL evidence."
+}

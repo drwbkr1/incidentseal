@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit and push the passing host-only IS4-U04 recovery candidate, then reproduce its static, Docker, PostgreSQL, journal, restart, protected-volume, teardown, integrity, secret-scan, approval, and workflow boundaries from exact credential-free public custody"
+    "next_action": "Begin ready unit IS4-U05 by freezing the exact PostgreSQL logical backup and clean-restore contract against disposable evidence custody before any restore runtime executes"
   }
 }

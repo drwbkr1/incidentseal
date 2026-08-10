@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U04` local host-recovery implementation passes; credential-free public implementation replay pending
+- State: active; `IS4-U04` passed from exact credential-free public custody; `IS4-U05` backup and clean restore ready
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -65,12 +65,14 @@ Exact credential-free public commit `5fa894cb57c8c69fab85946827be241f522acb87`, 
 
 The local host-only implementation candidate adds a separate PostgreSQL recovery fence without granting the runner read or mutation access. Recovery decisions and exact journal records are durably staged outside the repository before mutation. A runtime stop requires the exact workflow token, active recovery token, container ID, name, locked image, numeric user, contract and run labels, read-only root, `network=none`, all capabilities dropped, `no-new-privileges`, and no mounts. Every stop is followed by a new observation before replay or terminalization. The agent-facing CLI exposes only the fixed argument-free `topology recovery-probe --mode platform-validation --json`; it has no arbitrary recover or append command.
 
-Passing invocation `e65374af-535f-47df-b8f2-40b5b9459885` completed 15 real checks in the locked disposable project. Active and unowned runtimes deferred without mutation; an exactly owned orphan was fenced, stopped, reobserved, and replayed once; cancellation, nonzero failure, authority drift, conflicting effects, and ambiguous effects retained distinct exits; crash-after-evidence resumed under a new holder after expiry; a concurrent holder was rejected; runner recovery-state reads were denied; lifecycle streams survived PostgreSQL restart; and no non-completed row gained a verification verdict. Teardown removed every disposable container, network, volume, and temporary state path while the three protected volume identities stayed exact. Seventy-four tests and all 17 implementation mutations pass. Fourteen implementation-cycle attempts remain `INVALID`, including the first real probe's fail-closed mismatch against Docker's canonical `SecurityOpt` value and one no-execution final-gate parser error. Exact credential-free public implementation replay is still required.
+Passing invocation `e65374af-535f-47df-b8f2-40b5b9459885` completed 15 real checks in the locked disposable project. Active and unowned runtimes deferred without mutation; an exactly owned orphan was fenced, stopped, reobserved, and replayed once; cancellation, nonzero failure, authority drift, conflicting effects, and ambiguous effects retained distinct exits; crash-after-evidence resumed under a new holder after expiry; a concurrent holder was rejected; runner recovery-state reads were denied; lifecycle streams survived PostgreSQL restart; and no non-completed row gained a verification verdict. Teardown removed every disposable container, network, volume, and temporary state path while the three protected volume identities stayed exact. Seventy-four tests and all 17 implementation mutations pass. Fourteen implementation-cycle attempts remain `INVALID`, including the first real probe's fail-closed mismatch against Docker's canonical `SecurityOpt` value and one no-execution final-gate parser error. This established the canonical candidate; the exact public result follows.
+
+Exact credential-free public commit `7c6278f6a906bd665279fd1bc9068dc4aac2776a`, tree `58a4b2bc766ba03ae2a289e55ab12233e884e6ec`, reproduced all 74 tests, every machine/topology/receipt/journal/recovery validator and mutation suite, and offline Draft 2020-12 validation of two recovery schemas and 26 fixtures from six rehashed source-gated wheels. Strict Git integrity and four high-confidence secret patterns passed. Public recovery invocation `84ceb376-b2bb-43e7-a93f-46129c3472f0` repeated all 15 real Docker/PostgreSQL checks. Approval remained `MISSING` / `INVALID` at exit `12` before and after; no workflow ran; no disposable container, network, volume, or state custody remains; and the three protected volume identities are exact. The clean noncanonical clone remains outside OneDrive and runtime custody. Three additional read-only/public-harness attempts remain `INVALID`. `EXIT-INTERRUPTION-RECOVERY` passes and `IS4-U05` is ready.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, and local fixed synthetic recovery pass. Public recovery replay, backup/restore, dashboard, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, and fixed synthetic recovery pass from public custody. Backup/restore, integrated recovery, dashboard, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -80,4 +82,4 @@ Passing invocation `e65374af-535f-47df-b8f2-40b5b9459885` completed 15 real chec
 
 ## Next eligible action
 
-Commit and push the exact passing `IS4-U04` recovery candidate, then reproduce its static and real Docker/PostgreSQL recovery matrix from credential-free public custody before passing `EXIT-INTERRUPTION-RECOVERY`.
+Begin ready unit `IS4-U05` by freezing the exact PostgreSQL logical backup and clean-restore contract against disposable evidence custody before any restore runtime executes.

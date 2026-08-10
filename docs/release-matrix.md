@@ -10,7 +10,7 @@
 | Node runner | Synthetic real runner verified | Real isolated execution and output receipt |
 | Dashboard | Not implemented | Rendered visual QA, evidence fidelity, loopback-only exposure |
 | Receipts | Portable custody and offline verification implemented and publicly replayed | Independent verification plus corruption and truncation rejection |
-| Recovery | Contract publicly replayed; local fixed synthetic runtime matrix passes; public implementation replay pending | Exact public replay of fenced lease and ownership, cancellation, crash, duplicate, idempotent resume, stale, failure, orphan, ambiguous, conflicting-effect, restart, custody, and teardown cases |
+| Recovery | Contract and fixed synthetic runtime matrix verified from exact public custody | Integration with backup/restore and later end-to-end approved-workflow verification |
 | Clean clone | Multiple bounded public paths verified; full product workflow pending | Fresh clone setup and end-to-end verification |
 | Supply chain | Gate active | Source decisions, lockfiles, SBOM, provenance, scan and reproducibility evidence |
 | GitHub/GHCR release | Not created | Remote identity, commit/tag, exact digest, attestations and downloaded verification |

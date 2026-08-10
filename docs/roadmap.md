@@ -42,7 +42,7 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 Status: active
 
-Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed the atomic writer and independent verifier. `IS4-U03` passed immutable transactional PostgreSQL history and real read-only ordered JSONL from exact credential-free public custody. Exact public commit `5fa894cb...` freezes and reproduces the `IS4-U04` fenced-recovery contract. The local implementation candidate now passes 74 tests, 17 fail-closed implementation mutations, and 15 real host-only Docker/PostgreSQL recovery checks, including fenced stop/reobservation, crash resume, concurrency exclusion, state-separated terminals, restart persistence, protected-volume identity, and teardown. Exact credential-free public implementation replay remains before `EXIT-INTERRUPTION-RECOVERY` can pass.
+Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed the atomic writer and independent verifier. `IS4-U03` passed immutable transactional PostgreSQL history and real read-only ordered JSONL. Exact credential-free public commit `7c6278f6...` now reproduces the `IS4-U04` fixed host-only recovery implementation: 74 tests, 17 fail-closed implementation mutations, and 15 real Docker/PostgreSQL checks prove fenced stop/reobservation, deterministic crash resume, concurrent-holder exclusion, state-separated terminals, restart persistence, runner denial, protected-volume identity, and teardown. `EXIT-INTERRUPTION-RECOVERY` passes; `IS4-U05` backup and clean restore is ready.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.
