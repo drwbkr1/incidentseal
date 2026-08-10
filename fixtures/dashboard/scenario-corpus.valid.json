@@ -1,0 +1,20 @@
+{
+  "schema_version":"incidentseal-dashboard-scenario-corpus/v1",
+  "corpus_id":"IS5-DASHBOARD-CORPUS-001",
+  "created_at_utc":"2026-08-10T23:50:00Z",
+  "repetitions":3,
+  "scenarios":[
+    {"id":"dashboard-success","kind":"success","lifecycle":"completed","run_verdict":"PASS","observation_verdict":"PASS","exit_code":0,"evidence_condition":"exact","claim_allowed":true,"rendered_label":"Verified","required_sections":["checkpoint","state","identity","evidence","authority","non-claims"]},
+    {"id":"dashboard-product-failure","kind":"product-failure","lifecycle":"completed","run_verdict":"FAIL","observation_verdict":"FAIL","exit_code":10,"evidence_condition":"exact","claim_allowed":false,"rendered_label":"Product failure","required_sections":["state","evidence","non-claims","next-safe-action"]},
+    {"id":"dashboard-invalid-input","kind":"invalid-input","lifecycle":null,"run_verdict":null,"observation_verdict":"INVALID","exit_code":12,"evidence_condition":"rejected","claim_allowed":false,"rendered_label":"Invalid input","required_sections":["state","authority","non-claims","next-safe-action"]},
+    {"id":"dashboard-missing-evidence","kind":"missing-evidence","lifecycle":"completed","run_verdict":"PASS","observation_verdict":"INCONCLUSIVE","exit_code":11,"evidence_condition":"missing","claim_allowed":false,"rendered_label":"Missing evidence","required_sections":["state","identity","evidence","non-claims","next-safe-action"]},
+    {"id":"dashboard-policy-attack","kind":"policy-attack","lifecycle":null,"run_verdict":null,"observation_verdict":"INVALID","exit_code":12,"evidence_condition":"rejected","claim_allowed":false,"rendered_label":"Policy attack rejected","required_sections":["state","authority","custody","non-claims"]},
+    {"id":"dashboard-isolation-attack","kind":"isolation-attack","lifecycle":null,"run_verdict":null,"observation_verdict":"INVALID","exit_code":12,"evidence_condition":"rejected","claim_allowed":false,"rendered_label":"Isolation attack rejected","required_sections":["state","authority","custody","non-claims"]},
+    {"id":"dashboard-corrupt-receipt","kind":"corrupt-receipt","lifecycle":"completed","run_verdict":"PASS","observation_verdict":"FAIL","exit_code":10,"evidence_condition":"corrupt","claim_allowed":false,"rendered_label":"Corrupt receipt","required_sections":["state","identity","evidence","non-claims","next-safe-action"]},
+    {"id":"dashboard-crash","kind":"crash","lifecycle":"failed","run_verdict":null,"observation_verdict":null,"exit_code":21,"evidence_condition":"interrupted","claim_allowed":false,"rendered_label":"Dashboard interrupted","required_sections":["state","custody","recovery","non-claims","next-safe-action"]},
+    {"id":"dashboard-recovery","kind":"recovery","lifecycle":"completed","run_verdict":null,"observation_verdict":"PASS","exit_code":0,"evidence_condition":"recovered","claim_allowed":false,"rendered_label":"Recovered evidence view","required_sections":["state","identity","evidence","recovery","non-claims"]}
+  ],
+  "evaluation":{"rendered_viewports":["1440x900","390x844"],"keyboard":true,"contrast":true,"external_requests":0,"write_requests":0,"false_pass_limit":0,"false_release_claim_limit":0,"metrics":["case_correctness","projection_latency_ms","render_latency_ms","peak_process_memory_bytes","response_bytes","request_failures","source_record_coverage","claim_calibration"]},
+  "verification_verdict":"PASS",
+  "corpus_digest":"sha256:76bf8d4e5aa9b080f87a4eefb4c1c91ce1b22d6ba1c1d3b5dab23890fc455560"
+}

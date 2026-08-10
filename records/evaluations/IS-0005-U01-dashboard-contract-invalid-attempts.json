@@ -1,0 +1,22 @@
+{
+  "schema_version":"incidentseal-invalid-attempts/v1",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U01",
+  "attempts":[
+    {
+      "attempt_id":"IS5-U01-INVALID-001",
+      "observed_at_utc":"2026-08-10T23:55:36Z",
+      "execution_state":"completed",
+      "verification_verdict":"INVALID",
+      "surface":"read-only-git-inspection-wrapper",
+      "cause":"The PowerShell wrapper passed HEAD^{tree} without literal quoting, so the shell transformed the revision and git rejected the resulting argument.",
+      "product_runtime_started":false,
+      "server_started":false,
+      "browser_started":false,
+      "docker_started":false,
+      "approval_written":false,
+      "workflow_executed":false,
+      "corrected_by":"A separate quoted git rev-parse 'HEAD^{tree}' query returned tree aa4d64841509f054f95a439621d81e5228511b06."
+    }
+  ]
+}

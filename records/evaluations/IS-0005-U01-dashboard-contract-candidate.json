@@ -1,0 +1,19 @@
+{
+  "schema_version":"incidentseal-dashboard-contract-evaluation/v1",
+  "evaluation_id":"IS-EVAL-0005-U01-CANDIDATE",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U01",
+  "observed_at_utc":"2026-08-10T23:55:48Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "candidate_base":{"commit":"f6589bc48de86295bb75568ed86d3c182d8f0268","tree":"aa4d64841509f054f95a439621d81e5228511b06","worktree_has_uncommitted_candidate":true},
+  "contract":{"id":"INCIDENTSEAL-DASHBOARD-001","lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","corpus_digest":"sha256:76bf8d4e5aa9b080f87a4eefb4c1c91ce1b22d6ba1c1d3b5dab23890fc455560"},
+  "checkpoint_projection":{"checkpoint":"checkpoint-is-0004","tag_object":"60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf","peeled_commit":"25328dacef4d9283090bed809db75b33f613829b","tree":"b03947a405f670a0ed41f0ec1544722fdbe69d20","source_records":7,"exits":8,"raw_source_hashes_verified":true},
+  "state_contract":{"verification_verdicts":["PASS","FAIL","INCONCLUSIVE","INVALID"],"lifecycles":["queued","running","completed","cancelled","failed","stale","superseded"],"missing_and_corrupt_separate":true,"retained_attempts_separate":true},
+  "scenario_contract":{"scenarios":9,"repetitions":3,"false_pass_limit":0,"false_release_claim_limit":0,"external_requests":0,"write_requests":0},
+  "validation":{"repository_tests":111,"contract_mutations":37,"draft_2020_12_schemas":2,"schema_fixtures":4,"source_gated_exact_wheels":6,"network_used_for_evaluation_dependencies":false,"temporary_evaluation_custody_removed":true},
+  "authority_boundary":{"approval_status":"MISSING","dashboard_creates_authority":false,"workflow_executed":false,"stable_verification_cli_changed":false},
+  "runtime_boundary":{"dashboard_server_started":false,"browser_started":false,"docker_started":false,"postgresql_started":false,"runner_started":false,"external_network_used":false},
+  "retained_invalid_attempts":{"path":"records/evaluations/IS-0005-U01-dashboard-contract-invalid-attempts.json","count":1},
+  "decision":{"status":"candidate-pass-public-replay-required","reason":"The local runtime-free contract candidate is closed, content-addressed, source-bound, state-separated, mutation-tested, and full-schema validated. Exact credential-free public reproduction is still required before IS5-U01 can pass."}
+}

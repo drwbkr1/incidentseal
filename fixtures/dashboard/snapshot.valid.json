@@ -1,0 +1,32 @@
+{
+  "schema_version":"incidentseal-dashboard-snapshot/v1",
+  "snapshot_id":"IS-DASHBOARD-SNAPSHOT-0001",
+  "generated_at_utc":"2026-08-10T23:50:00Z",
+  "source":{"repository":"https://github.com/drwbkr1/incidentseal.git","branch":"main","checkpoint":"checkpoint-is-0004","tag_object":"60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf","peeled_commit":"25328dacef4d9283090bed809db75b33f613829b","tree":"b03947a405f670a0ed41f0ec1544722fdbe69d20"},
+  "authority":{"approval_status":"MISSING","approved_workflow":false,"workflow_executed":false,"dashboard_creates_authority":false},
+  "trust_boundary":{"read_only":true,"bind_host":"127.0.0.1","allowed_methods":["GET","HEAD"],"docker_access":false,"approval_write_access":false,"repository_write_access":false,"external_network":false,"remote_assets":false,"analytics":false,"telemetry":false},
+  "exits":[
+    {"id":"EXIT-BACKUP-RESTORE","status":"pass","evidence":["contracts/IS-0004.json"]},
+    {"id":"EXIT-IDEMPOTENT-EVENTS","status":"pass","evidence":["contracts/IS-0004.json"]},
+    {"id":"EXIT-INDEPENDENT-VERIFIER","status":"pass","evidence":["contracts/IS-0004.json"]},
+    {"id":"EXIT-INTERRUPTION-RECOVERY","status":"pass","evidence":["contracts/IS-0004.json"]},
+    {"id":"EXIT-PORTABLE-RECEIPTS","status":"pass","evidence":["contracts/IS-0004.json"]},
+    {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pass","evidence":["records/evaluations/IS-0004-U07-public-checkpoint.json","records/surface-receipts/IS-0004-checkpoint-marker.json","records/surface-receipts/IS-0004-public-checkpoint.json"]},
+    {"id":"EXIT-REAL-RECOVERY","status":"pass","evidence":["records/evaluations/IS-0004-U06-integrated-recovery-implementation.json","records/surface-receipts/IS-0004-U06-public-integrated-recovery-implementation-replay.json","requirements/integrated-recovery-implementation.lock.json"]},
+    {"id":"EXIT-RECEIPT-CONTRACT","status":"pass","evidence":["contracts/IS-0004.json"]}
+  ],
+  "states":{"verification":{"PASS":1,"FAIL":0,"INCONCLUSIVE":0,"INVALID":6},"lifecycle":{"queued":0,"running":0,"completed":1,"cancelled":0,"failed":0,"stale":0,"superseded":1},"missing_evidence":0,"corrupt_evidence":0},
+  "source_records":[
+    {"path":"contracts/IS-0004.json","kind":"contract","sha256":"sha256:85fb5c69ba532ff31195c9bf7ee004a576b573d2aa612cd06fd69fbd34d1847a"},
+    {"path":"records/evaluations/IS-0004-U06-integrated-recovery-implementation.json","kind":"evaluation","sha256":"sha256:99d6c98ee785c4b9d461aeb5efa710791eff78346c578aa0f04595453963ebb1"},
+    {"path":"records/evaluations/IS-0004-U07-public-checkpoint.json","kind":"evaluation","sha256":"sha256:d22419e9303a614a741740fd0e836efa1e0ba1db93d1dbd74404822266576c59"},
+    {"path":"records/surface-receipts/IS-0004-U06-public-integrated-recovery-implementation-replay.json","kind":"surface-receipt","sha256":"sha256:a5d3b668cb7291d390d47671361f58909a0682a10b25f0cfae7e4a139c0914d2"},
+    {"path":"records/surface-receipts/IS-0004-checkpoint-marker.json","kind":"surface-receipt","sha256":"sha256:bb7ba5cb778cb715ae754a140445156842dfac35026530308ef0f5f227308f51"},
+    {"path":"records/surface-receipts/IS-0004-public-checkpoint.json","kind":"surface-receipt","sha256":"sha256:d352b90cbbd08349a3fe052a80f5b7f5ed2828b03bdb7f64e1cef21f67461700"},
+    {"path":"requirements/integrated-recovery-implementation.lock.json","kind":"lock","sha256":"sha256:d3e0d2f2b5d3f46aef89a805a6c5a69def17e108ca362ed041e1eb942093d556"}
+  ],
+  "retained_attempts":{"pass":4,"fail":0,"inconclusive":0,"invalid":6,"cancelled":0,"failed":0,"stale":0,"superseded":1},
+  "non_claims":["Dashboard projection is not approval authority.","No repository workflow was executed.","No software release or registry publication is claimed.","This contract does not prove the dashboard implementation or rendered surface."],
+  "verification_verdict":"PASS",
+  "snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2"
+}

@@ -53,7 +53,7 @@ Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and ind
 
 Status: active
 
-Progress: `IS5-U01` is the sole active contract-only unit. It will freeze the exact read-only evidence projection, loopback-only serving boundary, dashboard state model, nine-scenario corpus, rendered visual acceptance, accessibility, failure-state, and repeated-evaluation contracts before any server or browser surface starts.
+Progress: The local runtime-free `IS5-U01` candidate freezes the exact seven-record projection, loopback-only serving boundary, dashboard state model, nine-scenario corpus with three full repetitions, rendered visual acceptance, accessibility, failure-state, and repeated-evaluation contracts. Its 111 tests, 37 mutations, and full-schema validation pass without a server, browser, or Docker runtime; exact credential-free public replay remains before U01 closes.
 
 - Polished dark forensic-style local dashboard.
 - Deterministic scenario corpus for success, product failure, invalid input, missing evidence, policy attack, isolation attack, corrupted receipt, crash, and recovery.

@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0005`
 - Latest verified checkpoint: `IS-0004`
-- State: active; `checkpoint-is-0004` remains the latest verified base and `IS5-U01` is the sole contract-only dashboard/evaluation unit; no dashboard server has started
+- State: active; `checkpoint-is-0004` remains the latest verified base; the local `IS5-U01` dashboard-contract candidate passes and awaits exact public replay; no dashboard server or browser has started
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -18,6 +18,8 @@
 The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `checkpoint-is-0004` now establishes the latest verified public evidence-and-recovery checkpoint without changing that trust boundary.
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
+
+`IS5-U01` now has a local runtime-free candidate. Lock `sha256:9bc2785e...` binds two closed Draft 2020-12 schemas, an exact seven-record `checkpoint-is-0004` projection, eight passed exits, all verdict and lifecycle channels, a nine-case corpus repeated three times, visual acceptance, and 37 fail-closed mutations. All 111 tests and offline full-schema validation from six rehashed source-gated wheels pass. This does not prove a server, rendered dashboard, browser accessibility, evaluation run, or release; exact credential-free public contract replay is next.
 
 ## Checkpoint evidence
 
