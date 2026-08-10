@@ -42,7 +42,7 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 Status: active
 
-Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed the atomic writer and independent verifier. `IS4-U03` passed immutable transactional PostgreSQL history and real read-only ordered JSONL from exact credential-free public custody. `IS4-U04` now has a canonical fenced-recovery contract candidate: 2 closed schemas, 12 exact cases, 20 fail-closed mutations, 68 tests, and 26 full-schema fixtures keep recovery verdict, run lifecycle, and run verdict distinct. Credential-free public contract replay and the separate real host implementation remain.
+Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed the atomic writer and independent verifier. `IS4-U03` passed immutable transactional PostgreSQL history and real read-only ordered JSONL from exact credential-free public custody. Exact public commit `5fa894cb...` now freezes and reproduces the `IS4-U04` fenced-recovery contract: 2 closed schemas, 12 exact cases, 20 fail-closed mutations, 68 tests, and 26 full-schema fixtures keep recovery verdict, run lifecycle, and run verdict distinct. The separate real host implementation remains.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.

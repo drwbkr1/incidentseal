@@ -1,0 +1,85 @@
+{
+  "schema_version": "incidentseal-u04-public-recovery-contract-replay/v1",
+  "receipt_id": "IS-RECEIPT-0004-U04-PUBLIC-RECOVERY-CONTRACT-REPLAY",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U04",
+  "observed_at_utc": "2026-08-10T01:35:29Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Credential-free public reproduction of the frozen fenced interruption-recovery classification contract only; no recovery executor or real interruption behavior.",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "branch": "main",
+    "commit": "5fa894cb57c8c69fab85946827be241f522acb87",
+    "tree": "0958adae2ea4d2019653058358f4ac806ea2f155",
+    "clone_clean_before_and_after": true,
+    "credential_helpers_disabled": true,
+    "terminal_prompt_disabled": true,
+    "credential_free": true
+  },
+  "bindings": {
+    "recovery_contract_lock": {
+      "path": "requirements/recovery-contract.lock.json",
+      "sha256": "sha256:82f91fecf137525c90f6bed3140178a155a4e30ab3274600ecc9a8d2308c75b0"
+    },
+    "recovery_vectors": {
+      "path": "fixtures/recovery/vectors.json",
+      "sha256": "sha256:8d313cf695f27bb22158c7e9313cf762450834f96da69056ca049f169bcc7645"
+    },
+    "candidate_evaluation": {
+      "path": "records/evaluations/IS-0004-U04-recovery-contract-candidate.json",
+      "sha256": "sha256:1dbe016fbb1e6ab2872140bcf66d19c8336ff558d330f7f67dadaf83616c0db9"
+    },
+    "retained_invalid_attempts": {
+      "path": "records/evaluations/IS-0004-U04-recovery-contract-invalid-attempts.json",
+      "sha256": "sha256:8c2d574e1cf179989a2440a47e54ced03897ce79bb67aaddb6297470b28ea6d5"
+    },
+    "cleanup_invalid_attempt": {
+      "path": "records/evaluations/IS-0004-U04-public-clone-cleanup-policy-denied.json",
+      "sha256": "sha256:3279f60420f83baca13bb3a374be370d7cf7d2f446212f811f64f10040e35128"
+    }
+  },
+  "checks": [
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"exact_commit":true,"exact_tree":true,"clean_before_and_after":true}},
+    {"id":"project-control","status":"PASS","observed":{"profile_valid":true,"milestone_valid":true,"active_units":["IS4-U04"]}},
+    {"id":"unit-tests","status":"PASS","observed":{"tests":68}},
+    {"id":"machine-contract","status":"PASS","observed":{"mutations":4}},
+    {"id":"topology-contract","status":"PASS","observed":{"mutations":16}},
+    {"id":"topology-implementation","status":"PASS","observed":{"mutations":15}},
+    {"id":"receipt-contract","status":"PASS","observed":{"mutations":14}},
+    {"id":"receipt-implementation","status":"PASS","observed":{"mutations":12}},
+    {"id":"event-journal-contract","status":"PASS","observed":{"mutations":16}},
+    {"id":"event-journal-implementation","status":"PASS","observed":{"mutations":8}},
+    {"id":"recovery-contract","status":"PASS","observed":{"cases":12,"verification_verdicts":{"PASS":6,"FAIL":1,"INCONCLUSIVE":5,"INVALID":0},"run_verdicts":"ALL_NULL","runtime_started":false}},
+    {"id":"recovery-contract-mutations","status":"PASS","observed":{"mutations":20,"runtime_started":false}},
+    {"id":"recovery-full-schema-meta-validation","status":"PASS","observed":{"schemas":2,"fixtures":26,"exact_source_gated_wheels":6,"network_used":false,"disposable_evaluation_custody_removed":true}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"authority-boundary","status":"PASS","observed":{"policy_invocation_id":"520df331-dbf8-4350-b781-3194ed091b2e","approval_status":"MISSING","verification_verdict":"INVALID","policy_status_exit":12,"approval_store_before":false,"approval_store_after":false,"approval_written":false,"workflow_executed":false}},
+    {"id":"docker-custody","status":"PASS","observed":{"runtime_started":false,"containers_before_and_after":0,"networks_before_and_after":0,"protected_volumes_present":3,"protected_volume_identity_unchanged":true}}
+  ],
+  "protected_volume_identity": {
+    "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
+    "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
+    "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
+  },
+  "retained_invalid_attempts": [
+    "Seven evaluator, wrapper, and read-only invocation attempts are retained in the candidate evidence without changing their INVALID verdicts.",
+    "The exact verified public-clone cleanup command was rejected by local command policy before execution; the clean noncanonical clone remains retained outside OneDrive and runtime custody."
+  ],
+  "temporary_clone_custody": {
+    "path": "C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is4-u04-public-5fa894cb",
+    "canonical": false,
+    "onedrive": false,
+    "runtime_custody": false,
+    "cleanup_state": "retained_policy_denied",
+    "clean": true,
+    "commit": "5fa894cb57c8c69fab85946827be241f522acb87",
+    "tree": "0958adae2ea4d2019653058358f4ac806ea2f155",
+    "affects_verification_verdict": false
+  },
+  "prohibited_claims": [
+    "This does not approve or execute a workflow manifest.",
+    "This does not stop a process or container, append recovery evidence, resume a step, or prove real interruption recovery.",
+    "This does not prove backup and restore, dashboard behavior, image redistribution, registry publication, or a software release."
+  ]
+}

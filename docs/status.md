@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U04` recovery-contract candidate in progress
+- State: active; `IS4-U04` recovery contract frozen and publicly replayed; host implementation in progress
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -57,9 +57,11 @@ The real fixed disposable probe inserted seven frozen records, replayed three wi
 
 Exact credential-free public commit `4b4cd189d3a787f2871736731b9aad1c87da344a`, tree `19f2c3194bcb1423e312f5307f8c753a5a350c6a`, reproduced 62 tests, every machine/topology/receipt/journal validator and mutation suite, exact-wheel schema validation, 50 policy trials, strict Git integrity, a zero-hit high-confidence secret scan, and the same 14-check real PostgreSQL and JSONL result. Approval remained `MISSING` at exit `12`; no workflow ran; no disposable container or network remains; all three protected volume identities are unchanged. Five evaluator attempts remain `INVALID`, including a locally denied final cleanup wrapper and a no-execution PowerShell binding-check parser error; the corrected binding check passed and the verified clean non-canonical clone remains outside OneDrive and outside runtime custody. `EXIT-IDEMPOTENT-EVENTS` now passes and `IS4-U04` is eligible.
 
-`IS4-U04` has a canonical recovery-contract candidate. Two closed schemas bind the nonterminal journal root, exact manifest authority, step boundary, replay policy, fenced host lease, runtime ownership, exit state, and artifact/database/receipt effects into a content-addressed observation and decision. Twelve cases preserve recovery `PASS`, `FAIL`, and `INCONCLUSIVE` independently from `running`, `cancelled`, `failed`, and `stale`; every planned run verdict remains null.
+`IS4-U04` has a frozen recovery contract. Two closed schemas bind the nonterminal journal root, exact manifest authority, step boundary, replay policy, fenced host lease, runtime ownership, exit state, and artifact/database/receipt effects into a content-addressed observation and decision. Twelve cases preserve recovery `PASS`, `FAIL`, and `INCONCLUSIVE` independently from `running`, `cancelled`, `failed`, and `stale`; every planned run verdict remains null.
 
-Only an expired lease and exactly owned runtime can authorize `stop_owned_and_wait`, and stopping always requires a new observation before replay or terminalization. Active, missing, invalid, ambiguous, or unowned custody defers without process or journal mutation. Replay requires an idempotent boundary and every effect confirmed absent; committed matching effects continue without replay; unknown effects defer; conflicts are recovery `FAIL` with lifecycle `failed`, not a fabricated run verdict. Sixty-eight tests, all 20 mutations, and full Draft 2020-12 validation of 2 schemas and 26 fixtures pass without Docker runtime. Seven evaluator, wrapper, and read-only invocation attempts remain `INVALID`. Credential-free public replay remains before the contract stage closes; no real recovery behavior is claimed yet.
+Only an expired lease and exactly owned runtime can authorize `stop_owned_and_wait`, and stopping always requires a new observation before replay or terminalization. Active, missing, invalid, ambiguous, or unowned custody defers without process or journal mutation. Replay requires an idempotent boundary and every effect confirmed absent; committed matching effects continue without replay; unknown effects defer; conflicts are recovery `FAIL` with lifecycle `failed`, not a fabricated run verdict.
+
+Exact credential-free public commit `5fa894cb57c8c69fab85946827be241f522acb87`, tree `0958adae2ea4d2019653058358f4ac806ea2f155`, reproduced 68 tests, all 16 prior static validator and mutation suites, 12 recovery cases, 20 recovery mutations, and full Draft 2020-12 validation of 2 schemas and 26 fixtures. Strict Git integrity and four high-confidence secret patterns passed. Approval remained `MISSING` / `INVALID` at exit `12`; no approval store appeared, no workflow ran, no runtime started, and the three protected volume identities remained exact. Eight attempts remain `INVALID`, including a policy-denied cleanup command; the clean noncanonical public clone remains in local temporary custody outside OneDrive and runtime custody. This closes only the contract replay gate—no real recovery behavior is claimed yet.
 
 ## Known limitations
 
@@ -74,4 +76,4 @@ Only an expired lease and exactly owned runtime can authorize `stop_owned_and_wa
 
 ## Next eligible action
 
-Commit and push the exact `IS4-U04` recovery-contract candidate, replay its contract and custody gates from credential-free public custody, then implement the host-only fenced recovery surface as a separate bounded stage.
+Implement the host-only `IS4-U04` fenced recovery surface against the exact frozen contract, then exercise it only in fixed disposable custody with protected-volume identity, journal, restart, and credential-free public replay gates.

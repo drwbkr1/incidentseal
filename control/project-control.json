@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit and push the exact IS4-U04 recovery-contract candidate, replay its contract and custody gates from credential-free public custody, then implement the host-only recovery surface separately"
+    "next_action": "Implement the host-only IS4-U04 recovery surface against the exact frozen contract, then exercise it only in fixed disposable custody with protected-volume identity, journal, restart, and credential-free public replay gates"
   }
 }

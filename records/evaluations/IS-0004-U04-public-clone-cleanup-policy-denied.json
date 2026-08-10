@@ -1,0 +1,27 @@
+{
+  "schema_version": "incidentseal-invalid-cleanup-attempt/v1",
+  "evaluation_id": "IS-EVAL-0004-U04-PUBLIC-CLONE-CLEANUP-POLICY-DENIED",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U04",
+  "observed_at_utc": "2026-08-10T01:35:29Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "surface": "local temporary public-clone cleanup",
+  "result": "The exact recursive cleanup command was rejected by local command policy before execution.",
+  "target": {
+    "path": "C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is4-u04-public-5fa894cb",
+    "canonical": false,
+    "onedrive": false,
+    "runtime_custody": false,
+    "commit": "5fa894cb57c8c69fab85946827be241f522acb87",
+    "tree": "0958adae2ea4d2019653058358f4ac806ea2f155",
+    "clean": true
+  },
+  "runtime_started": false,
+  "files_removed": false,
+  "decision": {
+    "status": "retain",
+    "reason": "Do not bypass local command policy. The verified clone is read-only noncanonical custody and does not affect the PASS contract replay.",
+    "next": "Leave the retained path explicit and exclude it from canonical project or runtime custody."
+  }
+}

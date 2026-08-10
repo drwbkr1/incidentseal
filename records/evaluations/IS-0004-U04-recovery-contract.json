@@ -1,0 +1,69 @@
+{
+  "schema_version": "incidentseal-recovery-contract-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U04-RECOVERY-CONTRACT",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U04",
+  "observed_at_utc": "2026-08-10T01:43:30Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Frozen content-addressed fenced interruption-recovery classification reproduced from exact credential-free public custody; real host recovery execution remains unimplemented and unclaimed.",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "commit": "5fa894cb57c8c69fab85946827be241f522acb87",
+    "tree": "0958adae2ea4d2019653058358f4ac806ea2f155"
+  },
+  "bindings": {
+    "recovery_contract_lock": {"path":"requirements/recovery-contract.lock.json","sha256":"sha256:82f91fecf137525c90f6bed3140178a155a4e30ab3274600ecc9a8d2308c75b0"},
+    "candidate_evaluation": {"path":"records/evaluations/IS-0004-U04-recovery-contract-candidate.json","sha256":"sha256:1dbe016fbb1e6ab2872140bcf66d19c8336ff558d330f7f67dadaf83616c0db9"},
+    "retained_invalid_attempts": {"path":"records/evaluations/IS-0004-U04-recovery-contract-invalid-attempts.json","sha256":"sha256:8c2d574e1cf179989a2440a47e54ced03897ce79bb67aaddb6297470b28ea6d5"},
+    "public_replay_receipt": {"path":"records/surface-receipts/IS-0004-U04-public-recovery-contract-replay.json","sha256":"sha256:89d34e779ad948cf646faba59e5dd30b407351dede412e8a1120dada93255431"},
+    "cleanup_invalid_attempt": {"path":"records/evaluations/IS-0004-U04-public-clone-cleanup-policy-denied.json","sha256":"sha256:3279f60420f83baca13bb3a374be370d7cf7d2f446212f811f64f10040e35128"}
+  },
+  "results": {
+    "credential_free_public_commit": "5fa894cb57c8c69fab85946827be241f522acb87",
+    "unit_tests": 68,
+    "prior_static_validator_and_mutation_suites": 16,
+    "recovery_cases": 12,
+    "recovery_verification_verdicts": {"PASS":6,"FAIL":1,"INCONCLUSIVE":5,"INVALID":0},
+    "recovery_contract_mutations": 20,
+    "full_schema_count": 2,
+    "full_fixture_count": 26,
+    "exact_source_gated_evaluation_wheels": 6,
+    "network_used_for_passing_meta_validation": false,
+    "all_run_verdicts": "NULL",
+    "git_object_integrity": "PASS",
+    "bounded_secret_scan": "PASS",
+    "protected_volume_identity": "UNCHANGED",
+    "runtime_execution": "NOT_STARTED"
+  },
+  "trust_boundary": {
+    "host_cli_owns_docker": true,
+    "docker_started": false,
+    "postgresql_accessed": false,
+    "process_stopped": false,
+    "journal_appended": false,
+    "approval_status": "MISSING",
+    "approval_written": false,
+    "workflow_executed": false,
+    "containers_retained": 0,
+    "networks_retained": 0,
+    "protected_volumes_present": 3,
+    "temporary_public_clone_removed": false,
+    "temporary_public_clone_state": "clean_noncanonical_retained_after_policy_denied_cleanup"
+  },
+  "retained_invalid_attempts": [
+    "Seven contract-candidate evaluator, wrapper, and read-only invocation attempts retain INVALID verdicts after corrected paths passed.",
+    "The exact final public-clone cleanup wrapper was denied by local command policy before execution; the clean noncanonical clone remains outside OneDrive and runtime custody."
+  ],
+  "limitations": [
+    "No host lease, runtime observation, process stop, journal append, resume, terminal recovery, or orphan cleanup has been implemented or executed.",
+    "EXIT-INTERRUPTION-RECOVERY remains pending until the real host-only surface passes Docker, journal, restart, protected-volume, and public replay gates.",
+    "No workflow manifest is approved and workflow execution remains unavailable.",
+    "This unit does not prove backup and restore, dashboard, image redistribution, registry publication, or release behavior."
+  ],
+  "decision": {
+    "status": "continue",
+    "next": "Implement the host-only fenced recovery surface against this exact contract, then exercise it only in fixed disposable custody while proving protected-volume identity before and after.",
+    "reason": "The exact public candidate reproduced the closed classification, schema, mutation, regression, authority, Git, secret, and Docker-custody gates without credentials or runtime authority."
+  }
+}
