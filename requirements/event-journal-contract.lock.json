@@ -1,0 +1,39 @@
+{
+  "schema_version": "incidentseal-event-journal-contract-lock/v1",
+  "contract_id": "INCIDENTSEAL-EVENT-JOURNAL-001",
+  "unit_id": "IS4-U03",
+  "canonicalization": "RFC8785-JCS",
+  "files": [
+    {"path":"docs/decisions/ADR-0006-append-only-event-idempotency.md","sha256":"sha256:d8fd59089ef6f134b58213978be29a176d76a74723199997359e6a062f5315e3"},
+    {"path":"docs/event-journal-contract.md","sha256":"sha256:b1c12ad13de0db6caec88fca879944b937575765d8d7e274901b04e62fc55906"},
+    {"path":"docs/event-journal-mutation-plan.md","sha256":"sha256:5b2d8ed3d1190f679bb528a7f0e0509b0e560dbcad45a918c2d753ca936f858f"},
+    {"path":"fixtures/journal/mutations.json","sha256":"sha256:55eea2823e2fa05f5fa9b47a90ad963a4a7907a6110023e546c345108edee253"},
+    {"path":"fixtures/journal/record.invalid.minimal.json","sha256":"sha256:1dca35021b81245fbaa50816657beb47af97060f3ce7676e2ab06927a786dd39"},
+    {"path":"fixtures/journal/record.valid.json","sha256":"sha256:a6f535ace93e5d02fe49d12293cff7e8c939f0c2570c8ef2c29747e01a6a3cad"},
+    {"path":"fixtures/journal/result.valid.json","sha256":"sha256:818db65d6e428bb708a86e1e70efa67e7e5a830521ef161be36876eb906d53c0"},
+    {"path":"fixtures/journal/vectors.json","sha256":"sha256:531b1dbf05a942290125b2ec28b1481daf4a0dfa8311d58c30daab9fd477a6a3"},
+    {"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"},
+    {"path":"schemas/event-journal-record-v1.schema.json","sha256":"sha256:789aa3ca6ccb968ef6bd82dca5729878c934b223311e7f9a39ad5fb6f554980a"},
+    {"path":"schemas/event-journal-result-v1.schema.json","sha256":"sha256:60ee4aed654b95324a07f8505d173bc8da47a8a5a0bd7cbb0e2463a44b550ded"},
+    {"path":"schemas/run-event-v1.schema.json","sha256":"sha256:86ad3ce99b9b231ca23c3c6ba525051fe99a03fc97ef15f03c9ba8f9563ac0ba"},
+    {"path":"scripts/run_event_journal_meta_validation.py","sha256":"sha256:f75eab46d6e7b8babb5f7724b59c13f873b5e462d3e2f87168450dda9fe395e5"},
+    {"path":"scripts/test_event_journal_contract_mutations.py","sha256":"sha256:d59aea22bae03e85b9761cca67b4c4fe953886e864b4964dcccb5fdcaf6bb21b"},
+    {"path":"scripts/validate_event_journal_contract.py","sha256":"sha256:ffc6dca9e3e422c8380fd1de6c566b4affc6b3bca55c8eef7891372b500e03d0"},
+    {"path":"scripts/validate_event_journal_schema_meta.py","sha256":"sha256:1b8824e3bfbcc36b91effe2c682c610441b8bdb2f252eb8c8916e53c00894558"},
+    {"path":"src/incidentseal/manifest.py","sha256":"sha256:05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"}
+  ],
+  "vectors": {
+    "cases": 3,
+    "records": 7,
+    "exact_replays": 3,
+    "completed_root_digest": "sha256:f621205d33189f4286f374906d1606c2df81a43914c4a4a2a9f4073502234290",
+    "stale_root_digest": "sha256:e57b3c5512c5e626c6616b356377434203006a6c7a798438ab77e11ec527319b",
+    "superseded_root_digest": "sha256:0125d7a5ce9c9db3801767f25a4232fb1d981663273754c1878a7839d3921de1"
+  },
+  "mutations": {"manifest":"fixtures/journal/mutations.json","count":16},
+  "evaluation_dependencies": {
+    "lock": "requirements/meta-validation.lock",
+    "source_gate": "records/source-gates/2026-08-09-jsonschema-meta-validation.json",
+    "runtime_dependency": false
+  }
+}

@@ -225,3 +225,13 @@ The public clone passed project and IS-0004 controls plus thirteen reusable clea
 No workflow ran. Receipt verification used no Docker, database, network, secret, approval write, or repository receipt output. Docker containers, networks, and volumes matched before and after, all three protected volumes remained, the public worktree stayed clean, and Python removed the public-clone temporary custody. A first wrapper with an incorrect abbreviated commit prefix stopped before cloning and remains `INVALID`.
 
 This closes `EXIT-PORTABLE-RECEIPTS` and `EXIT-INDEPENDENT-VERIFIER`. It does not close durable event history or recovery. `IS4-U03` is next to freeze and implement append-only event idempotency, duplicate replay, stale, and superseded transitions.
+
+## 2026-08-09 - Append-only event journal contract frozen
+
+`IS4-U03` began from public closure commit `f63e8aff...` with canonical and remote `main` equal, approval `MISSING`, no IncidentSeal container or network, and all three protected evidence volumes present. The new journal contract wraps the frozen run-event schema in an immutable record with exact event, predecessor, link, and domain-separated idempotency identities.
+
+The host allocates event ID and timestamp once and retries the exact same record. Exact replay returns `replayed` without increasing count or changing root. Different bytes under an idempotency key, event ID, or run sequence fail as a conflict. Sequences begin with queued at genesis, remain contiguous, keep one authority digest, follow explicit lifecycle transitions, and cannot append after a terminal event. Stale and superseded outcomes are terminal events on the original run and never rewrite it.
+
+Three vectors retain seven records for completed `PASS`, stale authority, and superseded attempt histories under stable roots. Three exact replays were no-ops. All sixteen bounded mutations returned the expected schema, identity, link, sequence, conflict, state, terminal, or authority error. The dependency-free contract validator passed, and the existing six exact source-gated evaluation wheels validated three Draft 2020-12 schemas and three fixtures from removed temporary custody. No runtime or workflow executed.
+
+U03 remains active. The next bounded improvement is the transactional durable store and read-only ordered stream in a disposable PostgreSQL project; protected volumes remain out of scope.

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/event-journal-record-v1.schema.json",
+  "title": "IncidentSeal event journal record v1",
+  "description": "One immutable, hash-linked, idempotently appendable run-event record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "idempotency_key",
+    "event_digest",
+    "previous_link_digest",
+    "link_digest",
+    "event"
+  ],
+  "properties": {
+    "schema_version": {"const": "incidentseal-event-journal-record/v1"},
+    "idempotency_key": {"$ref": "#/$defs/sha256"},
+    "event_digest": {"$ref": "#/$defs/sha256"},
+    "previous_link_digest": {"$ref": "#/$defs/sha256"},
+    "link_digest": {"$ref": "#/$defs/sha256"},
+    "event": {
+      "$ref": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/run-event-v1.schema.json"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

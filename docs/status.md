@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U02` complete; `IS4-U03` next eligible
+- State: active; `IS4-U03` in progress
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -47,6 +47,10 @@ The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact ev
 
 Exact public commit `3cdbf132225cf48e85a8413574c7e8e1d060aca0`, tree `c62c5cc29ff72d36ddd9acc31a685c0712d996aa`, reproduced thirteen reusable clean-copy checks with credential helpers and prompts disabled. Project and milestone controls, 54 tests, all machine/topology/receipt validators and mutations, six-schema/eleven-fixture exact-wheel meta-validation, 50 policy trials, Git object integrity, and four high-confidence secret patterns passed. Approval remained `MISSING` at exit `12`; no workflow ran; Docker containers, networks, and volumes were unchanged; all three protected volumes remained; temporary clone custody was removed. Five evaluator attempts remain distinctly `INVALID` and retained. `IS4-U03` is now eligible.
 
+`IS4-U03` is in progress. Contract `INCIDENTSEAL-EVENT-JOURNAL-001` freezes an immutable journal record around the existing run-event schema. Event, predecessor-link, and domain-separated idempotency identities use RFC 8785 and SHA-256. Exact record replay is a no-op; changed bytes under an idempotency key, event ID, or run sequence are conflicts. Sequences and authority are contiguous and constant. Completed, stale, and superseded vectors retain seven exact records under three stable roots without collapsing lifecycle and verdict.
+
+The dependency-free contract validator passed three cases and three exact replays. All sixteen semantic mutations returned their expected distinct error, and the existing exact six-wheel evaluator passed three Draft 2020-12 schemas and three fixtures in removed temporary custody. No Docker runtime, PostgreSQL, approval, or workflow was accessed. U03 remains open for transactional persistence, ordered `run events` streaming, disposable real-PostgreSQL replay, and clean-public verification.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, and bounded platform-validation probes; approved-workflow verification and its run-event stream remain unimplemented.
@@ -60,4 +64,4 @@ Exact public commit `3cdbf132225cf48e85a8413574c7e8e1d060aca0`, tree `c62c5cc29f
 
 ## Next eligible action
 
-Begin `IS4-U03`: freeze the append-only event journal, deterministic idempotency key, duplicate replay, and explicit stale and superseded transition contract before implementing persistence.
+Continue `IS4-U03`: implement the locked append-only journal transaction and read-only ordered event stream, then validate exact replay and conflicts in disposable PostgreSQL custody without touching protected volumes.

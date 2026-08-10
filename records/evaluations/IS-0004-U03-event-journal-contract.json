@@ -1,0 +1,63 @@
+{
+  "schema_version": "incidentseal-event-journal-contract-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U03-EVENT-JOURNAL-CONTRACT",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-09T23:58:51Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "contract": {
+    "contract_id": "INCIDENTSEAL-EVENT-JOURNAL-001",
+    "lock": "requirements/event-journal-contract.lock.json",
+    "lock_digest": "sha256:39b56b346f62976a86ad591fa09441aa39d660e93c6d22d14ca3cc4749c4e211",
+    "locked_files": 17,
+    "schemas": [
+      "schemas/run-event-v1.schema.json",
+      "schemas/event-journal-record-v1.schema.json",
+      "schemas/event-journal-result-v1.schema.json"
+    ],
+    "canonicalization": "RFC8785-JCS",
+    "vector_digest": "sha256:531b1dbf05a942290125b2ec28b1481daf4a0dfa8311d58c30daab9fd477a6a3",
+    "cases": 3,
+    "records": 7,
+    "exact_replays": 3
+  },
+  "stable_roots": {
+    "completed": "sha256:f621205d33189f4286f374906d1606c2df81a43914c4a4a2a9f4073502234290",
+    "stale": "sha256:e57b3c5512c5e626c6616b356377434203006a6c7a798438ab77e11ec527319b",
+    "superseded": "sha256:0125d7a5ce9c9db3801767f25a4232fb1d981663273754c1878a7839d3921de1"
+  },
+  "checks": {
+    "dependency_free_contract_validator": "PASS",
+    "full_draft_2020_12_schemas": 3,
+    "full_draft_2020_12_fixtures": 3,
+    "mutations": 16,
+    "mutations_passed": 16,
+    "exact_replay_no_op": "PASS",
+    "sequence_and_link_contiguity": "PASS",
+    "authority_constant_per_run": "PASS",
+    "lifecycle_and_verdict_separation": "PASS",
+    "stale_terminal_retention": "PASS",
+    "superseded_terminal_retention": "PASS",
+    "runtime_started": false,
+    "database_accessed": false,
+    "workflow_executed": false
+  },
+  "evaluation_dependencies": {
+    "source_gate_assessment_id": "INCIDENTSEAL-SOURCE-GATE-002",
+    "exact_artifact_hashes_verified": true,
+    "artifacts": 6,
+    "temporary_install": true,
+    "temporary_custody_removed": true,
+    "runtime_dependency": false
+  },
+  "limitations": [
+    "This freezes journal records and append semantics; it does not yet implement PostgreSQL transactions or the run.events CLI.",
+    "The host must retain the initially allocated event ID and timestamp bytes for an exact idempotent retry.",
+    "No workflow manifest is approved or executed."
+  ],
+  "decision": {
+    "status": "continue",
+    "reason": "The locked contract proves deterministic exact replay, conflict detection, contiguous history, and explicit stale/superseded retention; U03 remains active for durable transactional implementation and real read-only streaming."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "incidentseal-event-journal-mutations/v1",
+  "mutations": [
+    {"id":"unknown-record-field","expected_error":"IS_JOURNAL_SCHEMA"},
+    {"id":"idempotency-key-drift","expected_error":"IS_JOURNAL_IDEMPOTENCY"},
+    {"id":"event-digest-drift","expected_error":"IS_JOURNAL_EVENT_DIGEST"},
+    {"id":"predecessor-drift","expected_error":"IS_JOURNAL_LINK"},
+    {"id":"link-digest-drift","expected_error":"IS_JOURNAL_LINK"},
+    {"id":"nonzero-first-sequence","expected_error":"IS_JOURNAL_SEQUENCE"},
+    {"id":"later-sequence-gap","expected_error":"IS_JOURNAL_SEQUENCE"},
+    {"id":"competing-run-sequence","expected_error":"IS_JOURNAL_CONFLICT"},
+    {"id":"event-id-reuse","expected_error":"IS_JOURNAL_CONFLICT"},
+    {"id":"idempotency-key-reuse","expected_error":"IS_JOURNAL_CONFLICT"},
+    {"id":"lifecycle-regression","expected_error":"IS_JOURNAL_STATE"},
+    {"id":"append-after-terminal","expected_error":"IS_JOURNAL_TERMINAL"},
+    {"id":"completed-without-verdict","expected_error":"IS_JOURNAL_STATE"},
+    {"id":"stale-authority-equal","expected_error":"IS_JOURNAL_STATE"},
+    {"id":"superseded-self-reference","expected_error":"IS_JOURNAL_STATE"},
+    {"id":"authority-drift-within-run","expected_error":"IS_JOURNAL_AUTHORITY"}
+  ]
+}

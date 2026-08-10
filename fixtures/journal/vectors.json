@@ -1,0 +1,80 @@
+{
+  "schema_version": "incidentseal-event-journal-vectors/v1",
+  "genesis_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "cases": [
+    {
+      "id": "completed-pass",
+      "records": [
+        {
+          "schema_version": "incidentseal-event-journal-record/v1",
+          "idempotency_key": "sha256:7bca48804020427bf002164a647b43d0fd65ee285a01543aab6c3bc2cde09130",
+          "event_digest": "sha256:a9283fa661c8cc5462ad93e89fec71172d50d5eea784ccee4646002065e796d2",
+          "previous_link_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+          "link_digest": "sha256:f7a2b983876998d5b736fd5ac711420fdd5b9b758d2203a47e61bf66e5b8af69",
+          "event": {"schema_version":"incidentseal-run-event/v1","event_id":"223e4567-e89b-42d3-a456-426614174101","run_id":"223e4567-e89b-42d3-a456-426614174100","sequence":0,"occurred_at_utc":"2026-08-09T23:50:00Z","event_type":"run.queued","lifecycle":"queued","verdict":null,"terminal":false,"manifest_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","approval_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","payload":{"attempt":1,"claim_id":"release.ready"},"error":null}
+        },
+        {
+          "schema_version": "incidentseal-event-journal-record/v1",
+          "idempotency_key": "sha256:41eeb109ff8a0268d95a77e63ebe18580495e20333be657d1da52c01bdd4c7e2",
+          "event_digest": "sha256:80c058a7feda0c35a572f08d445397d5d7ee714d0e24ad3455a0591e6e95939d",
+          "previous_link_digest": "sha256:f7a2b983876998d5b736fd5ac711420fdd5b9b758d2203a47e61bf66e5b8af69",
+          "link_digest": "sha256:dfdd4866f4e311f7322da28cb13b7f4c26ada5b692298c779bd697ef3d132091",
+          "event": {"schema_version":"incidentseal-run-event/v1","event_id":"223e4567-e89b-42d3-a456-426614174102","run_id":"223e4567-e89b-42d3-a456-426614174100","sequence":1,"occurred_at_utc":"2026-08-09T23:50:01Z","event_type":"run.started","lifecycle":"running","verdict":null,"terminal":false,"manifest_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","approval_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","payload":{"host":"incidentseal"},"error":null}
+        },
+        {
+          "schema_version": "incidentseal-event-journal-record/v1",
+          "idempotency_key": "sha256:9f7cb92213f320a904d7aa58b8a429715861e979f6e31c863fe1519519ff7b2f",
+          "event_digest": "sha256:477d95e3b3c76a7e6c555da6058caf03c08c63cdc0b7c086bbf225770c5f0366",
+          "previous_link_digest": "sha256:dfdd4866f4e311f7322da28cb13b7f4c26ada5b692298c779bd697ef3d132091",
+          "link_digest": "sha256:f621205d33189f4286f374906d1606c2df81a43914c4a4a2a9f4073502234290",
+          "event": {"schema_version":"incidentseal-run-event/v1","event_id":"223e4567-e89b-42d3-a456-426614174103","run_id":"223e4567-e89b-42d3-a456-426614174100","sequence":2,"occurred_at_utc":"2026-08-09T23:50:02Z","event_type":"run.completed","lifecycle":"completed","verdict":"PASS","terminal":true,"manifest_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","approval_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","payload":{"receipt_digest":"sha256:7293ac4087873338dfbe78411c74c809efd18b2ffac0aa88e052df33d0353c77"},"error":null}
+        }
+      ],
+      "expected": {"event_count":3,"root_digest":"sha256:f621205d33189f4286f374906d1606c2df81a43914c4a4a2a9f4073502234290","lifecycle":"completed","verdict":"PASS","terminal":true}
+    },
+    {
+      "id": "stale-authority",
+      "records": [
+        {
+          "schema_version": "incidentseal-event-journal-record/v1",
+          "idempotency_key": "sha256:b9c57eb8aeac876fe3081b71ac3696ccbbb873fb171a210619d237fe2d05f164",
+          "event_digest": "sha256:2786546f35abb400233234ecabc439a8a798a68d3f0c23e8db005f8cc49c76b2",
+          "previous_link_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+          "link_digest": "sha256:f7335c3886814d3433cdc9600b4804f8b9d40b93329dff17b1cdaecff9c04a5a",
+          "event": {"schema_version":"incidentseal-run-event/v1","event_id":"223e4567-e89b-42d3-a456-426614174201","run_id":"223e4567-e89b-42d3-a456-426614174200","sequence":0,"occurred_at_utc":"2026-08-09T23:50:10Z","event_type":"run.queued","lifecycle":"queued","verdict":null,"terminal":false,"manifest_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","approval_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","payload":{"attempt":2,"claim_id":"release.ready"},"error":null}
+        },
+        {
+          "schema_version": "incidentseal-event-journal-record/v1",
+          "idempotency_key": "sha256:0d9a41826315013e64da42fb2f4138f8a3471d8f10c609f553e8e4d0de8ff7a6",
+          "event_digest": "sha256:bea7c03fcf171608f477c903646a08f7069ccfa5025d7ccb2549a5cf516e1189",
+          "previous_link_digest": "sha256:f7335c3886814d3433cdc9600b4804f8b9d40b93329dff17b1cdaecff9c04a5a",
+          "link_digest": "sha256:e57b3c5512c5e626c6616b356377434203006a6c7a798438ab77e11ec527319b",
+          "event": {"schema_version":"incidentseal-run-event/v1","event_id":"223e4567-e89b-42d3-a456-426614174202","run_id":"223e4567-e89b-42d3-a456-426614174200","sequence":1,"occurred_at_utc":"2026-08-09T23:50:11Z","event_type":"run.stale","lifecycle":"stale","verdict":null,"terminal":true,"manifest_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","approval_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","payload":{"expected_authority_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","observed_authority_digest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","reason":"manifest authority changed"},"error":null}
+        }
+      ],
+      "expected": {"event_count":2,"root_digest":"sha256:e57b3c5512c5e626c6616b356377434203006a6c7a798438ab77e11ec527319b","lifecycle":"stale","verdict":null,"terminal":true}
+    },
+    {
+      "id": "superseded-attempt",
+      "records": [
+        {
+          "schema_version": "incidentseal-event-journal-record/v1",
+          "idempotency_key": "sha256:f4b77eed548abad2d5d2acc5e80355c72bf3261c592c88d42f03ea55d5206c3a",
+          "event_digest": "sha256:332faa058318e923178326fe650f4b12a2becc02b7b03d52f7e36fe231665bce",
+          "previous_link_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+          "link_digest": "sha256:7cc36d15e6f5fa870b925b3606282e238ed2b44625b174d8fc38a6da714554fb",
+          "event": {"schema_version":"incidentseal-run-event/v1","event_id":"223e4567-e89b-42d3-a456-426614174301","run_id":"223e4567-e89b-42d3-a456-426614174300","sequence":0,"occurred_at_utc":"2026-08-09T23:50:20Z","event_type":"run.queued","lifecycle":"queued","verdict":null,"terminal":false,"manifest_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","approval_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","payload":{"attempt":3,"claim_id":"release.ready"},"error":null}
+        },
+        {
+          "schema_version": "incidentseal-event-journal-record/v1",
+          "idempotency_key": "sha256:53440b94556f62723aeed842c6525ce485d8cf3523c1b6a75a6934d47209a03c",
+          "event_digest": "sha256:de28a6393d0aa71b523f13cb9d9afef19c8c50e8220898d7cc220bb824c76296",
+          "previous_link_digest": "sha256:7cc36d15e6f5fa870b925b3606282e238ed2b44625b174d8fc38a6da714554fb",
+          "link_digest": "sha256:0125d7a5ce9c9db3801767f25a4232fb1d981663273754c1878a7839d3921de1",
+          "event": {"schema_version":"incidentseal-run-event/v1","event_id":"223e4567-e89b-42d3-a456-426614174302","run_id":"223e4567-e89b-42d3-a456-426614174300","sequence":1,"occurred_at_utc":"2026-08-09T23:50:21Z","event_type":"run.superseded","lifecycle":"superseded","verdict":null,"terminal":true,"manifest_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","approval_digest":"sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45","payload":{"reason":"operator selected a new attempt","superseded_by_run_id":"223e4567-e89b-42d3-a456-426614174400"},"error":null}
+        }
+      ],
+      "expected": {"event_count":2,"root_digest":"sha256:0125d7a5ce9c9db3801767f25a4232fb1d981663273754c1878a7839d3921de1","lifecycle":"superseded","verdict":null,"terminal":true}
+    }
+  ]
+}

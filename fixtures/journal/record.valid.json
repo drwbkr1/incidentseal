@@ -1,0 +1,22 @@
+{
+  "schema_version": "incidentseal-event-journal-record/v1",
+  "idempotency_key": "sha256:7bca48804020427bf002164a647b43d0fd65ee285a01543aab6c3bc2cde09130",
+  "event_digest": "sha256:a9283fa661c8cc5462ad93e89fec71172d50d5eea784ccee4646002065e796d2",
+  "previous_link_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "link_digest": "sha256:f7a2b983876998d5b736fd5ac711420fdd5b9b758d2203a47e61bf66e5b8af69",
+  "event": {
+    "schema_version": "incidentseal-run-event/v1",
+    "event_id": "223e4567-e89b-42d3-a456-426614174101",
+    "run_id": "223e4567-e89b-42d3-a456-426614174100",
+    "sequence": 0,
+    "occurred_at_utc": "2026-08-09T23:50:00Z",
+    "event_type": "run.queued",
+    "lifecycle": "queued",
+    "verdict": null,
+    "terminal": false,
+    "manifest_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+    "approval_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+    "payload": {"attempt": 1, "claim_id": "release.ready"},
+    "error": null
+  }
+}

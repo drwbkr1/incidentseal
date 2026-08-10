@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Begin IS4-U03 by freezing append-only event journal, idempotency, duplicate replay, stale, and superseded transition rules before implementation"
+    "next_action": "Implement the locked IS4-U03 journal as an atomic durable store with exact replay and read-only ordered streaming in disposable PostgreSQL custody"
   }
 }

@@ -135,7 +135,7 @@
       "outputs": ["Host receipt writer", "Offline verifier CLI", "Content-addressed artifact custody", "Implementation mutations"],
       "gates": {"receipt_contract":"pass","real_cli_matrix":"pass","runtime_self_binding":"pass","implementation_mutations":"pass_12_of_12","regression_tests":"pass_54","cross_surface_topology_locks":"pass","clean_public_replay":"pass_13_checks","git_integrity":"pass","secret_scan":"pass","runtime_execution":"not_started"},
       "disposition": "pass",
-      "retained_failures": ["Four evaluator attempts remain INVALID: state-separated error lookup, pre-write custody detection, direct base-interpreter meta-validation, and intentional receipt CLI drift rejected by the prior topology implementation lock. Corrected governed paths pass without erasing those attempts."],
+      "retained_failures": ["Five evaluator attempts remain INVALID: state-separated error lookup, pre-write custody detection, direct base-interpreter meta-validation, intentional receipt CLI drift rejected by the prior topology implementation lock, and an incorrect public candidate prefix rejected before cloning. Corrected governed paths pass without erasing those attempts."],
       "exit_condition_delta": {"expected":["EXIT-PORTABLE-RECEIPTS","EXIT-INDEPENDENT-VERIFIER"],"observed":["EXIT-PORTABLE-RECEIPTS","EXIT-INDEPENDENT-VERIFIER"],"decision_value":"advances_exit","rationale":"The exact public candidate reproduced atomic content-addressed custody, independent state-separated verification, runtime self-binding, twelve implementation mutations, and clean-copy integrity without credentials or runtime authority."},
       "next_dependency": "IS4-U03"
     },
@@ -145,10 +145,10 @@
       "depends_on": ["IS4-U02"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "planned",
+      "status": "in_progress",
       "inputs": ["Verified receipt store and offline verifier", "Run-event v1 schema"],
       "outputs": ["Durable event journal", "Idempotency and duplicate policy", "Stale and superseded evidence"],
-      "gates": {},
+      "gates": {"journal_contract_lock":"pass","canonical_vectors":"pass_3_cases_7_records","exact_replay":"pass_3_of_3","full_draft_2020_12":"pass_3_schemas_3_fixtures","contract_mutations":"pass_16_of_16","durable_transactional_store":"pending","run_events_cli":"pending","real_postgresql_replay":"pending","clean_public_replay":"pending"},
       "disposition": null,
       "retained_failures": [],
       "exit_condition_delta": {"expected":["EXIT-IDEMPOTENT-EVENTS"],"observed":[],"decision_value":"unknown","rationale":"Duplicate and superseding attempts must be observable without rewriting the earlier event chain."},
@@ -242,8 +242,8 @@
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U02 portable receipt and independent verifier passed exact credential-free public replay; workflow approval remains MISSING and execution remains unavailable",
-    "next_action": "Begin IS4-U03 by freezing the monotonic append-only event journal, deterministic idempotency, duplicate replay, stale, and superseded transition contract before implementation.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U03 journal contract passes 3 cases, 7 records, exact replay, and 16 mutations; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Implement the locked IS4-U03 journal as an atomic durable store with unique event, idempotency, and run-sequence constraints plus read-only ordered streaming, then validate it in disposable PostgreSQL custody.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

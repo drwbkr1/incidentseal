@@ -42,7 +42,7 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 Status: active
 
-Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed with a dependency-free atomic writer, independent read-only verifier, runtime source binding, 54 tests, all 12 implementation mutations, and an exact credential-free public replay of 13 clean-copy checks with unchanged Docker and approval custody. `IS4-U03` is next for append-only durable event idempotency and explicit stale/superseded behavior.
+Progress: `IS4-U01` froze the portable receipt contract. `IS4-U02` passed the atomic writer and independent verifier. `IS4-U03` is active: its locked journal contract passes three stable completed/stale/superseded chains, seven records, exact replay, three full Draft 2020-12 schemas/fixtures, and all 16 conflict/state mutations. Durable transactional persistence and real ordered streaming remain.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.

@@ -1,0 +1,14 @@
+{
+  "schema_version": "incidentseal-event-journal-result/v1",
+  "disposition": "inserted",
+  "run_id": "223e4567-e89b-42d3-a456-426614174100",
+  "sequence": 2,
+  "idempotency_key": "sha256:9f7cb92213f320a904d7aa58b8a429715861e979f6e31c863fe1519519ff7b2f",
+  "event_digest": "sha256:477d95e3b3c76a7e6c555da6058caf03c08c63cdc0b7c086bbf225770c5f0366",
+  "link_digest": "sha256:f621205d33189f4286f374906d1606c2df81a43914c4a4a2a9f4073502234290",
+  "event_count": 3,
+  "root_digest": "sha256:f621205d33189f4286f374906d1606c2df81a43914c4a4a2a9f4073502234290",
+  "lifecycle": "completed",
+  "verdict": "PASS",
+  "terminal": true
+}
