@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U04` passed from exact credential-free public custody; `IS4-U05` backup and clean restore ready
+- State: active; `IS4-U04` passed; `IS4-U05` backup/clean-restore contract passes locally and awaits public contract replay
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -69,6 +69,8 @@ Passing invocation `e65374af-535f-47df-b8f2-40b5b9459885` completed 15 real chec
 
 Exact credential-free public commit `7c6278f6a906bd665279fd1bc9068dc4aac2776a`, tree `58a4b2bc766ba03ae2a289e55ab12233e884e6ec`, reproduced all 74 tests, every machine/topology/receipt/journal/recovery validator and mutation suite, and offline Draft 2020-12 validation of two recovery schemas and 26 fixtures from six rehashed source-gated wheels. Strict Git integrity and four high-confidence secret patterns passed. Public recovery invocation `84ceb376-b2bb-43e7-a93f-46129c3472f0` repeated all 15 real Docker/PostgreSQL checks. Approval remained `MISSING` / `INVALID` at exit `12` before and after; no workflow ran; no disposable container, network, volume, or state custody remains; and the three protected volume identities are exact. The clean noncanonical clone remains outside OneDrive and runtime custody. Three additional read-only/public-harness attempts remain `INVALID`. `EXIT-INTERRUPTION-RECOVERY` passes and `IS4-U05` is ready.
 
+`IS4-U05` now has a local contract candidate without runtime execution. A closed RFC 8785 receipt binds exact PostgreSQL custom-archive bytes, normalized TOC identity, fixed no-owner/no-privilege dump and error-stopping single-transaction restore commands, a fixed disposable source, a different clean target, and the exact database and migration image IDs. Because PostgreSQL roles are cluster-global and absent from `pg_dump`, the contract measures the exact two-role source baseline, forbids restoring role SQL, and requires the locked migration to recreate and harden roles after restore. PASS requires schema, ordered journal, verification-result, and role equivalence; five negative runner privileges; exact protected-volume identity; and full teardown. Eighteen mutations, one full schema across two fixtures, and all 80 tests pass. One import-harness attempt remains `INVALID`. Credential-free public contract replay and all real dump/restore behavior remain pending.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
@@ -82,4 +84,4 @@ Exact credential-free public commit `7c6278f6a906bd665279fd1bc9068dc4aac2776a`, 
 
 ## Next eligible action
 
-Begin ready unit `IS4-U05` by freezing the exact PostgreSQL logical backup and clean-restore contract against disposable evidence custody before any restore runtime executes.
+Commit and push the exact `IS4-U05` contract candidate, then reproduce its static, schema, integrity, secret, authority, and unchanged-Docker gates from credential-free public custody before implementing any dump or restore runtime.

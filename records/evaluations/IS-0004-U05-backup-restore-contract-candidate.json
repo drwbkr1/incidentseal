@@ -1,0 +1,64 @@
+{
+  "schema_version":"incidentseal-backup-restore-contract-evaluation/v1",
+  "evaluation_id":"IS-EVAL-0004-U05-BACKUP-RESTORE-CONTRACT-CANDIDATE",
+  "checkpoint_id":"IS-0004",
+  "unit_id":"IS4-U05",
+  "observed_at_utc":"2026-08-10T03:09:40Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "claim_scope":"Closed content-addressed PostgreSQL logical backup and clean-restore receipt contract only; no dump, restore, Docker, PostgreSQL, approval, protected-volume, or workflow action.",
+  "bindings":{
+    "backup_restore_contract_lock":{"path":"requirements/backup-restore-contract.lock.json","sha256":"sha256:6906f92f06606c3583394a70cc98d3a124f0151451ad1fa973d9029900fca198"},
+    "vectors":{"path":"fixtures/backup-restore/vectors.json","sha256":"sha256:9961c374b64b8327234460d1f6a22e8fb0a2b3c4d46d8c84de53f3e6c5afa94a"},
+    "mutations":{"path":"fixtures/backup-restore/mutations.json","sha256":"sha256:74c619ea2fa4530ac0c793d9e1b39cc5ac126153169a1e6d119d69d7179dc19b"},
+    "evaluation_dependency_lock":{"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"}
+  },
+  "results":{
+    "closed_schemas":1,
+    "full_draft_2020_12_fixtures":2,
+    "fail_closed_mutations":18,
+    "repository_tests":80,
+    "golden_receipt_digest":"sha256:2722f1a843102f02063018cd58662ead97114ec96f1a481c41d66491fa9ed37b",
+    "archive_format":"postgresql-custom-v1",
+    "source_writes_blocked":true,
+    "restore_error_stop":true,
+    "restore_single_transaction":true,
+    "owner_and_privilege_restore":false,
+    "roles_restored_from_dump":false,
+    "negative_privilege_checks":5,
+    "protected_volume_identity_required":true,
+    "disposable_teardown_required":true
+  },
+  "evaluation_dependencies":{
+    "source_gate_assessment_id":"INCIDENTSEAL-SOURCE-GATE-002",
+    "artifact_count":6,
+    "all_artifact_hashes_reverified":true,
+    "network_used_by_passing_validation":false,
+    "retained_exact_noncanonical_wheel_custody_used":true,
+    "disposable_evaluation_custody_removed":true,
+    "runtime_dependency_added":false
+  },
+  "trust_boundary":{
+    "docker_started":false,
+    "postgresql_accessed":false,
+    "dump_created":false,
+    "restore_executed":false,
+    "approval_accessed_by_contract":false,
+    "approval_written":false,
+    "workflow_executed":false,
+    "protected_volumes_accessed":false,
+    "incidentseal_containers_after":0,
+    "incidentseal_networks_after":0,
+    "protected_volumes_present":3
+  },
+  "retained_invalid_attempts":[
+    "The first focused backup/restore test omitted the repository's standard src path bootstrap and failed import before any test or runtime action."
+  ],
+  "limitations":[
+    "The contract has not executed pg_dump, pg_restore, PostgreSQL, or Docker.",
+    "Archive bytes and normalized TOC identity remain unverified on a real surface.",
+    "Clean restore equivalence, role hardening, negative privileges, restart persistence, and teardown remain implementation gates.",
+    "No approved workflow was executed."
+  ],
+  "decision":{"status":"continue","next":"Commit and push the exact contract candidate, reproduce it from credential-free public custody, then implement the fixed disposable backup and clean-restore surface separately."}
+}

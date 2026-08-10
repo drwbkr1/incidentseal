@@ -1,0 +1,13 @@
+{
+  "schema_version":"incidentseal-invalid-attempts/v1",
+  "evaluation_id":"IS-EVAL-0004-U05-BACKUP-RESTORE-CONTRACT-INVALID-ATTEMPTS",
+  "checkpoint_id":"IS-0004",
+  "unit_id":"IS4-U05",
+  "observed_at_utc":"2026-08-10T03:09:40Z",
+  "execution_state":"completed",
+  "verification_verdict":"INVALID",
+  "attempts":[
+    {"id":"focused-test-src-bootstrap","category":"test-harness","executed_product":false,"note":"Direct unittest import could not locate incidentseal because the new test omitted the standard src path bootstrap. The corrected test follows the existing contract-test pattern and all six focused tests plus all 80 repository tests pass."}
+  ],
+  "retention":"The invalid import attempt is not product FAIL evidence and did not start Docker, PostgreSQL, dump, restore, approval, or workflow surfaces."
+}

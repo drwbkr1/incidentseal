@@ -1,0 +1,33 @@
+{
+  "schema_version":"incidentseal-backup-restore-contract-lock/v1",
+  "contract_id":"INCIDENTSEAL-BACKUP-RESTORE-001",
+  "unit_id":"IS4-U05",
+  "canonicalization":"RFC8785-JCS",
+  "files":[
+    {"path":"docs/backup-restore-contract.md","sha256":"sha256:7b079993a62500e84c149a75e4ddbd9eee4ec2b461affdac915373c0495eb72a"},
+    {"path":"docs/backup-restore-mutation-plan.md","sha256":"sha256:ea9b62909b9e312f1f7e2bcd58fe688493d9c1a22c1af5742d10f8e6ee434557"},
+    {"path":"docs/decisions/ADR-0008-logical-backup-clean-restore.md","sha256":"sha256:1698cae6e9e1157742c5f0a142046d40f10ff64d9e10bc44c2d45e6ef2954dd1"},
+    {"path":"fixtures/backup-restore/mutations.json","sha256":"sha256:74c619ea2fa4530ac0c793d9e1b39cc5ac126153169a1e6d119d69d7179dc19b"},
+    {"path":"fixtures/backup-restore/receipt.invalid.minimal.json","sha256":"sha256:7b876fdc6468c4e82ae528d144870566f6c9d2c33058e8208c8c3465ecc4de65"},
+    {"path":"fixtures/backup-restore/vectors.json","sha256":"sha256:9961c374b64b8327234460d1f6a22e8fb0a2b3c4d46d8c84de53f3e6c5afa94a"},
+    {"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"},
+    {"path":"schemas/backup-restore-receipt-v1.schema.json","sha256":"sha256:e1b33c753e8f601664c379f551fe05042da1a73db46b58726a12e94fdd8ada6d"},
+    {"path":"scripts/run_backup_restore_meta_validation.py","sha256":"sha256:ca4dccd87f31113b878bb0d7a908ca7ce121758ba8b1c867117e01434ca4b5f0"},
+    {"path":"scripts/test_backup_restore_contract_mutations.py","sha256":"sha256:cd2f6a0a6dd6da2cb17daeb3726404e47f0a4809a5d829a09de13b50cd29e09e"},
+    {"path":"scripts/validate_backup_restore_contract.py","sha256":"sha256:c7e9f53025fd3bdef7979f3f2ec0b551f2072b16c5e7a91c12e49e9d3b1c3c49"},
+    {"path":"scripts/validate_backup_restore_schema_meta.py","sha256":"sha256:a0206616bec3a96deca11430ca8e919584688c8ecf10948ad702aa219ee78852"},
+    {"path":"src/incidentseal/backup_restore.py","sha256":"sha256:9c833629b64ace06124a36c006b37bb29667dcd4659756bdce969b62cf6fad7b"},
+    {"path":"src/incidentseal/manifest.py","sha256":"sha256:05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"},
+    {"path":"tests/test_backup_restore.py","sha256":"sha256:3c1aa09b0e85c9f53028d790166a29bb83a4bff1e0dde006ed9f5a3f15335a45"}
+  ],
+  "golden": {
+    "receipt_digest":"sha256:2722f1a843102f02063018cd58662ead97114ec96f1a481c41d66491fa9ed37b",
+    "archive_format":"postgresql-custom-v1",
+    "pg_dump_argv":["pg_dump","--format=custom","--compress=0","--no-owner","--no-privileges","--file=/incidentseal/backup/incidentseal.dump","--dbname=incidentseal"],
+    "pg_restore_argv":["pg_restore","--exit-on-error","--single-transaction","--no-owner","--no-privileges","--dbname=incidentseal","/incidentseal/backup/incidentseal.dump"],
+    "role_mode":"verified-baseline-not-restored-from-dump",
+    "negative_privilege_checks":5
+  },
+  "mutations":{"manifest":"fixtures/backup-restore/mutations.json","count":18},
+  "evaluation_dependencies":{"lock":"requirements/meta-validation.lock","source_gate":"records/source-gates/2026-08-09-jsonschema-meta-validation.json","retained_exact_wheel_reuse":"permitted-after-hash-verification","runtime_dependency":false}
+}

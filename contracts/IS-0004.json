@@ -175,13 +175,13 @@
       "depends_on": ["IS4-U04"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "ready",
+      "status": "in_progress",
       "inputs": ["Recoverable event model", "Exact PostgreSQL runtime lock", "Protected-volume lock"],
       "outputs": ["Backup receipt", "Clean-restore receipt", "Restored evidence equivalence and privilege evidence"],
-      "gates": {},
+      "gates": {"backup_restore_contract_lock":"pass","closed_schema":"pass_1","content_addressed_receipt":"pass","custom_archive_policy":"pass","source_snapshot_policy":"pass","clean_distinct_target":"pass","roles_measured_not_restored":"pass","restore_error_stop":"pass","negative_privileges":"pass_5","contract_mutations":"pass_18_of_18","full_draft_2020_12":"pass_1_schema_2_fixtures","regression_tests":"pass_80","runtime_execution":"not_started","clean_public_contract_replay":"pending"},
       "disposition": null,
-      "retained_failures": [],
-      "exit_condition_delta": {"expected":["EXIT-BACKUP-RESTORE"],"observed":[],"decision_value":"unknown","rationale":"Backup existence is insufficient; an exact clean restore must reproduce the bounded evidence state and least-privilege controls."},
+      "retained_failures": ["The first focused backup/restore test omitted the standard src path bootstrap and failed import before any test or runtime action; the corrected test and all 80 repository tests pass."],
+      "exit_condition_delta": {"expected":["EXIT-BACKUP-RESTORE"],"observed":[],"decision_value":"enables_dependency","rationale":"The contract now binds exact archive bytes and normalized TOC, a fixed disposable source, a different clean target, measured cluster-global roles, error-stopping single-transaction restore, exact state equivalence, negative privileges, protected-volume identity, and teardown. Public contract replay and real implementation evidence remain required."},
       "next_dependency": "IS4-U06"
     },
     {
@@ -246,8 +246,8 @@
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; exact public commit 7c6278f6 reproduces the IS4-U04 fixed host-only fenced recovery implementation and EXIT-INTERRUPTION-RECOVERY passes; workflow approval remains MISSING and execution remains unavailable",
-    "next_action": "Begin ready unit IS4-U05 by freezing the exact PostgreSQL logical backup and clean-restore contract against disposable evidence custody before any restore runtime executes.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U04 and EXIT-INTERRUPTION-RECOVERY pass; the local IS4-U05 content-addressed logical backup and clean-restore contract candidate passes without runtime, while public contract replay and implementation remain; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Commit and push the exact IS4-U05 backup/restore contract candidate, then reproduce its 80 tests, eighteen mutations, full-schema validation, integrity, secret, authority, and unchanged-Docker boundaries from credential-free public custody before implementing runtime.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/backup-restore-receipt-v1.schema.json",
+  "title":"IncidentSeal PostgreSQL backup and clean-restore receipt v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema_version","backup_id","created_at_utc","authority","source","backup","roles","restore","verification_verdict","receipt_digest"],
+  "properties":{
+    "schema_version":{"const":"incidentseal-backup-restore-receipt/v1"},
+    "backup_id":{"$ref":"#/$defs/uuid"},
+    "created_at_utc":{"$ref":"#/$defs/time"},
+    "authority":{"type":"object","additionalProperties":false,"required":["mode","contract_digest"],"properties":{"mode":{"const":"platform-validation"},"contract_digest":{"$ref":"#/$defs/sha256"}}},
+    "source":{"type":"object","additionalProperties":false,"required":["project_name","disposable","database_image_id","migration_image_id","postgres_version_num","database_name","schema_digest","journal","verification_results","role_digest"],"properties":{"project_name":{"$ref":"#/$defs/name"},"disposable":{"const":true},"database_image_id":{"$ref":"#/$defs/sha256"},"migration_image_id":{"$ref":"#/$defs/sha256"},"postgres_version_num":{"const":180004},"database_name":{"const":"incidentseal"},"schema_digest":{"$ref":"#/$defs/sha256"},"journal":{"$ref":"#/$defs/journal"},"verification_results":{"$ref":"#/$defs/results"},"role_digest":{"$ref":"#/$defs/sha256"}}},
+    "backup":{"type":"object","additionalProperties":false,"required":["format","archive_digest","archive_bytes","normalized_toc_digest","toc_entries","source_writes_blocked","pg_dump_argv","stderr_policy","fsync_required"],"properties":{"format":{"const":"postgresql-custom-v1"},"archive_digest":{"$ref":"#/$defs/sha256"},"archive_bytes":{"$ref":"#/$defs/positive"},"normalized_toc_digest":{"$ref":"#/$defs/sha256"},"toc_entries":{"$ref":"#/$defs/positive"},"source_writes_blocked":{"const":true},"pg_dump_argv":{"type":"array","minItems":7,"maxItems":7,"items":{"type":"string","minLength":1}},"stderr_policy":{"const":"empty"},"fsync_required":{"const":true}}},
+    "roles":{"type":"object","additionalProperties":false,"required":["mode","roles_digest","items"],"properties":{"mode":{"const":"verified-baseline-not-restored-from-dump"},"roles_digest":{"$ref":"#/$defs/sha256"},"items":{"type":"array","minItems":2,"maxItems":2,"items":{"$ref":"#/$defs/role"}}}},
+    "restore":{"type":"object","additionalProperties":false,"required":["clean_target","target_project_name","target_volume_name","source_archive_digest","pg_restore_argv","post_restore_migration_image_id","exit_code","stderr_policy","schema_digest","role_digest","journal_digest","verification_results_digest","negative_privileges","protected_volumes_unchanged","disposable_teardown"],"properties":{"clean_target":{"const":true},"target_project_name":{"$ref":"#/$defs/name"},"target_volume_name":{"$ref":"#/$defs/name"},"source_archive_digest":{"$ref":"#/$defs/sha256"},"pg_restore_argv":{"type":"array","minItems":7,"maxItems":7,"items":{"type":"string","minLength":1}},"post_restore_migration_image_id":{"$ref":"#/$defs/sha256"},"exit_code":{"const":0},"stderr_policy":{"const":"empty"},"schema_digest":{"$ref":"#/$defs/sha256"},"role_digest":{"$ref":"#/$defs/sha256"},"journal_digest":{"$ref":"#/$defs/sha256"},"verification_results_digest":{"$ref":"#/$defs/sha256"},"negative_privileges":{"$ref":"#/$defs/privileges"},"protected_volumes_unchanged":{"const":true},"disposable_teardown":{"const":true}}},
+    "verification_verdict":{"const":"PASS"},
+    "receipt_digest":{"$ref":"#/$defs/sha256"}
+  },
+  "$defs":{
+    "sha256":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "uuid":{"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "time":{"type":"string","pattern":"^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$"},
+    "name":{"type":"string","pattern":"^[a-z0-9][a-z0-9-]{0,126}[a-z0-9]$"},
+    "positive":{"type":"integer","minimum":1,"maximum":9007199254740991},
+    "journal":{"type":"object","additionalProperties":false,"required":["run_count","event_count","ordered_stream_digest"],"properties":{"run_count":{"$ref":"#/$defs/positive"},"event_count":{"$ref":"#/$defs/positive"},"ordered_stream_digest":{"$ref":"#/$defs/sha256"}}},
+    "results":{"type":"object","additionalProperties":false,"required":["row_count","rows_digest"],"properties":{"row_count":{"$ref":"#/$defs/positive"},"rows_digest":{"$ref":"#/$defs/sha256"}}},
+    "role":{"type":"object","additionalProperties":false,"required":["name","superuser","create_db","create_role","replication","bypass_rls","login"],"properties":{"name":{"enum":["incidentseal_admin","incidentseal_runner"]},"superuser":{"type":"boolean"},"create_db":{"const":false},"create_role":{"const":false},"replication":{"const":false},"bypass_rls":{"const":false},"login":{"const":true}}},
+    "privileges":{"type":"object","additionalProperties":false,"required":["runner_schema_create","runner_ddl","runner_migration_read","runner_journal_read","runner_recovery_fence_read"],"properties":{"runner_schema_create":{"const":"denied"},"runner_ddl":{"const":"denied"},"runner_migration_read":{"const":"denied"},"runner_journal_read":{"const":"denied"},"runner_recovery_fence_read":{"const":"denied"}}}
+  }
+}
