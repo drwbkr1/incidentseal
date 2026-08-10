@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit and push the locally verified IS4-U06 integrated matrix contract, reproduce it from exact credential-free public custody without runtime, then implement the fixed host-owned composite under that lock"
+    "next_action": "Implement a separately locked fixed argument-free host-owned IS4-U06 composite, validate two complete isolated real repetitions locally, then reproduce the exact implementation from credential-free public custody"
   }
 }

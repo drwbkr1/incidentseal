@@ -1,0 +1,30 @@
+{
+  "schema_version":"incidentseal-invalid-attempts/v1",
+  "evaluation_id":"IS-EVAL-0004-U06-PUBLIC-INTEGRATED-RECOVERY-CONTRACT-INVALID-ATTEMPTS",
+  "checkpoint_id":"IS-0004",
+  "unit_id":"IS4-U06",
+  "observed_at_utc":"2026-08-10T22:09:45Z",
+  "execution_state":"completed",
+  "verification_verdict":"INVALID",
+  "attempts":[
+    {
+      "id":"operator-pause-terminated-public-replay",
+      "category":"operator-pause",
+      "executed_product":false,
+      "note":"The first public static replay was intentionally terminated when the operator paused the goal. Partial output was not promoted to evidence and no PASS was claimed. Resume inspection found no surviving replay process, IncidentSeal container, or IncidentSeal network; approval remained MISSING and the three protected volume identities remained exact. The corrected evaluation restarted the entire runtime-free replay from its first gate."
+    },
+    {
+      "id":"resume-ledger-path-drift",
+      "category":"state-inspection-harness",
+      "executed_product":false,
+      "note":"The first resumed read-only state wrapper requested a nonexistent legacy evidence path after successfully reading the controlling instructions, profile, contract, status, and roadmap. The corrected wrapper read records/evidence-ledger.jsonl and confirmed IS-EVENT-0054 as the active resume point."
+    },
+    {
+      "id":"resume-git-tree-powershell-quoting",
+      "category":"read-only-wrapper",
+      "executed_product":false,
+      "note":"The first resumed clone-identity wrapper left HEAD^{tree} unquoted, so PowerShell parsed the braces as a script block after protected-volume identities and zero runtime custody had already been observed. The corrected read-only command returned the expected commit and tree from a clean clone."
+    }
+  ],
+  "retention":"These attempts remain INVALID rather than product FAIL. None executed the composite, started an IncidentSeal container or network, accessed PostgreSQL, mounted a protected volume, wrote approval state, or executed a repository workflow."
+}
