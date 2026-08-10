@@ -1,8 +1,8 @@
 # IncidentSeal status
 
-- Current checkpoint: `IS-0004`
+- Current checkpoint: `IS-0005`
 - Latest verified checkpoint: `IS-0004`
-- State: complete; all IS-0004 evidence-and-recovery exits pass from exact public custody; the next cycle begins with bounded IS-0005 dashboard and evaluation work
+- State: active; `checkpoint-is-0004` remains the latest verified base and `IS5-U01` is the sole contract-only dashboard/evaluation unit; no dashboard server has started
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -93,6 +93,8 @@ Exact closure commit `25328dacef4d9283090bed809db75b33f613829b`, tree `b03947a40
 
 Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf` was pushed and independently fetched from credential-free public custody, peeling to the exact closure commit. One unquoted remote peeled-tag query remains `INVALID`; the corrected quoted query returned both exact remote rows. `EXIT-PUBLIC-CHECKPOINT` passes and IS-0004 is complete.
 
+`IS-0005` is now active from that exact marker. Its first bounded unit is contract-only: freeze the exact record-to-dashboard projection, loopback-only read-only HTTP boundary, local asset policy, state-separated rendering, nine deterministic evaluation scenarios, rendered visual acceptance, accessibility, and repeated correctness/latency/resource/claim-calibration measurements before implementing or starting a server. The milestone explicitly forbids changing the frozen verification CLI, using OneDrive, binding beyond loopback, adding external assets or telemetry, or granting the dashboard Docker, approval, secret, workflow, or repository-write authority.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
@@ -106,4 +108,4 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 
 ## Next eligible action
 
-Begin the next cycle from `checkpoint-is-0004` by opening the smallest bounded IS-0005 dashboard-and-evaluation contract, while preserving the verified CLI, trust boundary, evidence states, and release non-claims.
+Freeze and publicly reproduce the `IS5-U01` dependency-free dashboard snapshot, loopback serving, state rendering, scenario corpus, visual acceptance, and evaluation contracts without starting a dashboard server.

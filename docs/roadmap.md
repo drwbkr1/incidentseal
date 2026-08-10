@@ -51,7 +51,9 @@ Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and ind
 
 ### IS-0005 - Dashboard and evaluation
 
-Status: planned
+Status: active
+
+Progress: `IS5-U01` is the sole active contract-only unit. It will freeze the exact read-only evidence projection, loopback-only serving boundary, dashboard state model, nine-scenario corpus, rendered visual acceptance, accessibility, failure-state, and repeated-evaluation contracts before any server or browser surface starts.
 
 - Polished dark forensic-style local dashboard.
 - Deterministic scenario corpus for success, product failure, invalid input, missing evidence, policy attack, isolation attack, corrupted receipt, crash, and recovery.

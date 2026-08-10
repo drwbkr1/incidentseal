@@ -1,0 +1,48 @@
+{
+  "schema_version": "incidentseal-milestone-opening/v1",
+  "evaluation_id": "IS-EVAL-0005-OPENING",
+  "checkpoint_id": "IS-0005",
+  "observed_at_utc": "2026-08-10T23:40:28Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "verified_base": {
+    "checkpoint": "checkpoint-is-0004",
+    "tag_object": "60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf",
+    "peeled_commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "post_marker_closure_commit": "3b51cab4edfc6ce8cde5cf76c1f191157c9104c0",
+    "local_remote_main_equal": true
+  },
+  "policy_state": {
+    "command": "policy.status",
+    "invocation_id": "3c8fa4d6-1183-482d-9d79-906c14f1eb54",
+    "approval_status": "MISSING",
+    "verification_verdict": "INVALID",
+    "process_exit_code": 12,
+    "workflow_execution_available": false
+  },
+  "control_validation": {
+    "canonical_root": "C:\\Projects\\Active\\incidentseal",
+    "project_profile": "PASS",
+    "prior_milestone_contract": "PASS_COMPLETE",
+    "authority_active": true,
+    "authority_expanded": false,
+    "authorized_ready_units": ["IS5-U01"],
+    "human_gate_ready_units": []
+  },
+  "runtime_boundary": {
+    "incidentseal_containers": [],
+    "incidentseal_networks": [],
+    "protected_volumes": [
+      "incidentseal-57ca5f96d527da1b_database-data",
+      "incidentseal-a6443d83ae9eb463_database-data",
+      "incidentseal-e10983c7309c56a0_database-data"
+    ],
+    "protected_volume_identity_source": "requirements/retained-runtime-volumes.lock.json",
+    "unit_runtime_authorized": false,
+    "dashboard_server_started": false
+  },
+  "decision": {
+    "status": "open-milestone",
+    "reason": "The exact verified IS-0004 marker, stable read-only product promise, denied workflow-execution state, clean runtime boundary, protected-volume custody, and inherited authority support contract-only IS5-U01."
+  }
+}

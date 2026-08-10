@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "milestone_id": "IS-0005",
+  "project_profile_ref": "control/project-control.json",
+  "status": "active",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_action_classes": [
+      "read_only_inspection",
+      "project_control",
+      "update_project_records",
+      "dependency_management",
+      "reversible_remediation",
+      "deterministic_validation",
+      "version_control_write",
+      "git_push"
+    ],
+    "user_instruction": "Build and evaluate a polished loopback-only read-only evidence dashboard from verified IncidentSeal records without changing the product promise, workflow authority, Docker trust boundary, stable verification CLI, or evidence-state semantics.",
+    "repository_controls": [
+      "AGENTS.md",
+      "docs/product-contract.md",
+      "docs/threat-model.md",
+      "control/project-control.json"
+    ],
+    "active_contract": "contracts/IS-0005.json",
+    "verified_at_utc": "2026-08-10T23:40:28Z",
+    "expires_at_utc": null
+  },
+  "scope": {
+    "objective": "Define, implement, render, and evaluate a polished local evidence dashboard plus a deterministic scenario corpus and repeated-trial report on top of checkpoint-is-0004.",
+    "allowed_paths": ["."],
+    "forbidden_work": [
+      "Any access to C:\\Users\\drewb\\OneDrive",
+      "Changing the approved product promise, manifest authority, Docker trust boundary, stable verification CLI, or evidence semantics",
+      "Giving a dashboard process Docker authority, approval-write authority, secrets, external network, or repository workflow execution",
+      "Binding the dashboard server to a non-loopback interface",
+      "Treating a mutable database or rendered dashboard as more authoritative than exact receipts and checkpoint records",
+      "Collapsing PASS, FAIL, INCONCLUSIVE, INVALID, cancelled, failed, stale, or superseded evidence",
+      "Using external fonts, analytics, telemetry, CDN assets, paid services, accounts, or secrets",
+      "Adding cloud, Kubernetes, multi-tenancy, arbitrary remote execution, registry, packaging, or release work",
+      "Using a dependency before its exact source, integrity, license, vulnerability, and compatibility gate passes",
+      "Claiming dashboard or evaluation completion from source inspection, unit tests, or synthetic screenshots alone"
+    ],
+    "reversible_actions": [
+      "Create closed dashboard snapshot and scenario schemas, fixtures, locks, mutation harnesses, ADRs, and documentation",
+      "Implement a dependency-free read-only evidence projection and separate dashboard launcher without changing the frozen verification CLI dispatcher",
+      "Serve only repository-controlled static assets and verified read-only projections over loopback",
+      "Create fixed synthetic scenario fixtures that preserve every evidence and lifecycle distinction",
+      "Run local browser, accessibility, responsive-layout, security-header, and failure-state checks",
+      "Measure repeated-trial correctness, latency, resource use, and claim calibration without external telemetry",
+      "Commit and push verified bounded improvements"
+    ],
+    "stop_conditions": [
+      "A required change would alter the product promise, trust boundary, workflow approval authority, stable verification CLI, or weaken an explicit security or evidence gate",
+      "The dashboard cannot remain loopback-only and read-only",
+      "A projection cannot prove exact source-record and checkpoint identity",
+      "A dependency or artifact cannot pass its source gate",
+      "A test would require a secret, real sensitive data, paid service, access change, consequential action, or irreversible operation",
+      "A rendered or measured claim cannot be reproduced from clean public custody"
+    ]
+  },
+  "entry_conditions": [
+    {
+      "id": "ENTRY-VERIFIED-IS-0004",
+      "status": "pass",
+      "evidence": [
+        "records/evaluations/IS-0004-U07-public-checkpoint.json",
+        "records/surface-receipts/IS-0004-public-checkpoint.json",
+        "records/surface-receipts/IS-0004-checkpoint-marker.json",
+        "records/evaluations/IS-0005-milestone-opening.json"
+      ]
+    },
+    {
+      "id": "ENTRY-READ-ONLY-PRODUCT-PROMISE",
+      "status": "pass",
+      "evidence": ["docs/product-contract.md","docs/threat-model.md"]
+    },
+    {
+      "id": "ENTRY-WORKFLOW-EXECUTION-DENIED",
+      "status": "pass",
+      "evidence": ["records/evaluations/IS-0005-milestone-opening.json"]
+    },
+    {
+      "id": "ENTRY-PROTECTED-RUNTIME-CLEAN",
+      "status": "pass",
+      "evidence": ["requirements/retained-runtime-volumes.lock.json","records/evaluations/IS-0005-milestone-opening.json"]
+    }
+  ],
+  "exit_conditions": [
+    {"id":"EXIT-DASHBOARD-CONTRACT","status":"pending","evidence":[]},
+    {"id":"EXIT-READ-ONLY-DASHBOARD","status":"pending","evidence":[]},
+    {"id":"EXIT-SCENARIO-CORPUS","status":"pending","evidence":[]},
+    {"id":"EXIT-EVALUATION-REPORT","status":"pending","evidence":[]},
+    {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
+  ],
+  "units": [
+    {
+      "id": "IS5-U01",
+      "purpose": "Freeze the read-only evidence projection, loopback server, dashboard state model, scenario corpus, visual acceptance, and evaluation contracts before implementation.",
+      "depends_on": [],
+      "action_class": "update_project_records",
+      "human_gate": false,
+      "status": "in_progress",
+      "inputs": ["checkpoint-is-0004 records", "Product dashboard promise", "Threat model and evidence semantics"],
+      "outputs": ["Closed snapshot and scenario schemas", "Golden and negative fixtures", "Dashboard security contract", "Visual acceptance matrix", "Mutation plan and exact lock"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-DASHBOARD-CONTRACT"],"observed":[],"decision_value":"unknown","rationale":"The dashboard must have a closed authority, projection, state, serving, and evaluation contract before implementation."},
+      "next_dependency": "IS5-U02"
+    },
+    {
+      "id": "IS5-U02",
+      "purpose": "Implement a dependency-free, exact-record-bound projection and separate loopback-only read-only dashboard launcher without changing the frozen verification CLI.",
+      "depends_on": ["IS5-U01"],
+      "action_class": "reversible_remediation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Frozen dashboard contract"],
+      "outputs": ["Read-only projection", "Loopback server", "Static dashboard assets", "Implementation mutations"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-READ-ONLY-DASHBOARD"],"observed":[],"decision_value":"unknown","rationale":"A real served surface must prove exact record identity, read-only behavior, security headers, local assets, and state-separated rendering."},
+      "next_dependency": "IS5-U03"
+    },
+    {
+      "id": "IS5-U03",
+      "purpose": "Verify the rendered dashboard across desktop and mobile layouts, keyboard and screen-reader structure, missing/corrupt evidence, and loopback security behavior.",
+      "depends_on": ["IS5-U02"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Locked dashboard implementation"],
+      "outputs": ["Rendered browser receipts", "Accessibility and responsive QA", "Failure-state evidence"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-READ-ONLY-DASHBOARD"],"observed":[],"decision_value":"unknown","rationale":"Source and HTTP checks cannot substitute for the actual rendered and interactive local surface."},
+      "next_dependency": "IS5-U04"
+    },
+    {
+      "id": "IS5-U04",
+      "purpose": "Run the deterministic scenario corpus repeatedly and publish a claim-calibrated correctness, latency, resource, recovery, and evidence-completeness evaluation.",
+      "depends_on": ["IS5-U03"],
+      "action_class": "deterministic_validation",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Verified dashboard", "Frozen scenario corpus", "Checkpoint records"],
+      "outputs": ["Repeated-trial dataset", "Evaluation report", "Scenario and calibration receipts"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-SCENARIO-CORPUS","EXIT-EVALUATION-REPORT"],"observed":[],"decision_value":"unknown","rationale":"The portfolio claim requires measured repeated outcomes and explicit non-claims, not a curated success screenshot."},
+      "next_dependency": "IS5-U05"
+    },
+    {
+      "id": "IS5-U05",
+      "purpose": "Commit, push, credential-free clean-clone, replay, mark, and independently verify the bounded IS-0005 dashboard-and-evaluation checkpoint.",
+      "depends_on": ["IS5-U04"],
+      "action_class": "git_push",
+      "human_gate": false,
+      "status": "planned",
+      "inputs": ["Verified IS-0005 tree"],
+      "outputs": ["Verified public checkpoint", "checkpoint-is-0005 marker", "Public dashboard and evaluation receipts"],
+      "gates": {},
+      "disposition": null,
+      "retained_failures": [],
+      "exit_condition_delta": {"expected":["EXIT-PUBLIC-CHECKPOINT"],"observed":[],"decision_value":"unknown","rationale":"The milestone closes only after exact public custody reproduces the rendered dashboard, scenario corpus, measurements, and marker."},
+      "next_dependency": null
+    }
+  ],
+  "path_efficiency": {
+    "max_consecutive_no_progress_units": 2,
+    "review_action_class": "project_control",
+    "review_human_gate": false
+  },
+  "verification": {
+    "changed_risks": ["security", "local HTTP surface", "evidence projection", "rendered UI", "evaluation claims"],
+    "required_checks": [
+      "Closed schemas and fail-closed mutations for exact record projection and scenario state",
+      "Loopback-only bind and Host-header enforcement with no write methods, filesystem writes, Docker, approval, secrets, external assets, analytics, or telemetry",
+      "Exact checkpoint, source-record, receipt, and projection digests visible in machine and rendered evidence",
+      "Distinct PASS, FAIL, INCONCLUSIVE, INVALID, cancelled, failed, stale, superseded, missing, and corrupt states",
+      "Rendered desktop and mobile proof, accessibility structure, keyboard behavior, and failure-state QA",
+      "Deterministic success, product-failure, invalid-input, missing-evidence, policy-attack, isolation-attack, corrupt-receipt, crash, and recovery scenarios",
+      "Repeated correctness, latency, resource, evidence-completeness, and claim-calibration measurements",
+      "Credential-free clean-clone, Git integrity, secret scan, public replay, and annotated marker verification"
+    ],
+    "completed_checks": [
+      "Verified checkpoint-is-0004 entry with exact public marker, clean runtime boundary, missing approval, and no workflow execution"
+    ]
+  },
+  "handoff": {
+    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004 at commit 25328dacef4d9283090bed809db75b33f613829b and marker object 60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf; IS5-U01 is the sole active contract-only unit",
+    "next_action": "Freeze the dependency-free read-only dashboard snapshot, loopback serving, state rendering, scenario corpus, visual acceptance, and evaluation contracts without starting a dashboard server.",
+    "do_not_carry_forward": [
+      "Do not use OneDrive",
+      "Do not alter or automate operator approval",
+      "Do not execute repository workflow input",
+      "Do not change the frozen verification CLI dispatcher merely to host the dashboard",
+      "Do not give the dashboard Docker authority, secrets, external network, analytics, telemetry, or repository writes",
+      "Do not bind beyond loopback",
+      "Do not collapse verdict, lifecycle, missing, or corruption states",
+      "Do not claim dashboard, evaluation, packaging, release, or v0.1.0 completion before their real gates pass"
+    ]
+  }
+}

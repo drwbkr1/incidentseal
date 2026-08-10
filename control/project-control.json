@@ -188,9 +188,9 @@
     "amendment_required_to_change_active_gate": true
   },
   "current_checkpoint": {
-    "checkpoint_id": "IS-0004",
+    "checkpoint_id": "IS-0005",
     "expected_branch": "main",
-    "expected_head": "25328dacef4d9283090bed809db75b33f613829b",
-    "next_action": "Begin the next verified cycle from checkpoint-is-0004 with the smallest bounded IS-0005 dashboard-and-evaluation contract"
+    "expected_head": null,
+    "next_action": "Freeze the dependency-free read-only dashboard snapshot, loopback serving, state rendering, scenario corpus, visual acceptance, and evaluation contracts under IS5-U01 without starting a server"
   }
 }
