@@ -3,7 +3,7 @@
   "evaluation_id": "IS-EVAL-0004-U04-RECOVERY-CONTRACT",
   "checkpoint_id": "IS-0004",
   "unit_id": "IS4-U04",
-  "observed_at_utc": "2026-08-10T01:43:30Z",
+  "observed_at_utc": "2026-08-10T01:47:08Z",
   "execution_state": "completed",
   "verification_verdict": "PASS",
   "claim_scope": "Frozen content-addressed fenced interruption-recovery classification reproduced from exact credential-free public custody; real host recovery execution remains unimplemented and unclaimed.",
@@ -17,7 +17,8 @@
     "candidate_evaluation": {"path":"records/evaluations/IS-0004-U04-recovery-contract-candidate.json","sha256":"sha256:1dbe016fbb1e6ab2872140bcf66d19c8336ff558d330f7f67dadaf83616c0db9"},
     "retained_invalid_attempts": {"path":"records/evaluations/IS-0004-U04-recovery-contract-invalid-attempts.json","sha256":"sha256:8c2d574e1cf179989a2440a47e54ced03897ce79bb67aaddb6297470b28ea6d5"},
     "public_replay_receipt": {"path":"records/surface-receipts/IS-0004-U04-public-recovery-contract-replay.json","sha256":"sha256:89d34e779ad948cf646faba59e5dd30b407351dede412e8a1120dada93255431"},
-    "cleanup_invalid_attempt": {"path":"records/evaluations/IS-0004-U04-public-clone-cleanup-policy-denied.json","sha256":"sha256:3279f60420f83baca13bb3a374be370d7cf7d2f446212f811f64f10040e35128"}
+    "cleanup_invalid_attempt": {"path":"records/evaluations/IS-0004-U04-public-clone-cleanup-policy-denied.json","sha256":"sha256:3279f60420f83baca13bb3a374be370d7cf7d2f446212f811f64f10040e35128"},
+    "closure_push_wrapper_invalid_attempt": {"path":"records/evaluations/IS-0004-U04-closure-push-wrapper-invalid.json","sha256":"sha256:c09638e51a65974d19789ad3b6c8951fea2e48273fb6746adb2fbc10c421b647"}
   },
   "results": {
     "credential_free_public_commit": "5fa894cb57c8c69fab85946827be241f522acb87",
@@ -53,7 +54,8 @@
   },
   "retained_invalid_attempts": [
     "Seven contract-candidate evaluator, wrapper, and read-only invocation attempts retain INVALID verdicts after corrected paths passed.",
-    "The exact final public-clone cleanup wrapper was denied by local command policy before execution; the clean noncanonical clone remains outside OneDrive and runtime custody."
+    "The exact final public-clone cleanup wrapper was denied by local command policy before execution; the clean noncanonical clone remains outside OneDrive and runtime custody.",
+    "The first closure push wrapper had a PowerShell parser error before execution; the corrected push and ancestry verification matched local and remote commit b483c581."
   ],
   "limitations": [
     "No host lease, runtime observation, process stop, journal append, resume, terminal recovery, or orphan cleanup has been implemented or executed.",
