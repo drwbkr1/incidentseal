@@ -1,0 +1,115 @@
+{
+  "schema_version": "incidentseal-integrated-recovery-implementation-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U06-INTEGRATED-RECOVERY-IMPLEMENTATION-CANDIDATE",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U06",
+  "observed_at_utc": "2026-08-10T22:59:58Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Fixed synthetic argument-free host-owned integrated receipt and recovery validation only; exact public-custody reproduction remains pending.",
+  "source": {
+    "base_commit": "7d5558ee56324e3b3d01fb56eb7ded529596cb87",
+    "candidate_worktree": true,
+    "remote": "https://github.com/drwbkr1/incidentseal.git"
+  },
+  "bindings": {
+    "integrated_recovery_contract_lock": {"path":"requirements/integrated-recovery-contract.lock.json","sha256":"sha256:0801b75569937f84cb86e04e6cde945ee076ce630febae3f20466199f3e08fff"},
+    "integrated_recovery_implementation_lock": {"path":"requirements/integrated-recovery-implementation.lock.json","sha256":"sha256:d3e0d2f2b5d3f46aef89a805a6c5a69def17e108ca362ed041e1eb942093d556"},
+    "topology_runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"},
+    "topology_implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:0f4f8c3dc4a4a6b67a00ea979110a98dc478b8f13e3e0d90f0039a461348f2da"},
+    "receipt_implementation_lock": {"path":"requirements/receipt-implementation.lock.json","sha256":"sha256:22557098f98a925264b44aaad767784488e3151f417a2d141c47a468cb0a5ffd"},
+    "event_journal_implementation_lock": {"path":"requirements/event-journal-implementation.lock.json","sha256":"sha256:c2e6bd0611bdbc82f275a46d7d735860abbb91e91733a06ca9e378c53fa505c7"},
+    "recovery_implementation_lock": {"path":"requirements/recovery-implementation.lock.json","sha256":"sha256:d6c5fe9ec8ce55a633f4b7a664daf6ccba27c0d45e2d3b83adfce94cda196896"},
+    "backup_restore_implementation_lock": {"path":"requirements/backup-restore-implementation.lock.json","sha256":"sha256:5b32514e3bb1215f86ae3ce37f4839c8ad14dfd2cdbaa3178af449ecdca7ce7c"},
+    "protected_volume_lock": {"path":"requirements/retained-runtime-volumes.lock.json","sha256":"sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"},
+    "implementation_invalid_attempts": {"path":"records/evaluations/IS-0004-U06-integrated-recovery-implementation-invalid-attempts.json","sha256":"sha256:a8373c5a9b5ab71e35c37a39b514abc2fddcf4c38dc68e7447f898f84148b11c"}
+  },
+  "results": {
+    "repository_tests": 101,
+    "integrated_contract_mutations": 28,
+    "integrated_implementation_mutations": 39,
+    "complete_repetitions": 2,
+    "stages_per_repetition": 5,
+    "distinct_state_cases": 20,
+    "case_observations": 40,
+    "child_cli_invocations": 22,
+    "candidate_invocation_id": "dfb9e1f8-b8e3-48f4-8a01-6a82b7d25f1c",
+    "contract_digest": "sha256:57ca5f96d527da1b8ac47bf0a88f60493c730203f911db698938ebceaa9bf351",
+    "matrix_digest": "sha256:31d04759cdeb4ec5030872087f549e4c31bb1c6d5235955622781bfa50f12b22",
+    "cycle_stage_evidence": [
+      {"repetition":1,"stage":"receipt-state-matrix","semantic_digest":"sha256:14b03692c6a83ddf5693778ea9a2b1de61fd039c023bf6134ab800b7e4c4f496","case_count":5,"custody_unchanged":true},
+      {"repetition":1,"stage":"reliability-probe","invocation_id":"26f1c9b3-335f-484a-98f1-73da7599543d","output_digest":"sha256:cf444920c667db72a07794d4b8f9237487534da53980fbef45fc00e21f3ada94","semantic_digest":"sha256:4cac34aa18d238c732af90081be155c5a81591541c81b7d653711b32e06e8868","case_count":5,"custody_unchanged":true},
+      {"repetition":1,"stage":"journal-probe","invocation_id":"ebbe6917-72ff-4405-89f3-82cbf1548ade","output_digest":"sha256:e395561555ef450fc6db0e0aa790255db24688d8ca778cb0850f3ce9f9059d36","semantic_digest":"sha256:96021c474688d901901d9b92b38b25bb85652a63f089ca1662090d89fc27ed3c","case_count":2,"custody_unchanged":true},
+      {"repetition":1,"stage":"recovery-probe","invocation_id":"e6a5b5c3-6ed5-43bd-a730-62327f93f3ba","output_digest":"sha256:2d382d5f49a761cdd0ff69547fe18f965f3c07298b020f3fec48bd6839f81fad","semantic_digest":"sha256:98736e4db165240389f056b8f0c9b1ac30006209d95310d271e49251b6a9bea7","case_count":5,"custody_unchanged":true},
+      {"repetition":1,"stage":"backup-restore-probe","invocation_id":"de22420b-7cc3-4af1-b498-d130c048aea4","output_digest":"sha256:32202f39b84b955acdd699373140944a4981abb5798d8a8e819486db918be6ce","semantic_digest":"sha256:808e7fae099e4f8095f9d381d1495c2439e1fc22a98f80d72b82df22ad5522ce","case_count":3,"custody_unchanged":true},
+      {"repetition":2,"stage":"receipt-state-matrix","semantic_digest":"sha256:14b03692c6a83ddf5693778ea9a2b1de61fd039c023bf6134ab800b7e4c4f496","case_count":5,"custody_unchanged":true},
+      {"repetition":2,"stage":"reliability-probe","invocation_id":"87387112-58ab-4cd6-9413-5e96a1bd94cd","output_digest":"sha256:c52d4b1b454c698a0ea6b53cc29a46203ebe6838c0b9db9b2c3e9c131b2414ea","semantic_digest":"sha256:4cac34aa18d238c732af90081be155c5a81591541c81b7d653711b32e06e8868","case_count":5,"custody_unchanged":true},
+      {"repetition":2,"stage":"journal-probe","invocation_id":"07ed8a12-c27c-43b4-9ef8-3301c6d5400c","output_digest":"sha256:28232f1c1048e4ede196b9347c18764ede9ec105645d8948f8655377320fada3","semantic_digest":"sha256:96021c474688d901901d9b92b38b25bb85652a63f089ca1662090d89fc27ed3c","case_count":2,"custody_unchanged":true},
+      {"repetition":2,"stage":"recovery-probe","invocation_id":"2fafde50-955a-49f5-be07-892b467d5234","output_digest":"sha256:257019f29a358355e414c506ceb3d6b8b3a51b7bb8b5d168ddce01e776aa7854","semantic_digest":"sha256:98736e4db165240389f056b8f0c9b1ac30006209d95310d271e49251b6a9bea7","case_count":5,"custody_unchanged":true},
+      {"repetition":2,"stage":"backup-restore-probe","invocation_id":"512de9d8-4daa-465b-940d-4d8f3fde1f2b","output_digest":"sha256:88d47ca765699da4dd9d12d062b69e16d2c28e62bc5db0b19749e96040ce2e07","semantic_digest":"sha256:97d29f42481989a0b5948095c5c065c0fdf6cb7ed9460326eee44b21582c4258","case_count":3,"custody_unchanged":true}
+    ],
+    "cross_cycle": {
+      "same_exact_images": true,
+      "same_contract_digest": true,
+      "same_semantic_receipts": true,
+      "same_journal_streams": true,
+      "same_recovery_decisions": true,
+      "same_normalized_toc": true,
+      "same_restored_state": true,
+      "same_negative_privileges": true,
+      "protected_volumes_unchanged": true,
+      "teardown_between_stages": true,
+      "teardown_after_cycle": true,
+      "archive_identity_mode": "per-receipt-raw-plus-stable-normalized-toc"
+    },
+    "raw_archive_receipts": [
+      {"archive_bytes":52800,"archive_digest":"sha256:1b005fd74fb7676ed7f6d8ef87f46ddca79df5097945215f33338cb36d700f59","receipt_digest":"sha256:bbaffc6e26d5401a9ad8d16634392228bb5ff18ffea9e030e48e35e6d3d6231f"},
+      {"archive_bytes":52800,"archive_digest":"sha256:5cb7044c80bca8e495c14abe7b53d010bf52f94818eccec49c945f2b4b6f0426","receipt_digest":"sha256:f26dfadd8b8e0e53ce81076c0c95dec0d9510104ab520d7194c0099f5c204226"}
+    ]
+  },
+  "runtime_images": {
+    "database": "sha256:da7f3a6b1f8ab31e9ad0180f0166914e1c2503c1b2892b1d6991c832033e3cbb",
+    "migration": "sha256:d159285a8988fa13f510d7dc77bdeee195181d6b75dc8ef959d1f182d9013310",
+    "python_runner": "sha256:6e4050c67295a90ca3591bf1674317e59b698a89ce86e8ce64579d34182c3e71",
+    "node_runner": "sha256:78edf27e115551fd0128201e13486363ff595076b0446d8479cf2ddd2aa7b6a1"
+  },
+  "protected_volume_identity": {
+    "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
+    "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
+    "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
+  },
+  "trust_boundary": {
+    "host_cli_owns_docker": true,
+    "docker_socket_in_containers": false,
+    "container_secrets": false,
+    "broad_host_mounts": false,
+    "external_runtime_network": false,
+    "arbitrary_stage_arguments": false,
+    "seventh_cli_command_added": false,
+    "approval_accessed_by_probe": false,
+    "approval_after": "MISSING",
+    "approval_after_invocation_id": "579fa07f-376a-4423-8fef-ceffc6ad0c0a",
+    "approval_written": false,
+    "workflow_executed": false,
+    "containers_retained": 0,
+    "networks_retained": 0,
+    "disposable_volumes_retained": 0,
+    "protected_volumes_present": 3,
+    "temporary_custody_removed": true
+  },
+  "retained_attempts": {
+    "invalid": 3,
+    "candidate_pass": 1,
+    "product_failures_reclassified": 0
+  },
+  "limitations": [
+    "Only the fixed synthetic platform-validation matrix ran; no repository workflow manifest was approved or executed.",
+    "The exact committed candidate has not yet been reproduced from credential-free public custody.",
+    "IS4-U06 and EXIT-REAL-RECOVERY remain open until that public runtime replay passes.",
+    "Dashboard, packaging, registry publication, downloaded-release verification, and release remain pending."
+  ],
+  "decision": {
+    "status": "continue",
+    "next": "Commit and push the exact implementation candidate, then reproduce all static and both complete real cycles from a credential-free public clone before closing IS4-U06."
+  }
+}

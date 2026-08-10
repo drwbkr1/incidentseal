@@ -1,0 +1,86 @@
+{
+  "schema_version": "incidentseal-integrated-recovery-implementation-lock/v1",
+  "lock_id": "IS-INTEGRATED-RECOVERY-IMPLEMENTATION-LOCK-0001",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U06",
+  "generated_at_utc": "2026-08-10T22:45:19Z",
+  "integrated_recovery_contract_lock": {
+    "path": "requirements/integrated-recovery-contract.lock.json",
+    "sha256": "sha256:0801b75569937f84cb86e04e6cde945ee076ce630febae3f20466199f3e08fff"
+  },
+  "topology_implementation_lock": {
+    "path": "requirements/topology-implementation.lock.json",
+    "sha256": "sha256:0f4f8c3dc4a4a6b67a00ea979110a98dc478b8f13e3e0d90f0039a461348f2da"
+  },
+  "topology_runtime_lock": {
+    "path": "requirements/topology-runtime.lock.json",
+    "sha256": "sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"
+  },
+  "receipt_implementation_lock": {
+    "path": "requirements/receipt-implementation.lock.json",
+    "sha256": "sha256:22557098f98a925264b44aaad767784488e3151f417a2d141c47a468cb0a5ffd"
+  },
+  "event_journal_implementation_lock": {
+    "path": "requirements/event-journal-implementation.lock.json",
+    "sha256": "sha256:c2e6bd0611bdbc82f275a46d7d735860abbb91e91733a06ca9e378c53fa505c7"
+  },
+  "recovery_implementation_lock": {
+    "path": "requirements/recovery-implementation.lock.json",
+    "sha256": "sha256:d6c5fe9ec8ce55a633f4b7a664daf6ccba27c0d45e2d3b83adfce94cda196896"
+  },
+  "backup_restore_implementation_lock": {
+    "path": "requirements/backup-restore-implementation.lock.json",
+    "sha256": "sha256:5b32514e3bb1215f86ae3ce37f4839c8ad14dfd2cdbaa3178af449ecdca7ce7c"
+  },
+  "protected_volume_lock": {
+    "path": "requirements/retained-runtime-volumes.lock.json",
+    "sha256": "sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"
+  },
+  "runtime_dependencies": [],
+  "agent_mutation_commands": ["scripts/run_integrated_recovery_implementation.py"],
+  "arbitrary_stage_arguments": false,
+  "workflow_executor": false,
+  "repetitions": 2,
+  "stage_order": [
+    "receipt-state-matrix",
+    "reliability-probe",
+    "journal-probe",
+    "recovery-probe",
+    "backup-restore-probe"
+  ],
+  "command_identities": [
+    "receipt.materialize",
+    "receipt.verify",
+    "topology.reliability-probe",
+    "topology.journal-probe",
+    "topology.recovery-probe",
+    "topology.backup-restore-probe"
+  ],
+  "comparison_excludes": [
+    "archive_digest",
+    "backup_id",
+    "container_id",
+    "created_at_utc",
+    "invocation_id",
+    "receipt_digest"
+  ],
+  "files": [
+    {"path":"AGENTS.md","sha256":"sha256:d454ea89fbde3a0e53b0edab0df443232cc71f69eb399e7a3e52c16727c743d5"},
+    {"path":"docs/integrated-recovery-implementation.md","sha256":"sha256:5428313a3fd5296b9a257cfe9fbf74b0429b7caaade7547785b86ab1f2f49f0b"},
+    {"path":"fixtures/integrated-recovery/implementation-mutations.json","sha256":"sha256:e7544215a9ab10d68eed2f2a254f00e7a045f8964fe36e3b65905e586a45bf35"},
+    {"path":"requirements/backup-restore-implementation.lock.json","sha256":"sha256:5b32514e3bb1215f86ae3ce37f4839c8ad14dfd2cdbaa3178af449ecdca7ce7c"},
+    {"path":"requirements/event-journal-implementation.lock.json","sha256":"sha256:c2e6bd0611bdbc82f275a46d7d735860abbb91e91733a06ca9e378c53fa505c7"},
+    {"path":"requirements/integrated-recovery-contract.lock.json","sha256":"sha256:0801b75569937f84cb86e04e6cde945ee076ce630febae3f20466199f3e08fff"},
+    {"path":"requirements/receipt-implementation.lock.json","sha256":"sha256:22557098f98a925264b44aaad767784488e3151f417a2d141c47a468cb0a5ffd"},
+    {"path":"requirements/recovery-implementation.lock.json","sha256":"sha256:d6c5fe9ec8ce55a633f4b7a664daf6ccba27c0d45e2d3b83adfce94cda196896"},
+    {"path":"requirements/retained-runtime-volumes.lock.json","sha256":"sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"},
+    {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:0f4f8c3dc4a4a6b67a00ea979110a98dc478b8f13e3e0d90f0039a461348f2da"},
+    {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"},
+    {"path":"scripts/run_integrated_recovery_implementation.py","sha256":"sha256:4700b72c3d5276d6086f836f66e0ea5ea5df17e09f2cafbc80dae0220c9076e9"},
+    {"path":"scripts/test_integrated_recovery_implementation_mutations.py","sha256":"sha256:1b418d0392d4c7f3bfd9ee6f752a2cb183239df53580d9ef4766ac02d8f16166"},
+    {"path":"scripts/validate_integrated_recovery_implementation.py","sha256":"sha256:8379c4d44639f0f0bc31df1b5b4d51db540ee76b760438b2bc10c7c50186f0cf"},
+    {"path":"src/incidentseal/cli.py","sha256":"sha256:0c052ec1eee9d4e5d4a301582ca472fcd97661566c589a179e531738f8f36eb0"},
+    {"path":"src/incidentseal/integrated_recovery_surface.py","sha256":"sha256:d0b18d20d7e680e66a1ae3944164f77f61ec642278dbf8f0a88bb4d225c093e5"},
+    {"path":"tests/test_integrated_recovery_surface.py","sha256":"sha256:19f60b47f9f876d3bf1dc675e2a54955deacb65b8eee0f7cd51aa482f81b1756"}
+  ]
+}

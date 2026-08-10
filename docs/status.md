@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U05` and `EXIT-BACKUP-RESTORE` pass from exact public custody; the `IS4-U06` runtime-free integrated matrix contract now also passes exact public replay, and the fixed host-owned composite implementation is next
+- State: active; `IS4-U05` and `EXIT-BACKUP-RESTORE` pass from exact public custody; the `IS4-U06` contract passes public replay and its exact local host-owned implementation candidate passes both complete real cycles; public implementation replay remains
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -81,10 +81,14 @@ Exact credential-free public commit `f8c2526389ea73c157f535c2d6651ba86b8169ac`, 
 
 Exact credential-free public commit `6a27a5fdcc641fa090f70e9c32615c58b6920b0b`, tree `2baf76af64d565001dece0a8efd96f622948bef0`, reproduced all 93 tests, every inherited validator and mutation suite, the 20 cases and 28 integrated mutations, the 25-scenario/50-execution authority matrix, and 13 clean-copy CLI checks. One Draft 2020-12 schema across two fixtures passed from six rehashed source-gated wheels without network. Strict Git integrity and four high-confidence secret patterns passed. Approval remained `MISSING` / `INVALID` at exit `12`; the replay started no container, network, PostgreSQL, runner, recovery, dump, or restore; and all three protected volume identities remained exact. The operator-paused replay and two resumed read-only wrapper defects remain three distinct `INVALID` attempts, while the corrected full replay restarted at its first gate and passed. The composite implementation and both complete real repetitions remain pending.
 
+The separately locked local implementation now runs through the fixed argument-free host harness `python -B scripts/run_integrated_recovery_implementation.py`; it adds no seventh child CLI command and accepts no manifest, mode, stage, project, volume, receipt, or archive argument. Final-lock invocation `dfb9e1f8-b8e3-48f4-8a01-6a82b7d25f1c` passed two complete five-stage cycles and all forty case observations. Receipt, reliability, journal, recovery, normalized TOC, restored state, image, contract, privilege, protected-volume, and teardown semantics matched across cycles. The two fresh `52800`-byte archives retained distinct exact digests and receipts as required rather than being forced byte-equal.
+
+All 101 repository tests and 39 implementation mutations pass. Every stage began and ended with zero IncidentSeal containers and networks, exactly the three protected volumes, and their exact identities. Temporary receipt and archive custody was removed, approval remained `MISSING` at exit `12`, and no workflow ran. Three implementation attempts remain `INVALID`: a mutation-validator claim gap, an incompatible PowerShell evidence parser, and a fail-closed runner-key projection. The candidate is local only until its exact commit reproduces both complete cycles from credential-free public custody.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, fixed synthetic recovery, and fixed backup/clean restore pass from public custody. Integrated recovery, dashboard, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, fixed synthetic recovery, and fixed backup/clean restore pass from public custody. Integrated recovery passes locally but not yet from public custody; dashboard, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -94,4 +98,4 @@ Exact credential-free public commit `6a27a5fdcc641fa090f70e9c32615c58b6920b0b`, 
 
 ## Next eligible action
 
-Implement the separate exact `IS4-U06` composite lock and fixed argument-free host CLI surface, validate its two complete isolated real repetitions locally, preserve every negative state and attempt, then reproduce the exact implementation from credential-free public custody.
+Commit and push the exact locally passing `IS4-U06` implementation candidate, then reproduce 101 tests, all 39 implementation mutations, both complete isolated real cycles, every state distinction, and final custody from credential-free public custody.
