@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U05` and `EXIT-BACKUP-RESTORE` pass from exact public custody; the `IS4-U06` contract passes public replay and its exact local host-owned implementation candidate passes both complete real cycles; public implementation replay remains
+- State: active; `IS4-U06` and `EXIT-REAL-RECOVERY` pass from exact credential-free public custody; `IS4-U07` is active for the exact `IS-0004` closure tree and checkpoint marker
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -10,7 +10,7 @@
 - Latest verified checkpoint commit: `a0c05070dd1d147aecae6b4ed686440414a3aa27`
 - Verified checkpoint marker: `checkpoint-is-0003` tag object `28eea260147265e7dd0328dcd072e134586a2ff0` -> `a0c05070dd1d147aecae6b4ed686440414a3aa27`
 - Approved workflow manifest digest: not established
-- Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded topology reliability, portable receipts, offline verification, durable journal streaming, and fixed synthetic local recovery are verified
+- Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded reliability, portable receipts, offline verification, durable journal streaming, fixed recovery, backup/clean restore, and repeated integrated recovery are verified from public custody
 - Release state: unreleased
 
 ## Current truth
@@ -85,10 +85,14 @@ The separately locked local implementation now runs through the fixed argument-f
 
 All 101 repository tests and 39 implementation mutations pass. Every stage began and ended with zero IncidentSeal containers and networks, exactly the three protected volumes, and their exact identities. Temporary receipt and archive custody was removed, approval remained `MISSING` at exit `12`, and no workflow ran. Three implementation attempts remain `INVALID`: a mutation-validator claim gap, an incompatible PowerShell evidence parser, and a fail-closed runner-key projection. The candidate is local only until its exact commit reproduces both complete cycles from credential-free public custody.
 
+Exact credential-free public commit `a06ab530dd4ae9d14372d797142a9910b82b4d08`, tree `5873ecf6ddbf69a7feb2b738779cb2623326f366`, reproduced all 101 tests, every inherited validator and mutation suite, all 39 integrated implementation mutations, the 25-scenario/50-execution authority matrix, 13 clean-copy CLI checks, offline one-schema/two-fixture validation from six rehashed source-gated wheels, strict Git integrity, and four zero-match secret patterns. Public invocation `c23e765c-4aa6-4d44-bee8-98725b098844` then repeated both complete real cycles and all forty state observations.
+
+Exact images, topology contract, receipt semantics, journal streams, recovery decisions, normalized TOC, restored state, negative privileges, protected-volume identity, and teardown matched across both public cycles. Both fresh public archives were independently content-addressed and intentionally not forced byte-equal. Approval remained `MISSING` / `INVALID` at exit `12` before and after, no workflow ran, no disposable custody remains, and the public clone is clean. Two public wrapper attempts remain `INVALID` without runtime execution. `EXIT-REAL-RECOVERY` passes; `IS4-U07` is now the only remaining IS-0004 unit.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, fixed synthetic recovery, and fixed backup/clean restore pass from public custody. Integrated recovery passes locally but not yet from public custody; dashboard, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, and integrated recovery all pass from public custody. The exact IS-0004 closure commit and marker, dashboard, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -98,4 +102,4 @@ All 101 repository tests and 39 implementation mutations pass. Every stage began
 
 ## Next eligible action
 
-Commit and push the exact locally passing `IS4-U06` implementation candidate, then reproduce 101 tests, all 39 implementation mutations, both complete isolated real cycles, every state distinction, and final custody from credential-free public custody.
+Commit and push the IS4-U06 public-replay closure records, then reproduce the exact IS-0004 closure tree from credential-free public custody, create and independently verify `checkpoint-is-0004`, and close `EXIT-PUBLIC-CHECKPOINT`.

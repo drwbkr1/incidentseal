@@ -1,0 +1,31 @@
+{
+  "schema_version": "incidentseal-invalid-attempts/v1",
+  "evaluation_id": "IS-EVAL-0004-U06-PUBLIC-INTEGRATED-RECOVERY-IMPLEMENTATION-INVALID-ATTEMPTS",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U06",
+  "observed_at_utc": "2026-08-10T23:20:03Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "attempts": [
+    {
+      "id": "post-push-unquoted-tree-revision",
+      "category": "closure-harness",
+      "executed_product": false,
+      "note": "The candidate push succeeded, then an unquoted PowerShell HEAD^{tree} expression was reinterpreted and the combined wrapper returned nonzero. The corrected quoted read-only query bound tree 5873ecf6ddbf69a7feb2b738779cb2623326f366; no runtime or workflow action occurred in this attempt."
+    },
+    {
+      "id": "clone-parent-follow-up-directory",
+      "category": "public-clone-harness",
+      "executed_product": false,
+      "note": "The credential-free clone completed, but the combined wrapper ran its follow-up Git queries from the temporary parent rather than the new clone. The existing clone was then verified in place at the exact commit and tree; it was not recloned and no runtime or workflow action occurred in the invalid wrapper."
+    }
+  ],
+  "passing_attempts": [
+    {
+      "invocation_id": "c23e765c-4aa6-4d44-bee8-98725b098844",
+      "disposition": "public-pass",
+      "note": "The exact credential-free public clone passed both complete real cycles, all static gates, all forty state observations, and final teardown."
+    }
+  ],
+  "retention": "Both attempts remain INVALID and separate from the public product PASS. Neither invalid attempt started Docker runtime, changed approval state, wrote repository workflow input, or touched a protected volume."
+}

@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit and push the exact locally passing IS4-U06 implementation candidate, then reproduce its static gates and both complete real cycles from credential-free public custody"
+    "next_action": "Commit and push the IS4-U06 public-replay closure records, then reproduce and mark the exact IS-0004 checkpoint tree under IS4-U07"
   }
 }

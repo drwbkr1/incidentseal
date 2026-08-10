@@ -1,0 +1,87 @@
+{
+  "schema_version": "incidentseal-integrated-recovery-implementation-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U06-INTEGRATED-RECOVERY-IMPLEMENTATION",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U06",
+  "observed_at_utc": "2026-08-10T23:20:03Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Exact local and credential-free public verification of the fixed synthetic argument-free host-owned integrated receipt and recovery implementation.",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "branch": "main",
+    "candidate_commit": "a06ab530dd4ae9d14372d797142a9910b82b4d08",
+    "candidate_tree": "5873ecf6ddbf69a7feb2b738779cb2623326f366",
+    "remote_main_matched": true,
+    "credential_free_public_replay": true
+  },
+  "bindings": {
+    "integrated_recovery_contract_lock": {"path":"requirements/integrated-recovery-contract.lock.json","sha256":"sha256:0801b75569937f84cb86e04e6cde945ee076ce630febae3f20466199f3e08fff"},
+    "integrated_recovery_implementation_lock": {"path":"requirements/integrated-recovery-implementation.lock.json","sha256":"sha256:d3e0d2f2b5d3f46aef89a805a6c5a69def17e108ca362ed041e1eb942093d556"},
+    "candidate_evaluation": {"path":"records/evaluations/IS-0004-U06-integrated-recovery-implementation-candidate.json","sha256":"sha256:c4599b5335742a9ad2c2df80f4c4a9e43ad428724e847ce98894208ff1754252"},
+    "public_replay": {"path":"records/surface-receipts/IS-0004-U06-public-integrated-recovery-implementation-replay.json","sha256":"sha256:a5d3b668cb7291d390d47671361f58909a0682a10b25f0cfae7e4a139c0914d2"},
+    "candidate_invalid_attempts": {"path":"records/evaluations/IS-0004-U06-integrated-recovery-implementation-invalid-attempts.json","sha256":"sha256:a8373c5a9b5ab71e35c37a39b514abc2fddcf4c38dc68e7447f898f84148b11c"},
+    "public_invalid_attempts": {"path":"records/evaluations/IS-0004-U06-public-integrated-recovery-implementation-invalid-attempts.json","sha256":"sha256:048adf805ae0ee698adc1a86767f3645c06740ca8469580b2273e33fb39bc784"}
+  },
+  "results": {
+    "repository_tests": 101,
+    "integrated_contract_mutations": 28,
+    "integrated_implementation_mutations": 39,
+    "all_inherited_validators_and_mutations": "PASS",
+    "full_schema_meta_validation": "PASS_OFFLINE_1_SCHEMA_2_FIXTURES_6_EXACT_WHEELS",
+    "fail_closed_authority_matrix": "PASS_25_SCENARIOS_50_EXECUTIONS",
+    "clean_copy_cli": "PASS_13_CHECKS",
+    "git_integrity": "PASS",
+    "secret_scan": "PASS_4_PATTERNS_0_MATCHES",
+    "local_invocation_id": "dfb9e1f8-b8e3-48f4-8a01-6a82b7d25f1c",
+    "public_invocation_id": "c23e765c-4aa6-4d44-bee8-98725b098844",
+    "complete_repetitions_per_invocation": 2,
+    "stages_per_repetition": 5,
+    "distinct_state_cases": 20,
+    "case_observations_per_invocation": 40,
+    "cross_cycle_semantics_local": "PASS_ALL",
+    "cross_cycle_semantics_public": "PASS_ALL",
+    "raw_archive_receipts": 4,
+    "raw_archives_forced_equal": false,
+    "protected_volume_identity": "UNCHANGED_EVERY_BOUNDARY_LOCAL_AND_PUBLIC",
+    "interstage_teardown": "PASS_LOCAL_AND_PUBLIC",
+    "final_teardown": "PASS_LOCAL_AND_PUBLIC"
+  },
+  "state_separation": {
+    "verification_verdicts": ["PASS","FAIL","INCONCLUSIVE","INVALID"],
+    "lifecycles": ["running","completed","cancelled","failed","stale","superseded"],
+    "completed_product_fail_preserved": true,
+    "noncompleted_run_verdicts_null": true,
+    "ambiguous_recovery_inconclusive": true,
+    "conflicting_recovery_fail": true,
+    "invalid_attempts_preserved": 5,
+    "product_failures_reclassified": 0
+  },
+  "trust_boundary": {
+    "host_cli_owns_docker": true,
+    "docker_socket_in_containers": false,
+    "container_secrets": false,
+    "broad_host_mounts": false,
+    "external_runtime_network": false,
+    "arbitrary_stage_arguments": false,
+    "seventh_child_cli_command_added": false,
+    "approval_before_and_after": "MISSING",
+    "approval_written": false,
+    "workflow_executed": false,
+    "containers_retained": 0,
+    "networks_retained": 0,
+    "disposable_volumes_retained": 0,
+    "protected_volumes_present": 3,
+    "temporary_custody_removed": true
+  },
+  "limitations": [
+    "Only fixed synthetic platform-validation scenarios were executed; no approved repository workflow ran.",
+    "Dashboard, packaging, image redistribution, registry publication, downloaded-release verification, and software release remain unverified.",
+    "IS-0004 is not a verified checkpoint until IS4-U07 reproduces and marks the exact closure tree."
+  ],
+  "decision": {
+    "status": "pass",
+    "exit_condition": "EXIT-REAL-RECOVERY",
+    "next": "Close IS4-U06 in project records, then run IS4-U07 exact public checkpoint and annotated-marker verification."
+  }
+}
