@@ -13,6 +13,8 @@ BEGIN
 END
 $incidentseal$;
 
+ALTER ROLE incidentseal_admin LOGIN SUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS;
+
 GRANT CONNECT ON DATABASE incidentseal TO incidentseal_runner;
 GRANT USAGE ON SCHEMA public TO incidentseal_runner;
 

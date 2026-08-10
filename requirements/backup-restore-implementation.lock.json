@@ -1,0 +1,38 @@
+{
+  "schema_version": "incidentseal-backup-restore-implementation-lock/v1",
+  "lock_id": "IS-BACKUP-RESTORE-IMPLEMENTATION-LOCK-0001",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U05",
+  "generated_at_utc": "2026-08-10T03:42:15Z",
+  "backup_restore_contract_lock": {
+    "path": "requirements/backup-restore-contract.lock.json",
+    "sha256": "sha256:6906f92f06606c3583394a70cc98d3a124f0151451ad1fa973d9029900fca198"
+  },
+  "topology_runtime_lock": {
+    "path": "requirements/topology-runtime.lock.json",
+    "sha256": "sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"
+  },
+  "protected_volume_lock": {
+    "path": "requirements/retained-runtime-volumes.lock.json",
+    "sha256": "sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"
+  },
+  "runtime_dependencies": [],
+  "agent_mutation_commands": ["topology.backup-restore-probe"],
+  "arbitrary_backup_restore_command": false,
+  "fixed_source_project": "incidentseal-backup-source",
+  "fixed_target_project": "incidentseal-restore-target",
+  "archive_custody": "temporary-host-only-outside-repository-and-onedrive",
+  "files": [
+    {"path":"docs/backup-restore-implementation.md","sha256":"sha256:73cc173e162c026f0e2006a4c7a4f1e392fdea498fc055489d0c2464eac7ebe7"},
+    {"path":"fixtures/backup-restore/implementation-mutations.json","sha256":"sha256:61c5e1e240612fc26ecd6d19f4f3f73de92829b44186c338ba1a0bc16bd29d7f"},
+    {"path":"requirements/backup-restore-contract.lock.json","sha256":"sha256:6906f92f06606c3583394a70cc98d3a124f0151451ad1fa973d9029900fca198"},
+    {"path":"requirements/retained-runtime-volumes.lock.json","sha256":"sha256:0f54dfc74896bbb121f790bf03746e0886b4080d8b47958f8dfbaba663086262"},
+    {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"},
+    {"path":"scripts/test_backup_restore_implementation_mutations.py","sha256":"sha256:4131176da8a064a71c30e7a4f84e6fde8b03ab029d338da2ee9e791481491b31"},
+    {"path":"scripts/validate_backup_restore_implementation.py","sha256":"sha256:b9f089f4e784c01152ce4e02196e4eb9732ccad3ebe91ab95e99a5f087a87dbe"},
+    {"path":"src/incidentseal/backup_restore.py","sha256":"sha256:9c833629b64ace06124a36c006b37bb29667dcd4659756bdce969b62cf6fad7b"},
+    {"path":"src/incidentseal/backup_restore_surface.py","sha256":"sha256:c65f472a5174b456debaeb6bf215284485320f998c09c640fe4bed36e3d8c606"},
+    {"path":"src/incidentseal/cli.py","sha256":"sha256:0c052ec1eee9d4e5d4a301582ca472fcd97661566c589a179e531738f8f36eb0"},
+    {"path":"tests/test_backup_restore_surface.py","sha256":"sha256:263392ee99d2cdf4acf58bff6f76b24c665232eeda2cbb7aae4de0b9ac0ace9b"}
+  ]
+}

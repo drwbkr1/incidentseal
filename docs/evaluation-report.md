@@ -24,7 +24,7 @@ IncidentSeal has a verified local hardened topology checkpoint, not a releasable
 
 ## Remaining before v0.1.0
 
-Verified PostgreSQL backup and clean restore, integrated recovery, dashboard, broader scenario evaluation, packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified.
+Credential-free public reproduction of PostgreSQL backup and clean restore, integrated recovery, dashboard, broader scenario evaluation, packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified.
 
 Image redistribution remains `INCONCLUSIVE`; no derived image was published. No workflow manifest is approved and no workflow was executed.
 
@@ -39,3 +39,9 @@ Canonical invocation `e65374af-535f-47df-b8f2-40b5b9459885` and exact public inv
 The dependency-free contract binds exact custom archive bytes and a normalized TOC to a fixed disposable source and a different clean target. Roles are measured cluster-global state and are rebuilt and hardened by the exact migration after restoring with no owner or ACL commands; role SQL from the archive is never authority. PASS requires exact schema, journal, verification-result, and role equivalence; five negative runner privileges; protected-volume identity; and teardown.
 
 Exact credential-free public commit `30513b70a9c7a2e283e4643232fa5c8b13f650c2` reproduced all 80 tests, 18 backup mutations, every prior cross-surface suite, and one schema across two fixtures using six rehashed source-gated wheels offline. Git integrity, a zero-match four-pattern secret scan, `MISSING` approval at exit `12`, zero IncidentSeal containers and networks, and the exact three protected volume identities all passed. No dump, restore, PostgreSQL, or Docker runtime action occurred. The contract replay gate passes; real archive creation, clean restore, equivalence, privilege, restart, and teardown behavior remain the next implementation gate.
+
+## IS4-U05 local backup and clean-restore implementation candidate
+
+The implementation is a fixed platform-validation command, not an arbitrary backup utility. The host alone owns Docker. It uses exact locked images, two fixed internal-network projects, two clean disposable volumes, and a narrow temporary archive bind; containers receive no Docker socket, secret, broad host mount, or external network. Source writes are fenced with a live table lock before the exact no-owner/no-privilege custom dump. The host fsyncs and hashes the archive, lists it without network, normalizes its TOC, rejects database/role/tablespace/ACL authority, restores with error-stop and one transaction, and then reruns the exact migration to rebuild and harden cluster-global roles.
+
+Final-lock invocation `e38826ae-8d6f-4d24-a033-bd6a298d0f8e` passed all ten checks. The `52800`-byte archive digest is `sha256:8b5a3ac0e886c22cba2353855a41238703431b6830c74fc7a7c20a2857d2f5e8`; its 20-entry normalized TOC digest is `sha256:122f3380f5fff86e3779c709c50070e67f0e08380efd317a5738d0e320615890`. Exact schema, journal, result, and role digests matched after restore and restart; all five negative privileges held; all three protected volume identities matched; and every disposable container, network, volume, and archive was removed. Eighty-six tests and all 21 implementation mutations pass. Seven implementation attempts remain `INVALID`, and the earlier passing calibration is retained as `superseded`. The result remains a local candidate pending exact public replay.

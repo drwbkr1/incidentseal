@@ -1,0 +1,112 @@
+{
+  "schema_version": "incidentseal-backup-restore-implementation-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U05-BACKUP-RESTORE-IMPLEMENTATION-CANDIDATE",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U05",
+  "observed_at_utc": "2026-08-10T03:59:58Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Fixed synthetic host-owned PostgreSQL logical backup and clean restore only; exact public-custody reproduction remains pending.",
+  "source": {
+    "base_commit": "4aee9f1841995207d31c5ee1acdff543483d8ec2",
+    "candidate_worktree": true,
+    "remote": "https://github.com/drwbkr1/incidentseal.git"
+  },
+  "bindings": {
+    "backup_restore_contract_lock": {"path":"requirements/backup-restore-contract.lock.json","sha256":"sha256:6906f92f06606c3583394a70cc98d3a124f0151451ad1fa973d9029900fca198"},
+    "backup_restore_implementation_lock": {"path":"requirements/backup-restore-implementation.lock.json","sha256":"sha256:5b32514e3bb1215f86ae3ce37f4839c8ad14dfd2cdbaa3178af449ecdca7ce7c"},
+    "topology_runtime_lock": {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"},
+    "topology_implementation_lock": {"path":"requirements/topology-implementation.lock.json","sha256":"sha256:0f4f8c3dc4a4a6b67a00ea979110a98dc478b8f13e3e0d90f0039a461348f2da"},
+    "event_journal_implementation_lock": {"path":"requirements/event-journal-implementation.lock.json","sha256":"sha256:c2e6bd0611bdbc82f275a46d7d735860abbb91e91733a06ca9e378c53fa505c7"},
+    "recovery_implementation_lock": {"path":"requirements/recovery-implementation.lock.json","sha256":"sha256:d6c5fe9ec8ce55a633f4b7a664daf6ccba27c0d45e2d3b83adfce94cda196896"},
+    "receipt_implementation_lock": {"path":"requirements/receipt-implementation.lock.json","sha256":"sha256:22557098f98a925264b44aaad767784488e3151f417a2d141c47a468cb0a5ffd"},
+    "implementation_invalid_attempts": {"path":"records/evaluations/IS-0004-U05-backup-restore-implementation-invalid-attempts.json","sha256":"sha256:01db7ee034cae1f0061e4e6fb4fdbf5dcb8acc4eca9aeb190d86975997decb90"}
+  },
+  "results": {
+    "repository_tests": 86,
+    "backup_restore_contract_mutations": 18,
+    "backup_restore_implementation_mutations": 21,
+    "machine_contract_mutations": 4,
+    "topology_contract_mutations": 16,
+    "topology_implementation_mutations": 15,
+    "receipt_contract_mutations": 14,
+    "receipt_implementation_mutations": 12,
+    "event_journal_contract_mutations": 16,
+    "event_journal_implementation_mutations": 8,
+    "recovery_contract_mutations": 20,
+    "recovery_implementation_mutations": 17,
+    "real_check_count": 10,
+    "candidate_invocation_id": "e38826ae-8d6f-4d24-a033-bd6a298d0f8e",
+    "superseded_pass_invocation_id": "523ca659-8b99-4b55-8255-e68e2f4efec9",
+    "receipt_digest": "sha256:d59f76cd906dc16d9421b339ec9c3ba8c422814a63659fbbbceaaa3fbd13fce3",
+    "archive_format": "postgresql-custom-v1",
+    "archive_bytes": 52800,
+    "archive_digest": "sha256:8b5a3ac0e886c22cba2353855a41238703431b6830c74fc7a7c20a2857d2f5e8",
+    "normalized_toc_entries": 20,
+    "normalized_toc_digest": "sha256:122f3380f5fff86e3779c709c50070e67f0e08380efd317a5738d0e320615890",
+    "source_state": {"journal_runs":3,"journal_events":7,"verification_results":2},
+    "state_digests": {
+      "schema": "sha256:e1bac49a19e63d4de589049a75114cf7f19b4bf1f7b571adf48c21a6e4588b95",
+      "journal": "sha256:e498a58d99e123a13ac963e10367be72109e98e035379633a1fc7ad8c7d951d5",
+      "verification_results": "sha256:ef06107905dc317efd6550a4795fdc3284cfb7862e0d13da6de2ff49cf09565e",
+      "roles": "sha256:a940b1e59e44208aac987aba4224efc45789a4472595fbea71d11f6a45253db3"
+    },
+    "source_write_fence": "PASS_SHARE_LOCK_AND_BOUNDED_TIMEOUT",
+    "clean_distinct_target": "PASS",
+    "restored_state_equivalence": "PASS",
+    "negative_privilege_checks": 5,
+    "restart_persistence": "PASS",
+    "protected_volume_identity": "UNCHANGED",
+    "disposable_teardown": "PASS",
+    "archive_custody_removed": true
+  },
+  "runtime_images": {
+    "database": "sha256:da7f3a6b1f8ab31e9ad0180f0166914e1c2503c1b2892b1d6991c832033e3cbb",
+    "migration": "sha256:d159285a8988fa13f510d7dc77bdeee195181d6b75dc8ef959d1f182d9013310",
+    "python_runner": "sha256:6e4050c67295a90ca3591bf1674317e59b698a89ce86e8ce64579d34182c3e71",
+    "node_runner": "sha256:78edf27e115551fd0128201e13486363ff595076b0446d8479cf2ddd2aa7b6a1"
+  },
+  "migration_image_transition": {
+    "prior_image_id": "sha256:4185699c4010b6f7f5e16d1831ceeca11919abdd9630f762f1246b277e7a174b",
+    "prior_history_tag": "incidentseal-history/migration:pre-is4-u05-4185699c4010",
+    "candidate_image_id": "sha256:d159285a8988fa13f510d7dc77bdeee195181d6b75dc8ef959d1f182d9013310",
+    "build_network": "none",
+    "pull": false,
+    "no_cache": true,
+    "build_log_digest": "sha256:411d12045c6f80b8ffa98f3d1f30bb912912e64cb968434aed727de6420963e0",
+    "security_change": "incidentseal_admin retains required superuser bootstrap but is explicitly NOCREATEDB, NOCREATEROLE, NOINHERIT, NOREPLICATION, and NOBYPASSRLS"
+  },
+  "trust_boundary": {
+    "host_cli_owns_docker": true,
+    "docker_socket_in_containers": false,
+    "container_secrets": false,
+    "broad_host_mounts": false,
+    "external_runtime_network": false,
+    "arbitrary_backup_or_restore_command": false,
+    "approval_accessed_by_probe": false,
+    "approval_after": "MISSING",
+    "approval_after_invocation_id": "d57a4071-8c06-4505-a49b-842c34d2b92a",
+    "approval_written": false,
+    "workflow_executed": false,
+    "containers_retained": 0,
+    "networks_retained": 0,
+    "disposable_volumes_retained": 0,
+    "protected_volumes_present": 3
+  },
+  "retained_attempts": {
+    "invalid": 7,
+    "superseded_pass": 1,
+    "candidate_pass": 1,
+    "product_failures_reclassified": 0
+  },
+  "limitations": [
+    "Only fixed synthetic platform-validation data is backed up and restored; no arbitrary or protected volume is accepted.",
+    "The exact candidate has not yet been reproduced from credential-free public custody.",
+    "Integrated recovery, dashboard, packaging, registry publication, downloaded-release verification, and release remain pending.",
+    "No approved workflow manifest was executed."
+  ],
+  "decision": {
+    "status": "continue",
+    "next": "Commit and push the exact implementation candidate, then reproduce all static and real backup/restore gates from a credential-free public clone before closing IS4-U05."
+  }
+}

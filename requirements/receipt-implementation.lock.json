@@ -1,10 +1,10 @@
 {
   "schema_version": "incidentseal-receipt-implementation-lock/v1",
-  "unit_id": "IS4-U04",
+  "unit_id": "IS4-U05",
   "supersedes": "requirements/history/IS4-U04-pre-recovery-receipt.implementation.lock.json",
   "receipt_contract_digest": "sha256:7bd0abd1923b6e03ba99f02bfde9beca551fb789a837ff41098a570674c501e3",
   "files": [
-    {"path":"docs/cli-contract.md","sha256":"sha256:b87e768f6960fc3dee432eb89cd8df89d33ef41aaffc80d3967049f344071dca"},
+    {"path":"docs/cli-contract.md","sha256":"sha256:7005650ff5ee918af814a3fe65d2701eba386c385b1d9f8fc9954f196b6139e1"},
     {"path":"docs/receipt-implementation.md","sha256":"sha256:dce33d29742cd66cf1f7dcecd443acaaa31749854885f559bfe7d636780ebc09"},
     {"path":"incidentseal","sha256":"sha256:fd9a913aa2f9e3f88daa5bcea4660aec501ea45e0015aa5a380625432448a16e"},
     {"path":"incidentseal.cmd","sha256":"sha256:48f6374a6c5320fed187717c0ce03a9ef28f9d68384ed53c980000b0b2e785a2"},
@@ -12,7 +12,7 @@
     {"path":"scripts/test_receipt_implementation_mutations.py","sha256":"sha256:bef5ac3920fbf1707fd470017ffd048daa206e3e9fb4081a1a69919bdc66a47c"},
     {"path":"scripts/validate_receipt_implementation.py","sha256":"sha256:6f984bbecf8f71fd9d9e3804fb7108a54bcb939f66723d8d1e26bb512482265e"},
     {"path":"src/incidentseal/__main__.py","sha256":"sha256:50a6f8044ffdbd04abd40e6464510ff6bf72e63f9870d958357e7bb0171d4cf6"},
-    {"path":"src/incidentseal/cli.py","sha256":"sha256:5513f82d281d9efe072b16264a588bd9e89d298a16457cc2517916d8be6a21ed"},
+    {"path":"src/incidentseal/cli.py","sha256":"sha256:0c052ec1eee9d4e5d4a301582ca472fcd97661566c589a179e531738f8f36eb0"},
     {"path":"src/incidentseal/manifest.py","sha256":"sha256:05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"},
     {"path":"src/incidentseal/receipt.py","sha256":"sha256:3c550f82023a330ee7ccbc4a28987ed27aac2ef8233b5a80ec04f9714576404f"},
     {"path":"tests/test_receipt.py","sha256":"sha256:e4aab4d0a0093f51582c3f4d0a04d7c437e8b6ed9f116a64bec9f703f49906e7"}

@@ -2,9 +2,9 @@
   "schema_version": "incidentseal-event-journal-implementation-lock/v1",
   "lock_id": "IS-EVENT-JOURNAL-IMPLEMENTATION-LOCK-0001",
   "checkpoint_id": "IS-0004",
-  "unit_id": "IS4-U04",
+  "unit_id": "IS4-U05",
   "supersedes": "requirements/history/IS4-U04-pre-recovery-event-journal.implementation.lock.json",
-  "generated_at_utc": "2026-08-10T00:24:00Z",
+  "generated_at_utc": "2026-08-10T03:42:15Z",
   "contract_lock": {
     "path": "requirements/event-journal-contract.lock.json",
     "sha256": "sha256:39b56b346f62976a86ad591fa09441aa39d660e93c6d22d14ca3cc4749c4e211"
@@ -14,13 +14,13 @@
   "agent_mutation_commands": [],
   "agent_read_commands": ["run.events"],
   "files": [
-    {"path":"containers/migration/001-schema.sql","sha256":"sha256:463ef49614e053cf3f50a7881180c80d4a7ec53911217b5b65d0911d1c2e77c5"},
-    {"path":"docs/cli-contract.md","sha256":"sha256:b87e768f6960fc3dee432eb89cd8df89d33ef41aaffc80d3967049f344071dca"},
+    {"path":"containers/migration/001-schema.sql","sha256":"sha256:ec710495e57c8bdfb11e065fe9dea536b3e34b9aa871abe1dd9abf294d7d0df0"},
+    {"path":"docs/cli-contract.md","sha256":"sha256:7005650ff5ee918af814a3fe65d2701eba386c385b1d9f8fc9954f196b6139e1"},
     {"path":"docs/event-journal-implementation.md","sha256":"sha256:07acf5c157aaceb701fb2a117224bdbf0b7449c8ce1db3e979410c83acd41e86"},
     {"path":"requirements/event-journal-contract.lock.json","sha256":"sha256:39b56b346f62976a86ad591fa09441aa39d660e93c6d22d14ca3cc4749c4e211"},
     {"path":"scripts/test_event_journal_implementation_mutations.py","sha256":"sha256:f5076fc0a8681b8d0a4580223b0ce945d38e3fc9a0a68ec98cfc59e2a30b51f5"},
     {"path":"scripts/validate_event_journal_implementation.py","sha256":"sha256:fb1e2b9c2b5f5eb0ac10549d54cd6822634249420dc81abae352304b16c44e60"},
-    {"path":"src/incidentseal/cli.py","sha256":"sha256:5513f82d281d9efe072b16264a588bd9e89d298a16457cc2517916d8be6a21ed"},
+    {"path":"src/incidentseal/cli.py","sha256":"sha256:0c052ec1eee9d4e5d4a301582ca472fcd97661566c589a179e531738f8f36eb0"},
     {"path":"src/incidentseal/journal.py","sha256":"sha256:2bbf9e22f48cd5b15ae05af33ec92013bf44a7e6436589b69957ba0cbac84c07"},
     {"path":"src/incidentseal/journal_surface.py","sha256":"sha256:f1ef125dec630fdd298445e7665cc6c2a9f87ea25c72872490b9bd41068aa41f"},
     {"path":"src/incidentseal/topology.py","sha256":"sha256:608218e78f17161e657c2ce41ff07db2e1189514eaba0e0727a0e913c25afa8e"},

@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Implement the fixed host-owned IS4-U05 disposable backup and clean-restore surface under the public-reproduced contract, then verify real archive and TOC identity, restored state equivalence, negative privileges, restart persistence, protected-volume identity, teardown, and credential-free public reproduction"
+    "next_action": "Commit and push the locally verified IS4-U05 backup and clean-restore implementation candidate, then reproduce all static and real gates from the exact credential-free public commit before closing EXIT-BACKUP-RESTORE"
   }
 }

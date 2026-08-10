@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U04` passed; the `IS4-U05` backup/clean-restore contract passes from exact public custody and real runtime implementation is next
+- State: active; `IS4-U04` passed; the `IS4-U05` real backup/clean-restore implementation passes locally and exact public implementation reproduction is next
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -73,10 +73,12 @@ Exact credential-free public commit `7c6278f6a906bd665279fd1bc9068dc4aac2776a`, 
 
 Exact public commit `30513b70a9c7a2e283e4643232fa5c8b13f650c2`, tree `faebf8d3d6635598977f9b7b5ccafc81bfd31fea`, reproduced all 80 tests, 18 backup mutations, every prior cross-surface validator and mutation suite, and the one-schema/two-fixture meta-validation from six rehashed source-gated wheels without network. Strict Git integrity and four high-confidence secret patterns passed. Approval remained `MISSING` / `INVALID` at exit `12`; Docker runtime never started; no archive or restore was created; no workflow ran; no IncidentSeal container or network exists; and the exact three protected volume identities remain unchanged. One local import attempt and five public/closure harness attempts remain separately `INVALID`. The clean noncanonical public clone remains outside OneDrive and runtime custody. Real dump/restore behavior remains unverified and is the next bounded stage.
 
+The fixed host-only implementation now passes locally under final-lock invocation `e38826ae-8d6f-4d24-a033-bd6a298d0f8e`. The host created and fsynced a `52800`-byte exact custom archive (`sha256:8b5a3ac0e886c22cba2353855a41238703431b6830c74fc7a7c20a2857d2f5e8`), normalized and rejected unsafe TOC content, then restored into a different clean volume. All ten checks passed: frozen source state and write fencing, archive and TOC identity, clean target, exact schema/journal/result/role equivalence, five denied runner privileges, restart persistence, three protected-volume identities, and full teardown. Eighty-six tests, 21 implementation mutations, and every prior cross-surface suite pass. Seven implementation attempts remain `INVALID`, and calibration invocation `523ca659-8b99-4b55-8255-e68e2f4efec9` remains `superseded`; neither is rewritten as PASS. Approval stayed `MISSING`, no workflow ran, and no disposable container, network, volume, or archive remains. This is a local candidate only until its exact commit reproduces from public custody.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, and fixed synthetic recovery pass from public custody. Backup/restore, integrated recovery, dashboard, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, durable journal, and fixed synthetic recovery pass from public custody. Backup/restore passes locally but still needs exact public implementation replay; integrated recovery, dashboard, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -86,4 +88,4 @@ Exact public commit `30513b70a9c7a2e283e4643232fa5c8b13f650c2`, tree `faebf8d3d6
 
 ## Next eligible action
 
-Implement the fixed host-owned `IS4-U05` disposable backup and clean-restore surface under the frozen contract. Require exact archive bytes and normalized TOC, a different clean target, restored state and role equivalence, all five negative privileges, restart persistence, exact protected-volume identity, complete teardown, and credential-free public reproduction before claiming `EXIT-BACKUP-RESTORE`.
+Commit and push the locally verified `IS4-U05` implementation candidate, then reproduce all 86 tests, validators, mutations, integrity and secret gates, missing-approval boundary, protected-volume identity, and the ten real backup/restore checks from that exact credential-free public commit before claiming `EXIT-BACKUP-RESTORE`.

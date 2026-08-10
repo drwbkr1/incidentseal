@@ -1,0 +1,70 @@
+{
+  "schema_version": "incidentseal-invalid-attempts/v1",
+  "evaluation_id": "IS-EVAL-0004-U05-BACKUP-RESTORE-IMPLEMENTATION-INVALID-ATTEMPTS",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U05",
+  "observed_at_utc": "2026-08-10T03:59:58Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "attempts": [
+    {
+      "id": "windows-read-only-fsync",
+      "category": "host-portability",
+      "invocation_id": "c67e0cd0-d126-4637-a732-3121dae1330d",
+      "executed_product": false,
+      "note": "The first real CLI attempt reached exact archive creation but Windows rejected fsync on a read-only file descriptor. The fixed disposable runtime and archive custody were removed and protected volumes remained exact."
+    },
+    {
+      "id": "windows-fsync-traceback-reproduction",
+      "category": "diagnostic-harness",
+      "executed_product": false,
+      "note": "The unchanged fixed function reproduced OSError EBADF under traceback. The archive handle was changed to read/write solely for flush, fsync, rewind, and read; no archive bytes are modified. Teardown remained exact."
+    },
+    {
+      "id": "post-restore-migration-stderr",
+      "category": "diagnostic-policy",
+      "invocation_id": "e5342c97-4611-465d-ba27-a7a37c15ab00",
+      "executed_product": false,
+      "note": "Dump and restore completed silently, but the initial wrapper rejected all post-restore migration stderr, including idempotent existing-object notices. The attempt returned INVALID and removed all disposable custody."
+    },
+    {
+      "id": "prefixed-migration-notice",
+      "category": "diagnostic-policy",
+      "invocation_id": "0ca1d555-f700-4a2e-a55b-fa5d300d2b74",
+      "executed_product": false,
+      "note": "The first narrowed notice classifier omitted psql's locked migration path and line prefix. The corrected classifier permits only the exact locked-path existing-relation notice for four expected tables; every other diagnostic remains invalid."
+    },
+    {
+      "id": "bootstrap-role-capability-contract",
+      "category": "security-contract",
+      "invocation_id": "f6e3f047-780b-429d-b0ea-9ab342bac8a8",
+      "executed_product": false,
+      "note": "Final receipt validation rejected PostgreSQL's bootstrap superuser because CREATEDB remained true. The contract was not weakened; the locked migration now hardens incidentseal_admin with NOCREATEDB and NOCREATEROLE."
+    },
+    {
+      "id": "bootstrap-role-traceback-reproduction",
+      "category": "diagnostic-harness",
+      "executed_product": false,
+      "note": "The unchanged fixed function reproduced IS_BACKUP_PRIVILEGE under traceback. The exact prior migration image was retained under a history tag, and one new offline no-pull migration image was built and locked."
+    },
+    {
+      "id": "final-evidence-wrapper-powershell-spacing",
+      "category": "evidence-harness",
+      "executed_product": false,
+      "note": "A read-only final evidence wrapper omitted required PowerShell whitespace around foreach in and failed parsing before policy, Docker, Git, or hash commands executed. The corrected wrapper passed."
+    }
+  ],
+  "passing_attempts": [
+    {
+      "invocation_id": "523ca659-8b99-4b55-8255-e68e2f4efec9",
+      "disposition": "superseded-pass",
+      "note": "The first complete PASS established the real runtime state and was used to populate the candidate runtime record; it is superseded by the exact final-lock pass."
+    },
+    {
+      "invocation_id": "e38826ae-8d6f-4d24-a033-bd6a298d0f8e",
+      "disposition": "candidate-pass",
+      "note": "The final implementation lock reproduced all ten real gates and complete teardown."
+    }
+  ],
+  "retention": "The seven attempts remain INVALID rather than product FAIL. Every runtime or diagnostic reproduction used only fixed synthetic custody, removed all disposable containers, networks, volumes, and archive bytes, left the three protected volume identities exact, wrote no approval, and executed no repository workflow."
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "incidentseal-backup-restore-implementation-mutations/v1",
+  "mutations": [
+    {"id":"source-target-project-collapsed"},
+    {"id":"internal-network-removed"},
+    {"id":"read-only-root-removed"},
+    {"id":"no-new-privileges-removed"},
+    {"id":"capability-drop-removed"},
+    {"id":"container-secret-added"},
+    {"id":"docker-socket-mount-added"},
+    {"id":"repository-custody-allowed"},
+    {"id":"onedrive-custody-allowed"},
+    {"id":"source-write-fence-weakened"},
+    {"id":"snapshot-write-check-bypassed"},
+    {"id":"archive-recheck-bypassed"},
+    {"id":"toc-forbidden-check-bypassed"},
+    {"id":"restore-mount-made-writable"},
+    {"id":"post-restore-migration-removed"},
+    {"id":"migration-diagnostics-broadened"},
+    {"id":"negative-privilege-check-bypassed"},
+    {"id":"restart-check-removed"},
+    {"id":"protected-volume-check-bypassed"},
+    {"id":"arbitrary-backup-command-exposed"},
+    {"id":"implementation-lock-digest-tampered"}
+  ]
+}
