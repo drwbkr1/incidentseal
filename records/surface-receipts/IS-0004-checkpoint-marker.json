@@ -1,0 +1,48 @@
+{
+  "schema_version": "incidentseal-checkpoint-marker/v1",
+  "receipt_id": "IS-RECEIPT-0004-U07-MARKER",
+  "checkpoint_id": "IS-0004",
+  "observed_at_utc": "2026-08-10T23:35:09Z",
+  "disposition": "pass",
+  "repository": "https://github.com/drwbkr1/incidentseal.git",
+  "branch": "main",
+  "local_head_at_marker_push": "25328dacef4d9283090bed809db75b33f613829b",
+  "remote_main_head_at_marker_push": "25328dacef4d9283090bed809db75b33f613829b",
+  "heads_matched_at_marker_push": true,
+  "source_worktree_clean": true,
+  "tag": {
+    "name": "checkpoint-is-0004",
+    "kind": "annotated",
+    "message": "IncidentSeal verified checkpoint IS-0004",
+    "local_tag_object": "60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf",
+    "remote_tag_object": "60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf",
+    "local_peeled_commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "remote_peeled_commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "objects_match": true,
+    "independent_credential_free_clone_verified": true
+  },
+  "public_clone": {
+    "commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "tree": "b03947a405f670a0ed41f0ec1544722fdbe69d20",
+    "worktree_clean": true,
+    "tag_fetch_credential_free": true,
+    "git_object_integrity": "PASS",
+    "secret_scan": "PASS_4_PATTERNS_0_MATCHES",
+    "integrated_runtime_invocation_id": "9db2051a-f3ab-470d-8162-84e6237e4e8c"
+  },
+  "docker_state": {
+    "incidentseal_containers": [],
+    "incidentseal_networks": [],
+    "disposable_volumes": [],
+    "protected_volumes": [
+      "incidentseal-57ca5f96d527da1b_database-data",
+      "incidentseal-a6443d83ae9eb463_database-data",
+      "incidentseal-e10983c7309c56a0_database-data"
+    ],
+    "protected_volume_identity_unchanged": true
+  },
+  "retained_invalid_attempts": [
+    {"attempt":"First remote peeled-tag query","outcome":"INVALID","note":"PowerShell received the peeled-tag revision unquoted; the corrected quoted credential-free query returned both exact remote rows."}
+  ],
+  "scope_note": "This marker freezes the verified IS-0004 evidence and recovery checkpoint. It is not a software release and does not prove dashboard, packaging, image redistribution, registry, downloaded-release, or v0.1.0 surfaces."
+}

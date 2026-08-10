@@ -1,0 +1,31 @@
+{
+  "schema_version": "incidentseal-invalid-attempts/v1",
+  "evaluation_id": "IS-EVAL-0004-U07-PUBLIC-CHECKPOINT-INVALID-ATTEMPTS",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U07",
+  "observed_at_utc": "2026-08-10T23:35:09Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "attempts": [
+    {
+      "id": "unquoted-remote-peeled-tag-query",
+      "category": "marker-verification-harness",
+      "executed_product": false,
+      "note": "The first post-fetch ls-remote wrapper left the peeled tag revision unquoted under PowerShell and returned only the annotated tag object row. The credential-free fetch itself succeeded and local object inspection already peeled to the exact closure commit. A corrected quoted remote query then returned both exact rows. No runtime, approval, or workflow action occurred."
+    }
+  ],
+  "passing_attempts": [
+    {
+      "invocation_id": "9db2051a-f3ab-470d-8162-84e6237e4e8c",
+      "disposition": "checkpoint-runtime-pass",
+      "note": "The exact closure tree passed both complete real cycles before marker creation."
+    },
+    {
+      "tag_object": "60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf",
+      "peeled_commit": "25328dacef4d9283090bed809db75b33f613829b",
+      "disposition": "public-marker-pass",
+      "note": "The corrected credential-free fetch and quoted remote query independently matched the annotated marker object and peeled closure commit."
+    }
+  ],
+  "retention": "The read-only wrapper attempt remains INVALID and does not replace either passing result."
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "incidentseal-public-checkpoint/v1",
+  "receipt_id": "IS-RECEIPT-0004-U07-PUBLIC-CHECKPOINT",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U07",
+  "observed_at_utc": "2026-08-10T23:35:09Z",
+  "disposition": "pass",
+  "repository": {
+    "name_with_owner": "drwbkr1/incidentseal",
+    "url": "https://github.com/drwbkr1/incidentseal",
+    "visibility_evidence": "credential-free HTTPS clone with credential helpers and terminal prompting disabled",
+    "default_branch": "main",
+    "origin": "https://github.com/drwbkr1/incidentseal.git"
+  },
+  "candidate": {
+    "commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "tree": "b03947a405f670a0ed41f0ec1544722fdbe69d20",
+    "local_head": "25328dacef4d9283090bed809db75b33f613829b",
+    "remote_main_head": "25328dacef4d9283090bed809db75b33f613829b",
+    "heads_match": true,
+    "source_worktree_clean": true
+  },
+  "fresh_remote_clone": {
+    "status": "PASS",
+    "commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "tree": "b03947a405f670a0ed41f0ec1544722fdbe69d20",
+    "initial_worktree_clean": true,
+    "final_worktree_clean": true,
+    "credential_helper_disabled": true,
+    "terminal_prompt_disabled": true,
+    "temporary_custody_removed": false,
+    "temporary_custody_state": "retained-noncanonical-outside-onedrive-and-runtime-custody"
+  },
+  "checks": [
+    {"id":"remote-main-equality","status":"PASS","result":"Local and remote main matched exact IS-0004 closure commit 25328dacef4d9283090bed809db75b33f613829b before marker creation."},
+    {"id":"credential-free-clone","status":"PASS","result":"The public clone completed with credential helpers and terminal prompting disabled."},
+    {"id":"project-control","status":"PASS","result":"IS-0004 parsed with IS4-U07 as the sole active unit and EXIT-REAL-RECOVERY passed."},
+    {"id":"unit-tests","status":"PASS","result":"101 tests passed from the exact closure clone."},
+    {"id":"integrated-contract","status":"PASS","result":"The implementation validator and all 28 contract mutations passed."},
+    {"id":"integrated-implementation","status":"PASS","result":"All 39 implementation mutations failed closed under exact lock d3e0d2f2."},
+    {"id":"clean-copy-cli","status":"PASS","result":"All 13 reusable clean-copy checks passed, including machine, topology, receipt, schema, authority, and Git gates."},
+    {"id":"fail-closed-authority","status":"PASS","result":"All 25 scenarios and 50 executions passed without creating real approval state."},
+    {"id":"full-schema-meta-validation","status":"PASS","result":"One integrated schema and two fixtures passed Draft 2020-12 validation from six rehashed retained wheels without network."},
+    {"id":"real-integrated-recovery","status":"PASS","result":"Invocation 9db2051a-f3ab-470d-8162-84e6237e4e8c passed both complete cycles, ten stages, and forty state observations with complete teardown."},
+    {"id":"state-separation","status":"PASS","result":"PASS, FAIL, INCONCLUSIVE, INVALID, completed, cancelled, failed, stale, and superseded evidence remained distinct."},
+    {"id":"git-object-integrity","status":"PASS","result":"git fsck --full --strict completed without findings in the closure clone."},
+    {"id":"credential-secret-scan","status":"PASS","result":"Four bounded high-confidence patterns returned zero tracked matches."},
+    {"id":"authority-boundary","status":"PASS","result":"Approval remained MISSING / INVALID at exit 12 before and after; no workflow ran."},
+    {"id":"docker-residue","status":"PASS","result":"No IncidentSeal container, network, or disposable volume remained; all three protected volume identities remained exact."}
+  ],
+  "checkpoint_runtime": {
+    "invocation_id": "9db2051a-f3ab-470d-8162-84e6237e4e8c",
+    "repetitions": 2,
+    "stages": 10,
+    "case_observations": 40,
+    "raw_archive_receipts": [
+      {"archive_digest":"sha256:057705ae87ba5adb7f3a370fa226e58585049184734a01c23da071c0b8186793","receipt_digest":"sha256:bdafbc1a908eb10988e815d0378b7ccb98ec20ac76cc114c1711877af607104f"},
+      {"archive_digest":"sha256:f6864f6dded50e1a31c5651c9a9e3af508b08bae2904fee7a44d9cf2f6ea90c0","receipt_digest":"sha256:2631222ab34fbe71ffa7545816459c513689ca4aa89ad9be6bbfd44df843bbb0"}
+    ],
+    "cross_cycle_semantics": "PASS_ALL",
+    "protected_volume_identity": "UNCHANGED",
+    "teardown": "PASS"
+  },
+  "retained_invalid_attempts": [
+    {"attempt":"First remote peeled-tag query","outcome":"INVALID","note":"The corrected quoted remote query and credential-free fetched object independently established the marker identity."}
+  ],
+  "checkpoint_marker": {
+    "name": "checkpoint-is-0004",
+    "kind": "annotated",
+    "tag_object": "60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf",
+    "peeled_commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "status": "pushed-and-independently-verified"
+  },
+  "limitations": [
+    "This is a verified evidence and recovery checkpoint, not a versioned software release.",
+    "No workflow manifest is approved and no workflow was executed.",
+    "Dashboard, broader evaluation, packaging, image redistribution, registry publication, downloaded release, and v0.1.0 remain unverified."
+  ]
+}

@@ -2,7 +2,7 @@
 
 ## Current conclusion
 
-IncidentSeal has a verified local hardened topology checkpoint, not a releasable product. `checkpoint-is-0003` binds commit `a0c05070dd1d147aecae6b4ed686440414a3aa27` through annotated tag object `28eea260147265e7dd0328dcd072e134586a2ff0`.
+IncidentSeal has a verified public evidence-and-recovery checkpoint, not a releasable product. `checkpoint-is-0004` binds commit `25328dacef4d9283090bed809db75b33f613829b` through annotated tag object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`.
 
 ## Verified surfaces
 
@@ -24,7 +24,7 @@ IncidentSeal has a verified local hardened topology checkpoint, not a releasable
 
 ## Remaining before v0.1.0
 
-Integrated recovery, dashboard, broader scenario evaluation, packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified.
+Dashboard behavior, broader scenario evaluation, packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified.
 
 Image redistribution remains `INCONCLUSIVE`; no derived image was published. No workflow manifest is approved and no workflow was executed.
 
@@ -69,3 +69,9 @@ Exact credential-free public commit `a06ab530dd4ae9d14372d797142a9910b82b4d08`, 
 Public invocation `c23e765c-4aa6-4d44-bee8-98725b098844` passed both complete five-stage cycles and all forty state observations. Exact image and contract identity, portable receipt semantics, journal streams, recovery decisions, normalized TOC, restored state, negative privileges, protected-volume identity, and teardown matched across cycles. Its two fresh `52800`-byte raw archives retained distinct exact archive and receipt identities, as did the local candidate pair; raw dump equality was never used as a false repeatability claim.
 
 Approval remained `MISSING` / `INVALID` at exit `12` before and after, no workflow ran, the public clone remained clean, and no disposable container, network, volume, archive, or receipt custody remained. Two public wrapper attempts remain `INVALID` and did not start runtime. `EXIT-REAL-RECOVERY` passes. IS4-U07 must still bind and independently verify the exact IS-0004 closure commit and annotated checkpoint marker.
+
+## IS-0004 verified public checkpoint
+
+Exact closure commit `25328dacef4d9283090bed809db75b33f613829b`, tree `b03947a405f670a0ed41f0ec1544722fdbe69d20`, passed 101 tests, all 39 integrated implementation mutations, all 28 integrated contract mutations, the complete fail-closed authority matrix, 13 clean-copy CLI checks, offline full-schema validation, strict Git integrity, zero secret-pattern matches, and another two complete real cycles under invocation `9db2051a-f3ab-470d-8162-84e6237e4e8c`. All forty states, per-receipt archive identities, cross-cycle semantics, protected-volume identities, and teardown passed while approval remained missing and workflow execution unavailable.
+
+Annotated marker `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf` was pushed, fetched without credentials into the pre-marker clean clone, identified as a tag object, and peeled locally and remotely to the exact closure commit. One read-only unquoted peeled-tag query remains `INVALID`; the corrected quoted query returned both exact remote identities. Every IS-0004 exit passes. The checkpoint does not prove a dashboard, packaged CLI, image redistribution, registry publication, downloaded release, or v0.1.0.

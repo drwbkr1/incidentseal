@@ -1,25 +1,25 @@
 # IncidentSeal status
 
 - Current checkpoint: `IS-0004`
-- Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U06` and `EXIT-REAL-RECOVERY` pass from exact credential-free public custody; `IS4-U07` is active for the exact `IS-0004` closure tree and checkpoint marker
+- Latest verified checkpoint: `IS-0004`
+- State: complete; all IS-0004 evidence-and-recovery exits pass from exact public custody; the next cycle begins with bounded IS-0005 dashboard and evaluation work
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
 - Expected branch: `main`
-- Latest verified checkpoint commit: `a0c05070dd1d147aecae6b4ed686440414a3aa27`
-- Verified checkpoint marker: `checkpoint-is-0003` tag object `28eea260147265e7dd0328dcd072e134586a2ff0` -> `a0c05070dd1d147aecae6b4ed686440414a3aa27`
+- Latest verified checkpoint commit: `25328dacef4d9283090bed809db75b33f613829b`
+- Verified checkpoint marker: `checkpoint-is-0004` tag object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf` -> `25328dacef4d9283090bed809db75b33f613829b`
 - Approved workflow manifest digest: not established
 - Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded reliability, portable receipts, offline verification, durable journal streaming, fixed recovery, backup/clean restore, and repeated integrated recovery are verified from public custody
 - Release state: unreleased
 
 ## Current truth
 
-The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `IS-0003` establishes the latest verified public hardened-topology checkpoint. `IS-0004` is active for evidence and recovery without changing that trust boundary.
+The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `checkpoint-is-0004` now establishes the latest verified public evidence-and-recovery checkpoint without changing that trust boundary.
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
-## Active unit
+## Checkpoint evidence
 
 `IS3-U01` passed without starting a container. The exact linux/amd64 Dockerfile frontend, Chainguard PostgreSQL 18.4, Distroless Node.js 24, and Chainguard Python 3.14.7 images are now bound in `requirements/images.lock.json` with platform children, local identities, signatures or provenance, SBOMs, vulnerability evidence, license limits, and mandatory runtime constraints.
 
@@ -89,6 +89,10 @@ Exact credential-free public commit `a06ab530dd4ae9d14372d797142a9910b82b4d08`, 
 
 Exact images, topology contract, receipt semantics, journal streams, recovery decisions, normalized TOC, restored state, negative privileges, protected-volume identity, and teardown matched across both public cycles. Both fresh public archives were independently content-addressed and intentionally not forced byte-equal. Approval remained `MISSING` / `INVALID` at exit `12` before and after, no workflow ran, no disposable custody remains, and the public clone is clean. Two public wrapper attempts remain `INVALID` without runtime execution. `EXIT-REAL-RECOVERY` passes; `IS4-U07` is now the only remaining IS-0004 unit.
 
+Exact closure commit `25328dacef4d9283090bed809db75b33f613829b`, tree `b03947a405f670a0ed41f0ec1544722fdbe69d20`, then passed 101 tests, all 39 integrated implementation mutations, all 28 contract mutations, the 25-scenario/50-execution authority matrix, 13 clean-copy CLI checks, offline full-schema validation, strict Git integrity, a zero-match four-pattern secret scan, and its own two complete real cycles under invocation `9db2051a-f3ab-470d-8162-84e6237e4e8c`. Approval stayed `MISSING`, all disposable custody was removed, and the three protected identities remained exact.
+
+Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf` was pushed and independently fetched from credential-free public custody, peeling to the exact closure commit. One unquoted remote peeled-tag query remains `INVALID`; the corrected quoted query returned both exact remote rows. `EXIT-PUBLIC-CHECKPOINT` passes and IS-0004 is complete.
+
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
@@ -98,8 +102,8 @@ Exact images, topology contract, receipt semantics, journal streams, recovery de
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
 - The Distroless Node image has retained MEDIUM and LOW findings and no located signed SLSA statement; its exact signatures, Bazel history, runtime version, and runner behavior remain explicitly bounded claims.
 - Direct Codex CLI execution currently fails with `Access is denied`.
-- Historical markers `checkpoint-is-0001` and `checkpoint-is-0002` remain intact; `checkpoint-is-0003` is the latest verified marker. Remote `main` may advance with post-marker receipts and the next milestone while the marker continues to freeze its exact closure commit.
+- Historical markers `checkpoint-is-0001`, `checkpoint-is-0002`, and `checkpoint-is-0003` remain intact; `checkpoint-is-0004` is the latest verified marker. Remote `main` may advance with post-marker receipts and the next milestone while the marker continues to freeze its exact closure commit.
 
 ## Next eligible action
 
-Commit and push the IS4-U06 public-replay closure records, then reproduce the exact IS-0004 closure tree from credential-free public custody, create and independently verify `checkpoint-is-0004`, and close `EXIT-PUBLIC-CHECKPOINT`.
+Begin the next cycle from `checkpoint-is-0004` by opening the smallest bounded IS-0005 dashboard-and-evaluation contract, while preserving the verified CLI, trust boundary, evidence states, and release non-claims.

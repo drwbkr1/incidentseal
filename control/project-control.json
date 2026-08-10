@@ -190,7 +190,7 @@
   "current_checkpoint": {
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
-    "expected_head": null,
-    "next_action": "Commit and push the IS4-U06 public-replay closure records, then reproduce and mark the exact IS-0004 checkpoint tree under IS4-U07"
+    "expected_head": "25328dacef4d9283090bed809db75b33f613829b",
+    "next_action": "Begin the next verified cycle from checkpoint-is-0004 with the smallest bounded IS-0005 dashboard-and-evaluation contract"
   }
 }

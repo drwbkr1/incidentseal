@@ -1,0 +1,55 @@
+{
+  "schema_version": "incidentseal-public-checkpoint-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U07-PUBLIC-CHECKPOINT",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U07",
+  "observed_at_utc": "2026-08-10T23:35:09Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "bindings": {
+    "public_checkpoint_receipt": {"path":"records/surface-receipts/IS-0004-public-checkpoint.json","sha256":"sha256:d352b90cbbd08349a3fe052a80f5b7f5ed2828b03bdb7f64e1cef21f67461700"},
+    "checkpoint_marker_receipt": {"path":"records/surface-receipts/IS-0004-checkpoint-marker.json","sha256":"sha256:bb7ba5cb778cb715ae754a140445156842dfac35026530308ef0f5f227308f51"},
+    "invalid_attempts": {"path":"records/evaluations/IS-0004-U07-public-checkpoint-invalid-attempts.json","sha256":"sha256:6b9864779518454e398ae6b3b25f4a084553552b9597d479dfa793d053bec79f"}
+  },
+  "checkpoint": {
+    "commit": "25328dacef4d9283090bed809db75b33f613829b",
+    "tree": "b03947a405f670a0ed41f0ec1544722fdbe69d20",
+    "tag": "checkpoint-is-0004",
+    "tag_object": "60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf",
+    "tag_type": "annotated",
+    "remote_main_equal_before_marker": true,
+    "remote_tag_object_equal": true,
+    "remote_peeled_commit_equal": true
+  },
+  "clean_clone": {
+    "credential_free": true,
+    "worktree_clean": true,
+    "unit_tests": 101,
+    "integrated_contract_mutations": 28,
+    "integrated_implementation_mutations": 39,
+    "fail_closed_scenarios": 25,
+    "fail_closed_executions": 50,
+    "clean_cli_checks": 13,
+    "full_schema_validation": "PASS_1_SCHEMA_2_FIXTURES_6_EXACT_WHEELS_OFFLINE",
+    "real_integrated_invocation_id": "9db2051a-f3ab-470d-8162-84e6237e4e8c",
+    "real_integrated_repetitions": 2,
+    "real_integrated_case_observations": 40,
+    "git_object_integrity": "PASS",
+    "secret_scan": "PASS_4_PATTERNS_0_MATCHES",
+    "authority_boundary": "PASS_MISSING_EXIT_12_BEFORE_AFTER",
+    "docker_residue": "PASS",
+    "protected_volume_identity": "UNCHANGED"
+  },
+  "retained_invalid_attempts": [
+    "The first remote peeled-tag query left the revision unquoted under PowerShell and was INVALID; the corrected quoted credential-free query matched both exact remote rows."
+  ],
+  "prohibited_claims": [
+    "checkpoint-is-0004 is not a versioned software release.",
+    "No workflow manifest is approved or executed.",
+    "Dashboard, broad evaluation, packaging, image redistribution, registry publication, downloaded release, and v0.1.0 remain unverified."
+  ],
+  "decision": {
+    "status": "close-checkpoint",
+    "reason": "Every IS-0004 exit condition, the exact public closure tree, both complete real recovery cycles, and the independently fetched annotated marker passed without broadening the trust boundary."
+  }
+}

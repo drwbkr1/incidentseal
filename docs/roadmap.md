@@ -40,9 +40,9 @@ Progress: `IS3-U01` through `IS3-U09` passed. Annotated marker `checkpoint-is-00
 
 ### IS-0004 - Evidence and recovery
 
-Status: active
+Status: complete
 
-Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and independent verifier. `IS4-U03` passed immutable PostgreSQL history. `IS4-U04` passed fixed host-only recovery. `IS4-U05` passed fixed host-only backup and clean restore from exact credential-free public custody. `IS4-U06` now passes exact credential-free public replay: 101 tests, every inherited gate, 39 fail-closed implementation mutations, two complete five-stage real cycles, all forty case observations, per-receipt raw archives, exact protected-volume identity, and teardown. Three local and two public attempts remain INVALID. `IS4-U07` exact checkpoint closure and marker verification are next.
+Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and independent verifier. `IS4-U03` passed immutable PostgreSQL history. `IS4-U04` passed fixed host-only recovery. `IS4-U05` passed fixed host-only backup and clean restore from exact credential-free public custody. `IS4-U06` passed exact public integrated replay. `IS4-U07` then reproduced closure commit `25328dacef4d9283090bed809db75b33f613829b`, repeated both complete real cycles, and independently verified annotated marker `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`. All IS-0004 exits pass.
 
 - Append-only event model and portable content-addressed receipts.
 - Idempotency, cancellation, duplicate protection, crash recovery, stale and superseded runs.
