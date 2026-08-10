@@ -1,0 +1,80 @@
+{
+  "schema_version": "incidentseal-u03-public-journal-replay/v1",
+  "receipt_id": "IS-RECEIPT-0004-U03-PUBLIC-JOURNAL-REPLAY",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-10T00:48:40Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "branch": "main",
+    "commit": "4b4cd189d3a787f2871736731b9aad1c87da344a",
+    "tree": "19f2c3194bcb1423e312f5307f8c753a5a350c6a",
+    "clone_clean_before_and_after": true,
+    "credential_helpers_disabled": true,
+    "terminal_prompt_disabled": true,
+    "credential_free": true
+  },
+  "bindings": {
+    "event_journal_contract_lock": {
+      "path": "requirements/event-journal-contract.lock.json",
+      "sha256": "sha256:39b56b346f62976a86ad591fa09441aa39d660e93c6d22d14ca3cc4749c4e211"
+    },
+    "event_journal_implementation_lock": {
+      "path": "requirements/event-journal-implementation.lock.json",
+      "sha256": "sha256:09054cf62489809d5d328b5f8fbd99b5c47e033129b5040c4cf67d4ab5cd081e"
+    },
+    "topology_implementation_lock": {
+      "path": "requirements/topology-implementation.lock.json",
+      "sha256": "sha256:27e3cc83398f4ffc1346f7e7ca4ce3c588db13aea24012eb0cb642b1aef39bb5"
+    },
+    "candidate_evaluation": {
+      "path": "records/evaluations/IS-0004-U03-journal-implementation-candidate.json",
+      "sha256": "sha256:369c8b21c4f06f1e3c1e63f0c54c5b955bb43a837fdd2f522e48acd4b8172487"
+    }
+  },
+  "checks": [
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"exact_commit":true,"exact_tree":true,"clean_before_and_after":true}},
+    {"id":"project-control","status":"PASS","observed":{"profile_valid":true,"milestone_valid":true,"active_units":["IS4-U03"]}},
+    {"id":"unit-tests","status":"PASS","observed":{"tests":62}},
+    {"id":"machine-contract","status":"PASS","observed":{"mutations":4}},
+    {"id":"topology-contract","status":"PASS","observed":{"mutations":16}},
+    {"id":"topology-implementation","status":"PASS","observed":{"mutations":15}},
+    {"id":"receipt-contract","status":"PASS","observed":{"mutations":14}},
+    {"id":"receipt-implementation","status":"PASS","observed":{"mutations":12}},
+    {"id":"event-journal-contract","status":"PASS","observed":{"mutations":16,"schemas":3,"fixtures":3}},
+    {"id":"event-journal-implementation","status":"PASS","observed":{"mutations":8}},
+    {"id":"full-schema-meta-validation","status":"PASS","observed":{"schemas":6,"fixtures":11,"exact_source_gated_wheels":true}},
+    {"id":"fail-closed-policy-matrix","status":"PASS","observed":{"scenarios":25,"trials":50}},
+    {"id":"real-postgresql-journal","status":"PASS","observed":{"invocation_id":"ea22b801-0c3a-43d4-87c2-1527c889e564","checks":14,"inserted_records":7,"exact_no_op_replays":3,"restart_persistence":true,"runner_read_denied":true,"row_mutation_denied":true}},
+    {"id":"ordered-jsonl","status":"PASS","observed":{"completed":{"exit_code":0,"lines":3,"digest":"sha256:36f275d65f2d13b94416256d44adbdf9f5ad6eea0a583c40daef7491f3209602"},"stale":{"exit_code":22,"lines":2,"digest":"sha256:cce24ea6de3f66029d259bab9f70e117c1d3d0542feb7dc0c28244108f14f7a7"},"superseded":{"exit_code":23,"lines":2,"digest":"sha256:54e682f6a1dba03da3c7400921dd259334bc4deef4b13133dff7dc79db9827ab"}}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"authority-boundary","status":"PASS","observed":{"policy_invocation_id":"49479a50-bb3b-4dc7-87a7-7647419f29b2","approval_status":"MISSING","verification_verdict":"INVALID","policy_status_exit":12,"approval_written":false,"workflow_executed":false}},
+    {"id":"docker-custody","status":"PASS","observed":{"disposable_runtime_removed":true,"containers":0,"networks":0,"protected_volumes_present":3,"protected_volume_identity_unchanged":true}}
+  ],
+  "protected_volume_identity": {
+    "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
+    "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
+    "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
+  },
+  "retained_invalid_attempts": [
+    "The resume inspection used two malformed read-only wrappers before corrected observations passed.",
+    "The first journal implementation mutation harness accepted a broadened append-function search path before its binding was corrected.",
+    "The first real authority-drift probe reused an occupied sequence and correctly reached the conflict gate first.",
+    "The final exact temporary-clone cleanup wrapper was blocked by local command policy before execution; the clean non-canonical clone remains retained outside OneDrive."
+  ],
+  "temporary_clone_custody": {
+    "canonical": false,
+    "onedrive": false,
+    "cleanup_state": "retained_policy_denied",
+    "clean": true,
+    "commit": "4b4cd189d3a787f2871736731b9aad1c87da344a",
+    "tree": "19f2c3194bcb1423e312f5307f8c753a5a350c6a",
+    "affects_verification_verdict": false
+  },
+  "prohibited_claims": [
+    "This does not approve or execute a workflow manifest.",
+    "This does not prove interruption recovery, backup and restore, dashboard behavior, image redistribution, registry publication, or a software release."
+  ]
+}

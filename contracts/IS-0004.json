@@ -102,7 +102,7 @@
     {"id":"EXIT-RECEIPT-CONTRACT","status":"pass","evidence":["requirements/receipt-contract.lock.json","schemas/portable-receipt-v1.schema.json","schemas/receipt-verification-v1.schema.json","records/evaluations/IS-0004-U01-receipt-contract.json"]},
     {"id":"EXIT-PORTABLE-RECEIPTS","status":"pass","evidence":["requirements/receipt-implementation.lock.json","records/evaluations/IS-0004-U02-receipt-implementation.json","records/surface-receipts/IS-0004-U02-public-receipt-replay.json"]},
     {"id":"EXIT-INDEPENDENT-VERIFIER","status":"pass","evidence":["requirements/receipt-implementation.lock.json","records/evaluations/IS-0004-U02-receipt-implementation.json","records/surface-receipts/IS-0004-U02-public-receipt-replay.json"]},
-    {"id":"EXIT-IDEMPOTENT-EVENTS","status":"pending","evidence":[]},
+    {"id":"EXIT-IDEMPOTENT-EVENTS","status":"pass","evidence":["requirements/event-journal-contract.lock.json","requirements/event-journal-implementation.lock.json","requirements/topology-runtime.lock.json","records/evaluations/IS-0004-U03-journal-implementation.json","records/surface-receipts/IS-0004-U03-public-journal-replay.json"]},
     {"id":"EXIT-INTERRUPTION-RECOVERY","status":"pending","evidence":[]},
     {"id":"EXIT-BACKUP-RESTORE","status":"pending","evidence":[]},
     {"id":"EXIT-REAL-RECOVERY","status":"pending","evidence":[]},
@@ -145,13 +145,13 @@
       "depends_on": ["IS4-U02"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "in_progress",
+      "status": "complete",
       "inputs": ["Verified receipt store and offline verifier", "Run-event v1 schema"],
       "outputs": ["Durable event journal", "Idempotency and duplicate policy", "Stale and superseded evidence"],
-      "gates": {"journal_contract_lock":"pass","canonical_vectors":"pass_3_cases_7_records","exact_replay":"pass_3_of_3","full_draft_2020_12":"pass_3_schemas_3_fixtures","contract_mutations":"pass_16_of_16","durable_transactional_store":"pass_candidate","run_events_cli":"pass_completed_0_stale_22_superseded_23","implementation_mutations":"pass_8_of_8","regression_tests":"pass_62","real_postgresql_replay":"pass_candidate","protected_volume_identity":"unchanged","disposable_teardown":"pass","clean_public_replay":"pending"},
-      "disposition": null,
-      "retained_failures": ["The resume inspection retained an invalid PowerShell Git-tree wrapper and an IS_USAGE policy-status call before corrected read-only observations passed.","The first implementation mutation harness incorrectly accepted a broadened SECURITY DEFINER search path; the tightened validator then rejected all eight mutations.","The first real PostgreSQL probe reused an occupied sequence for authority drift and correctly returned IS_JOURNAL_CONFLICT before the intended authority gate; corrected isolated custody passes."],
-      "exit_condition_delta": {"expected":["EXIT-IDEMPOTENT-EVENTS"],"observed":[],"decision_value":"enables_dependency","rationale":"The canonical candidate proves atomic immutable PostgreSQL append, exact replay, conflicts, stale/superseded JSONL, restart persistence, least privilege, protected-volume identity, and teardown; exact credential-free public replay remains before the exit passes."},
+      "gates": {"journal_contract_lock":"pass","canonical_vectors":"pass_3_cases_7_records","exact_replay":"pass_3_of_3","full_draft_2020_12":"pass_3_schemas_3_fixtures","contract_mutations":"pass_16_of_16","durable_transactional_store":"pass","run_events_cli":"pass_completed_0_stale_22_superseded_23","implementation_mutations":"pass_8_of_8","regression_tests":"pass_62","real_postgresql_replay":"pass_14_checks_canonical_and_public","protected_volume_identity":"unchanged","disposable_teardown":"pass","clean_public_replay":"pass_17_checks","git_integrity":"pass","secret_scan":"pass"},
+      "disposition": "pass",
+      "retained_failures": ["The resume inspection retained an invalid PowerShell Git-tree wrapper and an IS_USAGE policy-status call before corrected read-only observations passed.","The first implementation mutation harness incorrectly accepted a broadened SECURITY DEFINER search path; the tightened validator then rejected all eight mutations.","The first real PostgreSQL probe reused an occupied sequence for authority drift and correctly returned IS_JOURNAL_CONFLICT before the intended authority gate; corrected isolated custody passes.","Local command policy denied the exact final temporary-clone cleanup wrapper before execution; the verified clean clone remains non-canonical, outside OneDrive, and outside runtime custody.","The first final binding-check wrapper had a PowerShell empty-pipe parser error before execution; the corrected read-only wrapper matched every exact binding."],
+      "exit_condition_delta": {"expected":["EXIT-IDEMPOTENT-EVENTS"],"observed":["EXIT-IDEMPOTENT-EVENTS"],"decision_value":"advances_exit","rationale":"Exact credential-free public custody reproduced atomic immutable PostgreSQL append, exact replay and conflict gates, state-separated JSONL, restart persistence, least privilege, protected-volume identity, disposable runtime teardown, Git integrity, and secret scanning."},
       "next_dependency": "IS4-U04"
     },
     {
@@ -238,12 +238,14 @@
       "Full Draft 2020-12 meta-validation of six schemas and eleven fixtures",
       "Fifty regression tests and original four-schema machine-contract validation",
       "Dependency-free real receipt materialization and offline verification with twelve implementation mutations",
-      "Credential-free public receipt replay with thirteen clean-copy checks, Git integrity, secret scanning, and unchanged Docker and approval custody"
+      "Credential-free public receipt replay with thirteen clean-copy checks, Git integrity, secret scanning, and unchanged Docker and approval custody",
+      "Immutable transactional PostgreSQL event journal with exact replay, conflict, terminal, authority, immutability, least-privilege, and restart gates",
+      "Credential-free public journal replay with sixty-two tests, all journal and cross-surface mutation suites, exact JSONL exits, Git integrity, secret scanning, unchanged protected volumes, and removed disposable runtime custody"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; the IS4-U03 durable journal candidate passes atomic immutable PostgreSQL append, exact replay/conflicts, completed/stale/superseded JSONL, restart persistence, and disposable custody; workflow approval remains MISSING and execution remains unavailable",
-    "next_action": "Commit and push the exact IS4-U03 candidate, then replay static, mutation, JSONL, PostgreSQL, custody, Git-integrity, and secret-scan gates from credential-free public custody.",
+    "current_checkpoint": "IS-0004 active from verified checkpoint-is-0003; IS4-U03 passes exact public immutable PostgreSQL history, replay/conflict gates, completed/stale/superseded JSONL, restart persistence, least privilege, protected-volume identity, and disposable runtime teardown; workflow approval remains MISSING and execution remains unavailable",
+    "next_action": "Begin IS4-U04 by freezing bounded host-crash, cancellation, failed-run, resume, and orphan-reconciliation boundaries without changing verdict semantics or touching protected volumes.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

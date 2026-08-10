@@ -3,10 +3,10 @@
   "lock_id": "IS-TOPOLOGY-RUNTIME-LOCK-0011",
   "checkpoint_id": "IS-0004",
   "unit_id": "IS4-U03",
-  "generated_at_utc": "2026-08-10T00:30:00Z",
+  "generated_at_utc": "2026-08-10T00:48:40Z",
   "supersedes": "requirements/history/IS4-U03-pre-journal-topology.runtime.lock.json",
   "platform": "linux/amd64",
-  "claim_scope": "journal-candidate-plus-historical-topology-custody",
+  "claim_scope": "verified-journal-plus-historical-topology-custody",
   "publication_status": "not-authorized-redistribution-inconclusive",
   "contract": {
     "path": "contracts/topology-v1.json",
@@ -88,6 +88,12 @@
       "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
     },
     "journal_probe_disposable_volume_removed": true,
+    "journal_clean_public_state": "pass",
+    "journal_clean_public_invocation_id": "ea22b801-0c3a-43d4-87c2-1527c889e564",
+    "journal_clean_public_commit": "4b4cd189d3a787f2871736731b9aad1c87da344a",
+    "journal_clean_public_tree": "19f2c3194bcb1423e312f5307f8c753a5a350c6a",
+    "journal_clean_public_custody_removed": false,
+    "journal_clean_public_custody_state": "retained-policy-denied-noncanonical-clean",
     "journal_disposable_project": "incidentseal-57ca5f96d527da1b-reliability",
     "containers_retained": [],
     "network_retained": null

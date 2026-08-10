@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0004`
 - Latest verified checkpoint: `IS-0003`
-- State: active; `IS4-U03` in progress
+- State: active; `IS4-U03` complete; `IS4-U04` eligible
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -47,18 +47,20 @@ The base full-schema attempt and two cleanup wrappers remain `INVALID`. Exact ev
 
 Exact public commit `3cdbf132225cf48e85a8413574c7e8e1d060aca0`, tree `c62c5cc29ff72d36ddd9acc31a685c0712d996aa`, reproduced thirteen reusable clean-copy checks with credential helpers and prompts disabled. Project and milestone controls, 54 tests, all machine/topology/receipt validators and mutations, six-schema/eleven-fixture exact-wheel meta-validation, 50 policy trials, Git object integrity, and four high-confidence secret patterns passed. Approval remained `MISSING` at exit `12`; no workflow ran; Docker containers, networks, and volumes were unchanged; all three protected volumes remained; temporary clone custody was removed. Five evaluator attempts remain distinctly `INVALID` and retained. `IS4-U03` is now eligible.
 
-`IS4-U03` is in progress. Contract `INCIDENTSEAL-EVENT-JOURNAL-001` freezes an immutable journal record around the existing run-event schema. Event, predecessor-link, and domain-separated idempotency identities use RFC 8785 and SHA-256. Exact record replay is a no-op; changed bytes under an idempotency key, event ID, or run sequence are conflicts. Sequences and authority are contiguous and constant. Completed, stale, and superseded vectors retain seven exact records under three stable roots without collapsing lifecycle and verdict.
+`IS4-U03` passed. Contract `INCIDENTSEAL-EVENT-JOURNAL-001` freezes an immutable journal record around the existing run-event schema. Event, predecessor-link, and domain-separated idempotency identities use RFC 8785 and SHA-256. Exact record replay is a no-op; changed bytes under an idempotency key, event ID, or run sequence are conflicts. Sequences and authority are contiguous and constant. Completed, stale, and superseded vectors retain seven exact records under three stable roots without collapsing lifecycle and verdict.
 
 The dependency-free contract validator passed three cases and three exact replays. All sixteen semantic mutations returned their expected distinct error, and the existing exact six-wheel evaluator passed three Draft 2020-12 schemas and three fixtures in removed temporary custody. That contract-freeze stage accessed no Docker runtime, PostgreSQL, approval, or workflow; it now governs the implementation candidate below.
 
-The canonical U03 implementation candidate now passes. PostgreSQL stores immutable canonical record and event bytes behind a per-run transaction lock, exact replay, unique idempotency/event/sequence constraints, fixed-search-path `SECURITY DEFINER` append, and update/delete/truncate denial. The runner receives no journal privilege and the agent-facing CLI exposes only read-only `run events --run-id ID --jsonl`.
+PostgreSQL stores immutable canonical record and event bytes behind a per-run transaction lock, exact replay, unique idempotency/event/sequence constraints, fixed-search-path `SECURITY DEFINER` append, and update/delete/truncate denial. The runner receives no journal privilege and the agent-facing CLI exposes only read-only `run events --run-id ID --jsonl`.
 
-The real fixed disposable probe inserted seven frozen records, replayed three without new rows, rejected idempotency, event-ID, run-sequence, terminal, and authority conflicts, denied runner reads and all row mutation, then reproduced byte-identical completed, stale, and superseded streams at exits `0`, `22`, and `23` after restart. All 14 probe checks passed, the disposable volume was removed, and the three protected volume identities remained exact. Sixty-two tests, 8 journal implementation mutations, 15 topology mutations, and 12 receipt mutations pass. The first search-path mutation validator and first authority-drift probe remain `INVALID`; U03 still needs committed credential-free public replay before closure.
+The real fixed disposable probe inserted seven frozen records, replayed three without new rows, rejected idempotency, event-ID, run-sequence, terminal, and authority conflicts, denied runner reads and all row mutation, then reproduced byte-identical completed, stale, and superseded streams at exits `0`, `22`, and `23` after restart. All 14 probe checks passed, the disposable volume was removed, and the three protected volume identities remained exact.
+
+Exact credential-free public commit `4b4cd189d3a787f2871736731b9aad1c87da344a`, tree `19f2c3194bcb1423e312f5307f8c753a5a350c6a`, reproduced 62 tests, every machine/topology/receipt/journal validator and mutation suite, exact-wheel schema validation, 50 policy trials, strict Git integrity, a zero-hit high-confidence secret scan, and the same 14-check real PostgreSQL and JSONL result. Approval remained `MISSING` at exit `12`; no workflow ran; no disposable container or network remains; all three protected volume identities are unchanged. Five evaluator attempts remain `INVALID`, including a locally denied final cleanup wrapper and a no-execution PowerShell binding-check parser error; the corrected binding check passed and the verified clean non-canonical clone remains outside OneDrive and outside runtime custody. `EXIT-IDEMPOTENT-EVENTS` now passes and `IS4-U04` is eligible.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, exact public closure commit, and annotated checkpoint marker pass. Evidence/recovery, dashboard, packaging, and release gates remain pending in later milestones.
+- The database, both real language surfaces, bounded topology reliability, exact public closure commit, annotated checkpoint marker, portable receipts, offline verifier, and durable journal pass. Interruption recovery, backup/restore, dashboard, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -68,4 +70,4 @@ The real fixed disposable probe inserted seven frozen records, replayed three wi
 
 ## Next eligible action
 
-Continue `IS4-U03`: commit and push the exact durable journal candidate, then replay static, mutation, real JSONL/PostgreSQL, custody, Git-integrity, and secret-scan gates from credential-free public custody.
+Begin `IS4-U04` by freezing bounded host-crash, cancellation, failed-run, resume, and orphan-reconciliation boundaries without changing verdict semantics or touching protected volumes.

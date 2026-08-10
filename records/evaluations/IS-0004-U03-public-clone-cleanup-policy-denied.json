@@ -1,0 +1,35 @@
+{
+  "schema_version": "incidentseal-retained-invalid-attempt/v1",
+  "evaluation_id": "IS-EVAL-0004-U03-PUBLIC-CLONE-CLEANUP-POLICY-DENIED",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-10T00:48:40Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "claim_scope": "Removal of the already verified disposable credential-free public clone after all replay evidence completed.",
+  "attempt": {
+    "operation": "recursive removal of one exact temporary clone",
+    "target": "C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is4-u03-public-4b4cd18",
+    "resolved_target_verified": true,
+    "parent_verified": "C:\\Users\\drewb\\AppData\\Local\\Temp",
+    "canonical_repository": false,
+    "onedrive": false,
+    "clean_before_attempt": true,
+    "commit": "4b4cd189d3a787f2871736731b9aad1c87da344a",
+    "tree": "19f2c3194bcb1423e312f5307f8c753a5a350c6a",
+    "result": "blocked_by_local_command_policy_before_execution"
+  },
+  "retained_state": {
+    "temporary_clone_present": true,
+    "runtime_resource": false,
+    "release_dependency": false,
+    "contains_credentials": false,
+    "contains_uncommitted_changes": false,
+    "affects_public_replay_verdict": false
+  },
+  "decision": {
+    "status": "retain",
+    "reason": "Do not circumvent local destructive-command policy. The bounded clean public replay had already passed and the retained clone is clean, non-canonical, and outside OneDrive.",
+    "next": "Correct the runtime custody record and retain this INVALID cleanup attempt without weakening any runtime or evidence gate."
+  }
+}

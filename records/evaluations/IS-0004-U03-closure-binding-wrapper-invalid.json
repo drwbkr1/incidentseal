@@ -1,0 +1,29 @@
+{
+  "schema_version": "incidentseal-retained-invalid-attempt/v1",
+  "evaluation_id": "IS-EVAL-0004-U03-CLOSURE-BINDING-WRAPPER-INVALID",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U03",
+  "observed_at_utc": "2026-08-10T00:55:23Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "claim_scope": "Read-only comparison of every final evaluation binding with the current SHA-256 of its referenced file.",
+  "attempt": {
+    "runtime": "Windows PowerShell",
+    "result": "parser_error_before_execution",
+    "error": "An empty pipe element is not allowed.",
+    "files_read": 0,
+    "files_written": 0,
+    "runtime_started": false
+  },
+  "corrected_observation": {
+    "binding_count": 8,
+    "matching_bindings": 8,
+    "mismatching_bindings": 0,
+    "verification_verdict": "PASS"
+  },
+  "decision": {
+    "status": "retain",
+    "reason": "The malformed wrapper is INVALID evidence; the corrected read-only wrapper proved every exact binding without changing any file or runtime state.",
+    "next": "Continue closure validation with the corrected binding result."
+  }
+}

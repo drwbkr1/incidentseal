@@ -243,3 +243,15 @@ The corrected fixed disposable probe passed 14 checks. It inserted all seven fro
 Three vectors retain seven records for completed `PASS`, stale authority, and superseded attempt histories under stable roots. Three exact replays were no-ops. All sixteen bounded mutations returned the expected schema, identity, link, sequence, conflict, state, terminal, or authority error. The dependency-free contract validator passed, and the existing six exact source-gated evaluation wheels validated three Draft 2020-12 schemas and three fixtures from removed temporary custody. No runtime or workflow executed.
 
 U03 remains active. The next bounded improvement is the transactional durable store and read-only ordered stream in a disposable PostgreSQL project; protected volumes remain out of scope.
+
+## 2026-08-10 - Durable event journal closes from public custody
+
+Candidate commit `4b4cd189d3a787f2871736731b9aad1c87da344a`, tree `19f2c3194bcb1423e312f5307f8c753a5a350c6a`, was pushed and cloned from GitHub with terminal prompts and credential helpers disabled. The clean public copy passed project and milestone controls, 62 tests, every machine/topology/receipt/journal validator and mutation suite, exact-wheel schema validation, 50 fail-closed policy trials, strict Git object integrity, and a bounded zero-hit high-confidence secret scan.
+
+Real public journal invocation `ea22b801-0c3a-43d4-87c2-1527c889e564` repeated all 14 PostgreSQL gates and the exact completed, stale, and superseded JSONL digests at exits `0`, `22`, and `23`. Seven frozen rows and three exact no-op replays remained stable through restart; conflict, terminal, authority, mutation, and runner-privilege probes failed closed. Disposable Docker custody was removed, no container or network remains, and all three protected volume identities remain exact.
+
+Approval inspection invocation `49479a50-bb3b-4dc7-87a7-7647419f29b2` remained `MISSING`, verdict `INVALID`, exit `12`. No approval was written and no workflow ran. Local command policy denied the final exact temporary-clone deletion wrapper before it executed, so that clean, non-canonical clone remains retained outside OneDrive and outside runtime custody; the attempt remains `INVALID` instead of being hidden or circumvented.
+
+The first final read-only binding-check wrapper contained an empty PowerShell pipe and failed parsing before it read any binding. That attempt remains `INVALID`; the corrected wrapper matched all nine exact file bindings without writing or starting runtime.
+
+`EXIT-IDEMPOTENT-EVENTS` now passes and `IS4-U03` is complete. `IS4-U04` is next to freeze and prove host-crash, cancellation, failed-run, resume, and orphan-reconciliation boundaries without collapsing lifecycle and verification verdicts.
