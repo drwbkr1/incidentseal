@@ -255,3 +255,13 @@ Approval inspection invocation `49479a50-bb3b-4dc7-87a7-7647419f29b2` remained `
 The first final read-only binding-check wrapper contained an empty PowerShell pipe and failed parsing before it read any binding. That attempt remains `INVALID`; the corrected wrapper matched all nine exact file bindings without writing or starting runtime.
 
 `EXIT-IDEMPOTENT-EVENTS` now passes and `IS4-U03` is complete. `IS4-U04` is next to freeze and prove host-crash, cancellation, failed-run, resume, and orphan-reconciliation boundaries without collapsing lifecycle and verification verdicts.
+
+## 2026-08-10 - Fenced interruption-recovery contract candidate
+
+The cycle began from clean public/local commit `c852b06d...`, approval `MISSING`, no IncidentSeal container or network, and exactly the three protected volumes. Project and milestone controls agreed that `IS4-U04` was the only authorized-ready unit.
+
+The candidate contract binds a closed nonterminal journal snapshot, manifest authority, step boundary, replay policy, fenced host lease, runtime ownership and exit state, and artifact/database/receipt effects into content-addressed recovery observations and decisions. Only an expired lease plus exact ownership may stop a runtime. Stopping is intermediate and requires reobservation. Replay requires an idempotent boundary and all effects absent; matching committed effects continue without replay; unknown evidence defers `INCONCLUSIVE`; conflicting effects are recovery `FAIL`; confirmed cancellation, process failure, and authority drift retain distinct lifecycle outcomes. Every run verdict remains null.
+
+Twelve frozen cases, 20 fail-closed mutations, 68 repository tests, and two full Draft 2020-12 schemas across 26 fixtures pass. The passing meta-validation used the six previously source-gated exact wheels from retained non-OneDrive custody, reverified every SHA-256, used no network, installed only into disposable evaluation custody, and removed that copy. Seven attempts remain `INVALID`: the focused test import, DNS-dependent meta wrapper, Windows wildcard search, PowerShell unittest-stderr wrapper, unsupported CLI help invocation, PowerShell CLI-search quoting, and incorrect policy fixture path. Corrected paths pass without erasing them.
+
+No Docker runtime, PostgreSQL, process stop, journal append, protected-volume access, approval write, or workflow execution occurred. The candidate must be committed and replayed from credential-free public custody before the contract stage closes; the real host recovery surface remains a separate bounded implementation gate.

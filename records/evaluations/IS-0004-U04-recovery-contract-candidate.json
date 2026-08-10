@@ -1,0 +1,69 @@
+{
+  "schema_version":"incidentseal-recovery-contract-evaluation/v1",
+  "evaluation_id":"IS-EVAL-0004-U04-RECOVERY-CONTRACT-CANDIDATE",
+  "checkpoint_id":"IS-0004",
+  "unit_id":"IS4-U04",
+  "observed_at_utc":"2026-08-10T01:30:46Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "claim_scope":"Closed content-addressed interruption-recovery observations and deterministic fenced decisions only; no real process, container, journal, database, approval, or workflow action.",
+  "bindings": {
+    "recovery_contract_lock":{"path":"requirements/recovery-contract.lock.json","sha256":"sha256:82f91fecf137525c90f6bed3140178a155a4e30ab3274600ecc9a8d2308c75b0"},
+    "recovery_vectors":{"path":"fixtures/recovery/vectors.json","sha256":"sha256:8d313cf695f27bb22158c7e9313cf762450834f96da69056ca049f169bcc7645"},
+    "event_journal_contract_lock":{"path":"requirements/event-journal-contract.lock.json","sha256":"sha256:39b56b346f62976a86ad591fa09441aa39d660e93c6d22d14ca3cc4749c4e211"},
+    "evaluation_dependency_lock":{"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"}
+  },
+  "results": {
+    "closed_schemas":2,
+    "full_draft_2020_12_fixtures":26,
+    "frozen_cases":12,
+    "case_verdicts":{"PASS":6,"FAIL":1,"INCONCLUSIVE":5,"INVALID":0},
+    "case_dispositions":{"resume":1,"continue":1,"stop_then_reconcile":1,"cancel":1,"fail":2,"stale":1,"defer":5},
+    "terminal_plans":{"cancelled":1,"failed":2,"stale":1},
+    "run_verdicts":"ALL_NULL",
+    "fail_closed_mutations":20,
+    "repository_tests":68,
+    "safe_replay_observation_digest":"sha256:acf8a51ed52df7d0ad0121fb4f14db16da57d744a4b7e22cc46dea25c35baf7c",
+    "safe_replay_decision_digest":"sha256:26934bdc27f2e66231dad6581072ef67ca6ce1ff2e624375a1742f3b3445f6e4"
+  },
+  "evaluation_dependencies": {
+    "source_gate_assessment_id":"INCIDENTSEAL-SOURCE-GATE-002",
+    "artifact_count":6,
+    "all_artifact_hashes_reverified":true,
+    "network_used_by_passing_validation":false,
+    "retained_exact_noncanonical_wheel_custody_used":true,
+    "disposable_evaluation_custody_removed":true,
+    "runtime_dependency_added":false
+  },
+  "trust_boundary": {
+    "docker_started":false,
+    "postgresql_accessed":false,
+    "process_stopped":false,
+    "journal_appended":false,
+    "approval_accessed_by_contract":false,
+    "approval_written":false,
+    "workflow_executed":false,
+    "protected_volumes_accessed":false,
+    "incidentseal_containers_after":0,
+    "incidentseal_networks_after":0,
+    "protected_volumes_present":3
+  },
+  "retained_invalid_attempts":[
+    "The first focused test lacked the standard src path bootstrap and executed no test.",
+    "The first full-schema wrapper could not resolve its exact source URLs and acquired no artifact.",
+    "One read-only rg wrapper used an invalid Windows wildcard path before the corrected directory-scoped search.",
+    "The first concise full-validation wrapper treated unittest's normal stderr progress as a terminating PowerShell error before checking Python's exit; the corrected replay passed.",
+    "A CLI --help inspection returned the expected IS_USAGE because help is outside the frozen machine grammar; the supported policy status command was used instead.",
+    "One read-only CLI search was rejected by PowerShell quoting before rg executed; the corrected literal search completed.",
+    "The first policy status invocation used a nonexistent fixture path and returned IS_MANIFEST_READ; the corrected exact path returned MISSING at exit 12."
+  ],
+  "limitations":[
+    "The contract does not yet implement host leases, runtime observation, process stop, journal append, resume, or orphan cleanup.",
+    "No real interruption boundary has been executed or recovered under IS4-U04.",
+    "No workflow manifest is approved and workflow execution remains unavailable."
+  ],
+  "decision": {
+    "status":"continue",
+    "next":"Commit and push the exact recovery contract, replay it from credential-free public custody, then implement the host-only fenced recovery surface in a separate bounded stage."
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version":"incidentseal-retained-invalid-attempts/v1",
+  "evaluation_id":"IS-EVAL-0004-U04-RECOVERY-CONTRACT-INVALID-ATTEMPTS",
+  "checkpoint_id":"IS-0004",
+  "unit_id":"IS4-U04",
+  "observed_at_utc":"2026-08-10T01:30:46Z",
+  "execution_state":"completed",
+  "verification_verdict":"INVALID",
+  "attempts":[
+    {
+      "id":"focused-test-import-path",
+      "surface":"python unittest loader",
+      "result":"ModuleNotFoundError before any test executed",
+      "cause":"The new focused test initially omitted the repository-standard src path bootstrap.",
+      "correction":"Added the same bounded sys.path bootstrap used by existing tests; all six focused tests and all 68 repository tests pass.",
+      "runtime_started":false,
+      "files_written_by_attempt":false
+    },
+    {
+      "id":"schema-meta-network-resolution",
+      "surface":"source-gated full Draft 2020-12 evaluator",
+      "result":"URLError getaddrinfo failed before a wheel was acquired",
+      "cause":"The first wrapper attempted credential-free acquisition while DNS resolution was unavailable.",
+      "correction":"The evaluator reused retained exact source-gated wheel custody only after rechecking all six SHA-256 hashes, copied those bytes into disposable evaluation custody, passed 2 schemas and 26 fixtures offline, and removed the disposable copy.",
+      "runtime_started":false,
+      "artifact_acquired_by_attempt":false
+    },
+    {
+      "id":"powershell-rg-wildcard",
+      "surface":"read-only lock-reference search",
+      "result":"Windows path syntax error",
+      "cause":"The read-only wrapper passed requirements/*.json directly to rg on Windows.",
+      "correction":"The corrected directory-scoped search completed without writes.",
+      "runtime_started":false,
+      "files_written_by_attempt":false
+    },
+    {
+      "id":"powershell-unittest-stderr",
+      "surface":"concise full-validation wrapper",
+      "result":"PowerShell raised a native-command error while unittest emitted normal progress output to stderr, before the wrapper evaluated Python's exit code.",
+      "cause":"The first concise replay inherited terminating error handling for native stderr.",
+      "correction":"The corrected wrapper captured native stderr non-terminatingly, checked the actual process exit, and passed all 68 tests plus every contract and implementation validator and mutation suite.",
+      "runtime_started":false,
+      "files_written_by_attempt":false
+    },
+    {
+      "id":"unsupported-help-invocation",
+      "surface":"real machine CLI inspection",
+      "result":"The CLI returned IS_USAGE at exit 64.",
+      "cause":"The inspection invoked --help, which is not part of the frozen v1 machine command grammar.",
+      "correction":"Read the existing command contract and invoked the supported policy status JSON command.",
+      "runtime_started":false,
+      "files_written_by_attempt":false
+    },
+    {
+      "id":"powershell-rg-quote",
+      "surface":"read-only CLI command search",
+      "result":"PowerShell parsed part of the rg expression as a command before the search executed.",
+      "cause":"The first search used an unsafe double-quoted alternation containing escaped quotes.",
+      "correction":"The corrected search used a literal single-quoted expression and completed without writes.",
+      "runtime_started":false,
+      "files_written_by_attempt":false
+    },
+    {
+      "id":"policy-status-wrong-fixture-path",
+      "surface":"real machine CLI approval observation",
+      "result":"The CLI returned IS_MANIFEST_READ at exit 74.",
+      "cause":"The first status invocation omitted the contracts directory from the fixture path.",
+      "correction":"The supported command with fixtures/contracts/workflow.valid.minimal.json returned approval MISSING, verification INVALID, and exit 12 without writing approval or starting runtime.",
+      "runtime_started":false,
+      "files_written_by_attempt":false
+    }
+  ],
+  "decision": {
+    "status":"retain",
+    "reason":"These evaluator and wrapper attempts are not product evidence. Their corrected paths pass without erasing the INVALID history.",
+    "next":"Use only the corrected src bootstrap, offline hash-verified schema evaluator, and directory-scoped search path."
+  }
+}

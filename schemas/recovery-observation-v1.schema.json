@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/recovery-observation-v1.schema.json",
+  "title": "IncidentSeal recovery observation v1",
+  "description": "One closed, read-only snapshot used to reconcile a nonterminal run after interruption.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","reconciliation_id","run_id","observed_at_utc","request","interruption","authority","journal","boundary","lease","runtime","effects"],
+  "properties": {
+    "schema_version": {"const":"incidentseal-recovery-observation/v1"},
+    "reconciliation_id": {"$ref":"#/$defs/uuid"},
+    "run_id": {"$ref":"#/$defs/uuid"},
+    "observed_at_utc": {"$ref":"#/$defs/utc_timestamp"},
+    "request": {"enum":["reconcile","cancel"]},
+    "interruption": {"enum":["host_crash","operator_cancel","process_exit","orphan_detected"]},
+    "authority": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["expected_manifest_digest","approval_status","observed_approval_digest"],
+      "properties": {
+        "expected_manifest_digest":{"$ref":"#/$defs/sha256"},
+        "approval_status":{"enum":["MATCH","MISMATCH","MISSING","EXPIRED","INVALID"]},
+        "observed_approval_digest":{"oneOf":[{"$ref":"#/$defs/sha256"},{"type":"null"}]}
+      }
+    },
+    "journal": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["event_count","last_sequence","root_digest","lifecycle","verdict","terminal","manifest_digest","approval_digest"],
+      "properties": {
+        "event_count":{"type":"integer","minimum":1,"maximum":9007199254740991},
+        "last_sequence":{"type":"integer","minimum":0,"maximum":9007199254740991},
+        "root_digest":{"$ref":"#/$defs/sha256"},
+        "lifecycle":{"enum":["queued","running"]},
+        "verdict":{"type":"null"},
+        "terminal":{"const":false},
+        "manifest_digest":{"$ref":"#/$defs/sha256"},
+        "approval_digest":{"$ref":"#/$defs/sha256"}
+      }
+    },
+    "boundary": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["step_id","attempt","phase","replay_policy"],
+      "properties": {
+        "step_id":{"type":"string","pattern":"^[a-z0-9][a-z0-9._-]{0,127}$"},
+        "attempt":{"type":"integer","minimum":1,"maximum":9007199254740991},
+        "phase":{"enum":["before_dispatch","dispatched","result_committed","evidence_committed"]},
+        "replay_policy":{"enum":["idempotent","never"]}
+      }
+    },
+    "lease": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["status","holder_id","fence_token","expires_at_utc"],
+      "properties": {
+        "status":{"enum":["active","expired","missing","invalid"]},
+        "holder_id":{"oneOf":[{"$ref":"#/$defs/uuid"},{"type":"null"}]},
+        "fence_token":{"oneOf":[{"type":"integer","minimum":1,"maximum":9007199254740991},{"type":"null"}]},
+        "expires_at_utc":{"oneOf":[{"$ref":"#/$defs/utc_timestamp"},{"type":"null"}]}
+      }
+    },
+    "runtime": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["ownership","process_state","container_state","process_exit_code","container_exit_code"],
+      "properties": {
+        "ownership":{"enum":["exact","unowned","ambiguous"]},
+        "process_state":{"$ref":"#/$defs/runtime_state"},
+        "container_state":{"$ref":"#/$defs/runtime_state"},
+        "process_exit_code":{"oneOf":[{"type":"integer","minimum":-2147483648,"maximum":4294967295},{"type":"null"}]},
+        "container_exit_code":{"oneOf":[{"type":"integer","minimum":-2147483648,"maximum":4294967295},{"type":"null"}]}
+      }
+    },
+    "effects": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["artifact","database","receipt"],
+      "properties": {
+        "artifact":{"$ref":"#/$defs/effect_state"},
+        "database":{"$ref":"#/$defs/effect_state"},
+        "receipt":{"$ref":"#/$defs/effect_state"}
+      }
+    }
+  },
+  "$defs": {
+    "uuid":{"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "sha256":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "utc_timestamp":{"type":"string","pattern":"^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$"},
+    "runtime_state":{"enum":["absent","running","exited_zero","exited_nonzero","unknown"]},
+    "effect_state":{"enum":["absent","matching","conflicting","unknown"]}
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/recovery-decision-v1.schema.json",
+  "title": "IncidentSeal recovery decision v1",
+  "description": "One content-addressed deterministic recovery decision with verification and run lifecycle kept separate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","reconciliation_id","run_id","observation_digest","verification_verdict","disposition","reason_code","process_action","replay_step","next_phase","append","decision_digest"],
+  "properties": {
+    "schema_version":{"const":"incidentseal-recovery-decision/v1"},
+    "reconciliation_id":{"$ref":"#/$defs/uuid"},
+    "run_id":{"$ref":"#/$defs/uuid"},
+    "observation_digest":{"$ref":"#/$defs/sha256"},
+    "verification_verdict":{"enum":["PASS","FAIL","INCONCLUSIVE","INVALID"]},
+    "disposition":{"enum":["resume","continue","stop_then_reconcile","cancel","fail","stale","defer"]},
+    "reason_code":{"enum":["IS_RECOVERY_ACTIVE_OWNER","IS_RECOVERY_LEASE_UNAVAILABLE","IS_RECOVERY_UNOWNED_RUNTIME","IS_RECOVERY_AUTHORITY_STALE","IS_RECOVERY_AUTHORITY_UNAVAILABLE","IS_RECOVERY_CANCEL_PENDING","IS_RECOVERY_CANCEL_CONFIRMED","IS_RECOVERY_PROCESS_FAILED","IS_RECOVERY_ORPHAN_RUNNING","IS_RECOVERY_RUNTIME_AMBIGUOUS","IS_RECOVERY_EFFECTS_AMBIGUOUS","IS_RECOVERY_REPLAY_UNSAFE","IS_RECOVERY_SAFE_REPLAY","IS_RECOVERY_EFFECTS_COMMITTED","IS_RECOVERY_EFFECTS_CONFLICT"]},
+    "process_action":{"enum":["none","stop_owned_and_wait"]},
+    "replay_step":{"type":"boolean"},
+    "next_phase":{"enum":["dispatch","record_evidence","continue_run","reobserve","none"]},
+    "append": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["evidence_event_type","terminal_event_type","terminal_lifecycle","run_verdict"],
+      "properties": {
+        "evidence_event_type":{"oneOf":[{"const":"evidence.recorded"},{"type":"null"}]},
+        "terminal_event_type":{"oneOf":[{"enum":["run.cancelled","run.failed","run.stale"]},{"type":"null"}]},
+        "terminal_lifecycle":{"oneOf":[{"enum":["cancelled","failed","stale"]},{"type":"null"}]},
+        "run_verdict":{"type":"null"}
+      }
+    },
+    "decision_digest":{"$ref":"#/$defs/sha256"}
+  },
+  "$defs": {
+    "uuid":{"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "sha256":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"}
+  }
+}

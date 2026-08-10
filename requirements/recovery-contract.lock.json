@@ -1,0 +1,41 @@
+{
+  "schema_version":"incidentseal-recovery-contract-lock/v1",
+  "contract_id":"INCIDENTSEAL-RECOVERY-001",
+  "unit_id":"IS4-U04",
+  "canonicalization":"RFC8785-JCS",
+  "files":[
+    {"path":"docs/decisions/ADR-0007-fenced-interruption-recovery.md","sha256":"sha256:6844a0cd356f92344f3f62226dfc86e26f13afcf5f07d7e2f48568495f26c800"},
+    {"path":"docs/interruption-recovery-contract.md","sha256":"sha256:1957dca92a1c4234d24c04d67aa2552cc9f05b02ab219ce5dfd0e2ea6599835e"},
+    {"path":"docs/interruption-recovery-mutation-plan.md","sha256":"sha256:695dd42c6bfdd706bb8981d2b553b24b97f5560d63a1ad3d0dd9c0bdda283d3e"},
+    {"path":"fixtures/recovery/decision.invalid.minimal.json","sha256":"sha256:8295c68ca3ebb948d97d002c81ab8cc8810d66db9ea3c67628f3c3cab9236189"},
+    {"path":"fixtures/recovery/mutations.json","sha256":"sha256:745315d1ed4b90163d839a6daaf2e633fe0167b762737d4ce889e2f21f406d1d"},
+    {"path":"fixtures/recovery/observation.invalid.minimal.json","sha256":"sha256:087adce4f5ad76d54d994e7e3089472d49f5611ee174684d02688025ff8ee520"},
+    {"path":"fixtures/recovery/vectors.json","sha256":"sha256:8d313cf695f27bb22158c7e9313cf762450834f96da69056ca049f169bcc7645"},
+    {"path":"requirements/event-journal-contract.lock.json","sha256":"sha256:39b56b346f62976a86ad591fa09441aa39d660e93c6d22d14ca3cc4749c4e211"},
+    {"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"},
+    {"path":"schemas/recovery-decision-v1.schema.json","sha256":"sha256:a6b52ce33929b6efe1f52d986ccf5175f247d99db17753608353ad2cbd4cc6b3"},
+    {"path":"schemas/recovery-observation-v1.schema.json","sha256":"sha256:0ac8de99620aa023ea0baae0a1cf2a21f88ea612d8cafe948c06cb0de372285b"},
+    {"path":"scripts/run_recovery_meta_validation.py","sha256":"sha256:71a08615fd91be916c3ab3d1706b849a770f55188e1ce79849c71595a96cac61"},
+    {"path":"scripts/test_recovery_contract_mutations.py","sha256":"sha256:b445774375973bed1fe92b78ca35e58f0d6c4cf86fec4d4529886582ed061926"},
+    {"path":"scripts/validate_recovery_contract.py","sha256":"sha256:8cd5ca2fbe3061cd660ca01bbe1651c837a69600e06106eb0465673030f60352"},
+    {"path":"scripts/validate_recovery_schema_meta.py","sha256":"sha256:159b92a25831d2d8f38022c8ab7816ff00709f743ea3ef4441797f7f8464cebb"},
+    {"path":"src/incidentseal/manifest.py","sha256":"sha256:05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"},
+    {"path":"src/incidentseal/recovery.py","sha256":"sha256:b7024bc7b6e896d5614d223349ba4c3028acd666352a5e8845627b17de0b1b7c"},
+    {"path":"tests/test_recovery.py","sha256":"sha256:01bca75e0c73a8cdac3237a3e9cd9126cc1b61e0fa97df37c900ae933ac3adb5"}
+  ],
+  "vectors": {
+    "cases":12,
+    "verification_verdicts":{"PASS":6,"FAIL":1,"INCONCLUSIVE":5,"INVALID":0},
+    "terminal_plans":{"cancelled":1,"failed":2,"stale":1},
+    "safe_replay_observation_digest":"sha256:acf8a51ed52df7d0ad0121fb4f14db16da57d744a4b7e22cc46dea25c35baf7c",
+    "safe_replay_decision_digest":"sha256:26934bdc27f2e66231dad6581072ef67ca6ce1ff2e624375a1742f3b3445f6e4",
+    "all_run_verdicts":"null"
+  },
+  "mutations":{"manifest":"fixtures/recovery/mutations.json","count":20},
+  "evaluation_dependencies": {
+    "lock":"requirements/meta-validation.lock",
+    "source_gate":"records/source-gates/2026-08-09-jsonschema-meta-validation.json",
+    "retained_exact_wheel_reuse":"permitted-after-hash-verification",
+    "runtime_dependency":false
+  }
+}

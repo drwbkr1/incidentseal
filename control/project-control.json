@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0004",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Begin IS4-U04 by freezing bounded host-crash, cancellation, failed-run, resume, and orphan-reconciliation boundaries without changing verdict semantics or touching protected volumes"
+    "next_action": "Commit and push the exact IS4-U04 recovery-contract candidate, replay its contract and custody gates from credential-free public custody, then implement the host-only recovery surface separately"
   }
 }

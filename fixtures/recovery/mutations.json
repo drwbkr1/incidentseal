@@ -1,0 +1,25 @@
+{
+  "schema_version":"incidentseal-recovery-mutations/v1",
+  "mutations":[
+    {"id":"unknown-observation-field","expected_error":"IS_RECOVERY_SCHEMA"},
+    {"id":"journal-count-drift","expected_error":"IS_RECOVERY_JOURNAL"},
+    {"id":"journal-verdict-fabricated","expected_error":"IS_RECOVERY_JOURNAL"},
+    {"id":"authority-match-drift","expected_error":"IS_RECOVERY_AUTHORITY"},
+    {"id":"before-dispatch-effects","expected_error":"IS_RECOVERY_BOUNDARY"},
+    {"id":"runtime-exit-code-drift","expected_error":"IS_RECOVERY_RUNTIME"},
+    {"id":"missing-lease-retains-fields","expected_error":"IS_RECOVERY_LEASE"},
+    {"id":"cancel-request-kind-drift","expected_error":"IS_RECOVERY_STATE"},
+    {"id":"active-owner-resume","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"unowned-runtime-stop","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"ambiguous-effects-promoted-pass","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"unsafe-replay-resume","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"cancellation-run-verdict","expected_error":"IS_RECOVERY_VERDICT"},
+    {"id":"terminal-pair-drift","expected_error":"IS_RECOVERY_STATE"},
+    {"id":"observation-digest-drift","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"decision-digest-drift","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"process-failure-run-verdict","expected_error":"IS_RECOVERY_VERDICT"},
+    {"id":"conflicting-effects-promoted-pass","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"active-owner-evidence-write","expected_error":"IS_RECOVERY_DECISION"},
+    {"id":"authority-unavailable-evidence-write","expected_error":"IS_RECOVERY_DECISION"}
+  ]
+}
