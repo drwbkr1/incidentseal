@@ -1,0 +1,89 @@
+{
+  "schema_version": "incidentseal-backup-restore-contract-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0004-U05-BACKUP-RESTORE-CONTRACT",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U05",
+  "observed_at_utc": "2026-08-10T03:21:18Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Closed content-addressed PostgreSQL logical-backup and clean-restore receipt contract reproduced from exact credential-free public custody; real dump and restore behavior remains unverified.",
+  "source": {
+    "remote": "https://github.com/drwbkr1/incidentseal.git",
+    "commit": "30513b70a9c7a2e283e4643232fa5c8b13f650c2",
+    "tree": "faebf8d3d6635598977f9b7b5ccafc81bfd31fea"
+  },
+  "bindings": {
+    "backup_restore_contract_lock": {"path":"requirements/backup-restore-contract.lock.json","sha256":"sha256:6906f92f06606c3583394a70cc98d3a124f0151451ad1fa973d9029900fca198"},
+    "vectors": {"path":"fixtures/backup-restore/vectors.json","sha256":"sha256:9961c374b64b8327234460d1f6a22e8fb0a2b3c4d46d8c84de53f3e6c5afa94a"},
+    "mutations": {"path":"fixtures/backup-restore/mutations.json","sha256":"sha256:74c619ea2fa4530ac0c793d9e1b39cc5ac126153169a1e6d119d69d7179dc19b"},
+    "candidate_evaluation": {"path":"records/evaluations/IS-0004-U05-backup-restore-contract-candidate.json","sha256":"sha256:5209e272eeef60467fab4a7369e3a8faa11255a1c70060bfbe5fb3fac2d96f9a"},
+    "candidate_invalid_attempts": {"path":"records/evaluations/IS-0004-U05-backup-restore-contract-invalid-attempts.json","sha256":"sha256:d475be42acfb013a859fe516eee00da8fa2cde2993cd26fc4f7f2b408ffcd0b2"},
+    "public_replay_receipt": {"path":"records/surface-receipts/IS-0004-U05-public-backup-restore-contract-replay.json","sha256":"sha256:1c8ba6f669e4c325f3e94d4e1e32654ac7538efc15b0478ccb9585807b9db9cf"},
+    "public_harness_invalid_attempts": {"path":"records/evaluations/IS-0004-U05-public-backup-restore-contract-invalid-attempts.json","sha256":"sha256:1dced905cf53e396df52f1bde81ba9ff75e7af9a59336d1133f7b764edf42a66"}
+  },
+  "results": {
+    "unit_tests": 80,
+    "backup_restore_contract_mutations": 18,
+    "machine_contract_mutations": 4,
+    "topology_contract_mutations": 16,
+    "topology_implementation_mutations": 15,
+    "receipt_contract_mutations": 14,
+    "receipt_implementation_mutations": 12,
+    "event_journal_contract_mutations": 16,
+    "event_journal_implementation_mutations": 8,
+    "recovery_contract_cases": 12,
+    "recovery_contract_mutations": 20,
+    "recovery_implementation_mutations": 17,
+    "full_schema_count": 1,
+    "full_fixture_count": 2,
+    "source_gated_wheels": 6,
+    "golden_receipt_digest": "sha256:2722f1a843102f02063018cd58662ead97114ec96f1a481c41d66491fa9ed37b",
+    "archive_format": "postgresql-custom-v1",
+    "source_writes_blocked": true,
+    "clean_distinct_target": true,
+    "roles_measured_not_restored": true,
+    "restore_error_stop": true,
+    "restore_single_transaction": true,
+    "negative_privilege_checks": 5,
+    "git_object_integrity": "PASS",
+    "bounded_secret_scan": "PASS_ZERO_MATCHES",
+    "protected_volume_identity": "UNCHANGED",
+    "docker_runtime_started": false
+  },
+  "trust_boundary": {
+    "host_cli_owns_docker": true,
+    "docker_socket_in_containers": false,
+    "container_secrets": false,
+    "broad_host_mounts": false,
+    "external_runtime_network": false,
+    "dump_created": false,
+    "restore_executed": false,
+    "postgresql_accessed": false,
+    "approval_status": "MISSING",
+    "approval_invocation_id": "62bccc79-23b0-40b9-8e53-2b9c4bf4a1de",
+    "approval_written": false,
+    "workflow_executed": false,
+    "containers_retained": 0,
+    "networks_retained": 0,
+    "protected_volumes_present": 3,
+    "temporary_public_clone_removed": false,
+    "temporary_public_clone_state": "clean_noncanonical_retained_outside_onedrive_and_runtime_custody"
+  },
+  "retained_invalid_attempts": {
+    "candidate_harness": 1,
+    "public_and_closure_harness": 5,
+    "product_failures_reclassified": 0
+  },
+  "limitations": [
+    "The contract has not executed pg_dump, pg_restore, PostgreSQL, or Docker runtime.",
+    "Archive bytes and normalized TOC identity remain unverified on a real surface.",
+    "Clean restore equivalence, role hardening, negative privileges, restart persistence, and teardown remain implementation gates.",
+    "No operator-approved workflow manifest was executed.",
+    "Integrated recovery, dashboard, packaging, registry publication, downloaded-release verification, and release remain pending."
+  ],
+  "decision": {
+    "status": "advance_within_unit",
+    "next_stage": "IS4-U05 real host-owned disposable backup and clean-restore implementation",
+    "reason": "Exact credential-free public custody reproduced the frozen contract, all cross-surface regressions and mutations, offline schema validation, Git integrity, secret scanning, missing-approval boundary, unchanged protected-volume identity, and zero runtime custody without creating a dump or claiming restore behavior."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "incidentseal-invalid-attempts/v1",
+  "evaluation_id": "IS-EVAL-0004-U05-PUBLIC-BACKUP-RESTORE-CONTRACT-INVALID-ATTEMPTS",
+  "checkpoint_id": "IS-0004",
+  "unit_id": "IS4-U05",
+  "observed_at_utc": "2026-08-10T03:21:18Z",
+  "execution_state": "completed",
+  "verification_verdict": "INVALID",
+  "attempts": [
+    {
+      "id": "public-static-wrapper-stderr-policy",
+      "category": "test-harness",
+      "executed_product": false,
+      "note": "The first resumed public static wrapper treated unittest's normal stderr summary as a terminating PowerShell error before recording Python's exit code. The corrected exit-code wrapper passed all 80 tests and every requested validator."
+    },
+    {
+      "id": "cli-top-level-help-outside-grammar",
+      "category": "read-only-cli-inspection",
+      "invocation_id": "3a6eaf5b-83c4-4841-9405-a41a6643d6ed",
+      "executed_product": false,
+      "note": "A top-level --help inspection returned the frozen machine CLI's expected IS_USAGE response at exit 64."
+    },
+    {
+      "id": "cli-policy-help-outside-grammar",
+      "category": "read-only-cli-inspection",
+      "invocation_id": "a601f534-f894-43c8-a399-d6ed091b2e",
+      "executed_product": false,
+      "note": "A policy --help inspection returned the frozen machine CLI's expected IS_USAGE response at exit 64."
+    },
+    {
+      "id": "cli-policy-status-help-outside-grammar",
+      "category": "read-only-cli-inspection",
+      "invocation_id": "e588b300-1121-4b02-9242-b189cdda2c00",
+      "executed_product": false,
+      "note": "A policy status --help inspection returned the frozen machine CLI's expected unknown-argument IS_USAGE response at exit 64; the documented command then returned MISSING and INVALID at exit 12."
+    },
+    {
+      "id": "closure-hash-wrapper-powershell-compatibility",
+      "category": "evidence-harness",
+      "executed_product": false,
+      "note": "The first read-only binding wrapper used an invalid backslash regular expression and an unavailable Get-Date -AsUTC switch. The corrected PowerShell-compatible wrapper computed every exact digest and timestamp without writes or runtime."
+    }
+  ],
+  "retention": "These attempts remain INVALID rather than product FAIL. None started Docker or PostgreSQL, created an archive, restored a database, accessed a protected volume, wrote approval state, or executed a workflow."
+}
