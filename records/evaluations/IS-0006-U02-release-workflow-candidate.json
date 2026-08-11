@@ -1,0 +1,47 @@
+{
+  "schema_version": "incidentseal-release-workflow-candidate/v1",
+  "evaluation_id": "IS-EVAL-0006-U02-RELEASE-WORKFLOW-CANDIDATE",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T18:38:44Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Local additive validation of the deterministic ignored real-manifest materializer and independent Node pre-package gate. Commit, public replay, external approval, and real workflow execution remain pending.",
+  "candidate_base": {
+    "commit": "6490c761e631d73bd90162b8bcd7d2c06baa24d9",
+    "tree": "95b775525a0797ce87b381ec1b9b4044ac1974f1",
+    "branch": "main"
+  },
+  "identity": {
+    "implementation_lock_digest": "sha256:d58e5658d9664d22c7d01b19cc1586c8e8b807c2c691cd141033386194cb6fff",
+    "workflow_contract_lock_digest": "sha256:172cb06ad322a5659fa1c4be4691114424ecc57d43d26d52068933ab4a2261c2",
+    "topology_runtime_lock_digest": "sha256:e1753c068e7e5ead85bb9ed0818c4f4d46528d38240abfaf3c640866ae3bc487",
+    "workflow_id": "incidentseal.v0.1.0.prepackage",
+    "fixed_manifest_path": ".incidentseal/workflow.json"
+  },
+  "checks": [
+    {"id":"exact-implementation-lock","status":"PASS","observed":{"locked_files":22,"lock_digest":"sha256:d58e5658d9664d22c7d01b19cc1586c8e8b807c2c691cd141033386194cb6fff"}},
+    {"id":"complete-lock-graph","status":"PASS","observed":{"lock_files":22,"local_path_digest_bindings":365,"mismatches":0}},
+    {"id":"focused-verifier-tests","status":"PASS","observed":{"passed":23,"failed":0,"errors":0}},
+    {"id":"repository-tests","status":"PASS","observed":{"passed":163,"failed":0,"errors":0}},
+    {"id":"implementation-mutations","status":"PASS","observed":{"passed":29,"total":29,"runtime_started":false}},
+    {"id":"node-release-gate","status":"PASS","observed":{"locked_files":22,"supported_runners":["python","node"],"approval_mutation_command":false,"runtime_network":"none","packaging_status":"planned"}},
+    {"id":"dirty-worktree-materialization-denial","status":"PASS","observed":{"materializer_verdict":"INVALID","process_exit_code":12,"approval_written":false,"manifest_written":false}},
+    {"id":"authority-boundary","status":"PASS","observed":{"approval_mutation_command":false,"production_approval_written":false,"real_manifest_approved":false,"real_workflow_executed":false}},
+    {"id":"release-boundary","status":"PASS","observed":{"package_built":false,"image_built":false,"image_published":false,"release_published":false}}
+  ],
+  "retained_attempts": {
+    "implementation_invalid": {"path":"records/evaluations/IS-0006-U02-workflow-implementation-invalid-attempts.json","count":6},
+    "superseded_public_pass": {"path":"records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json","count":1}
+  },
+  "non_claims": [
+    "The manifest has not been materialized because the candidate worktree is intentionally dirty before commit.",
+    "No operator approval exists and neither the materializer nor Node gate can write one.",
+    "The superseded public core-verifier PASS is not substituted for replay of this additive candidate.",
+    "No package, image, registry, or release claim advances."
+  ],
+  "decision": {
+    "status": "candidate-pass-public-replay-required",
+    "next": "Commit and push this exact additive candidate, repeat all static, mutation, real-runner, recovery, authority, custody, Git, and secret gates from credential-free public custody, then materialize the fixed manifest from the final clean public commit and request exact operator approval."
+  }
+}

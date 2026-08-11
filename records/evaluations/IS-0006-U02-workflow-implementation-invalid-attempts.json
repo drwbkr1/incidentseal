@@ -60,6 +60,17 @@
       "docker_accessed": false,
       "production_approval_written": false,
       "corrected_by": "The tree expression was single-quoted and Git strict object verification was rerun separately; the exact base tree and object graph passed."
+    },
+    {
+      "attempt_id": "IS6-U02-IMPLEMENTATION-INVALID-006",
+      "execution_state": "completed",
+      "verification_verdict": "INVALID",
+      "surface": "real-manifest materializer mutation evaluator",
+      "cause": "The first additive 29-case run removed the materializer's clean-worktree branch without being rejected because the validator asserted only the Git status call, not its exact fail-closed decision.",
+      "product_runtime_started": false,
+      "docker_accessed": false,
+      "production_approval_written": false,
+      "corrected_by": "The static validator now requires the exact dirty-worktree rejection branch; all 29 implementation, materializer, and Node-gate mutations are rejected."
     }
   ]
 }

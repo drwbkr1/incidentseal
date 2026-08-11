@@ -46,7 +46,7 @@
   ],
   "retained_attempts": {
     "failures": {"path":"records/evaluations/IS-0006-U02-workflow-implementation-failures.json","count":2},
-    "invalid": {"path":"records/evaluations/IS-0006-U02-workflow-implementation-invalid-attempts.json","count":5}
+    "invalid": {"path":"records/evaluations/IS-0006-U02-workflow-implementation-invalid-attempts.json","count":6}
   },
   "surface_receipt": "records/surface-receipts/IS-0006-U02-local-workflow-implementation.json",
   "non_claims": [

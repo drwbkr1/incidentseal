@@ -24,6 +24,11 @@
     {"id":"runtime-label-check-removed"},
     {"id":"owned-filter-removed"},
     {"id":"agent-approval-exposed"},
+    {"id":"materializer-dirty-check-removed"},
+    {"id":"materializer-output-tracked"},
+    {"id":"node-lock-digest-check-removed"},
+    {"id":"node-approval-boundary-removed"},
+    {"id":"node-network-boundary-removed"},
     {"id":"implementation-lock-tampered"}
   ]
 }

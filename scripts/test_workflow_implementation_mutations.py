@@ -49,6 +49,11 @@ MUTATIONS = (
     Mutation("runtime-label-check-removed", "src/incidentseal/workflow.py", "labels.get(key) == expected", "True"),
     Mutation("owned-filter-removed", "src/incidentseal/workflow.py", 'f"label=dev.incidentseal.workflow-run={run_id}"', '"label=dev.incidentseal.workflow-run"'),
     Mutation("agent-approval-exposed", "src/incidentseal/cli.py", "COMMANDS = {", 'COMMANDS = {\n    ("run", "append"): "run.append",'),
+    Mutation("materializer-dirty-check-removed", "scripts/materialize_release_workflow.py", "if status:\n        raise RuntimeError(\"release workflow materialization requires a clean worktree\")", "if False:\n        raise RuntimeError(\"release workflow materialization requires a clean worktree\")"),
+    Mutation("materializer-output-tracked", "scripts/materialize_release_workflow.py", 'OUTPUT = ROOT / ".incidentseal" / "workflow.json"', 'OUTPUT = ROOT / "incidentseal.workflow.json"'),
+    Mutation("node-lock-digest-check-removed", "scripts/verify_workflow_release_gate.mjs", "must(actual === entry.sha256, `implementation drift: ${entry.path}`);", "must(true, `implementation drift: ${entry.path}`);"),
+    Mutation("node-approval-boundary-removed", "scripts/verify_workflow_release_gate.mjs", 'must(authority.agent_can_approve === false, "agent approval boundary differs");', 'must(true, "agent approval boundary differs");'),
+    Mutation("node-network-boundary-removed", "scripts/verify_workflow_release_gate.mjs", 'must(runtime.runtime_network === "none", "runtime network differs");', 'must(runtime.runtime_network === "bridge", "runtime network differs");'),
     Mutation("implementation-lock-tampered", "requirements/workflow-verification-implementation.lock.json", '"sha256":"sha256:', '"sha256":"sha256:0', refresh_lock=False),
 )
 

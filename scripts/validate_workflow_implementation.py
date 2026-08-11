@@ -23,16 +23,19 @@ EXPECTED_PATHS = (
     "fixtures/workflow-verification/implementation-mutations.json",
     "requirements/topology-runtime.lock.json",
     "requirements/workflow-verification-contract.lock.json",
+    "scripts/materialize_release_workflow.py",
     "scripts/probe_workflow_execution.py",
     "scripts/probe_workflow_recovery.py",
     "scripts/test_workflow_implementation_mutations.py",
     "scripts/validate_workflow_implementation.py",
+    "scripts/verify_workflow_release_gate.mjs",
     "src/incidentseal/approval.py",
     "src/incidentseal/cli.py",
     "src/incidentseal/journal.py",
     "src/incidentseal/manifest.py",
     "src/incidentseal/workflow.py",
     "tests/test_cli.py",
+    "tests/test_release_workflow.py",
     "tests/test_workflow.py",
 )
 
@@ -94,6 +97,8 @@ def validate(root: Path, *, static_only: bool = False) -> dict[str, Any]:
     source = (root / "src" / "incidentseal" / "workflow.py").read_text(encoding="utf-8")
     cli = (root / "src" / "incidentseal" / "cli.py").read_text(encoding="utf-8")
     guidance = (root / "docs" / "workflow-verification-implementation.md").read_text(encoding="utf-8")
+    materializer = (root / "scripts" / "materialize_release_workflow.py").read_text(encoding="utf-8")
+    node_gate = (root / "scripts" / "verify_workflow_release_gate.mjs").read_text(encoding="utf-8")
     for fragment in (
         "approval, snapshot = preflight_workflow(document, approval_inspector=approval_inspector)",
         "approval = require_approval(document, approval_inspector)",
@@ -133,6 +138,22 @@ def validate(root: Path, *, static_only: bool = False) -> dict[str, Any]:
     require("stream_workflow_events" in cli and 'tuple(arguments[:2]) == ("run", "events")' in cli, "workflow event read dispatch is absent")
     require('("run", "append")' not in cli and 'command = "operator.approve-manifest"' not in cli, "agent write surface is exposed")
     require("temporary in-process test authority" in guidance, "synthetic authority limit is undocumented")
+    for fragment in (
+        'OUTPUT = ROOT / ".incidentseal" / "workflow.json"',
+        'status = run_git(["status", "--porcelain"])\n    if status:\n        raise RuntimeError("release workflow materialization requires a clean worktree")',
+        '"check-ignore", "-q", "--", ".incidentseal/workflow.json"',
+        '"approval_written": False',
+    ):
+        require(fragment in materializer, f"release workflow materializer boundary is absent: {fragment}")
+    require("operator approve-manifest" not in materializer and "write_approval" not in materializer, "materializer gained approval authority")
+    for fragment in (
+        "must(actual === entry.sha256, `implementation drift: ${entry.path}`);",
+        'must(authority.agent_can_approve === false, "agent approval boundary differs");',
+        'must(runtime.runtime_network === "none", "runtime network differs");',
+        'must(runtime.docker_socket === "denied" && runtime.secrets === "denied", "socket or secret boundary differs");',
+        'must(u03?.status === "planned", "packaging advanced before workflow verification");',
+    ):
+        require(fragment in node_gate, f"Node release gate boundary is absent: {fragment}")
 
     docker = shutil.which("docker")
     before = container_ids(docker, root)
@@ -142,11 +163,11 @@ def validate(root: Path, *, static_only: bool = False) -> dict[str, Any]:
         environment["PYTHONPATH"] = str(root / "src")
         environment["PYTHONDONTWRITEBYTECODE"] = "1"
         completed = subprocess.run(
-            [sys.executable, "-B", "-m", "unittest", "tests.test_workflow", "tests.test_cli"],
+            [sys.executable, "-B", "-m", "unittest", "tests.test_workflow", "tests.test_cli", "tests.test_release_workflow"],
             cwd=root, env=environment, capture_output=True, text=True, encoding="utf-8", timeout=120, check=False,
         )
         require(completed.returncode == 0, f"workflow unit tests failed: {completed.stdout}{completed.stderr}")
-        tests = 20
+        tests = 23
     after = container_ids(docker, root)
     require(before == after, "static workflow validation changed Docker container history")
     return {
