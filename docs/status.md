@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0005`
 - Latest verified checkpoint: `IS-0004`
-- State: active; `checkpoint-is-0004` remains the latest verified base; the local `IS5-U01` dashboard-contract candidate passes and awaits exact public replay; no dashboard server or browser has started
+- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01` is publicly reproduced and passed; `IS5-U02` is the sole active dashboard implementation unit; no dashboard server or browser has started
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -19,7 +19,7 @@ The product name, promise, trust boundary, public repository owner, presentation
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
-`IS5-U01` now has a local runtime-free candidate. Lock `sha256:9bc2785e...` binds two closed Draft 2020-12 schemas, an exact seven-record `checkpoint-is-0004` projection, eight passed exits, all verdict and lifecycle channels, a nine-case corpus repeated three times, visual acceptance, and 37 fail-closed mutations. All 111 tests and offline full-schema validation from six rehashed source-gated wheels pass. This does not prove a server, rendered dashboard, browser accessibility, evaluation run, or release; exact credential-free public contract replay is next.
+`IS5-U01` passed from exact credential-free public commit `2e22804a...`, tree `73c2480a...`. Lock `sha256:9bc2785e...` binds two closed Draft 2020-12 schemas, an exact seven-record `checkpoint-is-0004` projection, eight passed exits, all verdict and lifecycle channels, a nine-case corpus repeated three times, visual acceptance, and 37 fail-closed mutations. All 111 tests, Git integrity, secret scanning, and offline full-schema validation from six rehashed source-gated wheels pass. Approval remained `MISSING`; no workflow, server, browser, or Docker runtime started. `IS5-U02` may now implement the real loopback surface, but no rendered or evaluation claim exists yet.
 
 ## Checkpoint evidence
 

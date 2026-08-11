@@ -1,0 +1,27 @@
+{
+  "schema_version":"incidentseal-dashboard-contract-public-replay/v1",
+  "receipt_id":"IS-RECEIPT-0005-U01-PUBLIC-CONTRACT",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U01",
+  "observed_at_utc":"2026-08-11T00:00:50Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "public_source":{"repository":"https://github.com/drwbkr1/incidentseal.git","branch":"main","commit":"2e22804aef49071ef42611357eaa4a7f4e0f384e","tree":"73c2480aa4e700b506ef5b00202e9ce6ee2fc702","remote_main_equal":true,"credential_helpers_disabled":true,"terminal_prompting_disabled":true,"worktree_clean_before_and_after":true},
+  "contract":{"id":"INCIDENTSEAL-DASHBOARD-001","lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","corpus_digest":"sha256:76bf8d4e5aa9b080f87a4eefb4c1c91ce1b22d6ba1c1d3b5dab23890fc455560"},
+  "checks":[
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"exact_commit":true,"exact_tree":true,"remote_main_equal":true,"clean_before_and_after":true}},
+    {"id":"project-probe","status":"PASS","observed":{"checkpoint":"IS-0005","active_contract":"contracts/IS-0005.json","docker_server":"29.4.3","compose":"5.1.3","custody":"PASS"}},
+    {"id":"dashboard-contract","status":"PASS","observed":{"source_records":7,"exits":8,"scenarios":9,"repetitions":3,"runtime_dependencies":0}},
+    {"id":"contract-mutations","status":"PASS","observed":{"mutations":37,"failed_closed":37}},
+    {"id":"regression-tests","status":"PASS","observed":{"tests":111}},
+    {"id":"full-schema-meta-validation","status":"PASS","observed":{"draft":"2020-12","schemas":2,"fixtures":4,"exact_source_gated_wheels":6,"network_used":false,"temporary_custody_removed":true}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"authority-boundary","status":"PASS","observed":{"invocation_id":"9cb57896-757e-4e94-9682-5c052845dc49","approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"approval_written":false,"workflow_executed":false}},
+    {"id":"runtime-boundary","status":"PASS","observed":{"dashboard_server_started":false,"browser_started":false,"docker_runtime_started":false,"containers":0,"networks":0,"protected_volumes":3,"protected_volume_identity_unchanged":true}}
+  ],
+  "protected_volume_identity":{"incidentseal-57ca5f96d527da1b_database-data":"sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825","incidentseal-a6443d83ae9eb463_database-data":"sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768","incidentseal-e10983c7309c56a0_database-data":"sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"},
+  "retained_invalid_attempts":{"local_candidate":{"path":"records/evaluations/IS-0005-U01-dashboard-contract-invalid-attempts.json","count":1},"public_replay":{"path":"records/evaluations/IS-0005-U01-public-dashboard-contract-invalid-attempts.json","count":1}},
+  "temporary_clone_custody":{"path":"C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is5-u01-contract-2e22804","state":"retained-clean-noncanonical-outside-onedrive-and-runtime-custody","required_for_runtime":false},
+  "non_claims":["No dashboard server or browser surface was started.","No Docker product runtime, PostgreSQL, or runner was started.","No approval was written and no workflow executed.","This contract replay does not prove dashboard implementation, rendered QA, scenario execution, evaluation, packaging, or release."],
+  "decision":{"status":"pass-contract-freeze","reason":"Exact credential-free public custody reproduced the closed source-bound dashboard and evaluation contract without broadening authority or starting a product surface."}
+}

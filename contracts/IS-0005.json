@@ -88,7 +88,7 @@
     }
   ],
   "exit_conditions": [
-    {"id":"EXIT-DASHBOARD-CONTRACT","status":"pending","evidence":[]},
+    {"id":"EXIT-DASHBOARD-CONTRACT","status":"pass","evidence":["requirements/dashboard-contract.lock.json","records/evaluations/IS-0005-U01-dashboard-contract-candidate.json","records/surface-receipts/IS-0005-U01-public-dashboard-contract-replay.json"]},
     {"id":"EXIT-READ-ONLY-DASHBOARD","status":"pending","evidence":[]},
     {"id":"EXIT-SCENARIO-CORPUS","status":"pending","evidence":[]},
     {"id":"EXIT-EVALUATION-REPORT","status":"pending","evidence":[]},
@@ -101,13 +101,13 @@
       "depends_on": [],
       "action_class": "update_project_records",
       "human_gate": false,
-      "status": "in_progress",
+      "status": "complete",
       "inputs": ["checkpoint-is-0004 records", "Product dashboard promise", "Threat model and evidence semantics"],
       "outputs": ["Closed snapshot and scenario schemas", "Golden and negative fixtures", "Dashboard security contract", "Visual acceptance matrix", "Mutation plan and exact lock"],
-      "gates": {"local_contract_lock":"pass_9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","snapshot_projection":"pass_7_records_8_exits","scenario_corpus":"pass_9_cases_3_repetitions","contract_mutations":"pass_37_of_37","regression_tests":"pass_111","full_draft_2020_12":"pass_2_schemas_4_fixtures_6_exact_wheels_offline","runtime_boundary":"pass_no_server_browser_or_docker"},
-      "disposition": null,
-      "retained_failures": ["One read-only candidate-inspection wrapper left HEAD^{tree} unquoted under PowerShell and was INVALID before the corrected quoted query returned exact commit f6589bc4 and tree aa4d6484. No server, browser, Docker runtime, approval write, or workflow action occurred."],
-      "exit_condition_delta": {"expected":["EXIT-DASHBOARD-CONTRACT"],"observed":[],"decision_value":"unknown","rationale":"The dashboard must have a closed authority, projection, state, serving, and evaluation contract before implementation."},
+      "gates": {"local_contract_lock":"pass_9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","snapshot_projection":"pass_7_records_8_exits","scenario_corpus":"pass_9_cases_3_repetitions","contract_mutations":"pass_37_of_37_local_and_public","regression_tests":"pass_111_local_and_public","full_draft_2020_12":"pass_2_schemas_4_fixtures_6_exact_wheels_offline_local_and_public","credential_free_public_replay":"pass_commit_2e22804a_tree_73c2480a","git_integrity":"pass","secret_scan":"pass_zero_matches_4_patterns","approval_boundary":"pass_missing_exit_12","runtime_boundary":"pass_no_server_browser_or_docker_exact_3_protected"},
+      "disposition": "pass",
+      "retained_failures": ["One read-only candidate-inspection wrapper left HEAD^{tree} unquoted under PowerShell and was INVALID before the corrected quoted query returned exact commit f6589bc4 and tree aa4d6484. No server, browser, Docker runtime, approval write, or workflow action occurred.","The first public authority assertion wrapper inspected data.approval_status instead of policy.approval_status after the product correctly returned MISSING / INVALID / exit 12. The corrected read-only wrapper passed under invocation 9cb57896; no product runtime or authority mutation occurred."],
+      "exit_condition_delta": {"expected":["EXIT-DASHBOARD-CONTRACT"],"observed":["EXIT-DASHBOARD-CONTRACT"],"decision_value":"advances_exit","rationale":"Exact public custody reproduced the source-bound snapshot, nine-case repeated corpus, two closed schemas, 37 fail-closed mutations, 111 tests, offline full-schema evaluation, Git and secret integrity, missing approval, and zero product runtime."},
       "next_dependency": "IS5-U02"
     },
     {
@@ -116,7 +116,7 @@
       "depends_on": ["IS5-U01"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "planned",
+      "status": "in_progress",
       "inputs": ["Frozen dashboard contract"],
       "outputs": ["Read-only projection", "Loopback server", "Static dashboard assets", "Implementation mutations"],
       "gates": {},
@@ -189,12 +189,13 @@
       "Credential-free clean-clone, Git integrity, secret scan, public replay, and annotated marker verification"
     ],
     "completed_checks": [
-      "Verified checkpoint-is-0004 entry with exact public marker, clean runtime boundary, missing approval, and no workflow execution"
+      "Verified checkpoint-is-0004 entry with exact public marker, clean runtime boundary, missing approval, and no workflow execution",
+      "Publicly reproduced closed dashboard projection, trust, state, scenario, visual, and evaluation contract with no server, browser, or Docker runtime"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004 at commit 25328dacef4d9283090bed809db75b33f613829b and marker object 60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf; IS5-U01 is the sole active contract-only unit",
-    "next_action": "Commit and push the exact IS5-U01 contract candidate, then reproduce its lock, schemas, fixtures, 37 mutations, 111 tests, source bindings, Git integrity, secret scan, authority boundary, and zero-runtime state from credential-free public custody.",
+    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; IS5-U01 contract freeze reproduced publicly at commit 2e22804aef49071ef42611357eaa4a7f4e0f384e and tree 73c2480aa4e700b506ef5b00202e9ce6ee2fc702; IS5-U02 is the sole active implementation unit",
+    "next_action": "Implement the dependency-free exact-record projection, separate loopback-only read-only dashboard launcher, fixed local assets, defensive headers, and implementation mutations under the public-reproduced contract.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",
