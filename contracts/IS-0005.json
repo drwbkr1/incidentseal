@@ -119,9 +119,9 @@
       "status": "in_progress",
       "inputs": ["Frozen dashboard contract"],
       "outputs": ["Read-only projection", "Loopback server", "Static dashboard assets", "Implementation mutations"],
-      "gates": {},
+      "gates": {"local_implementation_lock":"pass_53e89d0bd182da7f15d899b75f338318b9ff10b01689ffe033e198021f6f6447","frozen_verification_cli":"pass_unchanged_4_files","fixed_projection":"pass_7_source_records_9_views","implementation_mutations":"pass_29_of_29","contract_mutations":"pass_37_of_37","regression_tests":"pass_125","full_draft_2020_12":"pass_2_schemas_4_fixtures_6_exact_wheels_offline","real_windows_launcher":"pass_25_requests_port_54007","http_routes":"pass_5_get_5_head","write_and_control_denial":"pass_7_methods","host_and_route_denial":"pass_4_hosts_4_targets","security_headers":"pass_8","runtime_teardown":"pass_zero_processes","authority_boundary":"pass_missing_exit_12_no_workflow","docker_boundary":"pass_0_containers_0_networks_exact_3_protected"},
       "disposition": null,
-      "retained_failures": [],
+      "retained_failures": ["Three real-launcher attempts remain INVALID: an initially unclassified connection reset, the diagnosed final-request thread-shutdown race, and a stale exact-lock startup-envelope assertion. Each cleanup left zero dashboard processes, unchanged repository custody, no Docker runtime change, no approval write, and no workflow execution. Three passing earlier implementations remain superseded after the final scenario renderer and documentation lock changed."],
       "exit_condition_delta": {"expected":["EXIT-READ-ONLY-DASHBOARD"],"observed":[],"decision_value":"unknown","rationale":"A real served surface must prove exact record identity, read-only behavior, security headers, local assets, and state-separated rendering."},
       "next_dependency": "IS5-U03"
     },

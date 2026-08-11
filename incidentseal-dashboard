@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+set -eu
+INCIDENTSEAL_DASHBOARD_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if command -v python3 >/dev/null 2>&1 && python3 -c 'import sys' >/dev/null 2>&1; then
+  INCIDENTSEAL_DASHBOARD_PYTHON=python3
+elif command -v python >/dev/null 2>&1 && python -c 'import sys' >/dev/null 2>&1; then
+  INCIDENTSEAL_DASHBOARD_PYTHON=python
+else
+  echo "IncidentSeal dashboard requires Python 3." >&2
+  exit 127
+fi
+INCIDENTSEAL_DASHBOARD_SOURCE="${INCIDENTSEAL_DASHBOARD_ROOT}/src"
+INCIDENTSEAL_DASHBOARD_SEPARATOR=:
+if [ "$("${INCIDENTSEAL_DASHBOARD_PYTHON}" -c 'import os; print(os.name)')" = "nt" ]; then
+  if command -v cygpath >/dev/null 2>&1; then
+    INCIDENTSEAL_DASHBOARD_SOURCE=$(cygpath -w "${INCIDENTSEAL_DASHBOARD_SOURCE}")
+  fi
+  INCIDENTSEAL_DASHBOARD_SEPARATOR=';'
+fi
+if [ -n "${PYTHONPATH:-}" ]; then
+  PYTHONPATH="${INCIDENTSEAL_DASHBOARD_SOURCE}${INCIDENTSEAL_DASHBOARD_SEPARATOR}${PYTHONPATH}"
+else
+  PYTHONPATH="${INCIDENTSEAL_DASHBOARD_SOURCE}"
+fi
+export PYTHONPATH
+exec "${INCIDENTSEAL_DASHBOARD_PYTHON}" -B -m incidentseal.dashboard_surface "$@"

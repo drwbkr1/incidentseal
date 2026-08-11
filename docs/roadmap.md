@@ -53,7 +53,7 @@ Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and ind
 
 Status: active
 
-Progress: `IS5-U01` is publicly reproduced and passed at exact commit `2e22804a...`. Its closed seven-record projection, loopback serving boundary, state model, nine-scenario corpus, visual acceptance, and repeated-evaluation contract passed 111 tests, 37 mutations, full-schema validation, Git/secret integrity, and the missing-approval and zero-runtime gates. `IS5-U02` is active for the dependency-free real projection, separate local server, fixed assets, defensive headers, and implementation mutations.
+Progress: `IS5-U01` is publicly reproduced and passed. The local `IS5-U02` implementation candidate now passes the exact separate launcher, seven-record projection, nine internal scenario views, fixed local assets, five routes, read-only methods, Host enforcement, eight security headers, 125 tests, 29 implementation mutations, missing-approval boundary, unchanged Docker custody, and complete server teardown. Exact public replay remains before U02 closes; real rendered browser QA remains U03.
 
 - Polished dark forensic-style local dashboard.
 - Deterministic scenario corpus for success, product failure, invalid input, missing evidence, policy attack, isolation attack, corrupted receipt, crash, and recovery.

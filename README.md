@@ -8,7 +8,7 @@ IncidentSeal does not claim to be a complete sandbox, vulnerability scanner, rel
 
 ## Current state
 
-`checkpoint-is-0003` is the latest verified public checkpoint. It freezes an exact-image hardened Compose topology, least-privilege PostgreSQL, the shipped Python and Node commands, state-separated reliability behavior, and a credential-free public-clone replay. `IS-0004` is active: the portable receipt contract has passed and its atomic writer and independent verifier are next. IncidentSeal remains unreleased at `0.0.0`.
+`checkpoint-is-0004` is the latest verified public checkpoint. It adds portable receipts, independent offline verification, an immutable PostgreSQL event journal, fenced interruption recovery, verified backup/clean restore, and repeated integrated recovery to the hardened Compose, PostgreSQL, Python, and Node surfaces. `IS-0005` is active: its dashboard contract has passed from public custody and the local read-only implementation candidate awaits exact public replay and rendered-browser evaluation. IncidentSeal remains unreleased at `0.0.0`.
 
 Current truth is recorded in:
 
@@ -25,6 +25,14 @@ The static topology check is:
 ```
 
 It renders Compose and returns one machine envelope. A PASS from that command is explicitly topology-only. Separate host-owned probes validate the database, Python runner, Node runner, and disposable recovery topology; none of those platform-validation probes approves or executes a workflow manifest.
+
+The dashboard is deliberately separate from that frozen verification CLI. Start the current local candidate on an operating-system-assigned IPv4 loopback port with:
+
+```powershell
+.\incidentseal-dashboard.cmd --port 0
+```
+
+Open only the `http://127.0.0.1:PORT/` endpoint reported by its startup JSON. The process is read-only, serves five fixed local routes, accepts only exact-host `GET` and `HEAD`, and has no Docker, approval, workflow, secret, repository-write, analytics, telemetry, or external-network authority. See [`docs/dashboard-implementation.md`](docs/dashboard-implementation.md). Rendered browser quality and accessibility remain separate gates until their receipts exist.
 
 ## Intended workflow
 

@@ -1,0 +1,19 @@
+{
+  "schema_version":"incidentseal-dashboard-implementation-evaluation/v1",
+  "evaluation_id":"IS-EVAL-0005-U02-CANDIDATE",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U02",
+  "observed_at_utc":"2026-08-11T01:25:54Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "candidate_base":{"commit":"e9f3899bdb50de116c0e8749d8f3c563a7164429","tree":"be8ed46580e4b9c90e2863219c057223e0bb0587","worktree_has_uncommitted_candidate":true},
+  "identity":{"contract_lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","implementation_lock_digest":"sha256:53e89d0bd182da7f15d899b75f338318b9ff10b01689ffe033e198021f6f6447","snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","html_digest":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f"},
+  "implementation":{"separate_launcher":true,"verification_cli_changed":false,"runtime_dependencies":0,"source_records":7,"scenario_views":9,"fixed_routes":5,"allowed_methods":2,"denied_methods":7,"security_headers":8,"local_assets":2},
+  "real_surface":{"launcher":"incidentseal-dashboard.cmd","bind_host":"127.0.0.1","port":54007,"requests":25,"get_routes":5,"head_routes":5,"write_and_control_methods_denied":7,"wrong_hosts_denied":4,"bad_targets_denied":4,"external_requests":0,"repository_writes":0,"server_closed":true,"repository_state_unchanged":true},
+  "validation":{"repository_tests":125,"contract_mutations":37,"implementation_mutations":29,"draft_2020_12_schemas":2,"schema_fixtures":4,"source_gated_exact_wheels":6,"network_used_for_evaluation_dependencies":false,"temporary_evaluation_custody_removed":true},
+  "authority_boundary":{"policy_invocation_id":"1006e0a8-7f89-40b0-875f-f14829368039","approval_status":"MISSING","process_exit_code":12,"dashboard_approval_access":false,"workflow_executed":false},
+  "runtime_boundary":{"dashboard_processes_after":0,"docker_accessed_by_dashboard":false,"incidentseal_containers":0,"incidentseal_networks":0,"protected_volumes":3,"protected_volume_identity_unchanged":true},
+  "retained_attempts":{"invalid":{"path":"records/evaluations/IS-0005-U02-dashboard-implementation-invalid-attempts.json","count":3},"superseded":{"path":"records/evaluations/IS-0005-U02-dashboard-implementation-superseded-attempts.json","count":3}},
+  "non_claims":["The implementation has not reproduced from exact public custody.","No real browser, responsive screenshot, keyboard, accessibility, or rendered failure-state receipt exists yet.","No repeated scenario evaluation, packaging, registry, or release claim advances."],
+  "decision":{"status":"candidate-pass-public-replay-required","reason":"The exact local implementation and real launcher pass the locked HTTP, authority, identity, mutation, regression, and teardown gates. Public replay remains before IS5-U02 can pass."}
+}
