@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0005`
 - Latest verified checkpoint: `IS-0004`
-- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01` and `IS5-U02` passed from public custody; `IS5-U03` is the sole active rendered-browser unit; no dashboard process remains
+- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01`, `IS5-U02`, and `IS5-U03` passed from public custody; `IS5-U04` is the sole active repeated-evaluation unit; no dashboard or scenario process remains
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -10,7 +10,7 @@
 - Latest verified checkpoint commit: `25328dacef4d9283090bed809db75b33f613829b`
 - Verified checkpoint marker: `checkpoint-is-0004` tag object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf` -> `25328dacef4d9283090bed809db75b33f613829b`
 - Approved workflow manifest digest: not established
-- Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded reliability, portable receipts, offline verification, durable journal streaming, fixed recovery, backup/clean restore, and repeated integrated recovery are verified from public custody
+- Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded reliability, portable receipts, offline verification, durable journal streaming, fixed recovery, backup/clean restore, repeated integrated recovery, and the loopback-only rendered evidence dashboard are verified from public custody
 - Release state: unreleased
 
 ## Current truth
@@ -19,9 +19,11 @@ The product name, promise, trust boundary, public repository owner, presentation
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
-`IS5-U01` passed from exact credential-free public commit `2e22804a...`, tree `73c2480a...`. Lock `sha256:9bc2785e...` binds two closed Draft 2020-12 schemas, an exact seven-record `checkpoint-is-0004` projection, eight passed exits, all verdict and lifecycle channels, a nine-case corpus repeated three times, visual acceptance, and 37 fail-closed mutations. All 111 tests, Git integrity, secret scanning, and offline full-schema validation from six rehashed source-gated wheels pass. Approval remained `MISSING`; no workflow, server, browser, or Docker runtime started. `IS5-U02` may now implement the real loopback surface, but no rendered or evaluation claim exists yet.
+`IS5-U01` passed from exact credential-free public commit `2e22804a...`, tree `73c2480a...`. Lock `sha256:9bc2785e...` binds two closed Draft 2020-12 schemas, an exact seven-record `checkpoint-is-0004` projection, eight passed exits, all verdict and lifecycle channels, a nine-case corpus repeated three times, visual acceptance, and 37 fail-closed mutations. All 111 tests, Git integrity, secret scanning, and offline full-schema validation from six rehashed source-gated wheels pass. Approval remained `MISSING`; no workflow, server, browser, or Docker runtime started.
 
-`IS5-U02` passed from exact public commit `6a5d1cf8...`, tree `857af1c8...`, under implementation lock `sha256:53e89d0b...`. The separate Windows launcher served byte-identical results across five `GET`, five `HEAD`, seven denied methods, four hostile hosts, and four traversal/query targets, with eight defensive headers, zero external requests or repository writes, and complete process teardown. All 125 tests, 37 contract mutations, 29 implementation mutations, Git/secret integrity, offline schema validation, missing approval, and exact protected-volume custody passed. Three invalid runtime attempts and three superseded passing candidates remain retained. `IS5-U03` now owns real desktop/mobile, keyboard, accessibility, overflow, local-request, and nine-state rendered evidence; `EXIT-READ-ONLY-DASHBOARD` stays pending until that gate passes.
+`IS5-U02` passed from exact public commit `6a5d1cf8...`, tree `857af1c8...`, under implementation lock `sha256:53e89d0b...`. The separate Windows launcher served byte-identical results across five `GET`, five `HEAD`, seven denied methods, four hostile hosts, and four traversal/query targets, with eight defensive headers, zero external requests or repository writes, and complete process teardown. All 125 tests, 37 contract mutations, 29 implementation mutations, Git/secret integrity, offline schema validation, missing approval, and exact protected-volume custody passed. Three invalid runtime attempts and three superseded passing candidates remain retained.
+
+`IS5-U03` passed from exact public candidate commit `46639491...`, tree `b3eaef7b...`, under implementation lock revision 3 `sha256:f9a24216...` and browser lock `sha256:3afab378...`. The real dashboard passed one desktop and all nine mobile states with no horizontal overflow, exact text-labelled claim calibration, one main landmark, labelled navigation, ten ordered headings, Chrome keyboard traversal through six visible-focus links without a trap, a minimum 44 CSS pixel target, 4.7291 minimum text contrast, reduced-motion behavior, three local browser observations, zero external requests, and zero browser logs. Public in-app rendering reproduced ten retained screenshots byte-for-byte; Chrome independently reproduced the keyboard semantics without requiring browser-encoding byte equality. All 129 tests and 37/29/28 mutation suites passed, the real 25-request launcher closed, approval remained `MISSING`, no workflow ran, and Docker custody stayed exact. Two product `FAIL` revisions, thirteen local `INVALID` attempts, and one public `INVALID` wrapper remain retained. `EXIT-READ-ONLY-DASHBOARD` passes; `IS5-U04` now owns repeated measurements.
 
 ## Checkpoint evidence
 
@@ -97,12 +99,12 @@ Exact closure commit `25328dacef4d9283090bed809db75b33f613829b`, tree `b03947a40
 
 Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf` was pushed and independently fetched from credential-free public custody, peeling to the exact closure commit. One unquoted remote peeled-tag query remains `INVALID`; the corrected quoted query returned both exact remote rows. `EXIT-PUBLIC-CHECKPOINT` passes and IS-0004 is complete.
 
-`IS-0005` is now active from that exact marker. Its first bounded unit is contract-only: freeze the exact record-to-dashboard projection, loopback-only read-only HTTP boundary, local asset policy, state-separated rendering, nine deterministic evaluation scenarios, rendered visual acceptance, accessibility, and repeated correctness/latency/resource/claim-calibration measurements before implementing or starting a server. The milestone explicitly forbids changing the frozen verification CLI, using OneDrive, binding beyond loopback, adding external assets or telemetry, or granting the dashboard Docker, approval, secret, workflow, or repository-write authority.
+`IS-0005` opened from that exact marker with a contract-first boundary. Its projection contract, separate loopback-only implementation, and real rendered desktop/mobile surface now pass from exact public custody. The milestone continues to forbid changing the frozen verification CLI, using OneDrive, binding beyond loopback, adding external assets or telemetry, or granting the dashboard Docker, approval, secret, workflow, or repository-write authority. Repeated U04 measurements and final public checkpoint closure remain.
 
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, and integrated recovery all pass from public custody. The exact IS-0004 closure commit and marker, dashboard, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, integrated recovery, and rendered local dashboard pass from public custody. Repeated dashboard evaluation, the IS-0005 public marker, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -112,4 +114,4 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 
 ## Next eligible action
 
-Freeze and publicly reproduce the `IS5-U01` dependency-free dashboard snapshot, loopback serving, state rendering, scenario corpus, visual acceptance, and evaluation contracts without starting a dashboard server.
+Freeze and run the bounded `IS5-U04` repeated-trial evaluator across all nine fixed states, measuring correctness, latency, resource use, recovery, evidence completeness, and claim calibration without external telemetry.

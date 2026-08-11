@@ -1,0 +1,32 @@
+{
+  "schema_version":"incidentseal-dashboard-browser-public-replay/v1",
+  "receipt_id":"IS-RECEIPT-0005-U03-PUBLIC-BROWSER",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U03",
+  "observed_at_utc":"2026-08-11T03:14:17Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "public_source":{"repository":"https://github.com/drwbkr1/incidentseal.git","branch":"main","local_replay_branch":"public-replay-u03","commit":"46639491f2591649091d04cdc246f79a8c591e18","tree":"b3eaef7bb6acc40fbbe979ca3969e4e523ad293e","remote_main_equal":true,"credential_helpers_disabled":true,"terminal_prompting_disabled":true,"worktree_clean_before_and_after":true},
+  "identity":{"contract_lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","implementation_lock_digest":"sha256:f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f","browser_lock_digest":"sha256:3afab378732eb88049988fbe2a935ee1102bd989af62e2517a9cf853a0d20f29","snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","html_digest":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f","css_digest":"sha256:514ad8172a913ff257e824cf6c5e25c9f4178d48275dd3cb94d60db32d08d005"},
+  "checks":[
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"exact_commit":true,"exact_tree":true,"remote_main_equal":true,"clean_before_and_after":true}},
+    {"id":"project-probe","status":"PASS","observed":{"checkpoint":"IS-0005","docker_server":"29.4.3","compose":"5.1.3","custody":"PASS"}},
+    {"id":"static-browser-lock","status":"PASS","observed":{"scenarios":9,"retained_screenshots":11,"browser_mutations":28,"static_validator_started_browser":false}},
+    {"id":"regression-and-mutation-suites","status":"PASS","observed":{"tests":129,"contract_mutations":37,"implementation_mutations":29,"browser_mutations":28}},
+    {"id":"full-schema-meta-validation","status":"PASS","observed":{"draft":"2020-12","schemas":2,"fixtures":4,"exact_source_gated_wheels":6,"network_used":false,"temporary_custody_removed":true}},
+    {"id":"real-windows-launcher","status":"PASS","observed":{"port":62941,"requests":25,"get_routes":5,"head_routes":5,"write_and_control_methods_denied":7,"wrong_hosts_denied":4,"bad_targets_denied":4,"security_headers":8,"external_requests":0,"repository_writes":0,"server_closed":true}},
+    {"id":"in-app-rendered-layout","status":"PASS","observed":{"desktop_viewports":1,"mobile_scenarios":9,"public_screenshot_byte_matches":10,"desktop_horizontal_overflow":false,"mobile_horizontal_overflow":false,"minimum_touch_target_css_px":"44.0","minimum_text_contrast_ratio":"4.7291","external_assets":0,"console_error_or_warning_count":0}},
+    {"id":"chrome-keyboard-interaction","status":"PASS","observed":{"focus_steps":7,"focusable_links":6,"visible_focus_on_links":true,"keyboard_trap":false,"semantic_result_matches_candidate":true,"candidate_screenshot_bytes_equal":false,"candidate_screenshot_byte_equality_required":false,"public_screenshot_digest":"sha256:152aefb4557568444561b284b3124b5d8b0d148ad1263cb8d6e05d06236b8471"}},
+    {"id":"browser-asset-isolation","status":"PASS","observed":{"declared_local_assets":2,"browser_generated_local_probes":1,"favicon_probe_denied":true,"external_assets":0,"external_requests":0,"browser_log_entries":0}},
+    {"id":"claim-calibration","status":"PASS","observed":{"success_views":1,"success_claims_permitted":1,"non_success_views":8,"non_success_claims_permitted":0,"false_passes":0,"false_release_claims":0}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"authority-boundary","status":"PASS","observed":{"invocation_id":"6a541b5f-44f5-433d-9609-172f44e08972","approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"approval_written":false,"workflow_executed":false}},
+    {"id":"runtime-boundary","status":"PASS","observed":{"scenario_server_processes_after":0,"dashboard_processes_after":0,"docker_accessed_by_dashboard":false,"containers":0,"networks":0,"protected_volumes":3,"protected_volume_identity_unchanged":true}}
+  ],
+  "response_digests":{"html":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f","snapshot":"sha256:7b84239cebcae34a81cf317363eb43b9137fb25ed3eeea6be71bc9b96318c8dc","css":"sha256:514ad8172a913ff257e824cf6c5e25c9f4178d48275dd3cb94d60db32d08d005","javascript":"sha256:84cea305fd0de541b7a3101a7a96255948c5f8160c0f4aafc5fb7ebabf42c954","health":"sha256:1d41faf32e23b3fb200f92457ddd06be0c63ce4b9e5f10b31d7b6a8e7cdc4bd7"},
+  "protected_volume_identity":{"incidentseal-57ca5f96d527da1b_database-data":"sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825","incidentseal-a6443d83ae9eb463_database-data":"sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768","incidentseal-e10983c7309c56a0_database-data":"sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"},
+  "retained_attempts":{"failures":{"path":"records/evaluations/IS-0005-U03-rendered-browser-failures.json","count":2},"local_invalid":{"path":"records/evaluations/IS-0005-U03-rendered-browser-invalid-attempts.json","count":13},"public_invalid":{"path":"records/evaluations/IS-0005-U03-public-rendered-browser-invalid-attempts.json","count":1}},
+  "temporary_clone_custody":{"path":"C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is5-u03-browser-4663949","state":"retained-clean-noncanonical-outside-onedrive-and-runtime-custody","required_for_runtime":false},
+  "non_claims":["No repeated three-run scenario measurement, packaging, registry, release, or v0.1.0 claim advances.","The independently encoded Chrome keyboard screenshot is semantic interaction evidence; byte equality with a prior browser encoding is not claimed or required."],
+  "decision":{"status":"pass-public-browser-replay","reason":"Exact credential-free public custody reproduced the locked dashboard identity, real loopback surface, desktop and all nine mobile rendered states, claim calibration, semantic structure, keyboard traversal, accessibility gates, local-only browser requests, complete teardown, and unchanged authority and Docker custody."}
+}

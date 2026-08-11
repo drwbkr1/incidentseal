@@ -53,7 +53,7 @@ Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and ind
 
 Status: active
 
-Progress: `IS5-U01` and `IS5-U02` are publicly reproduced and passed. Exact public commit `6a5d1cf8...` repeated the separate launcher, seven-record projection, nine internal views, fixed assets, five routes, read-only methods, Host enforcement, eight security headers, 125 tests, 29 implementation mutations, Git/secret checks, missing approval, unchanged Docker custody, and complete server teardown. `IS5-U03` is active for real desktop/mobile rendering, keyboard and semantic accessibility, overflow, reduced motion, request isolation, and all nine evidence states.
+Progress: `IS5-U01`, `IS5-U02`, and `IS5-U03` are publicly reproduced and passed. Exact public candidate commit `46639491...` and tree `b3eaef7b...` repeated the revision-3 launcher plus real desktop and all nine mobile states, semantic structure, Chrome keyboard traversal, responsive and contrast gates, local-only requests, calibrated claim withholding, 129 tests, all 37/29/28 mutation suites, Git/secret checks, missing approval, unchanged Docker custody, and complete process teardown. `IS5-U04` is active for bounded repeated correctness, latency, resource, recovery, evidence-completeness, and claim-calibration measurements.
 
 - Polished dark forensic-style local dashboard.
 - Deterministic scenario corpus for success, product failure, invalid input, missing evidence, policy attack, isolation attack, corrupted receipt, crash, and recovery.

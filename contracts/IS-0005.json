@@ -89,7 +89,7 @@
   ],
   "exit_conditions": [
     {"id":"EXIT-DASHBOARD-CONTRACT","status":"pass","evidence":["requirements/dashboard-contract.lock.json","records/evaluations/IS-0005-U01-dashboard-contract-candidate.json","records/surface-receipts/IS-0005-U01-public-dashboard-contract-replay.json"]},
-    {"id":"EXIT-READ-ONLY-DASHBOARD","status":"pending","evidence":[]},
+    {"id":"EXIT-READ-ONLY-DASHBOARD","status":"pass","evidence":["requirements/dashboard-implementation.lock.json","requirements/dashboard-browser.lock.json","records/evaluations/IS-0005-U03-rendered-browser-candidate.json","records/surface-receipts/IS-0005-U03-public-rendered-browser-replay.json"]},
     {"id":"EXIT-SCENARIO-CORPUS","status":"pending","evidence":[]},
     {"id":"EXIT-EVALUATION-REPORT","status":"pending","evidence":[]},
     {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
@@ -131,13 +131,13 @@
       "depends_on": ["IS5-U02"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "in_progress",
+      "status": "complete",
       "inputs": ["Locked dashboard implementation"],
       "outputs": ["Rendered browser receipts", "Accessibility and responsive QA", "Failure-state evidence"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
-      "exit_condition_delta": {"expected":["EXIT-READ-ONLY-DASHBOARD"],"observed":[],"decision_value":"unknown","rationale":"Source and HTTP checks cannot substitute for the actual rendered and interactive local surface."},
+      "gates": {"implementation_lock_revision_3":"pass_f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f_local_and_public","browser_lock":"pass_3afab378732eb88049988fbe2a935ee1102bd989af62e2517a9cf853a0d20f29_local_and_public","rendered_layout":"pass_1_desktop_9_mobile_states","claim_calibration":"pass_1_of_1_success_0_of_8_non_success_claims","retained_screenshots":"pass_11_locked_10_public_in_app_byte_matches","semantic_structure":"pass_1_main_labelled_nav_10_headings_1_table_3_headers_5_lists","keyboard":"pass_7_steps_6_links_visible_focus_no_trap","responsive_layout":"pass_no_horizontal_overflow","touch_targets":"pass_minimum_44_css_px","text_contrast":"pass_minimum_4_7291","reduced_motion":"pass","browser_asset_isolation":"pass_3_local_observations_0_external_0_logs","browser_mutations":"pass_28_of_28_local_and_public","regression_tests":"pass_129_local_and_public","contract_and_implementation_mutations":"pass_37_and_29_local_and_public","full_draft_2020_12":"pass_2_schemas_4_fixtures_6_exact_wheels_offline_local_and_public","real_windows_launcher":"pass_25_requests_local_port_57105_public_port_62941","git_integrity":"pass","secret_scan":"pass_zero_matches_4_patterns","authority_boundary":"pass_missing_exit_12_no_workflow","runtime_boundary":"pass_zero_processes_0_containers_0_networks_exact_3_protected"},
+      "disposition": "pass",
+      "retained_failures": ["Two real rendered product failures remain retained: revision 1 failed the frozen 4.5:1 text-contrast gate and revision 2 failed the frozen 44 CSS pixel mobile touch-target gate. Revision 3 corrected both before the browser lock was frozen.","Thirteen local evaluator attempts remain INVALID without product claims, including unsupported browser capabilities, invalid screenshot handling, wrapper defects, and strict-lock domain rejection; each was corrected with an independently bounded check.","The first public replay project-probe wrapper remains INVALID because detached HEAD produced an empty branch string; the entire exact-commit replay restarted from its first gate on a local no-track branch and passed without changing remote, commit, tree, or custody."],
+      "exit_condition_delta": {"expected":["EXIT-READ-ONLY-DASHBOARD"],"observed":["EXIT-READ-ONLY-DASHBOARD"],"decision_value":"advances_exit","rationale":"Exact public custody reproduced the real desktop and all nine mobile states, calibrated claims, semantic and keyboard behavior, responsive and visual gates, local-only requests, static and runtime validation, missing approval, zero workflow execution, and unchanged Docker custody."},
       "next_dependency": "IS5-U04"
     },
     {
@@ -146,7 +146,7 @@
       "depends_on": ["IS5-U03"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "planned",
+      "status": "in_progress",
       "inputs": ["Verified dashboard", "Frozen scenario corpus", "Checkpoint records"],
       "outputs": ["Repeated-trial dataset", "Evaluation report", "Scenario and calibration receipts"],
       "gates": {},
@@ -191,12 +191,13 @@
     "completed_checks": [
       "Verified checkpoint-is-0004 entry with exact public marker, clean runtime boundary, missing approval, and no workflow execution",
       "Publicly reproduced closed dashboard projection, trust, state, scenario, visual, and evaluation contract with no server, browser, or Docker runtime",
-      "Publicly reproduced the exact read-only loopback dashboard implementation and real Windows launcher with byte-identical responses, attack denial, missing approval, and complete process teardown"
+      "Publicly reproduced the exact read-only loopback dashboard implementation and real Windows launcher with byte-identical responses, attack denial, missing approval, and complete process teardown",
+      "Publicly reproduced the real rendered dashboard across desktop and all nine mobile states with calibrated claims, semantic and keyboard accessibility, responsive and visual gates, local-only browser requests, retained failures, and complete teardown"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; IS5-U01 contract and IS5-U02 implementation reproduced publicly at exact commit 6a5d1cf8fe359b6eaa2098d7bbe00092d56034a2 and tree 857af1c8064823c7716ff2265175e711ca997c5d; IS5-U03 is the sole active rendered-browser unit",
-    "next_action": "Run real browser QA for the production success view and all nine fixed scenario views across 1440x900 and 390x844, including landmarks, keyboard, contrast, reduced motion, overflow, local requests, and failure-state calibration.",
+    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; IS5-U01 contract, IS5-U02 implementation, and IS5-U03 rendered-browser surface are reproduced from public custody; U03 exact candidate commit 46639491f2591649091d04cdc246f79a8c591e18 and tree b3eaef7bb6acc40fbbe979ca3969e4e523ad293e passed; IS5-U04 is the sole active repeated-evaluation unit",
+    "next_action": "Freeze and run the bounded U04 repeated-trial evaluator over all nine fixed scenarios, measuring deterministic correctness, latency, resource use, recovery, evidence completeness, and claim calibration without external telemetry.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0005",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Run real rendered-browser QA for production and all nine fixed dashboard scenarios under IS5-U03"
+    "next_action": "Run the frozen nine-scenario repeated correctness, latency, resource, recovery, evidence-completeness, and claim-calibration evaluation under IS5-U04"
   }
 }

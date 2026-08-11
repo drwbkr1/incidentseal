@@ -12,6 +12,7 @@ IncidentSeal has a verified public evidence-and-recovery checkpoint, not a relea
 - Shipped Python and Node application commands with exact positive outputs, exact database rows, cross-runner canonical input identity, language-bound result identity, and malformed-input rejection.
 - Disposable reliability behavior that keeps completed verification `PASS`, `FAIL`, and `INVALID` separate from lifecycle `failed` and `cancelled`, recovers after database outage, persists through restart, detects orphans, and removes disposable resources without touching three protected evidence volumes.
 - Fixed synthetic host-only recovery with separate PostgreSQL fencing, exact Docker ownership and hardening, stop-then-reobserve, deterministic replay and append, cancellation/failure/stale exits, ambiguous and conflicting effects, crash-after-evidence resume, concurrent-holder exclusion, restart persistence, runner denial, and protected teardown from exact credential-free public custody.
+- Loopback-only read-only dashboard implementation and real rendered desktop/mobile evidence across all nine fixed states, semantic landmarks, keyboard focus, touch and contrast gates, reduced motion, no horizontal overflow, local-only browser requests, calibrated claim withholding, and complete teardown from exact credential-free public custody.
 - Credential-free public-clone replay with 50 tests, four machine-contract mutations, 16 topology mutations, 15 implementation mutations, Git object integrity, high-confidence secret scan, real reliability execution, and annotated-marker verification.
 
 ## Retained negative evidence
@@ -21,10 +22,12 @@ IncidentSeal has a verified public evidence-and-recovery checkpoint, not a relea
 - Two Python-surface product `FAIL` attempts caused by Compose transport/orphan stderr policy.
 - Malformed commands and harness invocations retained as `INVALID` rather than product failure.
 - Real database-outage lifecycle `failed` and host-stop lifecycle `cancelled` observations with no fabricated verification verdict.
+- Dashboard revision-1 contrast and revision-2 mobile touch-target product `FAIL` evidence, followed by the verified revision-3 correction.
+- Thirteen local and one public rendered-browser harness attempts retained as `INVALID` without rewriting them as product failure or PASS.
 
 ## Remaining before v0.1.0
 
-Dashboard behavior, broader scenario evaluation, packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified.
+Repeated dashboard scenario evaluation, packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified.
 
 Image redistribution remains `INCONCLUSIVE`; no derived image was published. No workflow manifest is approved and no workflow was executed.
 
@@ -95,3 +98,11 @@ The exact Windows launcher served 25 bounded real requests on port `54007`: five
 All 125 tests, 37 contract mutations, 29 implementation mutations, and two-schema/four-fixture exact-wheel validation pass. Approval remained `MISSING` at exit `12`; no workflow ran; dashboard code accessed no Docker; no IncidentSeal container or network exists; and all three protected volume identities remain exact. Three attempts remain `INVALID`, including the diagnosed final-thread close race, and three earlier passing implementations remain `superseded` as the lock improved. This is still a local candidate: public implementation replay and real rendered-browser QA remain separate gates.
 
 Exact credential-free public commit `6a5d1cf8fe359b6eaa2098d7bbe00092d56034a2`, tree `857af1c8064823c7716ff2265175e711ca997c5d`, reproduced every implementation gate. Public port `59384` returned the same five locked response digests across all 25 requests and closed cleanly. The clone also repeated 125 tests, 37 contract mutations, 29 implementation mutations, and offline full-schema evaluation, then passed strict Git integrity and a zero-hit four-pattern secret scan. Approval remained `MISSING` at exit `12` before and after, no workflow ran, no dashboard process survived, no Docker runtime changed, and the exact three protected volume identities matched. U02 passes; the broad dashboard exit remains pending for real rendered-browser verification in U03.
+
+## IS5-U03 verified rendered dashboard
+
+Implementation revision 3 and browser lock `sha256:3afab378732eb88049988fbe2a935ee1102bd989af62e2517a9cf853a0d20f29` bind the real loopback surface, one desktop success view, nine fixed mobile states, eleven retained screenshots, semantic structure, keyboard sequence, contrast, touch targets, reduced motion, local request isolation, and 28 fail-closed browser mutations. The success view alone permits a claim; product failure, invalid input, missing evidence, both rejected attacks, corrupt receipt, crash, and recovery all visibly withhold it.
+
+Two real product failures improved the surface before lock: revision 1 failed 4.5:1 muted-text contrast, and revision 2 exposed a 30 CSS pixel mobile wordmark against the 44 CSS pixel target gate. Revision 3 passes with a minimum 4.7291 ratio and exact 44 CSS pixel navigation targets. Thirteen local evaluator defects remain `INVALID`, separately from those product failures.
+
+Exact credential-free public candidate commit `46639491f2591649091d04cdc246f79a8c591e18`, tree `b3eaef7bb6acc40fbbe979ca3969e4e523ad293e`, reproduced all 129 tests, 37 contract mutations, 29 implementation mutations, 28 browser mutations, offline schema validation, the 25-request launcher, and the rendered semantics. Public in-app rendering matched ten locked screenshots byte-for-byte. Independent Chrome traversal visited the skip link, wordmark, and four section links in order with visible focus and no trap; its newly encoded screenshot was semantically valid but intentionally not required to match earlier browser bytes. Browser observations contained only the two local assets and a denied local favicon probe, with zero external requests or logs. Approval stayed `MISSING` at exit `12`, no workflow ran, all scenario and dashboard processes stopped, zero containers or networks existed, and the three protected volume identities remained exact. One detached-HEAD wrapper remains public `INVALID`; the corrected full replay restarted from its first gate. `EXIT-READ-ONLY-DASHBOARD` passes; repeated U04 measurements remain unverified.
