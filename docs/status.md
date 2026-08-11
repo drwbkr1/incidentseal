@@ -1,21 +1,21 @@
 # IncidentSeal status
 
 - Current checkpoint: `IS-0005`
-- Latest verified checkpoint: `IS-0004`
-- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01` through `IS5-U04` passed from public custody; `IS5-U05` is the sole active checkpoint-closure unit; no dashboard or scenario process remains
+- Latest verified checkpoint: `IS-0005`
+- State: complete; annotated `checkpoint-is-0005` independently verifies the dashboard-and-evaluation closure; no dashboard, scenario, container, or network process remains
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
 - Expected branch: `main`
-- Latest verified checkpoint commit: `25328dacef4d9283090bed809db75b33f613829b`
-- Verified checkpoint marker: `checkpoint-is-0004` tag object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf` -> `25328dacef4d9283090bed809db75b33f613829b`
+- Latest verified checkpoint commit: `04230dcc233c6a5064da5c8e8e1a54be51c19503`
+- Verified checkpoint marker: `checkpoint-is-0005` tag object `aba5e64fec406a57255a37601ba46091a800fb30` -> `04230dcc233c6a5064da5c8e8e1a54be51c19503`
 - Approved workflow manifest digest: not established
 - Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded reliability, portable receipts, offline verification, durable journal streaming, fixed recovery, backup/clean restore, repeated integrated recovery, and the loopback-only rendered evidence dashboard are verified from public custody
 - Release state: unreleased
 
 ## Current truth
 
-The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `checkpoint-is-0004` now establishes the latest verified public evidence-and-recovery checkpoint without changing that trust boundary.
+The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `checkpoint-is-0005` now establishes the latest verified public dashboard-and-evaluation checkpoint without changing that trust boundary.
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
@@ -26,6 +26,8 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 `IS5-U03` passed from exact public candidate commit `46639491...`, tree `b3eaef7b...`, under implementation lock revision 3 `sha256:f9a24216...` and browser lock `sha256:3afab378...`. The real dashboard passed one desktop and all nine mobile states with no horizontal overflow, exact text-labelled claim calibration, one main landmark, labelled navigation, ten ordered headings, Chrome keyboard traversal through six visible-focus links without a trap, a minimum 44 CSS pixel target, 4.7291 minimum text contrast, reduced-motion behavior, three local browser observations, zero external requests, and zero browser logs. Public in-app rendering reproduced ten retained screenshots byte-for-byte; Chrome independently reproduced the keyboard semantics without requiring browser-encoding byte equality. All 129 tests and 37/29/28 mutation suites passed, the real 25-request launcher closed, approval remained `MISSING`, no workflow ran, and Docker custody stayed exact. Two product `FAIL` revisions, thirteen local `INVALID` attempts, and one public `INVALID` wrapper remain retained. `EXIT-READ-ONLY-DASHBOARD` passes; `IS5-U04` now owns repeated measurements.
 
 `IS5-U04` passed from exact credential-free public commit `df8043bc...`, tree `01c23299...`, under evaluation lock `sha256:c75fe0f...`. Both local and public runs rebuilt all nine states three times, started and closed 27 new loopback servers, and passed all 135 fixed-route GETs. Each achieved 27/27 case correctness, 189/189 source coverage, nine stable and cross-run-equal HTML identities, three recovery transitions without claim promotion, three permitted versus 24 withheld claims, and zero false PASS or release claims. Public medians were 5.971200 ms projection, 0.040800 ms deterministic server-side render, 28,831,744 bytes peak process memory, and 30,523 response bytes per five GETs; local and public dynamic measurements remain independent observations rather than forced-equal budgets. All 133 tests and 37/29/28/30 mutations passed publicly, Git and four-pattern secret integrity passed, approval remained `MISSING`, no workflow or Docker surface was accessed, all processes closed, and exact protected custody remained. Five `INVALID` wrappers and one pre-lock `superseded` PASS remain retained. `EXIT-SCENARIO-CORPUS` and `EXIT-EVALUATION-REPORT` pass; `IS5-U05` owns exact checkpoint closure.
+
+`IS5-U05` passed at exact closure commit `04230dcc...`, tree `ec2ed653...`. A fresh credential-free clone repeated 133 tests, all 124 dashboard mutations, two-schema/four-fixture offline meta-validation, the real 25-request launcher on port 56806, and the complete 27-trial/135-request evaluation. It reverified `checkpoint-is-0004`, strict Git and secret integrity, missing approval before and after, zero workflow execution, zero residual processes/containers/networks, and the exact three protected volume identities. Annotated `checkpoint-is-0005` object `aba5e64f...` was pushed, fetched independently without credentials, identified as a tag, and peeled to the closure commit. Every IS-0005 exit passes. This is a verified checkpoint, not a v0.1.0 release.
 
 ## Checkpoint evidence
 
@@ -106,14 +108,14 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, integrated recovery, rendered local dashboard, and repeated dashboard evaluation pass from public custody. The IS-0005 closure replay and marker, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, integrated recovery, rendered local dashboard, repeated dashboard evaluation, and IS-0005 marker pass from public custody. Packaging and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
 - The Distroless Node image has retained MEDIUM and LOW findings and no located signed SLSA statement; its exact signatures, Bazel history, runtime version, and runner behavior remain explicitly bounded claims.
 - Direct Codex CLI execution currently fails with `Access is denied`.
-- Historical markers `checkpoint-is-0001`, `checkpoint-is-0002`, and `checkpoint-is-0003` remain intact; `checkpoint-is-0004` is the latest verified marker. Remote `main` may advance with post-marker receipts and the next milestone while the marker continues to freeze its exact closure commit.
+- Historical markers `checkpoint-is-0001` through `checkpoint-is-0004` remain intact; `checkpoint-is-0005` is the latest verified marker. Remote `main` may advance with post-marker receipts and the next milestone while the marker continues to freeze its exact closure commit.
 
 ## Next eligible action
 
-Prepare the exact `IS5-U05` closure candidate, push it, rerun the complete dashboard-and-evaluation checkpoint from credential-free public custody, and create `checkpoint-is-0005` only after the independent closure gates pass.
+Open `IS-0006` from verified `checkpoint-is-0005` with a contract-first portable-release gate covering the packaged host CLI, clean installation, exact release artifacts, SBOM/provenance/scan/reproducibility receipts, exact-digest registry publication, downloaded-release verification, and `v0.1.0`.

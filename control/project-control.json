@@ -190,7 +190,7 @@
   "current_checkpoint": {
     "checkpoint_id": "IS-0005",
     "expected_branch": "main",
-    "expected_head": null,
-    "next_action": "Close IS-0005 from an exact public dashboard-and-evaluation replay, then create and independently verify checkpoint-is-0005"
+    "expected_head": "04230dcc233c6a5064da5c8e8e1a54be51c19503",
+    "next_action": "Open IS-0006 from verified checkpoint-is-0005 with a contract-first portable-release and supply-chain gate"
   }
 }

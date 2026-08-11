@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "milestone_id": "IS-0005",
   "project_profile_ref": "control/project-control.json",
-  "status": "active",
+  "status": "complete",
   "authority": {
     "mode": "inherited",
     "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
@@ -92,7 +92,7 @@
     {"id":"EXIT-READ-ONLY-DASHBOARD","status":"pass","evidence":["requirements/dashboard-implementation.lock.json","requirements/dashboard-browser.lock.json","records/evaluations/IS-0005-U03-rendered-browser-candidate.json","records/surface-receipts/IS-0005-U03-public-rendered-browser-replay.json"]},
     {"id":"EXIT-SCENARIO-CORPUS","status":"pass","evidence":["requirements/dashboard-evaluation.lock.json","records/evaluations/IS-0005-U04-repeated-dashboard-result.json","records/evaluations/IS-0005-U04-public-repeated-dashboard-result.json","records/surface-receipts/IS-0005-U04-public-repeated-evaluation-replay.json"]},
     {"id":"EXIT-EVALUATION-REPORT","status":"pass","evidence":["records/evaluations/IS-0005-U04-repeated-dashboard-candidate.json","records/surface-receipts/IS-0005-U04-public-repeated-evaluation-replay.json","docs/evaluation-report.md"]},
-    {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
+    {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pass","evidence":["records/evaluations/IS-0005-U05-public-checkpoint.json","records/surface-receipts/IS-0005-public-checkpoint.json","records/surface-receipts/IS-0005-checkpoint-marker.json"]}
   ],
   "units": [
     {
@@ -161,13 +161,13 @@
       "depends_on": ["IS5-U04"],
       "action_class": "git_push",
       "human_gate": false,
-      "status": "in_progress",
+      "status": "complete",
       "inputs": ["Verified IS-0005 tree"],
       "outputs": ["Verified public checkpoint", "checkpoint-is-0005 marker", "Public dashboard and evaluation receipts"],
-      "gates": {},
-      "disposition": null,
+      "gates": {"closure_commit":"pass_04230dcc233c6a5064da5c8e8e1a54be51c19503_tree_ec2ed653","remote_main_before_marker":"pass_exact_equal","credential_free_clone":"pass_clean_before_after","verified_base_marker":"pass_checkpoint_is_0004_object_60b467a7_peeled_25328dac","dashboard_locks":"pass_9bc2785e_f9a24216_3afab378_c75fe0f9","regression_tests":"pass_133","mutation_suites":"pass_37_29_28_30","full_draft_2020_12":"pass_2_schemas_4_fixtures_6_exact_wheels_offline","real_dashboard_launcher":"pass_25_requests_port_56806_complete_teardown","rendered_browser_evidence":"pass_11_screenshots_prior_public_replay","real_repeated_evaluation":"pass_27_trials_135_requests_189_sources_0_false_3_recovery","git_integrity":"pass_full_strict","secret_scan":"pass_zero_matches_4_patterns","authority_boundary":"pass_missing_exit_12_before_after_no_workflow","runtime_boundary":"pass_zero_processes_0_containers_0_networks_exact_3_protected","annotated_marker":"pass_aba5e64fec406a57255a37601ba46091a800fb30_fetched_and_peeled"},
+      "disposition": "pass",
       "retained_failures": [],
-      "exit_condition_delta": {"expected":["EXIT-PUBLIC-CHECKPOINT"],"observed":[],"decision_value":"unknown","rationale":"The milestone closes only after exact public custody reproduces the rendered dashboard, scenario corpus, measurements, and marker."},
+      "exit_condition_delta": {"expected":["EXIT-PUBLIC-CHECKPOINT"],"observed":["EXIT-PUBLIC-CHECKPOINT"],"decision_value":"advances_exit","rationale":"Exact credential-free public custody reproduced the closure tree, real launcher, repeated evaluation, static and rendered identities, every mutation and integrity gate, missing approval, complete teardown, and independently fetched annotated marker."},
       "next_dependency": null
     }
   ],
@@ -193,12 +193,13 @@
       "Publicly reproduced closed dashboard projection, trust, state, scenario, visual, and evaluation contract with no server, browser, or Docker runtime",
       "Publicly reproduced the exact read-only loopback dashboard implementation and real Windows launcher with byte-identical responses, attack denial, missing approval, and complete process teardown",
       "Publicly reproduced the real rendered dashboard across desktop and all nine mobile states with calibrated claims, semantic and keyboard accessibility, responsive and visual gates, local-only browser requests, retained failures, and complete teardown",
-      "Publicly reproduced the fixed 27-trial dashboard evaluation with complete correctness, source coverage, claim calibration, recovery, measurements, integrity, and teardown"
+      "Publicly reproduced the fixed 27-trial dashboard evaluation with complete correctness, source coverage, claim calibration, recovery, measurements, integrity, and teardown",
+      "Verified exact IS-0005 closure commit and tree from public custody, then pushed and independently fetched annotated checkpoint-is-0005"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; U01 contract, U02 implementation, U03 rendered-browser, and U04 repeated-evaluation surfaces pass from public custody; U04 exact public candidate commit df8043bcbef59402e801ead7e724adbe696aae25 and tree 01c232991ab8150dedc7d0b1a35ee04c00626964 passed; IS5-U05 is the sole active checkpoint-closure unit",
-    "next_action": "Prepare the exact IS-0005 closure candidate, commit and push it, reproduce the complete dashboard-and-evaluation checkpoint from credential-free public custody, then create and independently verify checkpoint-is-0005 only after every gate passes.",
+    "current_checkpoint": "IS-0005 complete at independently verified annotated checkpoint-is-0005 object aba5e64fec406a57255a37601ba46091a800fb30, peeling to exact closure commit 04230dcc233c6a5064da5c8e8e1a54be51c19503 and tree ec2ed65325cea241978c16348166b3efded893a3",
+    "next_action": "Open IS-0006 from checkpoint-is-0005 with a contract-first portable-release gate covering packaged host CLI, clean install and clone, exact release artifacts, supply-chain receipts, exact-digest registry publication, downloaded-release verification, and v0.1.0 without weakening existing redistribution limits.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

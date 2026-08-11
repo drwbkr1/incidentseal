@@ -8,7 +8,7 @@
 | PostgreSQL | Migration, persistence, least privilege, journal, and fixed logical backup/clean restore verified from exact public custody | Integrated repeated recovery plus later packaged and downloaded-release verification |
 | Python runner | Synthetic real runner verified | Real isolated execution and output receipt |
 | Node runner | Synthetic real runner verified | Real isolated execution and output receipt |
-| Dashboard | Loopback-only implementation, real rendered QA, and locked 27-trial repeated evaluation verified from exact public custody | IS-0005 marker plus later packaged and downloaded-release verification |
+| Dashboard | Loopback-only implementation, real rendered QA, locked 27-trial evaluation, and checkpoint-is-0005 verified from exact public custody | Later packaged and downloaded-release verification |
 | Receipts | Portable custody and offline verification implemented and publicly replayed | Independent verification plus corruption and truncation rejection |
 | Recovery | Contract and fixed synthetic runtime matrix verified from exact public custody | Integration with backup/restore and later end-to-end approved-workflow verification |
 | Clean clone | Multiple bounded public paths verified; full product workflow pending | Fresh clone setup and end-to-end verification |

@@ -1,0 +1,33 @@
+{
+  "schema_version":"incidentseal-public-checkpoint/v1",
+  "receipt_id":"IS-RECEIPT-0005-U05-PUBLIC-CHECKPOINT",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U05",
+  "observed_at_utc":"2026-08-11T04:50:58Z",
+  "disposition":"pass",
+  "repository":{"name_with_owner":"drwbkr1/incidentseal","url":"https://github.com/drwbkr1/incidentseal","visibility_evidence":"credential-free HTTPS clone with credential helpers and terminal prompting disabled","default_branch":"main","origin":"https://github.com/drwbkr1/incidentseal.git"},
+  "candidate":{"commit":"04230dcc233c6a5064da5c8e8e1a54be51c19503","tree":"ec2ed65325cea241978c16348166b3efded893a3","local_head":"04230dcc233c6a5064da5c8e8e1a54be51c19503","remote_main_head_before_marker":"04230dcc233c6a5064da5c8e8e1a54be51c19503","heads_match":true,"source_worktree_clean":true},
+  "fresh_remote_clone":{"status":"PASS","commit":"04230dcc233c6a5064da5c8e8e1a54be51c19503","tree":"ec2ed65325cea241978c16348166b3efded893a3","initial_worktree_clean":true,"final_worktree_clean":true,"credential_helper_disabled":true,"terminal_prompt_disabled":true,"temporary_custody_removed":false,"temporary_custody_state":"retained-clean-noncanonical-outside-onedrive-and-runtime-custody","path":"C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is5-u05-checkpoint-04230dc"},
+  "checks":[
+    {"id":"remote-main-equality","status":"PASS","result":"Local and remote main matched exact IS-0005 closure commit 04230dcc233c6a5064da5c8e8e1a54be51c19503 before marker creation."},
+    {"id":"credential-free-clone","status":"PASS","result":"The exact public clone completed with credential helpers and terminal prompting disabled."},
+    {"id":"project-control","status":"PASS","result":"IS-0005 parsed with U01 through U04 complete, every pre-marker exit passed, and U05 as the sole active unit."},
+    {"id":"verified-base-marker","status":"PASS","result":"Remote and local checkpoint-is-0004 object 60b467a7 peeled to exact commit 25328dac."},
+    {"id":"dashboard-locks","status":"PASS","result":"Contract 9bc2785e, implementation f9a24216, browser 3afab378, and evaluation c75fe0f9 locks validated together."},
+    {"id":"unit-tests","status":"PASS","result":"All 133 repository tests passed from the exact closure clone."},
+    {"id":"dashboard-mutations","status":"PASS","result":"All 37 contract, 29 implementation, 28 browser, and 30 evaluation mutations failed closed."},
+    {"id":"full-schema-meta-validation","status":"PASS","result":"Two schemas and four fixtures passed Draft 2020-12 validation from six rehashed retained source-gated wheels without network."},
+    {"id":"real-dashboard-launcher","status":"PASS","result":"The real Windows launcher passed 25 requests on port 56806: five GETs, five HEADs, seven denied methods, four denied hosts, four denied targets, eight headers, exact response bytes, and teardown."},
+    {"id":"rendered-browser-evidence","status":"PASS","result":"The exact browser lock retained eleven real screenshots, one desktop and nine mobile states, keyboard semantics, responsive and accessibility gates, local-only requests, and prior public reproduction."},
+    {"id":"real-repeated-evaluation","status":"PASS","result":"The closure clone passed 27/27 cases, 135/135 responses, 189/189 source observations, nine stable HTML identities, three recovery transitions, and zero false claims."},
+    {"id":"state-separation","status":"PASS","result":"PASS, FAIL, INCONCLUSIVE, INVALID, completed, cancelled, failed, stale, superseded, missing, corrupt, and recovered evidence remain distinct."},
+    {"id":"git-object-integrity","status":"PASS","result":"git fsck --full --strict completed without findings in the closure clone."},
+    {"id":"credential-secret-scan","status":"PASS","result":"Four bounded high-confidence patterns returned zero repository matches."},
+    {"id":"authority-boundary","status":"PASS","result":"Approval remained MISSING / INVALID at exit 12 before and after; no workflow ran."},
+    {"id":"docker-residue","status":"PASS","result":"No IncidentSeal container, network, or disposable volume remained; all three protected volume identities remained exact."},
+    {"id":"checkpoint-marker","status":"PASS","result":"Annotated checkpoint-is-0005 object aba5e64f was pushed, fetched without credentials, identified as a tag, and peeled to exact closure commit 04230dcc."}
+  ],
+  "checkpoint_dashboard":{"implementation_port":56806,"implementation_requests":25,"implementation_server_closed":true,"repeated_trials":27,"repeated_requests":135,"cases_correct":27,"source_records_verified":189,"false_passes":0,"false_release_claims":0,"recovery_transitions":3,"servers_closed":27,"projection_latency_ms":{"minimum":"4.533700","median":"5.428600","p95_nearest_rank":"6.769300","maximum":"8.227000"},"render_latency_ms":{"minimum":"0.038200","median":"0.041000","p95_nearest_rank":"0.058600","maximum":"0.095900"},"peak_process_memory_bytes":{"minimum":28520448,"median":28770304,"p95_nearest_rank":29282304,"maximum":29286400},"response_bytes_per_five_gets":{"minimum":30462,"median":30523,"p95_nearest_rank":30552,"maximum":30552}},
+  "checkpoint_marker":{"name":"checkpoint-is-0005","kind":"annotated","tag_object":"aba5e64fec406a57255a37601ba46091a800fb30","peeled_commit":"04230dcc233c6a5064da5c8e8e1a54be51c19503","status":"pushed-and-independently-verified"},
+  "limitations":["This is a verified dashboard-and-evaluation checkpoint, not a versioned software release.","No workflow manifest is approved and no workflow was executed.","Packaging, image redistribution, registry publication, downloaded-release verification, release documentation, and v0.1.0 remain unverified."]
+}

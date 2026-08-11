@@ -2,7 +2,7 @@
 
 ## Current conclusion
 
-IncidentSeal has a verified public evidence-and-recovery checkpoint, not a releasable product. `checkpoint-is-0004` binds commit `25328dacef4d9283090bed809db75b33f613829b` through annotated tag object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`.
+IncidentSeal has a verified public dashboard-and-evaluation checkpoint, not a releasable product. `checkpoint-is-0005` binds commit `04230dcc233c6a5064da5c8e8e1a54be51c19503` through annotated tag object `aba5e64fec406a57255a37601ba46091a800fb30`.
 
 ## Verified surfaces
 
@@ -118,3 +118,9 @@ All 133 tests and 30 result mutations pass, as do the 37 contract, 29 implementa
 Exact credential-free public commit `df8043bcbef59402e801ead7e724adbe696aae25`, tree `01c232991ab8150dedc7d0b1a35ee04c00626964`, reproduced the full dataset and every surrounding gate. Public results again passed 27/27 cases, 135/135 requests, 189/189 source observations, nine stable HTML identities, three recovery transitions, and zero false claims. Lock identity, plan, HTML digests, correctness, requests, coverage, calibration, recovery, and teardown matched the local candidate exactly. Dynamic timing and memory were intentionally new observations: the public medians were 5.971200 ms projection, 0.040800 ms server-side render, and 28,831,744 bytes peak process memory; five-route response bytes remained exactly 30,462 to 30,552.
 
 The public clone passed 133 tests, all 37/29/28/30 mutation suites, strict Git integrity, and a zero-hit four-pattern secret scan. Approval remained `MISSING` / `INVALID` at exit `12` before and after; no workflow ran; no evaluator accessed Docker; every server closed; no IncidentSeal container or network exists; all three protected volume identities remain exact; and the clone is clean. `EXIT-SCENARIO-CORPUS` and `EXIT-EVALUATION-REPORT` pass. This proves the bounded dashboard and evaluation, not the final IS-0005 marker, packaging, registry, release, or v0.1.0.
+
+## IS-0005 verified public checkpoint
+
+Exact closure commit `04230dcc233c6a5064da5c8e8e1a54be51c19503`, tree `ec2ed65325cea241978c16348166b3efded893a3`, passed the complete credential-free checkpoint matrix. The fresh clone verified the prior base marker, all four dashboard locks, 133 tests, all 124 dashboard mutations, two schemas and four fixtures from six rehashed offline wheels, strict Git and secret integrity, the real 25-request launcher, and the final 27-trial evaluation with 27/27 correctness, 189/189 source coverage, zero false claims, three recovery transitions, and complete teardown.
+
+Approval remained `MISSING` / `INVALID` at exit `12` before and after; no workflow ran; no dashboard or evaluator accessed Docker; zero residual process, container, network, or disposable volume remained; and all three protected volume identities stayed exact. Annotated `checkpoint-is-0005` object `aba5e64fec406a57255a37601ba46091a800fb30` was pushed, fetched without credentials into the clean clone, identified as a tag object, and peeled locally and remotely to the exact closure commit. Every IS-0005 exit passes. Packaging, image redistribution, registry, downloaded-release, release-documentation, and v0.1.0 claims remain unverified.
