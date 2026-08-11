@@ -1,0 +1,68 @@
+{
+  "schema_version": "incidentseal-post-approval-public-replay/v1",
+  "receipt_id": "IS-RECEIPT-0006-U02-PUBLIC-POST-APPROVAL-REPLAY",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T20:10:59Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Credential-free public reproduction of the post-approval repeatability fix and repository-owned retained-run evidence. This does not approve or execute the new candidate manifest.",
+  "public_source": {
+    "repository": "https://github.com/drwbkr1/incidentseal.git",
+    "branch": "main",
+    "commit": "3d10dcd64a00c509580288b8a6435b35260535a9",
+    "git_tree": "b599fbf60d91863668362bf18ea521b10f6c5751",
+    "tree_digest": "sha256:b971734eabe7895d2b63320def9b410ed1956b77bdfb7677df80236d56b90469",
+    "credential_helpers_disabled": true,
+    "terminal_prompting_disabled": true,
+    "remote_main_equal": true,
+    "worktree_clean_before_and_after": true,
+    "clone_custody": "%LOCALAPPDATA%\\Temp\\IncidentSeal-U02-Replay-3d10dcd-20260811T2005Z\\repo"
+  },
+  "candidate_identity": {
+    "implementation_lock_digest": "sha256:6fefd277fdcf398939b5a1760a01e5f129b2a2d783492c44f518c1e9b32c4aeb",
+    "workflow_contract_lock_digest": "sha256:172cb06ad322a5659fa1c4be4691114424ecc57d43d26d52068933ab4a2261c2",
+    "topology_runtime_lock_digest": "sha256:e1753c068e7e5ead85bb9ed0818c4f4d46528d38240abfaf3c640866ae3bc487",
+    "checked_manifest_digest": "sha256:36adcb6c3cffd9978554fdf7ef6747f23dce959e974320485455d7fb33d4a6f4",
+    "checked_manifest_written": false,
+    "checked_manifest_approved": false
+  },
+  "checks": [
+    {"id":"complete-repository-tests","status":"PASS","observed":{"passed":163,"failed":0,"real_approval_present":true,"approval_mutated":false}},
+    {"id":"focused-workflow-tests","status":"PASS","observed":{"passed":23,"failed":0}},
+    {"id":"implementation-mutations","status":"PASS","observed":{"passed":29,"total":29,"runtime_started":false}},
+    {"id":"implementation-validator","status":"PASS","observed":{"locked_files":22,"runtime_dependencies":0,"runtime_started":false,"approval_mutation_command":false}},
+    {"id":"independent-node-gate","status":"PASS","observed":{"supported_runners":["python","node"],"runtime_network":"none","packaging_status":"planned"}},
+    {"id":"milestone-control","status":"PASS","observed":{"valid":true,"active_unit":"IS6-U02","authority_active":true,"packaging_active":false}},
+    {"id":"deterministic-manifest-check","status":"PASS","observed":{"mode":"check-only","approval_written":false,"manifest_digest":"sha256:36adcb6c3cffd9978554fdf7ef6747f23dce959e974320485455d7fb33d4a6f4"}},
+    {"id":"git-integrity","status":"PASS","observed":{"fsck_strict":true,"remote_main_equal":true,"worktree_clean":true}},
+    {"id":"high-confidence-secret-scan","status":"PASS","observed":{"patterns":4,"matches":0}},
+    {"id":"docker-custody","status":"PASS","observed":{"containers":[],"networks":[],"protected_volumes":3,"protected_identities_unchanged":true}}
+  ],
+  "retained_external_evidence_rehash": {
+    "approval_artifact": {"digest":"sha256:56336362e8b7377b311d691b5c3a73637efdd44cbda80dffce9b8e49e299701b","bytes":605},
+    "event_archive": {"digest":"sha256:2a8dc81c2fc2ac2d7738d596f61704b56ea23e5f89142d37a54ab2daea128b1e","bytes":6744},
+    "python_record": {"digest":"sha256:71201f306e36113e36a445aa8f211d261ade4ff61d1ab0866bebd4ebd4ae3796","bytes":1266},
+    "node_record": {"digest":"sha256:0cd506810b1f715ecaa1803f89c859f70ef32e616183271db5b5c3d48dae0c8a","bytes":1190},
+    "terminal_receipt": {"digest":"sha256:75ff3e2a96400792ab5fa6da7c4ce9852125d31bc84202a22546517ad05095e4","bytes":1309},
+    "all_exact": true
+  },
+  "protected_volume_identity": {
+    "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
+    "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
+    "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
+  },
+  "retained_attempts": {
+    "path": "records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json",
+    "new_invalid": "IS6-U02-PUBLIC-IMPLEMENTATION-INVALID-002"
+  },
+  "non_claims": [
+    "The approved digest 969c0626 authorizes only the retained source commit 3c47f16d manifest, not this public candidate.",
+    "Check-only digest 36adcb6c precedes this receipt commit and is not the final handoff digest.",
+    "No workflow, package, image, tag, registry artifact, or release was executed or published."
+  ],
+  "decision": {
+    "status": "pass-public-post-approval-remediation",
+    "next": "Commit this evidence-only receipt, verify exact public equality, rematerialize the final ignored manifest, and require matching external operator approval before the next real run."
+  }
+}

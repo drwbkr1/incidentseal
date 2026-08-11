@@ -97,7 +97,10 @@
       "implementation_mutations": "29/29 PASS",
       "runtime_started": false,
       "production_approval_mutated": false,
-      "public_replay_complete": false,
+      "public_replay_complete": true,
+      "public_replay_commit": "3d10dcd64a00c509580288b8a6435b35260535a9",
+      "public_replay_tree": "b599fbf60d91863668362bf18ea521b10f6c5751",
+      "public_replay_receipt": "records/surface-receipts/IS-0006-U02-public-post-approval-replay.json",
       "approved_manifest_materialized": false
     }
   },
@@ -115,6 +118,6 @@
   ],
   "decision": {
     "status": "pass-retained-real-workflow-current-remediation-needs-reapproval",
-    "next": "Commit and push the post-approval repeatability fix and evidence, reproduce the exact public candidate without credentials, materialize its new exact manifest, obtain matching external approval, and rerun the real workflow before closing IS6-U02."
+    "next": "Commit and push the public replay receipt, verify exact public equality, materialize the final exact manifest, obtain matching external approval, and rerun the real workflow before closing IS6-U02."
   }
 }

@@ -41,13 +41,15 @@
     {"id":"post-run-custody","status":"PASS","observed":{"containers":[],"networks":[],"protected_volumes":3,"protected_identities_unchanged":true}},
     {"id":"tracked-repository-custody","status":"PASS","observed":{"worktree_clean":true,"approval_external":true,"run_evidence_external":true}}
   ],
-  "public_replay_complete": false,
+  "public_replay_complete": true,
+  "public_replay_receipt": "records/surface-receipts/IS-0006-U02-public-post-approval-replay.json",
   "post_approval_repeatability": {
     "initial_repository_tests": "160 PASS / 3 FAIL",
     "retained_as": "FAIL",
     "current_remediated_tests": "163/163 PASS",
     "current_implementation_lock_digest": "sha256:6fefd277fdcf398939b5a1760a01e5f129b2a2d783492c44f518c1e9b32c4aeb",
-    "current_public_replay_complete": false,
+    "current_public_replay_complete": true,
+    "current_public_replay_commit": "3d10dcd64a00c509580288b8a6435b35260535a9",
     "current_manifest_approved": false
   },
   "evaluation": "records/evaluations/IS-0006-U02-approved-workflow-candidate.json",

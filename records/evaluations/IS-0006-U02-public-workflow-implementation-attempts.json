@@ -2,7 +2,7 @@
   "schema_version": "incidentseal-workflow-implementation-public-attempts/v1",
   "checkpoint_id": "IS-0006",
   "unit_id": "IS6-U02",
-  "observed_at_utc": "2026-08-11T18:38:44Z",
+  "observed_at_utc": "2026-08-11T20:08:00Z",
   "attempts": [
     {
       "attempt_id": "IS6-U02-PUBLIC-IMPLEMENTATION-SUPERSEDED-001",
@@ -51,6 +51,19 @@
       "product_runtime_started": false,
       "production_approval_written": false,
       "corrected_by": "The credential-free clone was started from the canonical repository working directory, then every replay command ran inside the new exact public clone."
+    },
+    {
+      "attempt_id": "IS6-U02-PUBLIC-IMPLEMENTATION-INVALID-002",
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "surface": "post-approval public materializer check wrapper",
+      "cause": "The first public wrapper used an unsupported --preview argument, so the materializer returned usage failure before inspecting, writing, approving, or executing workflow input.",
+      "git_started": false,
+      "docker_accessed": false,
+      "product_runtime_started": false,
+      "production_approval_written": false,
+      "production_approval_mutated": false,
+      "corrected_by": "The documented read-only --check mode is used from the existing clean exact public clone."
     }
   ]
 }
