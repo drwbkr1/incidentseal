@@ -1,0 +1,57 @@
+{
+  "schema_version": "incidentseal-workflow-implementation-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0006-U02-WORKFLOW-IMPLEMENTATION",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T18:51:21Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Credential-free public reproduction of the bounded verifier implementation, deterministic real-manifest projection, independent Node release gate, synthetic exact-image execution, and recovery/state matrix. External approval and the real exact-manifest workflow remain pending.",
+  "public_identity": {
+    "repository": "https://github.com/drwbkr1/incidentseal.git",
+    "commit": "04fd05250deb6d77eb747dc48036d572c49753ef",
+    "git_tree": "6ea70c274d1c98d7fdde29f4386262769e674eab",
+    "tree_digest": "sha256:67a2298b37f4c36b5e1d8ff2fd3ae7cfc62572db676822d15b15fcc2a56c640a",
+    "remote_main_equal": true,
+    "worktree_clean_before_and_after": true
+  },
+  "identity": {
+    "implementation_lock_digest": "sha256:d58e5658d9664d22c7d01b19cc1586c8e8b807c2c691cd141033386194cb6fff",
+    "workflow_contract_lock_digest": "sha256:172cb06ad322a5659fa1c4be4691114424ecc57d43d26d52068933ab4a2261c2",
+    "topology_runtime_lock_digest": "sha256:e1753c068e7e5ead85bb9ed0818c4f4d46528d38240abfaf3c640866ae3bc487",
+    "preview_manifest_digest": "sha256:f8e074c59c38d989db3644d8f3f505058f7d696d3f8ac9fd74b216a885a38550",
+    "workflow_id": "incidentseal.v0.1.0.prepackage"
+  },
+  "checks": [
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"credential_helpers_disabled":true,"terminal_prompting_disabled":true,"exact_commit":true,"exact_tree":true,"remote_main_equal":true,"clean_before_and_after":true}},
+    {"id":"deterministic-manifest-preview","status":"PASS","observed":{"state":"checked","fixed_path":".incidentseal/workflow.json","manifest_digest":"sha256:f8e074c59c38d989db3644d8f3f505058f7d696d3f8ac9fd74b216a885a38550","approval_written":false}},
+    {"id":"implementation-lock","status":"PASS","observed":{"locked_files":22,"lock_digest":"sha256:d58e5658d9664d22c7d01b19cc1586c8e8b807c2c691cd141033386194cb6fff"}},
+    {"id":"repository-tests","status":"PASS","observed":{"passed":163,"failed":0,"errors":0}},
+    {"id":"mutation-programs","status":"PASS","observed":{"passed":20,"total":20,"implementation_mutations":29}},
+    {"id":"complete-lock-graph","status":"PASS","observed":{"lock_files":22,"path_digest_bindings":365,"mismatches":0}},
+    {"id":"independent-node-release-gate","status":"PASS","observed":{"locked_files":22,"supported_runners":["python","node"],"approval_mutation_command":false,"runtime_network":"none","packaging_status":"planned"}},
+    {"id":"real-two-runner-synthetic-probe","status":"PASS","observed":{"step_ids":["node","python"],"event_count":10,"lifecycle":"completed","process_exit_code":0,"claim_permitted":true,"remaining_owned_containers":0,"production_approval_written":false}},
+    {"id":"real-recovery-state-probe","status":"PASS","observed":{"scenarios":9,"failure":"FAIL","missing_evidence":"INCONCLUSIVE","stale":"stale","cancelled":"cancelled","same_key_resume":true,"started_step_reobserved":true,"terminal_immutable":true,"different_digest_separated":true,"unowned_runtime_untouched":true}},
+    {"id":"production-authority-boundary","status":"PASS","observed":{"approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"invocation_id":"35c02cb3-c023-4026-88ef-44401f24dd0c","workflow_executed":false}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"dangling_annotated_checkpoint_tags":5,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"docker-custody-boundary","status":"PASS","observed":{"containers":[],"networks":[],"protected_volumes":3,"protected_identities_unchanged":true}},
+    {"id":"release-boundary","status":"PASS","observed":{"package_built":false,"image_built":false,"image_published":false,"release_published":false}}
+  ],
+  "retained_attempts": {
+    "failures": {"path":"records/evaluations/IS-0006-U02-workflow-implementation-failures.json","count":2},
+    "implementation_invalid": {"path":"records/evaluations/IS-0006-U02-workflow-implementation-invalid-attempts.json","count":6},
+    "public_superseded_pass": {"path":"records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json","count":1},
+    "public_invalid": {"path":"records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json","count":1}
+  },
+  "surface_receipt": "records/surface-receipts/IS-0006-U02-public-workflow-implementation-replay.json",
+  "non_claims": [
+    "The preview manifest is commit-specific and will change after this public receipt is committed.",
+    "No production manifest has been approved or executed.",
+    "Synthetic temporary authority is not operator authority.",
+    "No package, image, registry, tag, or release gate advances before the real approved workflow passes."
+  ],
+  "decision": {
+    "status": "pass-public-implementation-replay-real-approval-required",
+    "next": "Commit and push this evidence-only replay receipt, verify public equality, materialize the final exact ignored manifest, and request the operator's exact interactive approval before executing it."
+  }
+}

@@ -39,6 +39,18 @@
       },
       "superseded_by": "The additive deterministic real-manifest materializer and independent Node release gate changed the implementation lock after this exact public PASS.",
       "claim_effect": "Retained public PASS for the core verifier implementation; not current U02 closure evidence and not a real approved workflow."
+    },
+    {
+      "attempt_id": "IS6-U02-PUBLIC-IMPLEMENTATION-INVALID-001",
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "surface": "current public-clone wrapper",
+      "cause": "The first clone tool call selected the intended new clone path as its working directory before that directory existed, so the tool rejected the call before Git ran.",
+      "git_started": false,
+      "docker_accessed": false,
+      "product_runtime_started": false,
+      "production_approval_written": false,
+      "corrected_by": "The credential-free clone was started from the canonical repository working directory, then every replay command ran inside the new exact public clone."
     }
   ]
 }

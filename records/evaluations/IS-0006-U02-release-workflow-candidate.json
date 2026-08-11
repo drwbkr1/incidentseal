@@ -32,7 +32,8 @@
   ],
   "retained_attempts": {
     "implementation_invalid": {"path":"records/evaluations/IS-0006-U02-workflow-implementation-invalid-attempts.json","count":6},
-    "superseded_public_pass": {"path":"records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json","count":1}
+    "superseded_public_pass": {"path":"records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json","count":1},
+    "public_invalid": {"path":"records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json","count":1}
   },
   "non_claims": [
     "The manifest has not been materialized because the candidate worktree is intentionally dirty before commit.",
