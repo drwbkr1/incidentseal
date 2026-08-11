@@ -63,7 +63,7 @@ Progress: `IS5-U01` through `IS5-U05` passed. Exact closure commit `04230dcc...`
 
 Status: active
 
-Progress: `IS6-U01` passes from exact credential-free public commit `f66409b3...`, tree `1aae10e6...`, under lock `sha256:8b1254d9...`. `IS6-U02` now has a local runtime-free execution-contract candidate under lock `sha256:61ddf9be...`: Python and Node only, exact clean Git identity, copy-only declared inputs, exact-image direct argv, no network/secret/shell/persistent output, append-only run evidence, digest-scoped resume, exact-owned cancellation, 47 mutations, 150 tests, and offline full-schema validation. Public contract replay remains before implementation; no package, image, tag, release, workflow, access, or repository setting has changed.
+Progress: `IS6-U01` passes from exact public custody. The U02 runtime-free execution contract now passes from credential-free public commit `bcc8583e...`, tree `6d1cba99...`, under lock `sha256:61ddf9be...`: Python and Node only, exact clean Git identity, copy-only declared inputs, exact-image direct argv, no network/secret/shell/persistent output, append-only run evidence, digest-scoped resume, exact-owned cancellation, 47 mutations, 150 tests, and offline full-schema validation. One public aggregate timeout remains `INCONCLUSIVE`; separately bounded checks passed. Implementation is next; no package, image, tag, release, workflow, access, or repository setting has changed.
 
 - Packaged host CLI and documented clean-clone path.
 - SBOM, SLSA provenance, vulnerability, hardening, reproducibility, and registry receipts.

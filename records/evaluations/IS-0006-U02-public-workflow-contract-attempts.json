@@ -1,0 +1,19 @@
+{
+  "schema_version": "incidentseal-retained-attempts/v1",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T16:52:25Z",
+  "attempts": [
+    {
+      "attempt_id": "IS6-U02-PUBLIC-CONTRACT-ATTEMPT-001",
+      "execution_state": "failed",
+      "verification_verdict": "INCONCLUSIVE",
+      "surface": "aggregate post-replay integrity wrapper",
+      "cause": "The combined read-only control, policy, Docker, Git, secret, worktree, and remote wrapper exceeded its process timeout without returning usable output.",
+      "product_runtime_started": false,
+      "approval_written": false,
+      "workflow_executed": false,
+      "corrected_by": "Each read-only check was rerun separately with bounded timeouts and passed; the product test and schema replay had already passed independently."
+    }
+  ]
+}

@@ -108,8 +108,8 @@
       "status":"in_progress",
       "inputs":["Frozen release and workflow-verification contract","External operator approval boundary","Exact runner and runtime locks"],
       "outputs":["Stable incidentseal verify machine command","Digest-bound staged Python and Node execution","Append-only internal event evidence","Cancellation and resume receipts","Credential-free public replay"],
-      "gates":{"execution_contract_lock":"pass","contract_mutations":"47/47 pass","repository_tests":"150 pass","draft_2020_12":"pass","credential_free_contract_replay":"pending","implementation":"pending","real_approved_workflow":"pending"},"disposition":"continue","retained_failures":["The contract cycle retains one INVALID read-only path lookup in records/evaluations/IS-0006-U02-workflow-contract-invalid-attempts.json; it did not access Docker or execute product code."],
-      "exit_condition_delta":{"expected":["EXIT-APPROVED-WORKFLOW-VERIFICATION"],"observed":[],"decision_value":"enables_dependency","rationale":"The runtime-free local execution contract passes its exact lock, 150 tests, 47 mutations, offline full-schema validation, missing-approval boundary, and Docker custody checks. Exact public contract replay, implementation, an operator-approved manifest, and real workflow evaluation remain required."},
+      "gates":{"execution_contract_lock":"pass","contract_mutations":"47/47 pass","repository_tests":"150 pass","draft_2020_12":"pass","credential_free_contract_replay":"pass","implementation":"pending","real_approved_workflow":"pending"},"disposition":"continue","retained_failures":["The contract cycle retains one INVALID read-only path lookup in records/evaluations/IS-0006-U02-workflow-contract-invalid-attempts.json; it did not access Docker or execute product code.","The public contract replay retains one INCONCLUSIVE aggregate read-only timeout in records/evaluations/IS-0006-U02-public-workflow-contract-attempts.json; separately bounded control, policy, Docker, Git, secret, worktree, and remote checks passed."],
+      "exit_condition_delta":{"expected":["EXIT-APPROVED-WORKFLOW-VERIFICATION"],"observed":[],"decision_value":"enables_dependency","rationale":"Exact credential-free public commit bcc8583e and tree 6d1cba99 reproduced the runtime-free execution contract, 150 tests, 47 mutations, offline full-schema validation, control, missing-approval, Docker custody, Git integrity, secret scan, and clean remote equality. Implementation, an operator-approved manifest, and real workflow evaluation remain required."},
       "next_dependency":"IS6-U03"
     },
     {
@@ -193,11 +193,12 @@
       ,"Validated the local runtime-free candidate with 141 tests and offline Draft 2020-12 evaluation from six retained exact source-gated wheels without building, running, or publishing an artifact"
       ,"Reproduced the exact U01 contract from credential-free public commit f66409b3e17ed610aef29b38b8c40b4b18b5d805 and tree 1aae10e60529c11fd5c6b0d67b357fe71ffb55c9 with 141 tests, 53 mutations, offline full-schema validation, strict Git and secret integrity, missing approval, exact Docker custody, and no public release"
       ,"Froze the local U02 approved-workflow execution profile under lock sha256:61ddf9bec88d28ce7e9e2eed29c3a768226fb8a1e3778bcd43968954c534fb5f with Python and Node only, copy-only exact-tree staging, exact-image isolation, append-only evidence, digest-scoped resume, exact-owned cancellation, 47 fail-closed mutations, 150 tests, and offline full-schema validation without Docker or workflow execution"
+      ,"Reproduced the U02 execution contract from credential-free public commit bcc8583ec3b6d25a7ff459071b8f7ca65e408940 and tree 6d1cba99e539e7d7b5a363557e8aeea00d34d34d with all static, mutation, schema, authority, Docker custody, Git, secret, and clean-remote gates"
     ]
   },
   "handoff": {
     "current_checkpoint":"IS-0006 active from independently verified checkpoint-is-0005; U01 passes from credential-free public commit f66409b3e17ed610aef29b38b8c40b4b18b5d805 and tree 1aae10e60529c11fd5c6b0d67b357fe71ffb55c9; U02 is the sole active unit",
-    "next_action":"Commit and push the exact runtime-free U02 workflow execution contract, then reproduce it from credential-free public custody before implementing the verify command or requesting operator approval.",
+    "next_action":"Implement the exact bounded verify and read-only workflow event surfaces under the publicly reproduced U02 contract, validate all negative and synthetic paths, and defer operator approval until the fixed real candidate manifest is ready.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not alter or automate operator approval or execute repository workflow input",
