@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/drwbkr1/incidentseal/main/schemas/workflow-execution-contract-v1.schema.json",
+  "title": "IncidentSeal workflow execution contract v1",
+  "description": "Exact closed release contract for the first approved Python and Node workflow execution profile.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","contract_id","revision","identity","authority","repository","staging","runtime","evidence","recovery","claim","cli","release_gate"],
+  "properties": {
+    "schema_version": {"const":"incidentseal-workflow-execution-contract/v1"},
+    "contract_id": {"const":"INCIDENTSEAL-WORKFLOW-EXECUTION-001"},
+    "revision": {"const":1},
+    "identity": {
+      "type":"object","additionalProperties":false,
+      "required":["manifest_schema","approval_schema","command","event_stream_command"],
+      "properties":{
+        "manifest_schema":{"const":"incidentseal-workflow/v1"},
+        "approval_schema":{"const":"incidentseal-manifest-approval/v1"},
+        "command":{"const":"incidentseal verify --manifest PATH --json"},
+        "event_stream_command":{"const":"incidentseal run events --run-id ID --jsonl"}
+      }
+    },
+    "authority": {
+      "type":"object","additionalProperties":false,
+      "required":["required_status","exact_manifest_digest","exact_workflow_id","exact_repository_remote","exact_manifest_path","unexpired","agent_can_approve","recheck_before_each_step","non_match_verdict","non_match_exit"],
+      "properties":{
+        "required_status":{"const":"MATCH"},"exact_manifest_digest":{"const":true},"exact_workflow_id":{"const":true},
+        "exact_repository_remote":{"const":true},"exact_manifest_path":{"const":true},"unexpired":{"const":true},
+        "agent_can_approve":{"const":false},"recheck_before_each_step":{"const":true},
+        "non_match_verdict":{"const":"INVALID"},"non_match_exit":{"const":12}
+      }
+    },
+    "repository": {
+      "type":"object","additionalProperties":false,
+      "required":["manifest_inside_git_worktree","origin_remote_exact","head_commit_exact","worktree_clean","tree_digest_algorithm","tree_digest_command","tracked_regular_files_only","symlinks_denied","submodules_denied"],
+      "properties":{
+        "manifest_inside_git_worktree":{"const":true},"origin_remote_exact":{"const":true},"head_commit_exact":{"const":true},
+        "worktree_clean":{"const":true},"tree_digest_algorithm":{"const":"sha256-git-ls-tree-z-v1"},
+        "tree_digest_command":{"const":["git","ls-tree","-r","-z","--full-tree","COMMIT"]},
+        "tracked_regular_files_only":{"const":true},"symlinks_denied":{"const":true},"submodules_denied":{"const":true}
+      }
+    },
+    "staging": {
+      "type":"object","additionalProperties":false,
+      "required":["source","copy_only","read_only_runtime_mount","manifest_cwd_beneath_workspace","overlapping_inputs_denied","persistent_outputs_supported","maximum_files","maximum_total_bytes","repository_custody_denied","onedrive_custody_denied","symlink_reparse_escape_denied","temporary_staging_removed_after_terminal"],
+      "properties":{
+        "source":{"const":"exact-commit-declared-inputs-only"},"copy_only":{"const":true},
+        "read_only_runtime_mount":{"const":"/workspace"},"manifest_cwd_beneath_workspace":{"const":true},
+        "overlapping_inputs_denied":{"const":true},"persistent_outputs_supported":{"const":false},
+        "maximum_files":{"const":4096},"maximum_total_bytes":{"const":104857600},
+        "repository_custody_denied":{"const":true},"onedrive_custody_denied":{"const":true},
+        "symlink_reparse_escape_denied":{"const":true},"temporary_staging_removed_after_terminal":{"const":true}
+      }
+    },
+    "runtime": {
+      "type":"object","additionalProperties":false,
+      "required":["supported_runners","unsupported_runner_verdict","unsupported_runner_exit","image_authority","direct_argv_without_shell","host_cli_owns_docker","docker_socket","secrets","privileged","host_network","runtime_network","broad_host_mounts","read_only_root","numeric_user","capabilities","no_new_privileges","pids_limit","memory_bytes","tmpfs","environment_allowlist","host_environment_forwarded","exact_run_and_step_labels","exact_owned_container_stop_only"],
+      "properties":{
+        "supported_runners":{"const":["python","node"]},"unsupported_runner_verdict":{"const":"INVALID"},
+        "unsupported_runner_exit":{"const":12},"image_authority":{"const":"requirements/topology-runtime.lock.json#exact-image-id"},
+        "direct_argv_without_shell":{"const":true},"host_cli_owns_docker":{"const":true},"docker_socket":{"const":"denied"},
+        "secrets":{"const":"denied"},"privileged":{"const":false},"host_network":{"const":false},
+        "runtime_network":{"const":"none"},"broad_host_mounts":{"const":"denied"},"read_only_root":{"const":true},
+        "numeric_user":{"const":"65532:65532"},"capabilities":{"const":"drop-all"},"no_new_privileges":{"const":true},
+        "pids_limit":{"const":64},"memory_bytes":{"const":536870912},
+        "tmpfs":{"const":"/tmp:size=67108864,mode=0700,uid=65532,gid=65532"},
+        "environment_allowlist":{"const":["HOME","PYTHONDONTWRITEBYTECODE","PYTHONHASHSEED","TZ"]},
+        "host_environment_forwarded":{"const":false},"exact_run_and_step_labels":{"const":true},
+        "exact_owned_container_stop_only":{"const":true}
+      }
+    },
+    "evidence": {
+      "type":"object","additionalProperties":false,
+      "required":["state_root","outside_repository","outside_onedrive","restrictive_custody","append_only_events","event_schema","agent_event_stream_read_only","event_rewrite_denied","atomic_fsync_before_progress","content_addressed_step_records","capture_policy_from_manifest","capture_limit_enforced_before_write","portable_receipt_after_terminal","verification_verdicts","lifecycle_states","retain_attempts"],
+      "properties":{
+        "state_root":{"const":"platform-default-incidentseal-runs-v1"},"outside_repository":{"const":true},
+        "outside_onedrive":{"const":true},"restrictive_custody":{"const":true},"append_only_events":{"const":true},
+        "event_schema":{"const":"incidentseal-run-event/v1"},"agent_event_stream_read_only":{"const":true},
+        "event_rewrite_denied":{"const":true},"atomic_fsync_before_progress":{"const":true},
+        "content_addressed_step_records":{"const":true},"capture_policy_from_manifest":{"const":true},
+        "capture_limit_enforced_before_write":{"const":true},"portable_receipt_after_terminal":{"const":true},
+        "verification_verdicts":{"const":["PASS","FAIL","INCONCLUSIVE","INVALID"]},
+        "lifecycle_states":{"const":["queued","running","completed","cancelled","failed","stale","superseded"]},
+        "retain_attempts":{"const":"all"}
+      }
+    },
+    "recovery": {
+      "type":"object","additionalProperties":false,
+      "required":["active_key","same_key_resumes_nonterminal_run","different_digest_never_resumes","terminal_run_never_rewritten","safe_step_replay_basis","started_step_reobserved_before_replay","unknown_owned_runtime","conflicting_owned_runtime","interrupt_stops_exact_owned_container","interrupt_lifecycle","interrupt_verdict","interrupt_exit"],
+      "properties":{
+        "active_key":{"const":"repository-remote+workflow-id+manifest-digest+commit+tree-digest"},
+        "same_key_resumes_nonterminal_run":{"const":true},"different_digest_never_resumes":{"const":true},
+        "terminal_run_never_rewritten":{"const":true},
+        "safe_step_replay_basis":{"const":"read-only-input-no-network-no-persistent-output"},
+        "started_step_reobserved_before_replay":{"const":true},"unknown_owned_runtime":{"const":"INCONCLUSIVE"},
+        "conflicting_owned_runtime":{"const":"FAIL"},"interrupt_stops_exact_owned_container":{"const":true},
+        "interrupt_lifecycle":{"const":"cancelled"},"interrupt_verdict":{"const":null},"interrupt_exit":{"const":20}
+      }
+    },
+    "claim": {
+      "type":"object","additionalProperties":false,
+      "required":["required_steps_all_pass","dependency_order_enforced","unexpected_step_exit","missing_required_evidence","invalid_policy_input_or_custody","non_completed_lifecycle_verdict","claim_permitted_only_on_pass"],
+      "properties":{
+        "required_steps_all_pass":{"const":true},"dependency_order_enforced":{"const":true},
+        "unexpected_step_exit":{"const":"FAIL"},"missing_required_evidence":{"const":"INCONCLUSIVE"},
+        "invalid_policy_input_or_custody":{"const":"INVALID"},"non_completed_lifecycle_verdict":{"const":null},
+        "claim_permitted_only_on_pass":{"const":true}
+      }
+    },
+    "cli": {
+      "type":"object","additionalProperties":false,
+      "required":["stdout","stderr","data_includes_run_id","evidence_references_include_sha256","process_exit_matches_envelope","pass_exit","fail_exit","inconclusive_exit","invalid_exit","cancelled_exit","failed_lifecycle_exit","stale_exit","superseded_exit"],
+      "properties":{
+        "stdout":{"const":"one-incidentseal-cli-envelope-v1-json-line"},"stderr":{"const":"diagnostics-only"},
+        "data_includes_run_id":{"const":true},"evidence_references_include_sha256":{"const":true},
+        "process_exit_matches_envelope":{"const":true},"pass_exit":{"const":0},"fail_exit":{"const":10},
+        "inconclusive_exit":{"const":11},"invalid_exit":{"const":12},"cancelled_exit":{"const":20},
+        "failed_lifecycle_exit":{"const":21},"stale_exit":{"const":22},"superseded_exit":{"const":23}
+      }
+    },
+    "release_gate": {
+      "type":"object","additionalProperties":false,
+      "required":["required_before_packaging","credential_free_public_replay_required","package_build_before_pass"],
+      "properties":{
+        "required_before_packaging":{"const":true},"credential_free_public_replay_required":{"const":true},
+        "package_build_before_pass":{"const":false}
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "incidentseal-invalid-attempts/v1",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T15:37:28Z",
+  "attempts": [
+    {
+      "attempt_id": "IS6-U02-CONTRACT-INVALID-001",
+      "execution_state": "failed",
+      "verification_verdict": "INVALID",
+      "surface": "read-only runner-image source inspection",
+      "cause": "The first lookup requested containers/python-runner.Dockerfile and containers/node-runner.Dockerfile instead of the repository's nested Dockerfile paths.",
+      "product_runtime_started": false,
+      "docker_accessed": false,
+      "approval_written": false,
+      "workflow_executed": false,
+      "corrected_by": "The nested containers/python-runner/Dockerfile and containers/node-runner/Dockerfile paths were inspected read-only."
+    }
+  ]
+}

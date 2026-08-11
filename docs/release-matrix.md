@@ -3,7 +3,7 @@
 | Surface | Current state | Required release evidence |
 |---|---|---|
 | Packaged host CLI | Checkout CLI verified; package not built | Fresh install plus retained real JSON/JSONL schema and exit-code receipts |
-| Manifest authority | Digest and operator boundary verified; no manifest approved; release contract requires the bounded verifier before packaging | Approved digest, real verifier, mutation rejection, agent-safe approval denial, cancellation and idempotent resume |
+| Manifest authority | Digest and operator boundary verified; no manifest approved; bounded Python/Node execution contract is locally locked and package-blocking | Public contract replay, implementation, approved digest, real verifier, mutation rejection, cancellation and idempotent resume |
 | Compose topology | Local and public-clone runtime verified; images not redistributed | Canonical rendered config, exact image digests, live identity and health |
 | PostgreSQL | Migration, persistence, least privilege, journal, and fixed logical backup/clean restore verified from exact public custody | Integrated repeated recovery plus later packaged and downloaded-release verification |
 | Python runner | Synthetic real runner verified | Real isolated execution and output receipt |

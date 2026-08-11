@@ -1,0 +1,66 @@
+{
+  "schema_version": "incidentseal-workflow-verification-contract-lock/v1",
+  "contract_id": "INCIDENTSEAL-WORKFLOW-EXECUTION-001",
+  "revision": 1,
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "generated_at_utc": "2026-08-11T15:34:25Z",
+  "files": [
+    {"path":"AGENTS.md","sha256":"sha256:3fc3b939ba5f0003d21cb21bbd5cdf5a42112295959e6fc269733465d13bb562"},
+    {"path":"docs/workflow-verification-contract.md","sha256":"sha256:e2e744de297b8c672944a582c2e7c35536f8fd9441bc970bcb5f5511516bb8dc"},
+    {"path":"docs/decisions/ADR-0012-bounded-python-node-workflow-profile.md","sha256":"sha256:a051158474a362ae3252376fc811bad3aa0a225056a3c507b1dc31a7434487a6"},
+    {"path":"fixtures/workflow-verification/execution-contract.invalid.minimal.json","sha256":"sha256:7edcd753c51501b4eabd93a48898603a6170d5e29a45ea93f84cb6fe299478d8"},
+    {"path":"fixtures/workflow-verification/execution-contract.valid.json","sha256":"sha256:ce99956753e14efaa41dcebfb282b99225addfedffd562c78c08941de9bffd09"},
+    {"path":"fixtures/workflow-verification/mutations.json","sha256":"sha256:bbc6e28131f83af4c83c579c2893eadf64646e71aa385f5f4a20826608de4b47"},
+    {"path":"schemas/workflow-execution-contract-v1.schema.json","sha256":"sha256:bde70cec5b44d4733c900953a8052be8763cc76f7aa00b66888d8494c1a76588"},
+    {"path":"scripts/run_workflow_contract_meta_validation.py","sha256":"sha256:0d7204d39f64e37cb1c04d64e20ff37e407b8d70f96b7b032678869dea5a95c3"},
+    {"path":"scripts/test_workflow_contract_mutations.py","sha256":"sha256:96c9b6851c5c04ea5997865c9c32a164a5eb3b9a4dc18d1f352ff287dc12e888"},
+    {"path":"scripts/validate_workflow_contract.py","sha256":"sha256:8674a45209ce16092017480f79aeff5c7b110daca0afdca2337caa56b06a42e3"},
+    {"path":"scripts/validate_workflow_contract_lock.py","sha256":"sha256:557bac7117a3d930593488731084c16fc897d4ba90f747cb8bb7079dfe02d01d"},
+    {"path":"scripts/validate_workflow_contract_schema_meta.py","sha256":"sha256:49a74946c2ed7aa5a44985badce27f95727612583bddbe8d4794ac23e1cf38a6"},
+    {"path":"src/incidentseal/workflow_contract.py","sha256":"sha256:aa6565f5fcfa4051f247123c3d1535e238e9d3f4808b24aa6276a55b8534539a"},
+    {"path":"tests/test_workflow_contract.py","sha256":"sha256:147d830c62dba871528e575e08cc2b3415009dcb2d5d6734541ae10b22e1d726"}
+  ],
+  "bindings": [
+    {"path":"docs/product-contract.md","sha256":"sha256:b523d238481adc2695d8c7b6a7954dd112e8a845c06782ee85e050ba54b5d1e5"},
+    {"path":"docs/manifest-authority.md","sha256":"sha256:d18411d16d56cfc903d24f8b2dea4b8c787e1faf514e30a73a6f5d8d345abf2c"},
+    {"path":"docs/cli-contract.md","sha256":"sha256:7005650ff5ee918af814a3fe65d2701eba386c385b1d9f8fc9954f196b6139e1"},
+    {"path":"docs/threat-model.md","sha256":"sha256:0b27aae638dcf717d04ced82f51fd8e629de4dc436a906c8feb4de1aad59752c"},
+    {"path":"schemas/workflow-manifest-v1.schema.json","sha256":"sha256:74cef1e045df3825645e6a1fd35c8f8bbdab398ee8f69b31220324299ab934e2"},
+    {"path":"schemas/manifest-approval-v1.schema.json","sha256":"sha256:8fd213cd8bf76c006780a79e18f27dca94f77f6dababf3582cbe5c6d758ae99a"},
+    {"path":"schemas/run-event-v1.schema.json","sha256":"sha256:86ad3ce99b9b231ca23c3c6ba525051fe99a03fc97ef15f03c9ba8f9563ac0ba"},
+    {"path":"schemas/portable-receipt-v1.schema.json","sha256":"sha256:3fbdd8d20b97f3b82935d5739559a6b314918e20af0c3ff81ba91ec1897d7f36"},
+    {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"},
+    {"path":"requirements/release-contract.lock.json","sha256":"sha256:8b1254d988a93a0b90444c4063cf64ba2cd33c6e1be214e5860182170c63d954"},
+    {"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"},
+    {"path":"records/source-gates/2026-08-09-jsonschema-meta-validation.json","sha256":"sha256:0a26cad254e4b3364cf023541f94bd66fbbbfd8f470d4bd90d9cb8243236cf2b"},
+    {"path":"records/evaluations/IS-0006-U01-release-contract.json","sha256":"sha256:d7c1c4da6729ff9da84481e1a096d4b2c0b29304af6f998496ad6436d7321258"},
+    {"path":"records/surface-receipts/IS-0006-U01-public-release-contract-replay.json","sha256":"sha256:7925b888f1a4fa10f3e383914a93d16034fdafa17bb0c3d8b582f5a7b20d7517"}
+  ],
+  "contract": {
+    "path": "fixtures/workflow-verification/execution-contract.valid.json",
+    "canonical_digest": "sha256:dcf6aedee6ff30b288129424581076a881440a8c0496a28e89847313b305ecc8",
+    "supported_runners": ["python","node"],
+    "unsupported_runner_verdict": "INVALID",
+    "persistent_outputs_supported": false,
+    "required_before_packaging": true
+  },
+  "mutation_count": 47,
+  "meta_validation": {
+    "draft": "https://json-schema.org/draft/2020-12/schema",
+    "schemas": 1,
+    "fixtures": 2,
+    "retained_exact_wheels": 6,
+    "network_acquisition": false,
+    "runtime_dependency": false
+  },
+  "static_validation": {
+    "approval_written": false,
+    "workflow_executed": false,
+    "docker_accessed": false,
+    "artifact_built": false,
+    "package_built": false,
+    "image_published": false,
+    "release_published": false
+  }
+}

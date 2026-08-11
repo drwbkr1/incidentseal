@@ -1,0 +1,58 @@
+{
+  "schema_version": "incidentseal-workflow-contract-candidate/v1",
+  "evaluation_id": "IS-EVAL-0006-U02-WORKFLOW-CONTRACT-CANDIDATE",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T15:37:28Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Runtime-free local validation of the bounded approved Python and Node workflow execution contract; implementation and credential-free public contract replay remain pending.",
+  "candidate_base": {
+    "commit": "35859a49db05f91ce9cdd41ec4a5856d305107c2",
+    "tree": "29842c786ea3b5437751ceffcbb5255ce2ea344a",
+    "branch": "main"
+  },
+  "identity": {
+    "contract_lock": "requirements/workflow-verification-contract.lock.json",
+    "contract_lock_digest": "sha256:61ddf9bec88d28ce7e9e2eed29c3a768226fb8a1e3778bcd43968954c534fb5f",
+    "contract_digest": "sha256:dcf6aedee6ff30b288129424581076a881440a8c0496a28e89847313b305ecc8",
+    "release_contract_lock_digest": "sha256:8b1254d988a93a0b90444c4063cf64ba2cd33c6e1be214e5860182170c63d954"
+  },
+  "profile": {
+    "command": "incidentseal verify --manifest PATH --json",
+    "supported_runners": ["python","node"],
+    "unsupported_runner_verdict": "INVALID",
+    "persistent_outputs_supported": false,
+    "tree_digest_algorithm": "sha256-git-ls-tree-z-v1",
+    "approval_required": "MATCH",
+    "agent_can_approve": false,
+    "host_cli_owns_docker": true,
+    "runtime_network": "none",
+    "portable_receipt_after_terminal": true,
+    "required_before_packaging": true
+  },
+  "checks": [
+    {"id":"exact-workflow-contract-lock","status":"PASS","observed":{"locked_files":14,"bindings":14,"lock_digest":"sha256:61ddf9bec88d28ce7e9e2eed29c3a768226fb8a1e3778bcd43968954c534fb5f"}},
+    {"id":"dependency-free-contract-validator","status":"PASS","observed":{"contract_digest":"sha256:dcf6aedee6ff30b288129424581076a881440a8c0496a28e89847313b305ecc8","supported_runners":2}},
+    {"id":"fail-closed-contract-mutations","status":"PASS","observed":{"passed":47,"total":47}},
+    {"id":"repository-tests","status":"PASS","observed":{"passed":150,"failed":0,"errors":0}},
+    {"id":"draft-2020-12-meta-validation","status":"PASS","observed":{"schemas":1,"fixtures":2,"exact_source_gated_wheels":6,"network_acquisition":false,"temporary_custody_removed":true}},
+    {"id":"manifest-authority-boundary","status":"PASS","observed":{"approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"invocation_id":"bd69e758-aa61-4d54-bae4-5746fc7b278e","workflow_executed":false}},
+    {"id":"docker-custody-boundary","status":"PASS","observed":{"containers":[],"networks":[],"protected_volumes":3,"protected_identities_unchanged":true,"docker_accessed_by_contract":false}},
+    {"id":"release-boundary","status":"PASS","observed":{"artifact_built":false,"package_built":false,"image_published":false,"release_published":false}}
+  ],
+  "retained_invalid_attempts": {
+    "path": "records/evaluations/IS-0006-U02-workflow-contract-invalid-attempts.json",
+    "count": 1
+  },
+  "non_claims": [
+    "The verify command and workflow event archive are not implemented.",
+    "No manifest is approved and no workflow step, image, container, or product runtime executed.",
+    "No cancellation, resume, event streaming, portable receipt, package, or release behavior is claimed.",
+    "Exact credential-free public contract reproduction remains required before implementation begins."
+  ],
+  "decision": {
+    "status": "candidate-pass-public-replay-required",
+    "next": "Commit and push the exact runtime-free workflow contract, then reproduce its lock, tests, mutations, full-schema validation, authority boundary, Docker custody, Git integrity, and secret scan from credential-free public custody before implementation."
+  }
+}
