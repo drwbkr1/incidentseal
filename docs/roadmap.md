@@ -53,7 +53,7 @@ Progress: `IS4-U01` froze portable receipts. `IS4-U02` passed the writer and ind
 
 Status: active
 
-Progress: `IS5-U01`, `IS5-U02`, and `IS5-U03` are publicly reproduced and passed. `IS5-U04` now has a locked local candidate: all nine states repeated three times through 27 fresh loopback servers and 135 exact requests, with 27/27 correctness, 189/189 source coverage, zero false claims, three recovery transitions, stable HTML, measured latency/memory/bytes, 133 tests, 30 evaluation mutations, missing approval, unchanged Docker custody, and complete teardown. Exact credential-free public replay remains before the scenario and evaluation exits can pass.
+Progress: `IS5-U01` through `IS5-U04` are publicly reproduced and passed. Exact public U04 commit `df8043bc...` repeated all nine states three times through 27 fresh loopback servers and 135 exact requests, with 27/27 correctness, 189/189 source coverage, zero false claims, three recovery transitions, stable cross-run HTML, independent measured latency/memory/bytes, 133 tests, all 37/29/28/30 mutations, Git/secret integrity, missing approval, unchanged Docker custody, and complete teardown. `IS5-U05` is active for the exact closure replay and independently verified marker.
 
 - Polished dark forensic-style local dashboard.
 - Deterministic scenario corpus for success, product failure, invalid input, missing evidence, policy attack, isolation attack, corrupted receipt, crash, and recovery.

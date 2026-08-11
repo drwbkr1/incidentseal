@@ -1,0 +1,33 @@
+{
+  "schema_version":"incidentseal-dashboard-repeated-evaluation-public-replay/v1",
+  "receipt_id":"IS-RECEIPT-0005-U04-PUBLIC-EVALUATION",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U04",
+  "observed_at_utc":"2026-08-11T04:42:09Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "public_source":{"repository":"https://github.com/drwbkr1/incidentseal.git","branch":"main","commit":"df8043bcbef59402e801ead7e724adbe696aae25","tree":"01c232991ab8150dedc7d0b1a35ee04c00626964","remote_main_equal":true,"credential_helpers_disabled":true,"terminal_prompting_disabled":true,"worktree_clean_before_and_after":true},
+  "identity":{"evaluation_lock_digest":"sha256:c75fe0f9ddca14326ddfe0ad233d73853c671b99bf2a5cfa4872c569c4bbcdd2","contract_lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","implementation_lock_digest":"sha256:f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f","browser_lock_digest":"sha256:3afab378732eb88049988fbe2a935ee1102bd989af62e2517a9cf853a0d20f29","local_result_digest":"sha256:8c860df6d225967d1115fc2869a0cf74569c57698a5670358851ddff06226d43","public_result_path":"records/evaluations/IS-0005-U04-public-repeated-dashboard-result.json","public_result_digest":"sha256:665246b559ce6ab15a0e5be6332dafae4a87a42d8e42925f9ce0e209a725f597"},
+  "checks":[
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"exact_commit":true,"exact_tree":true,"remote_main_equal":true,"clean_before_and_after":true}},
+    {"id":"project-probe","status":"PASS","observed":{"checkpoint":"IS-0005","docker_server":"29.4.3","compose":"5.1.3","custody":"PASS"}},
+    {"id":"evaluation-lock","status":"PASS","observed":{"scenarios":9,"repetitions":3,"trials":27,"metrics":8,"runtime_dependencies":0,"static_validation_started_server":false}},
+    {"id":"real-repeated-loopback-surface","status":"PASS","observed":{"scenarios":9,"repetitions":3,"trials":27,"servers_started":27,"servers_closed":27,"routes_per_trial":5,"requests":135,"request_failures":0,"server_processes_after":0}},
+    {"id":"correctness-and-evidence","status":"PASS","observed":{"cases_correct":27,"cases_total":27,"source_records_verified":189,"source_records_expected":189,"stable_html_scenarios":9}},
+    {"id":"claim-calibration","status":"PASS","observed":{"claims_permitted":3,"claims_withheld":24,"false_passes":0,"false_release_claims":0}},
+    {"id":"recovery","status":"PASS","observed":{"crash_recovery_transitions":3,"expected":3,"claim_promotions":0}},
+    {"id":"local-public-semantic-comparison","status":"PASS","observed":{"identity_equal":true,"plan_equal":true,"scenario_html_digests_equal":true,"correctness_equal":true,"requests_equal":true,"coverage_equal":true,"calibration_equal":true,"recovery_equal":true,"runtime_equal":true,"dynamic_measurements_required_equal":false}},
+    {"id":"regression-tests","status":"PASS","observed":{"tests":133}},
+    {"id":"mutation-suites","status":"PASS","observed":{"contract":37,"implementation":29,"browser":28,"evaluation":30}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"authority-boundary","status":"PASS","observed":{"before_invocation_id":"f7101d6f-0d5d-4b3a-b7ec-7272b2282302","after_invocation_id":"782c4271-da65-4679-a310-00bdcfa86f59","approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"approval_written":false,"workflow_executed":false}},
+    {"id":"runtime-boundary","status":"PASS","observed":{"dashboard_processes_after":0,"docker_accessed_by_evaluator":false,"containers":0,"networks":0,"protected_volumes":3,"protected_volume_identity_unchanged":true}}
+  ],
+  "local_measurements":{"projection_latency_ms":{"minimum":"4.362600","median":"5.174400","p95_nearest_rank":"6.436900","maximum":"6.540900"},"render_latency_ms":{"minimum":"0.038100","median":"0.040700","p95_nearest_rank":"0.047200","maximum":"0.053100"},"peak_process_memory_bytes":{"minimum":28745728,"median":28987392,"p95_nearest_rank":29446144,"maximum":29470720},"response_bytes_per_five_gets":{"minimum":30462,"median":30523,"p95_nearest_rank":30552,"maximum":30552}},
+  "public_measurements":{"projection_latency_ms":{"minimum":"4.601800","median":"5.971200","p95_nearest_rank":"7.136600","maximum":"7.174100"},"render_latency_ms":{"minimum":"0.039400","median":"0.040800","p95_nearest_rank":"0.046300","maximum":"0.048900"},"peak_process_memory_bytes":{"minimum":28467200,"median":28831744,"p95_nearest_rank":29294592,"maximum":29298688},"response_bytes_per_five_gets":{"minimum":30462,"median":30523,"p95_nearest_rank":30552,"maximum":30552}},
+  "protected_volume_identity":{"incidentseal-57ca5f96d527da1b_database-data":"sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825","incidentseal-a6443d83ae9eb463_database-data":"sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768","incidentseal-e10983c7309c56a0_database-data":"sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"},
+  "retained_attempts":{"local_invalid":{"path":"records/evaluations/IS-0005-U04-repeated-dashboard-invalid-attempts.json","count":5},"local_superseded":{"path":"records/evaluations/IS-0005-U04-repeated-dashboard-superseded-attempts.json","count":1},"public_invalid":{"count":0}},
+  "temporary_clone_custody":{"path":"C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is5-u04-evaluation-df8043b","state":"retained-clean-noncanonical-outside-onedrive-and-runtime-custody","required_for_runtime":false},
+  "non_claims":["Local and public timing or memory distributions are independent observations and are not required to be byte-equal.","Server-side render latency is not browser-paint evidence.","No packaging, registry, release, v0.1.0, or final IS-0005 checkpoint claim advances."],
+  "decision":{"status":"pass-public-repeated-evaluation","reason":"Exact credential-free public custody reproduced the fixed 27-trial loopback surface, all deterministic correctness and claim semantics, full coverage and recovery, all tests and mutations, integrity, missing approval, complete teardown, and unchanged Docker custody."}
+}

@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0005`
 - Latest verified checkpoint: `IS-0004`
-- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01`, `IS5-U02`, and `IS5-U03` passed from public custody; `IS5-U04` has a locked local repeated-evaluation candidate awaiting exact public replay; no dashboard or scenario process remains
+- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01` through `IS5-U04` passed from public custody; `IS5-U05` is the sole active checkpoint-closure unit; no dashboard or scenario process remains
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -25,7 +25,7 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 
 `IS5-U03` passed from exact public candidate commit `46639491...`, tree `b3eaef7b...`, under implementation lock revision 3 `sha256:f9a24216...` and browser lock `sha256:3afab378...`. The real dashboard passed one desktop and all nine mobile states with no horizontal overflow, exact text-labelled claim calibration, one main landmark, labelled navigation, ten ordered headings, Chrome keyboard traversal through six visible-focus links without a trap, a minimum 44 CSS pixel target, 4.7291 minimum text contrast, reduced-motion behavior, three local browser observations, zero external requests, and zero browser logs. Public in-app rendering reproduced ten retained screenshots byte-for-byte; Chrome independently reproduced the keyboard semantics without requiring browser-encoding byte equality. All 129 tests and 37/29/28 mutation suites passed, the real 25-request launcher closed, approval remained `MISSING`, no workflow ran, and Docker custody stayed exact. Two product `FAIL` revisions, thirteen local `INVALID` attempts, and one public `INVALID` wrapper remain retained. `EXIT-READ-ONLY-DASHBOARD` passes; `IS5-U04` now owns repeated measurements.
 
-`IS5-U04` has a local candidate under evaluation lock `sha256:c75fe0f...`. The fixed no-argument harness rebuilt all nine states three times, started and closed 27 new loopback servers, and passed all 135 fixed-route GETs. Case correctness is 27/27, source coverage is 189/189, all nine HTML identities are stable, all three crash-to-recovery transitions preserve claim withholding, and claim calibration is three permitted versus 24 withheld with zero false PASS or release claims. Measured local medians were 5.174400 ms projection, 0.040700 ms deterministic server-side render, 28,987,392 bytes peak process memory, and 30,523 response bytes per five GETs; these are bounded observations, not browser-paint or cross-machine performance claims. All 133 tests and 30 evaluation mutations pass alongside the inherited 37/29/28 suites. Approval remains `MISSING`, no workflow or Docker surface was accessed, and exact protected custody remains. Five `INVALID` wrappers and one pre-lock `superseded` PASS remain retained. Exact public replay is still required before U04 or either evaluation exit can pass.
+`IS5-U04` passed from exact credential-free public commit `df8043bc...`, tree `01c23299...`, under evaluation lock `sha256:c75fe0f...`. Both local and public runs rebuilt all nine states three times, started and closed 27 new loopback servers, and passed all 135 fixed-route GETs. Each achieved 27/27 case correctness, 189/189 source coverage, nine stable and cross-run-equal HTML identities, three recovery transitions without claim promotion, three permitted versus 24 withheld claims, and zero false PASS or release claims. Public medians were 5.971200 ms projection, 0.040800 ms deterministic server-side render, 28,831,744 bytes peak process memory, and 30,523 response bytes per five GETs; local and public dynamic measurements remain independent observations rather than forced-equal budgets. All 133 tests and 37/29/28/30 mutations passed publicly, Git and four-pattern secret integrity passed, approval remained `MISSING`, no workflow or Docker surface was accessed, all processes closed, and exact protected custody remained. Five `INVALID` wrappers and one pre-lock `superseded` PASS remain retained. `EXIT-SCENARIO-CORPUS` and `EXIT-EVALUATION-REPORT` pass; `IS5-U05` owns exact checkpoint closure.
 
 ## Checkpoint evidence
 
@@ -106,7 +106,7 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, integrated recovery, and rendered local dashboard pass from public custody. Repeated dashboard evaluation, the IS-0005 public marker, packaging, and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, integrated recovery, rendered local dashboard, and repeated dashboard evaluation pass from public custody. The IS-0005 closure replay and marker, packaging, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -116,4 +116,4 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 
 ## Next eligible action
 
-Commit and push the locked `IS5-U04` candidate, then restart its complete 27-trial evaluation and all static, mutation, integrity, authority, and custody gates from exact credential-free public custody.
+Prepare the exact `IS5-U05` closure candidate, push it, rerun the complete dashboard-and-evaluation checkpoint from credential-free public custody, and create `checkpoint-is-0005` only after the independent closure gates pass.

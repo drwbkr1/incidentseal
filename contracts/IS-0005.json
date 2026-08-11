@@ -90,8 +90,8 @@
   "exit_conditions": [
     {"id":"EXIT-DASHBOARD-CONTRACT","status":"pass","evidence":["requirements/dashboard-contract.lock.json","records/evaluations/IS-0005-U01-dashboard-contract-candidate.json","records/surface-receipts/IS-0005-U01-public-dashboard-contract-replay.json"]},
     {"id":"EXIT-READ-ONLY-DASHBOARD","status":"pass","evidence":["requirements/dashboard-implementation.lock.json","requirements/dashboard-browser.lock.json","records/evaluations/IS-0005-U03-rendered-browser-candidate.json","records/surface-receipts/IS-0005-U03-public-rendered-browser-replay.json"]},
-    {"id":"EXIT-SCENARIO-CORPUS","status":"pending","evidence":[]},
-    {"id":"EXIT-EVALUATION-REPORT","status":"pending","evidence":[]},
+    {"id":"EXIT-SCENARIO-CORPUS","status":"pass","evidence":["requirements/dashboard-evaluation.lock.json","records/evaluations/IS-0005-U04-repeated-dashboard-result.json","records/evaluations/IS-0005-U04-public-repeated-dashboard-result.json","records/surface-receipts/IS-0005-U04-public-repeated-evaluation-replay.json"]},
+    {"id":"EXIT-EVALUATION-REPORT","status":"pass","evidence":["records/evaluations/IS-0005-U04-repeated-dashboard-candidate.json","records/surface-receipts/IS-0005-U04-public-repeated-evaluation-replay.json","docs/evaluation-report.md"]},
     {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
   ],
   "units": [
@@ -146,13 +146,13 @@
       "depends_on": ["IS5-U03"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "in_progress",
+      "status": "complete",
       "inputs": ["Verified dashboard", "Frozen scenario corpus", "Checkpoint records"],
       "outputs": ["Repeated-trial dataset", "Evaluation report", "Scenario and calibration receipts"],
-      "gates": {"evaluation_lock":"pass_c75fe0f9ddca14326ddfe0ad233d73853c671b99bf2a5cfa4872c569c4bbcdd2_local","fixed_plan":"pass_9_scenarios_3_repetitions_27_trials","real_loopback_surface":"pass_27_servers_135_requests_0_failures_complete_teardown","case_correctness":"pass_27_of_27","source_record_coverage":"pass_189_of_189","claim_calibration":"pass_3_permitted_24_withheld_0_false","recovery":"pass_3_of_3_without_claim_promotion","deterministic_html":"pass_9_stable_scenario_digests","measurements":"pass_projection_render_memory_response_complete","evaluation_mutations":"pass_30_of_30","regression_tests":"pass_133","contract_implementation_browser_mutations":"pass_37_29_28","authority_boundary":"pass_missing_exit_12_no_workflow","runtime_boundary":"pass_zero_processes_0_containers_0_networks_exact_3_protected","credential_free_public_replay":"pending"},
-      "disposition": "candidate-pass-public-replay-required",
+      "gates": {"evaluation_lock":"pass_c75fe0f9ddca14326ddfe0ad233d73853c671b99bf2a5cfa4872c569c4bbcdd2_local_and_public","fixed_plan":"pass_9_scenarios_3_repetitions_27_trials_local_and_public","real_loopback_surface":"pass_27_servers_135_requests_0_failures_complete_teardown_local_and_public","case_correctness":"pass_27_of_27_local_and_public","source_record_coverage":"pass_189_of_189_local_and_public","claim_calibration":"pass_3_permitted_24_withheld_0_false_local_and_public","recovery":"pass_3_of_3_without_claim_promotion_local_and_public","deterministic_html":"pass_9_stable_scenario_digests_local_public_equal","measurements":"pass_independent_projection_render_memory_response_observations","evaluation_mutations":"pass_30_of_30_local_and_public","regression_tests":"pass_133_local_and_public","contract_implementation_browser_mutations":"pass_37_29_28_local_and_public","git_integrity":"pass_public","secret_scan":"pass_zero_matches_4_patterns_public","authority_boundary":"pass_missing_exit_12_before_after_no_workflow","runtime_boundary":"pass_zero_processes_0_containers_0_networks_exact_3_protected","credential_free_public_replay":"pass_commit_df8043bc_tree_01c23299"},
+      "disposition": "pass",
       "retained_failures": ["Five local evaluator or evidence-wrapper attempts remain INVALID, including a nonexistent schema path, an unsupported protected-volume label assumption, a PowerShell environment-binding parser error, a malformed evidence patch delimiter, and a policy-status command missing its required manifest. None created a product claim.","One complete pre-lock 27-trial PASS calibration remains superseded by the exact evaluation lock and locked candidate dataset; it is not promoted as U04 evidence."],
-      "exit_condition_delta": {"expected":["EXIT-SCENARIO-CORPUS","EXIT-EVALUATION-REPORT"],"observed":[],"decision_value":"unknown","rationale":"The portfolio claim requires measured repeated outcomes and explicit non-claims, not a curated success screenshot."},
+      "exit_condition_delta": {"expected":["EXIT-SCENARIO-CORPUS","EXIT-EVALUATION-REPORT"],"observed":["EXIT-SCENARIO-CORPUS","EXIT-EVALUATION-REPORT"],"decision_value":"advances_exit","rationale":"Exact public custody reproduced all 27 real loopback trials, deterministic state and claim semantics, source coverage, recovery, measurements, tests, mutations, integrity, missing approval, complete teardown, and explicit performance non-claims."},
       "next_dependency": "IS5-U05"
     },
     {
@@ -161,7 +161,7 @@
       "depends_on": ["IS5-U04"],
       "action_class": "git_push",
       "human_gate": false,
-      "status": "planned",
+      "status": "in_progress",
       "inputs": ["Verified IS-0005 tree"],
       "outputs": ["Verified public checkpoint", "checkpoint-is-0005 marker", "Public dashboard and evaluation receipts"],
       "gates": {},
@@ -192,12 +192,13 @@
       "Verified checkpoint-is-0004 entry with exact public marker, clean runtime boundary, missing approval, and no workflow execution",
       "Publicly reproduced closed dashboard projection, trust, state, scenario, visual, and evaluation contract with no server, browser, or Docker runtime",
       "Publicly reproduced the exact read-only loopback dashboard implementation and real Windows launcher with byte-identical responses, attack denial, missing approval, and complete process teardown",
-      "Publicly reproduced the real rendered dashboard across desktop and all nine mobile states with calibrated claims, semantic and keyboard accessibility, responsive and visual gates, local-only browser requests, retained failures, and complete teardown"
+      "Publicly reproduced the real rendered dashboard across desktop and all nine mobile states with calibrated claims, semantic and keyboard accessibility, responsive and visual gates, local-only browser requests, retained failures, and complete teardown",
+      "Publicly reproduced the fixed 27-trial dashboard evaluation with complete correctness, source coverage, claim calibration, recovery, measurements, integrity, and teardown"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; IS5-U01 contract, IS5-U02 implementation, and IS5-U03 rendered-browser surface are reproduced from public custody; U03 exact candidate commit 46639491f2591649091d04cdc246f79a8c591e18 and tree b3eaef7bb6acc40fbbe979ca3969e4e523ad293e passed; IS5-U04 is the sole active repeated-evaluation unit",
-    "next_action": "Commit and push the locked U04 candidate, then restart and reproduce the complete 27-trial evaluation plus its static, mutation, integrity, authority, and runtime-boundary gates from exact credential-free public custody.",
+    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; U01 contract, U02 implementation, U03 rendered-browser, and U04 repeated-evaluation surfaces pass from public custody; U04 exact public candidate commit df8043bcbef59402e801ead7e724adbe696aae25 and tree 01c232991ab8150dedc7d0b1a35ee04c00626964 passed; IS5-U05 is the sole active checkpoint-closure unit",
+    "next_action": "Prepare the exact IS-0005 closure candidate, commit and push it, reproduce the complete dashboard-and-evaluation checkpoint from credential-free public custody, then create and independently verify checkpoint-is-0005 only after every gate passes.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",
