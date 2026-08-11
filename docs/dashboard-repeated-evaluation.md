@@ -1,0 +1,9 @@
+# Repeated dashboard evaluation
+
+`IS5-U04` runs the complete frozen nine-state corpus exactly three times. It does not select favorable examples. Every one of the 27 trials rebuilds the exact seven-record projection, generates the fixed semantic HTML, starts a new IPv4-loopback server on an operating-system-assigned port, requests all five read-only routes, verifies response bytes and security headers, and closes the server before the next trial.
+
+The machine result records exact scenario and evidence-state correctness, claim permission, HTML identity, projection latency, server-side render latency, peak process memory, response bytes, request failures, source-record coverage, and crash-to-recovery ordering. Latency distributions report minimum, median, nearest-rank p95, and maximum as fixed decimal millisecond strings backed by integer nanosecond observations. Resource and latency measurements are observations, not portable performance budgets.
+
+PASS requires all 27 cases to match their frozen lifecycle, verdict, evidence, label, and claim semantics; all 135 loopback GETs to match; all seven source records to validate in every trial; all three crash-to-recovery transitions to recover without claim promotion; every scenario HTML digest to remain stable; zero false PASS or release claims; zero external or write requests; zero authority, Docker, secret, or telemetry access; unchanged repository custody; and complete server teardown. Missing metrics are `INCONCLUSIVE` evidence outside a PASS result. Malformed or internally inconsistent evidence is `INVALID`. A valid measured mismatch is retained as `FAIL` and must not be rewritten.
+
+This evaluator measures strict source projection and deterministic server-side HTML generation. It does not claim browser paint timing or replace the real rendered-browser receipt in `requirements/dashboard-browser.lock.json`. Exact credential-free public reproduction remains a separate gate.

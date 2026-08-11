@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0005",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Run the frozen nine-scenario repeated correctness, latency, resource, recovery, evidence-completeness, and claim-calibration evaluation under IS5-U04"
+    "next_action": "Commit, push, and reproduce the locked 27-trial IS5-U04 evaluator from exact credential-free public custody"
   }
 }

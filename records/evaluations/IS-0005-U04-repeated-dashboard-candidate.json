@@ -1,0 +1,22 @@
+{
+  "schema_version":"incidentseal-dashboard-repeated-evaluation-candidate/v1",
+  "evaluation_id":"IS-EVAL-0005-U04-CANDIDATE",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U04",
+  "observed_at_utc":"2026-08-11T04:34:00Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "candidate_base":{"commit":"b2291a6f6eb63a7a612d740f1e96509a1d885209","tree":"ff2b90b106ee3ad7d65682e88694657f275cd5ae","worktree_has_uncommitted_candidate":true},
+  "identity":{"evaluation_lock_digest":"sha256:c75fe0f9ddca14326ddfe0ad233d73853c671b99bf2a5cfa4872c569c4bbcdd2","contract_lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","implementation_lock_digest":"sha256:f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f","browser_lock_digest":"sha256:3afab378732eb88049988fbe2a935ee1102bd989af62e2517a9cf853a0d20f29","result_path":"records/evaluations/IS-0005-U04-repeated-dashboard-result.json","result_digest":"sha256:8c860df6d225967d1115fc2869a0cf74569c57698a5670358851ddff06226d43"},
+  "repeated_surface":{"scenarios":9,"repetitions":3,"trials":27,"loopback_servers":27,"routes_per_trial":5,"requests":135,"request_failures":0,"servers_closed":27,"server_processes_after":0,"repository_state_unchanged":true},
+  "correctness":{"correct":27,"total":27,"ratio":"1.000000","stable_html_scenarios":9,"source_records_verified":189,"source_records_expected":189,"recovery_transitions":3,"recovery_transitions_expected":3},
+  "claim_calibration":{"calibrated":27,"total":27,"claims_permitted":3,"claims_withheld":24,"false_passes":0,"false_release_claims":0},
+  "measurements":{"projection_latency_ms":{"minimum":"4.362600","median":"5.174400","p95_nearest_rank":"6.436900","maximum":"6.540900"},"render_latency_ms":{"minimum":"0.038100","median":"0.040700","p95_nearest_rank":"0.047200","maximum":"0.053100"},"peak_process_memory_bytes":{"minimum":28745728,"median":28987392,"p95_nearest_rank":29446144,"maximum":29470720},"response_bytes_per_five_gets":{"minimum":30462,"median":30523,"p95_nearest_rank":30552,"maximum":30552}},
+  "validation":{"repository_tests":133,"contract_mutations":37,"implementation_mutations":29,"browser_mutations":28,"evaluation_mutations":30,"runtime_dependencies":0,"evaluation_static_validation_started_server":false},
+  "authority_boundary":{"policy_invocation_id":"5b5f95cf-94de-4506-9919-16ee19c45961","approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"approval_written":false,"workflow_executed":false},
+  "runtime_boundary":{"dashboard_processes_after":0,"docker_accessed_by_evaluator":false,"incidentseal_containers":0,"incidentseal_networks":0,"protected_volumes":3,"protected_volume_identity_unchanged":true},
+  "protected_volume_identity":{"incidentseal-57ca5f96d527da1b_database-data":"sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825","incidentseal-a6443d83ae9eb463_database-data":"sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768","incidentseal-e10983c7309c56a0_database-data":"sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"},
+  "retained_attempts":{"invalid":{"path":"records/evaluations/IS-0005-U04-repeated-dashboard-invalid-attempts.json","count":5},"superseded":{"path":"records/evaluations/IS-0005-U04-repeated-dashboard-superseded-attempts.json","count":1}},
+  "non_claims":["Projection and server-side render latency are not browser-paint measurements.","Local process measurements are not cross-machine performance guarantees.","No packaging, registry, release, v0.1.0, or final IS-0005 checkpoint claim advances.","Exact credential-free public reproduction remains required before U04 passes."],
+  "decision":{"status":"candidate-pass-public-replay-required","reason":"The exact dependency-free evaluator ran every frozen scenario three times through new real loopback servers, retained complete machine evidence, passed all correctness, claim, recovery, coverage, mutation, authority, and teardown gates, and now requires exact public replay."}
+}

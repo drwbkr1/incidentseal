@@ -1,0 +1,58 @@
+{
+  "schema_version":"incidentseal-invalid-attempts/v1",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U04",
+  "recorded_at_utc":"2026-08-11T04:08:00Z",
+  "attempts":[
+    {
+      "attempt_id":"IS5-U04-INVALID-001",
+      "sequence":1,
+      "execution_state":"completed",
+      "verification_verdict":"INVALID",
+      "surface":"cycle-entry-multi-check-wrapper",
+      "result":"A parallel read-only entry wrapper named a nonexistent dashboard-scenario.schema.json path, causing the aggregate wrapper to fail before retaining the other command outputs.",
+      "retained_product_claim":false,
+      "corrected_by":"Each entry check was rerun with the actual dashboard-scenario-corpus-v1.schema.json custody and separately retained outputs."
+    },
+    {
+      "attempt_id":"IS5-U04-INVALID-002",
+      "sequence":2,
+      "execution_state":"completed",
+      "verification_verdict":"INVALID",
+      "surface":"protected-volume-label-query",
+      "result":"The first Docker volume query assumed a com.incidentseal.protected label that the frozen volume lock does not define and therefore returned an empty protected-volume set.",
+      "retained_product_claim":false,
+      "corrected_by":"The corrected read-only boundary loaded all three exact names from requirements/retained-runtime-volumes.lock.json and reproduced their stable inspect identities."
+    },
+    {
+      "attempt_id":"IS5-U04-INVALID-003",
+      "sequence":3,
+      "execution_state":"completed",
+      "verification_verdict":"INVALID",
+      "surface":"protected-volume-python-wrapper",
+      "result":"The first PowerShell wrapper placed a PYTHONPATH assignment after a pipeline operator and failed parsing before Python or Docker inspection ran.",
+      "retained_product_claim":false,
+      "corrected_by":"The corrected wrapper set the environment before the pipeline and passed the existing exact boundary implementation."
+    },
+    {
+      "attempt_id":"IS5-U04-INVALID-004",
+      "sequence":4,
+      "execution_state":"completed",
+      "verification_verdict":"INVALID",
+      "surface":"evaluation-result-retention-patch",
+      "result":"A locked 27-trial evaluator run passed, but the generated evidence patch joined its final added line to the patch delimiter, so apply_patch rejected the retention wrapper and no result file was written.",
+      "retained_product_claim":false,
+      "corrected_by":"The complete locked evaluator restarted, passed independently, and a corrected patch retained its exact full result as IS-0005-U04-repeated-dashboard-result.json."
+    },
+    {
+      "attempt_id":"IS5-U04-INVALID-005",
+      "sequence":5,
+      "execution_state":"completed",
+      "verification_verdict":"INVALID",
+      "surface":"authority-boundary-wrapper",
+      "result":"The first local policy status command omitted its required manifest path and returned the valid IS_USAGE envelope at process exit 64, so it could not establish the approval boundary.",
+      "retained_product_claim":false,
+      "corrected_by":"The documented status command used fixtures/contracts/workflow.valid.minimal.json and returned MISSING / INVALID at exit 12 under invocation 5b5f95cf-94de-4506-9919-16ee19c45961."
+    }
+  ]
+}

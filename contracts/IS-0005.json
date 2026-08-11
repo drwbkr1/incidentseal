@@ -149,9 +149,9 @@
       "status": "in_progress",
       "inputs": ["Verified dashboard", "Frozen scenario corpus", "Checkpoint records"],
       "outputs": ["Repeated-trial dataset", "Evaluation report", "Scenario and calibration receipts"],
-      "gates": {},
-      "disposition": null,
-      "retained_failures": [],
+      "gates": {"evaluation_lock":"pass_c75fe0f9ddca14326ddfe0ad233d73853c671b99bf2a5cfa4872c569c4bbcdd2_local","fixed_plan":"pass_9_scenarios_3_repetitions_27_trials","real_loopback_surface":"pass_27_servers_135_requests_0_failures_complete_teardown","case_correctness":"pass_27_of_27","source_record_coverage":"pass_189_of_189","claim_calibration":"pass_3_permitted_24_withheld_0_false","recovery":"pass_3_of_3_without_claim_promotion","deterministic_html":"pass_9_stable_scenario_digests","measurements":"pass_projection_render_memory_response_complete","evaluation_mutations":"pass_30_of_30","regression_tests":"pass_133","contract_implementation_browser_mutations":"pass_37_29_28","authority_boundary":"pass_missing_exit_12_no_workflow","runtime_boundary":"pass_zero_processes_0_containers_0_networks_exact_3_protected","credential_free_public_replay":"pending"},
+      "disposition": "candidate-pass-public-replay-required",
+      "retained_failures": ["Five local evaluator or evidence-wrapper attempts remain INVALID, including a nonexistent schema path, an unsupported protected-volume label assumption, a PowerShell environment-binding parser error, a malformed evidence patch delimiter, and a policy-status command missing its required manifest. None created a product claim.","One complete pre-lock 27-trial PASS calibration remains superseded by the exact evaluation lock and locked candidate dataset; it is not promoted as U04 evidence."],
       "exit_condition_delta": {"expected":["EXIT-SCENARIO-CORPUS","EXIT-EVALUATION-REPORT"],"observed":[],"decision_value":"unknown","rationale":"The portfolio claim requires measured repeated outcomes and explicit non-claims, not a curated success screenshot."},
       "next_dependency": "IS5-U05"
     },
@@ -197,7 +197,7 @@
   },
   "handoff": {
     "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; IS5-U01 contract, IS5-U02 implementation, and IS5-U03 rendered-browser surface are reproduced from public custody; U03 exact candidate commit 46639491f2591649091d04cdc246f79a8c591e18 and tree b3eaef7bb6acc40fbbe979ca3969e4e523ad293e passed; IS5-U04 is the sole active repeated-evaluation unit",
-    "next_action": "Freeze and run the bounded U04 repeated-trial evaluator over all nine fixed scenarios, measuring deterministic correctness, latency, resource use, recovery, evidence completeness, and claim calibration without external telemetry.",
+    "next_action": "Commit and push the locked U04 candidate, then restart and reproduce the complete 27-trial evaluation plus its static, mutation, integrity, authority, and runtime-boundary gates from exact credential-free public custody.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

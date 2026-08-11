@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0005`
 - Latest verified checkpoint: `IS-0004`
-- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01`, `IS5-U02`, and `IS5-U03` passed from public custody; `IS5-U04` is the sole active repeated-evaluation unit; no dashboard or scenario process remains
+- State: active; `checkpoint-is-0004` remains the latest verified base; `IS5-U01`, `IS5-U02`, and `IS5-U03` passed from public custody; `IS5-U04` has a locked local repeated-evaluation candidate awaiting exact public replay; no dashboard or scenario process remains
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -24,6 +24,8 @@ The canonical repository is not in OneDrive. All OneDrive paths are forbidden fo
 `IS5-U02` passed from exact public commit `6a5d1cf8...`, tree `857af1c8...`, under implementation lock `sha256:53e89d0b...`. The separate Windows launcher served byte-identical results across five `GET`, five `HEAD`, seven denied methods, four hostile hosts, and four traversal/query targets, with eight defensive headers, zero external requests or repository writes, and complete process teardown. All 125 tests, 37 contract mutations, 29 implementation mutations, Git/secret integrity, offline schema validation, missing approval, and exact protected-volume custody passed. Three invalid runtime attempts and three superseded passing candidates remain retained.
 
 `IS5-U03` passed from exact public candidate commit `46639491...`, tree `b3eaef7b...`, under implementation lock revision 3 `sha256:f9a24216...` and browser lock `sha256:3afab378...`. The real dashboard passed one desktop and all nine mobile states with no horizontal overflow, exact text-labelled claim calibration, one main landmark, labelled navigation, ten ordered headings, Chrome keyboard traversal through six visible-focus links without a trap, a minimum 44 CSS pixel target, 4.7291 minimum text contrast, reduced-motion behavior, three local browser observations, zero external requests, and zero browser logs. Public in-app rendering reproduced ten retained screenshots byte-for-byte; Chrome independently reproduced the keyboard semantics without requiring browser-encoding byte equality. All 129 tests and 37/29/28 mutation suites passed, the real 25-request launcher closed, approval remained `MISSING`, no workflow ran, and Docker custody stayed exact. Two product `FAIL` revisions, thirteen local `INVALID` attempts, and one public `INVALID` wrapper remain retained. `EXIT-READ-ONLY-DASHBOARD` passes; `IS5-U04` now owns repeated measurements.
+
+`IS5-U04` has a local candidate under evaluation lock `sha256:c75fe0f...`. The fixed no-argument harness rebuilt all nine states three times, started and closed 27 new loopback servers, and passed all 135 fixed-route GETs. Case correctness is 27/27, source coverage is 189/189, all nine HTML identities are stable, all three crash-to-recovery transitions preserve claim withholding, and claim calibration is three permitted versus 24 withheld with zero false PASS or release claims. Measured local medians were 5.174400 ms projection, 0.040700 ms deterministic server-side render, 28,987,392 bytes peak process memory, and 30,523 response bytes per five GETs; these are bounded observations, not browser-paint or cross-machine performance claims. All 133 tests and 30 evaluation mutations pass alongside the inherited 37/29/28 suites. Approval remains `MISSING`, no workflow or Docker surface was accessed, and exact protected custody remains. Five `INVALID` wrappers and one pre-lock `superseded` PASS remain retained. Exact public replay is still required before U04 or either evaluation exit can pass.
 
 ## Checkpoint evidence
 
@@ -114,4 +116,4 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 
 ## Next eligible action
 
-Freeze and run the bounded `IS5-U04` repeated-trial evaluator across all nine fixed states, measuring correctness, latency, resource use, recovery, evidence completeness, and claim calibration without external telemetry.
+Commit and push the locked `IS5-U04` candidate, then restart its complete 27-trial evaluation and all static, mutation, integrity, authority, and custody gates from exact credential-free public custody.
