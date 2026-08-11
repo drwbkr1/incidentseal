@@ -197,7 +197,7 @@
   "current_checkpoint": {
     "checkpoint_id": "IS-0006",
     "expected_branch": "main",
-    "expected_head": "ed70aede436de5b92189fcac33f2eab43732cca6",
-    "next_action": "Rematerialize the corrected exact ignored workflow manifest, obtain interactive operator approval, and run the real U02 workflow before packaging"
+    "expected_head": "3c47f16d9da671b04d924ed59a897ab3daf69a2a",
+    "next_action": "Commit and push the post-approval repeatability fix and evidence, reproduce the exact public candidate, then rematerialize and require exact external approval before rerunning the real U02 workflow"
   }
 }

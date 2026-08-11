@@ -1,0 +1,120 @@
+{
+  "schema_version": "incidentseal-approved-workflow-evaluation/v1",
+  "evaluation_id": "IS-EVAL-0006-U02-APPROVED-WORKFLOW-CANDIDATE",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T19:46:08Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "One real operator-approved execution of the exact ignored pre-package manifest through the stable host-owned IncidentSeal CLI. Repository-owned closure and credential-free public evidence replay remain pending.",
+  "source": {
+    "repository": "https://github.com/drwbkr1/incidentseal.git",
+    "branch": "main",
+    "commit": "3c47f16d9da671b04d924ed59a897ab3daf69a2a",
+    "git_tree": "6e8acdee28699ef32e43d44d2d6e4160cb360f2b",
+    "tree_digest": "sha256:d4c4d8864108341d187d5c90b81faaf2ebe6d451a29641af21d94b17975ee66d",
+    "remote_main_equal_before_execution": true,
+    "tracked_worktree_clean_before_and_after": true
+  },
+  "authority": {
+    "workflow_id": "incidentseal.v0.1.0.prepackage",
+    "manifest_path": ".incidentseal/workflow.json",
+    "manifest_digest": "sha256:969c0626ca2e67fd073fd015e6a98703665c43abd61cdbb3cf1b60548d8f8263",
+    "manifest_bytes": 1965,
+    "approval_status_before": "MATCH",
+    "approval_status_after": "MATCH",
+    "approval_id": "a73c5854-143e-4ecc-af68-de1cb7b9cbe8",
+    "approved_at_utc": "2026-08-11T19:39:35Z",
+    "approval_artifact_digest": "sha256:56336362e8b7377b311d691b5c3a73637efdd44cbda80dffce9b8e49e299701b",
+    "approval_artifact_bytes": 605,
+    "external_custody": "%LOCALAPPDATA%\\IncidentSeal\\approvals\\v1",
+    "chat_response_used_as_authority": false
+  },
+  "execution": {
+    "command": ".\\incidentseal.cmd verify --manifest .incidentseal\\workflow.json --json",
+    "process_exit_code": 0,
+    "invocation_id": "e38fd518-02ab-47ae-b822-4fe1c3949387",
+    "run_id": "785847c3-059b-4361-aa5f-1b72b2d22e5d",
+    "lifecycle": "completed",
+    "verification_verdict": "PASS",
+    "reason": "required-steps-passed",
+    "claim_permitted": true,
+    "event_count": 10,
+    "event_sequences": [0,1,2,3,4,5,6,7,8,9],
+    "event_types": ["run.queued","run.started","policy.checked","step.started","step.completed","policy.checked","step.started","step.completed","evidence.recorded","run.completed"],
+    "event_archive_digest": "sha256:2a8dc81c2fc2ac2d7738d596f61704b56ea23e5f89142d37a54ab2daea128b1e",
+    "event_archive_bytes": 6744,
+    "receipt_digest": "sha256:75ff3e2a96400792ab5fa6da7c4ce9852125d31bc84202a22546517ad05095e4",
+    "receipt_bytes": 1309,
+    "external_custody": "%LOCALAPPDATA%\\IncidentSeal\\runs\\v1"
+  },
+  "steps": [
+    {
+      "step_id": "python-implementation-lock",
+      "runner": "python",
+      "image_id": "sha256:6e4050c67295a90ca3591bf1674317e59b698a89ce86e8ce64579d34182c3e71",
+      "command": ["python","scripts/validate_workflow_implementation.py","--static-only"],
+      "exit_code": 0,
+      "record_digest": "sha256:71201f306e36113e36a445aa8f211d261ade4ff61d1ab0866bebd4ebd4ae3796",
+      "record_bytes": 1266,
+      "stdout_digest": "sha256:72967331bdee8984ed377fc01b9fcb6db1e557644ffcb4d862050e1210366ffa",
+      "stderr_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported": {"verification_verdict":"PASS","implementation_lock_digest":"sha256:d58e5658d9664d22c7d01b19cc1586c8e8b807c2c691cd141033386194cb6fff","supported_runners":2,"runtime_dependencies":0,"runtime_started":false,"approval_mutation_command":false}
+    },
+    {
+      "step_id": "node-release-gate",
+      "runner": "node",
+      "image_id": "sha256:78edf27e115551fd0128201e13486363ff595076b0446d8479cf2ddd2aa7b6a1",
+      "command": ["node","scripts/verify_workflow_release_gate.mjs"],
+      "exit_code": 0,
+      "record_digest": "sha256:0cd506810b1f715ecaa1803f89c859f70ef32e616183271db5b5c3d48dae0c8a",
+      "record_bytes": 1190,
+      "stdout_digest": "sha256:6aea28a2bbde9ada267e2423dfbfab972a00fda695015c07aec76d99bbb489d4",
+      "stderr_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported": {"verification_verdict":"PASS","implementation_lock_digest":"sha256:d58e5658d9664d22c7d01b19cc1586c8e8b807c2c691cd141033386194cb6fff","locked_files":22,"supported_runners":["python","node"],"approval_mutation_command":false,"runtime_network":"none","packaging_status":"planned"}
+    }
+  ],
+  "trust_boundary": {
+    "docker_owner": "host-cli",
+    "container_docker_socket": false,
+    "container_secrets": false,
+    "container_broad_host_mount": false,
+    "container_external_network": false,
+    "remaining_incidentseal_containers": [],
+    "remaining_incidentseal_networks": [],
+    "protected_volume_identities_unchanged": true
+  },
+  "post_approval_repeatability": {
+    "initial_execution_state": "completed",
+    "initial_verification_verdict": "FAIL",
+    "initial_result": {"repository_tests_passed":160,"repository_tests_failed":3,"cause":"Three CLI tests assumed the complete production approval root was absent."},
+    "retained_failure": "records/evaluations/IS-0006-U02-workflow-implementation-failures.json#IS6-U02-IMPLEMENTATION-FAIL-003",
+    "remediation": "Snapshot every existing approval artifact by relative path, byte count, and SHA-256; require the snapshot to remain exact while retaining fixture-specific MISSING assertions.",
+    "current_candidate": {
+      "implementation_lock_digest": "sha256:6fefd277fdcf398939b5a1760a01e5f129b2a2d783492c44f518c1e9b32c4aeb",
+      "repository_tests": "163/163 PASS",
+      "focused_workflow_tests": "23/23 PASS",
+      "implementation_mutations": "29/29 PASS",
+      "runtime_started": false,
+      "production_approval_mutated": false,
+      "public_replay_complete": false,
+      "approved_manifest_materialized": false
+    }
+  },
+  "retained_prior_evidence": {
+    "product_failures": "records/evaluations/IS-0006-U02-workflow-implementation-failures.json",
+    "invalid_attempts": "records/evaluations/IS-0006-U02-workflow-implementation-invalid-attempts.json",
+    "superseded_public_pass": "records/evaluations/IS-0006-U02-public-workflow-implementation-attempts.json",
+    "superseded_unapproved_handoff": "records/evaluations/IS-0006-U02-operator-handoff-attempts.json"
+  },
+  "surface_receipt": "records/surface-receipts/IS-0006-U02-real-approved-workflow.json",
+  "non_claims": [
+    "Chat approval did not create workflow authority; the independently verified external approval artifact did.",
+    "The retained workflow PASS binds implementation lock d58e5658 and exact source commit 3c47f16d; the post-approval repeatability fix creates a new candidate lock that requires public replay, a new exact manifest approval, and another real workflow before closure.",
+    "No package, release image, tag, registry object, or GitHub Release was built or published."
+  ],
+  "decision": {
+    "status": "pass-retained-real-workflow-current-remediation-needs-reapproval",
+    "next": "Commit and push the post-approval repeatability fix and evidence, reproduce the exact public candidate without credentials, materialize its new exact manifest, obtain matching external approval, and rerun the real workflow before closing IS6-U02."
+  }
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 import re
 import subprocess
@@ -54,6 +55,16 @@ class CliTests(unittest.TestCase):
         )
         return completed, envelope
 
+    def approval_store_snapshot(self) -> tuple[tuple[str, int, str], ...]:
+        root = Path(os.environ["LOCALAPPDATA"]) / "IncidentSeal" / "approvals" / "v1"
+        if not root.exists():
+            return ()
+        return tuple(
+            (path.relative_to(root).as_posix(), path.stat().st_size, hashlib.sha256(path.read_bytes()).hexdigest())
+            for path in sorted(root.rglob("*"))
+            if path.is_file()
+        )
+
     def test_policy_lint_success(self) -> None:
         completed, envelope = self.run_cli(
             "policy", "lint", "--manifest", str(FIXTURES / "workflow.valid.minimal.json"), "--json"
@@ -102,8 +113,7 @@ class CliTests(unittest.TestCase):
         self.assertEqual("IS_MANIFEST_READ", envelope["errors"][0]["code"])
 
     def test_default_approval_status_is_missing_and_read_only(self) -> None:
-        approval_root = Path(os.environ["LOCALAPPDATA"]) / "IncidentSeal" / "approvals" / "v1"
-        self.assertFalse(approval_root.exists(), "test requires no real IncidentSeal approval store")
+        approval_before = self.approval_store_snapshot()
         for command in ("status", "diff"):
             with self.subTest(command=command):
                 completed, envelope = self.run_cli(
@@ -113,7 +123,7 @@ class CliTests(unittest.TestCase):
                 self.assertEqual("MISSING", envelope["policy"]["approval_status"])
                 self.assertEqual("INVALID", envelope["verdict"])
                 self.assertEqual("IS_APPROVAL_MISSING", envelope["errors"][0]["code"])
-        self.assertFalse(approval_root.exists())
+        self.assertEqual(approval_before, self.approval_store_snapshot())
 
     def test_agent_facing_approval_attempt_is_forbidden(self) -> None:
         completed, envelope = self.run_cli(
@@ -141,8 +151,7 @@ class CliTests(unittest.TestCase):
         self.assertEqual("IS_USAGE", envelope["errors"][0]["code"])
 
     def test_verify_requires_external_match_and_starts_no_runtime(self) -> None:
-        approval_root = Path(os.environ["LOCALAPPDATA"]) / "IncidentSeal" / "approvals" / "v1"
-        self.assertFalse(approval_root.exists(), "test requires no real IncidentSeal approval store")
+        approval_before = self.approval_store_snapshot()
         before = subprocess.run(
             ["docker", "ps", "-aq", "--filter", "label=dev.incidentseal.workflow-run"],
             cwd=ROOT, capture_output=True, check=True,
@@ -161,7 +170,7 @@ class CliTests(unittest.TestCase):
         self.assertEqual("MISSING", envelope["policy"]["approval_status"])
         self.assertEqual("IS_APPROVAL_MISSING", envelope["errors"][0]["code"])
         self.assertEqual(before, after)
-        self.assertFalse(approval_root.exists())
+        self.assertEqual(approval_before, self.approval_store_snapshot())
 
         completed, envelope = self.run_cli(
             "verify", "--manifest", str(FIXTURES / "workflow.valid.minimal.json"),
@@ -194,8 +203,7 @@ class CliTests(unittest.TestCase):
 
     @unittest.skipUnless(os.name == "nt", "Windows operator launcher probe")
     def test_windows_launcher_rejects_redirected_operator_approval(self) -> None:
-        approval_root = Path(os.environ["LOCALAPPDATA"]) / "IncidentSeal" / "approvals" / "v1"
-        self.assertFalse(approval_root.exists(), "test requires no real IncidentSeal approval store")
+        approval_before = self.approval_store_snapshot()
         completed = subprocess.run(
             [
                 os.environ.get("COMSPEC", "cmd.exe"),
@@ -214,7 +222,7 @@ class CliTests(unittest.TestCase):
         self.assertEqual(77, completed.returncode)
         self.assertEqual(b"", completed.stdout)
         self.assertIn(b"interactive terminal is required", completed.stderr)
-        self.assertFalse(approval_root.exists())
+        self.assertEqual(approval_before, self.approval_store_snapshot())
 
     @unittest.skipUnless(os.name == "nt" and GIT_BASH.exists(), "Git Bash launcher probe")
     def test_posix_launcher_selects_a_working_python_on_windows(self) -> None:

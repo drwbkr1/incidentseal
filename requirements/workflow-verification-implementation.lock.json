@@ -1,4 +1,4 @@
-{"schema_version":"incidentseal-workflow-verification-implementation-lock/v1","lock_id":"IS-WORKFLOW-VERIFICATION-IMPLEMENTATION-LOCK-0001","checkpoint_id":"IS-0006","unit_id":"IS6-U02","generated_at_utc":"2026-08-11T18:31:32Z","workflow_contract_lock":{"path":"requirements/workflow-verification-contract.lock.json","sha256":"sha256:172cb06ad322a5659fa1c4be4691114424ecc57d43d26d52068933ab4a2261c2"},"topology_runtime_lock":{"path":"requirements/topology-runtime.lock.json","sha256":"sha256:e1753c068e7e5ead85bb9ed0818c4f4d46528d38240abfaf3c640866ae3bc487"},"supported_runners":["python","node"],"runtime_dependencies":[],"agent_commands":["verify","run.events"],"approval_mutation_command":false,"production_approval_written":false,"real_probe_authority":"synthetic-temporary-only","files":[
+{"schema_version":"incidentseal-workflow-verification-implementation-lock/v1","lock_id":"IS-WORKFLOW-VERIFICATION-IMPLEMENTATION-LOCK-0001","checkpoint_id":"IS-0006","unit_id":"IS6-U02","generated_at_utc":"2026-08-11T19:53:54Z","workflow_contract_lock":{"path":"requirements/workflow-verification-contract.lock.json","sha256":"sha256:172cb06ad322a5659fa1c4be4691114424ecc57d43d26d52068933ab4a2261c2"},"topology_runtime_lock":{"path":"requirements/topology-runtime.lock.json","sha256":"sha256:e1753c068e7e5ead85bb9ed0818c4f4d46528d38240abfaf3c640866ae3bc487"},"supported_runners":["python","node"],"runtime_dependencies":[],"agent_commands":["verify","run.events"],"approval_mutation_command":false,"production_approval_written":false,"real_probe_authority":"synthetic-temporary-only","files":[
 {"path":"AGENTS.md","sha256":"sha256:b572f88b0e6afae85a4336fd0c0bfcc9bfa80be363882e94ae874aa505f5b283"},
 {"path":"docs/cli-contract.md","sha256":"sha256:5c5387f53ad494e1122468be51ea08fe81134f191e7c4516ed4381f68c688bc3"},
 {"path":"docs/decisions/ADR-0013-no-shell-distroless-command-bootstrap.md","sha256":"sha256:3a1bdf07b63d13f97a6b13aafadb02e3ed85deb39d142ee7778d2ba8da20b029"},
@@ -18,7 +18,7 @@
 {"path":"src/incidentseal/journal.py","sha256":"sha256:2bbf9e22f48cd5b15ae05af33ec92013bf44a7e6436589b69957ba0cbac84c07"},
 {"path":"src/incidentseal/manifest.py","sha256":"sha256:05e37b628475853083d380495b7c7b6f928c8007932671f77766bb54f1879fef"},
 {"path":"src/incidentseal/workflow.py","sha256":"sha256:d192339d6476153b9349a745376d34ef7c16a1e697512c04c8ca92584af122c4"},
-{"path":"tests/test_cli.py","sha256":"sha256:414f10bdfe24b0f70a3c882c688eee8ece0ab662bc47e7e0754206f018d72b84"},
+{"path":"tests/test_cli.py","sha256":"sha256:5122b7f8bbace80fdf64327f6cfbfeab9c1f0a96ead52d1419215751d81ddee7"},
 {"path":"tests/test_release_workflow.py","sha256":"sha256:5c05ab5ea69c252f4d6f68996c3d1a41a65f62baf21852a6f335f6d5f48351e1"},
 {"path":"tests/test_workflow.py","sha256":"sha256:de7d2a1a448560c2ab2869fbb401e40793bc2b24cc53c6d61de0490214aa288f"}
 ]}
