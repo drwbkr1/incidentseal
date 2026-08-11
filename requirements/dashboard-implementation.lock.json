@@ -1,9 +1,10 @@
 {
   "schema_version":"incidentseal-dashboard-implementation-lock/v1",
   "implementation_id":"INCIDENTSEAL-DASHBOARD-IMPLEMENTATION-001",
+  "revision":3,
   "checkpoint_id":"IS-0005",
   "unit_id":"IS5-U02",
-  "generated_at_utc":"2026-08-11T01:11:04Z",
+  "generated_at_utc":"2026-08-11T02:18:22Z",
   "files":[
     {"path":"docs/dashboard-implementation.md","sha256":"sha256:f416d5d31d264d01c15702b02795613fc0e9d71de7411e11f118bf9c8b007caa"},
     {"path":"fixtures/dashboard/implementation-mutations.json","sha256":"sha256:24a28d3d46a5a4f607214d484bcbb29e02bcdc9fbc11e7a917f70330c601e0f7"},
@@ -12,7 +13,7 @@
     {"path":"scripts/run_dashboard_implementation.py","sha256":"sha256:ad94dc7490ab151cc7eb3f9d4efde6ebecd64e9bda578dc052b7f2d27a3da424"},
     {"path":"scripts/test_dashboard_implementation_mutations.py","sha256":"sha256:cb8a0433dd6367840bb3429a42d89b0c96dc598fe8afacdbdd714c45d517aaa5"},
     {"path":"scripts/validate_dashboard_implementation.py","sha256":"sha256:e2e08c3ab88ba70d2571c8c27c70abe5620e6e128751d2080eeb3b60ac5f073c"},
-    {"path":"src/incidentseal/dashboard_assets/dashboard.css","sha256":"sha256:6988c08b2a45569aa856a57ee5abefd47bd77669db333e6dbb80b75a843c1feb"},
+    {"path":"src/incidentseal/dashboard_assets/dashboard.css","sha256":"sha256:514ad8172a913ff257e824cf6c5e25c9f4178d48275dd3cb94d60db32d08d005"},
     {"path":"src/incidentseal/dashboard_assets/dashboard.js","sha256":"sha256:84cea305fd0de541b7a3101a7a96255948c5f8160c0f4aafc5fb7ebabf42c954"},
     {"path":"src/incidentseal/dashboard_implementation.py","sha256":"sha256:fd8c57d5a8102d19860d318fc148186f3ad0955ae48075c752daf9f4a2d68e78"},
     {"path":"src/incidentseal/dashboard_surface.py","sha256":"sha256:d74f0c8c643f71c271f244b6626ae7f7a7dc2bb397c2a214d7357cef6c2797ab"},
@@ -25,7 +26,7 @@
     {"path":"src/incidentseal/__main__.py","sha256":"sha256:50a6f8044ffdbd04abd40e6464510ff6bf72e63f9870d958357e7bb0171d4cf6"},
     {"path":"src/incidentseal/cli.py","sha256":"sha256:0c052ec1eee9d4e5d4a301582ca472fcd97661566c589a179e531738f8f36eb0"}
   ],
-  "golden":{"snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","html_digest":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f","css_digest":"sha256:6988c08b2a45569aa856a57ee5abefd47bd77669db333e6dbb80b75a843c1feb","javascript_digest":"sha256:84cea305fd0de541b7a3101a7a96255948c5f8160c0f4aafc5fb7ebabf42c954","health_digest":"sha256:1d41faf32e23b3fb200f92457ddd06be0c63ce4b9e5f10b31d7b6a8e7cdc4bd7","routes":5,"security_headers":8,"bind_host":"127.0.0.1"},
+  "golden":{"snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","html_digest":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f","css_digest":"sha256:514ad8172a913ff257e824cf6c5e25c9f4178d48275dd3cb94d60db32d08d005","javascript_digest":"sha256:84cea305fd0de541b7a3101a7a96255948c5f8160c0f4aafc5fb7ebabf42c954","health_digest":"sha256:1d41faf32e23b3fb200f92457ddd06be0c63ce4b9e5f10b31d7b6a8e7cdc4bd7","routes":5,"security_headers":8,"bind_host":"127.0.0.1"},
   "runtime_probe":{"launcher":"incidentseal-dashboard.cmd","requests":25,"get_routes":5,"head_routes":5,"denied_methods":7,"wrong_hosts_denied":4,"bad_targets_denied":4,"external_requests":0,"repository_writes":0,"server_closed":true},
   "implementation_mutations":{"manifest":"fixtures/dashboard/implementation-mutations.json","count":29},
   "runtime_dependencies":[],

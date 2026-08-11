@@ -1,0 +1,22 @@
+{
+  "schema_version":"incidentseal-dashboard-browser-evaluation/v1",
+  "evaluation_id":"IS-EVAL-0005-U03-CANDIDATE",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U03",
+  "observed_at_utc":"2026-08-11T02:50:00Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "candidate_base":{"commit":"075a8bd8242e0bc15ee337c44610a27e3397e113","tree":"230ebf6a7227030cebc73d514b90bfd26674407c","worktree_has_uncommitted_candidate":true},
+  "identity":{"contract_lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","implementation_lock_digest":"sha256:f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f","browser_lock_digest":"sha256:3afab378732eb88049988fbe2a935ee1102bd989af62e2517a9cf853a0d20f29","snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","html_digest":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f","css_digest":"sha256:514ad8172a913ff257e824cf6c5e25c9f4178d48275dd3cb94d60db32d08d005"},
+  "rendered_surface":{"browsers":["Codex In-app Browser","Chrome extension"],"desktop_viewports":1,"mobile_scenarios":9,"retained_screenshots":11,"desktop_horizontal_overflow":false,"mobile_horizontal_overflow":false,"console_error_or_warning_count":0,"external_pages_opened":0,"signed_in_data_accessed":false},
+  "claim_calibration":{"success_views":1,"success_claims_permitted":1,"non_success_views":8,"non_success_claims_permitted":0,"false_passes":0,"false_release_claims":0},
+  "accessibility":{"main_landmarks":1,"labelled_navigation":true,"ordered_headings":10,"tables":1,"table_headers":3,"lists":5,"keyboard_focus_steps":7,"focusable_links":6,"visible_focus_on_links":true,"keyboard_trap":false,"minimum_touch_target_css_px":"44.0","minimum_text_contrast_ratio":"4.7291","reduced_motion_rule":true,"state_uses_text_labels":true},
+  "browser_requests":{"declared_local_assets":2,"browser_generated_local_probes":1,"browser_generated_favicon_denied":true,"external_assets":0,"external_requests":0},
+  "real_surface":{"launcher":"incidentseal-dashboard.cmd","implementation_revision":3,"implementation_lock_digest":"sha256:f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f","port":57105,"requests":25,"get_routes":5,"head_routes":5,"write_and_control_methods_denied":7,"wrong_hosts_denied":4,"bad_targets_denied":4,"security_headers":8,"external_requests":0,"repository_writes":0,"server_closed":true},
+  "validation":{"repository_tests_expected_after_browser_tests":129,"contract_mutations":37,"implementation_mutations":29,"browser_mutations":28,"runtime_dependencies":0,"static_browser_validator_started_browser":false},
+  "retained_attempts":{"failures":{"path":"records/evaluations/IS-0005-U03-rendered-browser-failures.json","count":2},"invalid":{"path":"records/evaluations/IS-0005-U03-rendered-browser-invalid-attempts.json","count":13}},
+  "authority_boundary":{"policy_invocation_id":"c5ee8ebd-f387-4725-a799-2e64a4cfb925","approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"dashboard_approval_access":false,"workflow_executed":false},
+  "runtime_boundary":{"scenario_server_processes_after":0,"dashboard_processes_after":0,"docker_accessed_by_dashboard":false,"incidentseal_containers":0,"incidentseal_networks":0,"protected_volumes":3,"protected_volume_identity_unchanged":true},
+  "non_claims":["The browser candidate has not reproduced from exact public custody.","No repeated three-run scenario evaluation, latency, resource, recovery, packaging, registry, release, or v0.1.0 claim advances."],
+  "decision":{"status":"candidate-pass-public-replay-required","reason":"The real revision-3 loopback surface passes desktop and mobile rendering, all nine frozen state views, claim calibration, semantic structure, Chrome keyboard traversal, touch targets, contrast, reduced motion, local-only asset observation, browser-log, screenshot-retention, mutation, launcher, authority, and teardown gates. Exact public replay remains before U03 can pass."}
+}

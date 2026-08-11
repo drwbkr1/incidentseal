@@ -2,7 +2,7 @@
   color-scheme: dark;
   --ink: #f3efe6;
   --muted: #a59f93;
-  --faint: #716d65;
+  --faint: #8a857c;
   --paper: #0b0d0e;
   --panel: #111416;
   --panel-high: #171b1d;
@@ -69,7 +69,7 @@ code {
   border-bottom: 1px solid var(--line);
   background: rgba(11, 13, 14, .88);
 }
-.wordmark { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 760; letter-spacing: -.02em; }
+.wordmark { min-height: 44px; display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 760; letter-spacing: -.02em; }
 .wordmark-mark {
   display: grid;
   width: 34px;
@@ -82,7 +82,7 @@ code {
   box-shadow: inset 0 0 0 4px rgba(215,255,114,.04);
 }
 nav { display: flex; gap: 24px; }
-nav a { color: var(--muted); font-size: .82rem; text-decoration: none; }
+nav a { min-height: 44px; display: inline-flex; align-items: center; color: var(--muted); font-size: .82rem; text-decoration: none; }
 nav a:hover { color: var(--ink); }
 .mode-pill {
   justify-self: end;

@@ -1,0 +1,32 @@
+{
+  "schema_version":"incidentseal-dashboard-browser-failures/v1",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U03",
+  "recorded_at_utc":"2026-08-11T02:40:00Z",
+  "attempts":[
+    {
+      "attempt_id":"IS5-U03-FAIL-001",
+      "sequence":1,
+      "execution_state":"completed",
+      "verification_verdict":"FAIL",
+      "surface":"rendered-text-contrast",
+      "implementation_revision":1,
+      "observed":{"foreground":"#716d65","paper_ratio":"3.7820","panel_ratio":"3.5910","panel_high_ratio":"3.3672","required_ratio":"4.5"},
+      "result":"Rendered muted evidence labels failed the frozen 4.5:1 text-contrast gate on every dark surface.",
+      "retained_product_claim":false,
+      "corrected_by":"Implementation revision 2 changed --faint to #8a857c; revision 3 retains 5.3117:1, 5.0434:1, and 4.7291:1 across the same surfaces."
+    },
+    {
+      "attempt_id":"IS5-U03-FAIL-002",
+      "sequence":2,
+      "execution_state":"completed",
+      "verification_verdict":"FAIL",
+      "surface":"mobile-touch-target",
+      "implementation_revision":2,
+      "observed":{"viewport":"390x844","control":"IncidentSeal wordmark","height_css_px":"30.0","required_height_css_px":"44.0"},
+      "result":"The only always-visible mobile navigation control was smaller than the frozen 44 CSS pixel touch-target gate.",
+      "retained_product_claim":false,
+      "corrected_by":"Implementation revision 3 gives the wordmark and desktop navigation links an exact 44 CSS pixel minimum target; the skip link remains 44.79 CSS pixels."
+    }
+  ]
+}
