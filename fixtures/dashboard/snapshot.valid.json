@@ -23,10 +23,10 @@
     {"path":"records/surface-receipts/IS-0004-U06-public-integrated-recovery-implementation-replay.json","kind":"surface-receipt","sha256":"sha256:a5d3b668cb7291d390d47671361f58909a0682a10b25f0cfae7e4a139c0914d2"},
     {"path":"records/surface-receipts/IS-0004-checkpoint-marker.json","kind":"surface-receipt","sha256":"sha256:bb7ba5cb778cb715ae754a140445156842dfac35026530308ef0f5f227308f51"},
     {"path":"records/surface-receipts/IS-0004-public-checkpoint.json","kind":"surface-receipt","sha256":"sha256:d352b90cbbd08349a3fe052a80f5b7f5ed2828b03bdb7f64e1cef21f67461700"},
-    {"path":"requirements/integrated-recovery-implementation.lock.json","kind":"lock","sha256":"sha256:d3e0d2f2b5d3f46aef89a805a6c5a69def17e108ca362ed041e1eb942093d556"}
+    {"path":"requirements/integrated-recovery-implementation.lock.json","kind":"lock","sha256":"sha256:03ce0a4f235c9b7bb60b5a74f9937ac04cf6aee618145b3bb40ec0e8e0c807d7"}
   ],
   "retained_attempts":{"pass":4,"fail":0,"inconclusive":0,"invalid":6,"cancelled":0,"failed":0,"stale":0,"superseded":1},
   "non_claims":["Dashboard projection is not approval authority.","No repository workflow was executed.","No software release or registry publication is claimed.","This contract does not prove the dashboard implementation or rendered surface."],
   "verification_verdict":"PASS",
-  "snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2"
+  "snapshot_digest":"sha256:7207dc3084bdbf5cfb5190a26b7bb31eb5fdc0dad69a00f346c29d54dd23b259"
 }

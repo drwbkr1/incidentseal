@@ -18,6 +18,7 @@ from .receipt import ReceiptError, materialize_bundle, verify_bundle
 from .reliability_surface import reliability_probe
 from .runtime import runtime_probe
 from .topology import TopologyError, validate_platform_topology
+from .workflow import WorkflowError, execute_workflow, stream_workflow_events
 
 
 EXIT_SUCCESS = 0
@@ -83,6 +84,7 @@ def _envelope(
     command_status: str,
     process_exit_code: int,
     verdict: str | None = None,
+    lifecycle: str | None = None,
     policy: dict[str, Any] | None = None,
     data: dict[str, Any] | None = None,
     errors: list[dict[str, Any]] | None = None,
@@ -96,7 +98,7 @@ def _envelope(
         "command_status": command_status,
         "process_exit_code": process_exit_code,
         "verdict": verdict,
-        "lifecycle": None,
+        "lifecycle": lifecycle,
         "policy": policy,
         "data": data or {},
         "errors": errors or [],
@@ -105,9 +107,10 @@ def _envelope(
 
 
 def _parse(argv: Sequence[str]) -> Request:
-    if len(argv) < 2 or tuple(argv[:2]) not in COMMANDS:
+    is_verify = len(argv) >= 1 and argv[0] == "verify"
+    if not is_verify and (len(argv) < 2 or tuple(argv[:2]) not in COMMANDS):
         raise UsageError("expected a supported policy or topology command")
-    command = COMMANDS[tuple(argv[:2])]
+    command = "verify" if is_verify else COMMANDS[tuple(argv[:2])]
     manifest: str | None = None
     mode: str | None = None
     receipt: str | None = None
@@ -117,7 +120,7 @@ def _parse(argv: Sequence[str]) -> Request:
     expected_digest: str | None = None
     seen_receipt_options: set[str] = set()
     json_requested = False
-    index = 2
+    index = 1 if is_verify else 2
     while index < len(argv):
         token = argv[index]
         if token == "--json":
@@ -161,7 +164,12 @@ def _parse(argv: Sequence[str]) -> Request:
         raise UsageError(f"unknown argument: {token}")
     if not json_requested:
         raise UsageError("--json is required for the v1 machine CLI")
-    if command.startswith("policy."):
+    if command == "verify":
+        if manifest is None or manifest == "":
+            raise UsageError("--manifest requires exactly one path")
+        if mode is not None or any(value is not None for value in (receipt, source_root, bundle_root, output_root, expected_digest)):
+            raise UsageError("only --manifest PATH --json is valid for verify")
+    elif command.startswith("policy."):
         if manifest is None or manifest == "":
             raise UsageError("--manifest requires exactly one path")
         if mode is not None:
@@ -225,6 +233,19 @@ def _approval_envelope(request: Request, document: Any, result: ApprovalResult) 
 
 
 def _success(request: Request) -> dict[str, Any]:
+    if request.command == "verify":
+        assert request.manifest is not None
+        outcome = execute_workflow(load_manifest(request.manifest))
+        return _envelope(
+            request.command,
+            command_status="succeeded",
+            process_exit_code=outcome.exit_code,
+            verdict=outcome.verdict,
+            lifecycle=outcome.lifecycle,
+            policy=outcome.policy,
+            data=outcome.data,
+            evidence=outcome.evidence,
+        )
     if request.command == "receipt.materialize":
         assert request.receipt and request.source_root and request.output_root
         data = materialize_bundle(request.receipt, request.source_root, request.output_root)
@@ -435,6 +456,19 @@ def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
             errors=[_error(error.code, str(error), None, error.io_error)],
         )
         return envelope, exit_code
+    except WorkflowError as error:
+        envelope = _envelope(
+            command,
+            command_status="errored" if error.exit_code in {21, 70, 74} else "rejected",
+            process_exit_code=error.exit_code,
+            verdict=error.verdict,
+            lifecycle=error.lifecycle,
+            policy=error.policy,
+            data=error.data,
+            errors=[_error(error.code, str(error), None, error.retriable)],
+            evidence=error.evidence,
+        )
+        return envelope, error.exit_code
     except ManifestError as error:
         envelope = _envelope(
             command,
@@ -465,6 +499,19 @@ def execute(argv: Sequence[str]) -> tuple[dict[str, Any], int]:
 def main(argv: Sequence[str] | None = None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
     if tuple(arguments[:2]) == ("run", "events"):
+        if len(arguments) == 5 and arguments[2] == "--run-id" and arguments[4] == "--jsonl":
+            try:
+                archived = stream_workflow_events(arguments[3])
+            except WorkflowError as error:
+                code = 74 if error.exit_code == 74 else 12
+                sys.stderr.write(f"{error.code}: {str(error)[:1000]}\n")
+                return code
+            if archived is not None:
+                raw_events, exit_code = archived
+                for raw in raw_events:
+                    sys.stdout.buffer.write(raw + b"\n")
+                sys.stdout.buffer.flush()
+                return exit_code
         from .journal_surface import run_events_cli
 
         return run_events_cli(arguments[2:])

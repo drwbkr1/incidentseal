@@ -6,7 +6,7 @@
   "unit_id": "IS6-U01",
   "generated_at_utc": "2026-08-11T14:59:03Z",
   "files": [
-    {"path":"AGENTS.md","sha256":"sha256:3fc3b939ba5f0003d21cb21bbd5cdf5a42112295959e6fc269733465d13bb562"},
+    {"path":"AGENTS.md","sha256":"sha256:b572f88b0e6afae85a4336fd0c0bfcc9bfa80be363882e94ae874aa505f5b283"},
     {"path":"docs/release-contract.md","sha256":"sha256:477e1ddaa1eb1f776ef7f63f78e1b45a83011706e9383b0003ba30bbf82a2946"},
     {"path":"docs/decisions/ADR-0011-approved-workflow-before-portable-release.md","sha256":"sha256:79edfb4a99927650bf2f534c8e348cce0b3797ae534dc5b19b43d61311ad0b2a"},
     {"path":"fixtures/release/mutations.json","sha256":"sha256:137385b8bb5c42596d06a8735474066b87b008fefbe8ee17788c0aa01f5ab3b5"},
@@ -26,7 +26,7 @@
     {"path":"docs/product-contract.md","sha256":"sha256:b523d238481adc2695d8c7b6a7954dd112e8a845c06782ee85e050ba54b5d1e5"},
     {"path":"docs/threat-model.md","sha256":"sha256:0b27aae638dcf717d04ced82f51fd8e629de4dc436a906c8feb4de1aad59752c"},
     {"path":"requirements/images.lock.json","sha256":"sha256:8a816cbf072ec87f4495a7a9cf4c9f538a919178cbcfb245fa501b64e91d4ab8"},
-    {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:a5ae829f0c85d0345ae5db503ccc7be7f0955c7010fdcbf37bcb93fa5ad93059"},
+    {"path":"requirements/topology-runtime.lock.json","sha256":"sha256:e1753c068e7e5ead85bb9ed0818c4f4d46528d38240abfaf3c640866ae3bc487"},
     {"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"},
     {"path":"records/evaluations/IS-0005-U05-public-checkpoint.json","sha256":"sha256:4306f5f87389fa3388de961cb492060a939a81e6e1df9021dfe88a2c85adb231"},
     {"path":"records/surface-receipts/IS-0005-public-checkpoint.json","sha256":"sha256:3b00fb8cc820e092b860bd0a750ef1137368f7f62c827daa49edad944432ac53"},

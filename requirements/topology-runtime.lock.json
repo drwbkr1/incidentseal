@@ -19,7 +19,7 @@
   },
   "implementation_lock": {
     "path": "requirements/topology-implementation.lock.json",
-    "sha256": "sha256:0f4f8c3dc4a4a6b67a00ea979110a98dc478b8f13e3e0d90f0039a461348f2da"
+    "sha256": "sha256:351c02afa016781012b381af9c6cdf16319faa752e06405df69e81afe69d2fbb"
   },
   "build_policy": {
     "network": "none",

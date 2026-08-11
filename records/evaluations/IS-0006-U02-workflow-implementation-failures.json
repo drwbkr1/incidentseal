@@ -1,0 +1,30 @@
+{
+  "schema_version": "incidentseal-workflow-implementation-failures/v1",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T18:11:01Z",
+  "failures": [
+    {
+      "attempt_id": "IS6-U02-IMPLEMENTATION-FAIL-001",
+      "execution_state": "completed",
+      "verification_verdict": "FAIL",
+      "surface": "real Python runner effective environment",
+      "cause": "The first real runner probe exposed Docker's added LC_CTYPE value to the user command, exceeding the frozen four-name environment allowlist.",
+      "product_runtime_started": true,
+      "persistent_output_written": false,
+      "production_approval_written": false,
+      "corrected_by": "The no-shell Python bootstrap now clears the effective process environment in-process before executing the admitted v1 script, module, or code profile."
+    },
+    {
+      "attempt_id": "IS6-U02-IMPLEMENTATION-FAIL-002",
+      "execution_state": "failed",
+      "verification_verdict": "FAIL",
+      "surface": "run events invalid run identifier",
+      "cause": "An invalid UUID initially escaped the workflow archive lookup as an unhandled JournalError instead of preserving the stable rejected-command envelope.",
+      "product_runtime_started": false,
+      "docker_accessed": false,
+      "production_approval_written": false,
+      "corrected_by": "The CLI now treats an invalid archive identifier as an archive miss and delegates to the existing journal command, which retains the stable usage and evidence semantics."
+    }
+  ]
+}

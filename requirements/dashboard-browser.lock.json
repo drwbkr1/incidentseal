@@ -26,7 +26,7 @@
     {"path":"scripts/validate_dashboard_browser.py","sha256":"sha256:6aa2ed664604e6be2b6a02c389c72916d2ac92cfd3355361c3b9d1c633c2800c"},
     {"path":"tests/test_dashboard_browser.py","sha256":"sha256:09f5fe4256627c80e8402fa5cb3e2ad0754893fab9662e9e02097ac1c08e79e2"}
   ],
-  "implementation_lock":{"path":"requirements/dashboard-implementation.lock.json","revision":3,"sha256":"sha256:f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f"},
+  "implementation_lock":{"path":"requirements/dashboard-implementation.lock.json","revision":3,"sha256":"sha256:fedc8a271ae13108b4d1f621526ceb7f5992a87fa2dfb7e740839e4a2d56832f"},
   "browsers":{"rendered_layout":"Codex In-app Browser","keyboard":"Chrome extension","external_pages_opened":0,"signed_in_data_accessed":false},
   "desktop":{
     "scenario_id":"dashboard-success",

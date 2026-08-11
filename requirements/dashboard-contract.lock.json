@@ -15,7 +15,7 @@
     {"path":"fixtures/dashboard/scenario-corpus.invalid.minimal.json","sha256":"sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"},
     {"path":"fixtures/dashboard/scenario-corpus.valid.json","sha256":"sha256:5edbd3ba01d68a364f44c87a58dd20caeb5d4722b0f309b23b250e8c35678102"},
     {"path":"fixtures/dashboard/snapshot.invalid.minimal.json","sha256":"sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"},
-    {"path":"fixtures/dashboard/snapshot.valid.json","sha256":"sha256:d400fd863b6428555bb9fa3abdeb3458114c4f009f94ead60ccbaf36b1a50cbb"},
+    {"path":"fixtures/dashboard/snapshot.valid.json","sha256":"sha256:fb18457494214bffd03d0f2e2aee7fe59ead6b368c666bfb919c0b5ac63fcb54"},
     {"path":"requirements/meta-validation.lock","sha256":"sha256:3c95d555665720466e412139e328dba3948119cf12dd3f89de50730d84828ca4"},
     {"path":"schemas/dashboard-scenario-corpus-v1.schema.json","sha256":"sha256:1425214d2f109fe2056d10014ad01a3d463f528135d377b0ed3c0c2f3b772596"},
     {"path":"schemas/dashboard-snapshot-v1.schema.json","sha256":"sha256:a3786857ef704309260c08b794bf515e3bd59000924b94b1f3bb298c55161eb1"},
@@ -34,10 +34,10 @@
     {"path":"records/surface-receipts/IS-0004-U06-public-integrated-recovery-implementation-replay.json","kind":"surface-receipt","sha256":"sha256:a5d3b668cb7291d390d47671361f58909a0682a10b25f0cfae7e4a139c0914d2"},
     {"path":"records/surface-receipts/IS-0004-checkpoint-marker.json","kind":"surface-receipt","sha256":"sha256:bb7ba5cb778cb715ae754a140445156842dfac35026530308ef0f5f227308f51"},
     {"path":"records/surface-receipts/IS-0004-public-checkpoint.json","kind":"surface-receipt","sha256":"sha256:d352b90cbbd08349a3fe052a80f5b7f5ed2828b03bdb7f64e1cef21f67461700"},
-    {"path":"requirements/integrated-recovery-implementation.lock.json","kind":"lock","sha256":"sha256:d3e0d2f2b5d3f46aef89a805a6c5a69def17e108ca362ed041e1eb942093d556"}
+    {"path":"requirements/integrated-recovery-implementation.lock.json","kind":"lock","sha256":"sha256:03ce0a4f235c9b7bb60b5a74f9937ac04cf6aee618145b3bb40ec0e8e0c807d7"}
   ],
   "checkpoint_identity":{"tag":"checkpoint-is-0004","tag_object":"60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf","peeled_commit":"25328dacef4d9283090bed809db75b33f613829b","tree":"b03947a405f670a0ed41f0ec1544722fdbe69d20"},
-  "golden":{"snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","corpus_digest":"sha256:76bf8d4e5aa9b080f87a4eefb4c1c91ce1b22d6ba1c1d3b5dab23890fc455560","source_records":7,"exits":8,"scenarios":9,"repetitions":3},
+  "golden":{"snapshot_digest":"sha256:7207dc3084bdbf5cfb5190a26b7bb31eb5fdc0dad69a00f346c29d54dd23b259","corpus_digest":"sha256:76bf8d4e5aa9b080f87a4eefb4c1c91ce1b22d6ba1c1d3b5dab23890fc455560","source_records":7,"exits":8,"scenarios":9,"repetitions":3},
   "mutations":{"manifest":"fixtures/dashboard/contract-mutations.json","count":37},
   "evaluation_dependencies":{"lock":"requirements/meta-validation.lock","source_gate":"records/source-gates/2026-08-09-jsonschema-meta-validation.json","retained_exact_wheel_reuse":"permitted-after-hash-verification","runtime_dependency":false},
   "runtime_dependencies":[],

@@ -6,7 +6,7 @@
   "unit_id":"IS5-U04",
   "generated_at_utc":"2026-08-11T04:03:09Z",
   "files":[
-    {"path":"AGENTS.md","sha256":"sha256:3fc3b939ba5f0003d21cb21bbd5cdf5a42112295959e6fc269733465d13bb562"},
+    {"path":"AGENTS.md","sha256":"sha256:b572f88b0e6afae85a4336fd0c0bfcc9bfa80be363882e94ae874aa505f5b283"},
     {"path":"docs/dashboard-repeated-evaluation.md","sha256":"sha256:f64c767dad9fcd1c86ae05b8096a565cba8db1365f88ee36470b81e3e5057a28"},
     {"path":"fixtures/dashboard/evaluation-mutations.json","sha256":"sha256:1a535e083ad9b00e36b4b6127539382c0c4180baba6ca8fb19c9a379f4c7d2d1"},
     {"path":"scripts/run_dashboard_evaluation.py","sha256":"sha256:a00b6fe1e667431c4643bd43f6306307779132c41b7ba9fdafa9f8e1ef7cf195"},
@@ -16,9 +16,9 @@
     {"path":"tests/test_dashboard_evaluation.py","sha256":"sha256:a033c16bb5bf05148b1ae52524b1644fcf06a126132da3b5a5feb759c0d6af23"}
   ],
   "bindings":{
-    "contract_lock":{"path":"requirements/dashboard-contract.lock.json","sha256":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61"},
-    "implementation_lock":{"path":"requirements/dashboard-implementation.lock.json","sha256":"sha256:f9a24216371608f565e08c6e8f812cfa2cea2d586ffb0a7109123bdfc7f3b01f"},
-    "browser_lock":{"path":"requirements/dashboard-browser.lock.json","sha256":"sha256:3afab378732eb88049988fbe2a935ee1102bd989af62e2517a9cf853a0d20f29"}
+    "contract_lock":{"path":"requirements/dashboard-contract.lock.json","sha256":"sha256:dc1226afdd22688120254256be215002f508fb1ad7685d6660b9978fda9583ac"},
+    "implementation_lock":{"path":"requirements/dashboard-implementation.lock.json","sha256":"sha256:fedc8a271ae13108b4d1f621526ceb7f5992a87fa2dfb7e740839e4a2d56832f"},
+    "browser_lock":{"path":"requirements/dashboard-browser.lock.json","sha256":"sha256:481e3c51a6af028cbbf405a0802ed62472f7553e48a14845e5633e60d7357e5c"}
   },
   "plan":{
     "scenarios":9,

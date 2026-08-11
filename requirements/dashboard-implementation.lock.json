@@ -19,14 +19,14 @@
     {"path":"src/incidentseal/dashboard_surface.py","sha256":"sha256:d74f0c8c643f71c271f244b6626ae7f7a7dc2bb397c2a214d7357cef6c2797ab"},
     {"path":"tests/test_dashboard_surface.py","sha256":"sha256:f3fc1ddaf4c51b79ad30d77a6f814bb6daa1e83ce044b72a4afd5c339b9178ee"}
   ],
-  "contract_lock":{"path":"requirements/dashboard-contract.lock.json","sha256":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61"},
+  "contract_lock":{"path":"requirements/dashboard-contract.lock.json","sha256":"sha256:dc1226afdd22688120254256be215002f508fb1ad7685d6660b9978fda9583ac"},
   "frozen_verification_cli":[
     {"path":"incidentseal","sha256":"sha256:fd9a913aa2f9e3f88daa5bcea4660aec501ea45e0015aa5a380625432448a16e"},
     {"path":"incidentseal.cmd","sha256":"sha256:48f6374a6c5320fed187717c0ce03a9ef28f9d68384ed53c980000b0b2e785a2"},
     {"path":"src/incidentseal/__main__.py","sha256":"sha256:50a6f8044ffdbd04abd40e6464510ff6bf72e63f9870d958357e7bb0171d4cf6"},
-    {"path":"src/incidentseal/cli.py","sha256":"sha256:0c052ec1eee9d4e5d4a301582ca472fcd97661566c589a179e531738f8f36eb0"}
+    {"path":"src/incidentseal/cli.py","sha256":"sha256:122863d6d34e9ef232a01ce490cdd0b9d8d1b8d42e7864fe088b35d198fb25c3"}
   ],
-  "golden":{"snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","html_digest":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f","css_digest":"sha256:514ad8172a913ff257e824cf6c5e25c9f4178d48275dd3cb94d60db32d08d005","javascript_digest":"sha256:84cea305fd0de541b7a3101a7a96255948c5f8160c0f4aafc5fb7ebabf42c954","health_digest":"sha256:1d41faf32e23b3fb200f92457ddd06be0c63ce4b9e5f10b31d7b6a8e7cdc4bd7","routes":5,"security_headers":8,"bind_host":"127.0.0.1"},
+  "golden":{"snapshot_digest":"sha256:7207dc3084bdbf5cfb5190a26b7bb31eb5fdc0dad69a00f346c29d54dd23b259","html_digest":"sha256:60fcdff12a118f1e70a5a52c78458fdb53653eacc390fce99858bea29765ced6","css_digest":"sha256:514ad8172a913ff257e824cf6c5e25c9f4178d48275dd3cb94d60db32d08d005","javascript_digest":"sha256:84cea305fd0de541b7a3101a7a96255948c5f8160c0f4aafc5fb7ebabf42c954","health_digest":"sha256:5a9c804594733b36e710d78f1cd6e7ebb78cb85480981b9681387de5f07dc24f","routes":5,"security_headers":8,"bind_host":"127.0.0.1"},
   "runtime_probe":{"launcher":"incidentseal-dashboard.cmd","requests":25,"get_routes":5,"head_routes":5,"denied_methods":7,"wrong_hosts_denied":4,"bad_targets_denied":4,"external_requests":0,"repository_writes":0,"server_closed":true},
   "implementation_mutations":{"manifest":"fixtures/dashboard/implementation-mutations.json","count":29},
   "runtime_dependencies":[],

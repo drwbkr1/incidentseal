@@ -68,7 +68,9 @@ For `--jsonl`:
 - stderr remains outside the event stream; and
 - cancellation, execution failure, staleness, and supersession remain lifecycle values rather than verification verdicts.
 
-`run events` streams the exact canonical event bytes retained by PostgreSQL. Its final event determines the stable lifecycle or verdict exit code. An empty matching run is `INCONCLUSIVE` at `11`; unavailable active journal custody is an evidence-read error at `74`. No JSON envelope is inserted into the event stream.
+`run events` streams the exact canonical event bytes retained in restrictive external workflow custody when the run ID exists there; otherwise it preserves the PostgreSQL stream. Its final event determines the stable lifecycle or verdict exit code. An empty matching run is `INCONCLUSIVE` at `11`; unavailable or unsafe evidence custody is an evidence-read error at `74`. No JSON envelope is inserted into the event stream, and no append path is exposed.
+
+`verify` first requires external approval `MATCH`, exact clean Git remote/commit/tree identity, and the closed Python/Node profile. It copies only committed declared inputs to an external read-only stage, inspects the exact locked container before start, rechecks approval before every step, captures bounded streams, and retains append-only events plus content-addressed step and terminal receipts. Product failure, missing evidence, policy invalidity, cancellation, runtime failure, authority staleness, and supersession retain their independent exits and state dimensions.
 
 All machine timestamps are second-precision UTC in `YYYY-MM-DDTHH:MM:SSZ`. All content digests use lowercase `sha256:` form. UUIDs are lowercase RFC 4122 version 4 strings in v1 fixtures and envelopes.
 

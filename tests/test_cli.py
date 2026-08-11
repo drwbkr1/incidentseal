@@ -140,6 +140,36 @@ class CliTests(unittest.TestCase):
         self.assertEqual(64, completed.returncode)
         self.assertEqual("IS_USAGE", envelope["errors"][0]["code"])
 
+    def test_verify_requires_external_match_and_starts_no_runtime(self) -> None:
+        approval_root = Path(os.environ["LOCALAPPDATA"]) / "IncidentSeal" / "approvals" / "v1"
+        self.assertFalse(approval_root.exists(), "test requires no real IncidentSeal approval store")
+        before = subprocess.run(
+            ["docker", "ps", "-aq", "--filter", "label=dev.incidentseal.workflow-run"],
+            cwd=ROOT, capture_output=True, check=True,
+        ).stdout
+        completed, envelope = self.run_cli(
+            "verify", "--manifest", str(FIXTURES / "workflow.valid.minimal.json"), "--json"
+        )
+        after = subprocess.run(
+            ["docker", "ps", "-aq", "--filter", "label=dev.incidentseal.workflow-run"],
+            cwd=ROOT, capture_output=True, check=True,
+        ).stdout
+        self.assertEqual(12, completed.returncode)
+        self.assertEqual("verify", envelope["command"])
+        self.assertEqual("INVALID", envelope["verdict"])
+        self.assertIsNone(envelope["lifecycle"])
+        self.assertEqual("MISSING", envelope["policy"]["approval_status"])
+        self.assertEqual("IS_APPROVAL_MISSING", envelope["errors"][0]["code"])
+        self.assertEqual(before, after)
+        self.assertFalse(approval_root.exists())
+
+        completed, envelope = self.run_cli(
+            "verify", "--manifest", str(FIXTURES / "workflow.valid.minimal.json"),
+            "--mode", "platform-validation", "--json",
+        )
+        self.assertEqual(64, completed.returncode)
+        self.assertEqual("IS_USAGE", envelope["errors"][0]["code"])
+
     @unittest.skipUnless(os.name == "nt", "Windows launcher probe")
     def test_windows_launcher_runs_real_cli(self) -> None:
         completed = subprocess.run(

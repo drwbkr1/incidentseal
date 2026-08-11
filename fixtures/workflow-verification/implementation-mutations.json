@@ -1,0 +1,29 @@
+{
+  "schema_version": "incidentseal-workflow-implementation-mutations/v1",
+  "mutations": [
+    {"id":"approval-preflight-removed"},
+    {"id":"approval-step-recheck-removed"},
+    {"id":"unsupported-runner-allowed"},
+    {"id":"persistent-output-allowed"},
+    {"id":"origin-check-removed"},
+    {"id":"head-check-removed"},
+    {"id":"clean-check-removed"},
+    {"id":"tree-digest-check-removed"},
+    {"id":"onedrive-check-removed"},
+    {"id":"reparse-check-removed"},
+    {"id":"network-isolation-removed"},
+    {"id":"read-only-root-removed"},
+    {"id":"capability-drop-removed"},
+    {"id":"no-new-privileges-removed"},
+    {"id":"pids-limit-removed"},
+    {"id":"memory-limit-removed"},
+    {"id":"environment-clear-removed"},
+    {"id":"node-shell-enabled"},
+    {"id":"append-mode-replaced"},
+    {"id":"event-fsync-removed"},
+    {"id":"runtime-label-check-removed"},
+    {"id":"owned-filter-removed"},
+    {"id":"agent-approval-exposed"},
+    {"id":"implementation-lock-tampered"}
+  ]
+}
