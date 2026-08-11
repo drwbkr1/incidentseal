@@ -1,0 +1,37 @@
+{
+  "schema_version": "incidentseal-operator-handoff-attempts/v1",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U02",
+  "observed_at_utc": "2026-08-11T19:02:20Z",
+  "attempts": [
+    {
+      "attempt_id": "IS6-U02-OPERATOR-HANDOFF-SUPERSEDED-001",
+      "execution_state": "superseded",
+      "verification_verdict": "INVALID",
+      "surface": "pre-approval exact-manifest handoff",
+      "public_source": {
+        "commit": "ed70aede436de5b92189fcac33f2eab43732cca6",
+        "git_tree": "194b9da919d7bc666656d7aa3ee8c115096e887d",
+        "tree_digest": "sha256:77e3e5e387e07817dfde331f815b83130114ce767f999ca0ace58bb56ec696bf",
+        "remote_main_equal": true,
+        "worktree_clean": true
+      },
+      "manifest": {
+        "workflow_id": "incidentseal.v0.1.0.prepackage",
+        "path": ".incidentseal/workflow.json",
+        "digest": "sha256:393f0d4f4f5f1bca742c7f419d3d490a2413ab85ced3adcd964cfa8939835987",
+        "canonical_bytes": 1965,
+        "approval_status": "MISSING",
+        "status_verdict": "INVALID",
+        "status_exit": 12
+      },
+      "user_response_received": false,
+      "approval_written": false,
+      "workflow_executed": false,
+      "docker_accessed_by_handoff": false,
+      "cause": "The next goal cycle reconciled live facts before accepting a response and found stale current-state text in docs/status.md, the milestone handoff, and the project-control next action.",
+      "superseded_by": "A smallest authorized truth correction followed by a new exact public commit and deterministically rematerialized manifest.",
+      "claim_effect": "No approval or workflow authority was created; the old manifest bytes remain retention-only evidence."
+    }
+  ]
+}

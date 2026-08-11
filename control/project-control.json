@@ -197,7 +197,7 @@
   "current_checkpoint": {
     "checkpoint_id": "IS-0006",
     "expected_branch": "main",
-    "expected_head": "bcc8583ec3b6d25a7ff459071b8f7ca65e408940",
-    "next_action": "Implement and negatively validate the bounded verify and workflow event surfaces before requesting exact operator manifest approval"
+    "expected_head": "ed70aede436de5b92189fcac33f2eab43732cca6",
+    "next_action": "Rematerialize the corrected exact ignored workflow manifest, obtain interactive operator approval, and run the real U02 workflow before packaging"
   }
 }
