@@ -116,13 +116,13 @@
       "depends_on": ["IS5-U01"],
       "action_class": "reversible_remediation",
       "human_gate": false,
-      "status": "in_progress",
+      "status": "complete",
       "inputs": ["Frozen dashboard contract"],
       "outputs": ["Read-only projection", "Loopback server", "Static dashboard assets", "Implementation mutations"],
-      "gates": {"local_implementation_lock":"pass_53e89d0bd182da7f15d899b75f338318b9ff10b01689ffe033e198021f6f6447","frozen_verification_cli":"pass_unchanged_4_files","fixed_projection":"pass_7_source_records_9_views","implementation_mutations":"pass_29_of_29","contract_mutations":"pass_37_of_37","regression_tests":"pass_125","full_draft_2020_12":"pass_2_schemas_4_fixtures_6_exact_wheels_offline","real_windows_launcher":"pass_25_requests_port_54007","http_routes":"pass_5_get_5_head","write_and_control_denial":"pass_7_methods","host_and_route_denial":"pass_4_hosts_4_targets","security_headers":"pass_8","runtime_teardown":"pass_zero_processes","authority_boundary":"pass_missing_exit_12_no_workflow","docker_boundary":"pass_0_containers_0_networks_exact_3_protected"},
-      "disposition": null,
+      "gates": {"implementation_lock":"pass_53e89d0bd182da7f15d899b75f338318b9ff10b01689ffe033e198021f6f6447_local_and_public","frozen_verification_cli":"pass_unchanged_4_files","fixed_projection":"pass_7_source_records_9_views","implementation_mutations":"pass_29_of_29_local_and_public","contract_mutations":"pass_37_of_37_local_and_public","regression_tests":"pass_125_local_and_public","full_draft_2020_12":"pass_2_schemas_4_fixtures_6_exact_wheels_offline_local_and_public","credential_free_public_replay":"pass_commit_6a5d1cf8_tree_857af1c8","real_windows_launcher":"pass_25_requests_local_port_54007_public_port_59384","http_routes":"pass_5_get_5_head","write_and_control_denial":"pass_7_methods","host_and_route_denial":"pass_4_hosts_4_targets","security_headers":"pass_8","git_integrity":"pass","secret_scan":"pass_zero_matches_4_patterns","runtime_teardown":"pass_zero_processes","authority_boundary":"pass_missing_exit_12_before_after_no_workflow","docker_boundary":"pass_0_containers_0_networks_exact_3_protected"},
+      "disposition": "pass",
       "retained_failures": ["Three real-launcher attempts remain INVALID: an initially unclassified connection reset, the diagnosed final-request thread-shutdown race, and a stale exact-lock startup-envelope assertion. Each cleanup left zero dashboard processes, unchanged repository custody, no Docker runtime change, no approval write, and no workflow execution. Three passing earlier implementations remain superseded after the final scenario renderer and documentation lock changed."],
-      "exit_condition_delta": {"expected":["EXIT-READ-ONLY-DASHBOARD"],"observed":[],"decision_value":"unknown","rationale":"A real served surface must prove exact record identity, read-only behavior, security headers, local assets, and state-separated rendering."},
+      "exit_condition_delta": {"expected":["EXIT-READ-ONLY-DASHBOARD"],"observed":[],"decision_value":"enables_next","rationale":"Exact public custody proves the real server, projection, local assets, read-only HTTP behavior, security headers, attack denial, authority boundary, and teardown. EXIT-READ-ONLY-DASHBOARD remains pending until U03 proves the actual rendered desktop/mobile, keyboard, accessibility, overflow, and failure-state surfaces."},
       "next_dependency": "IS5-U03"
     },
     {
@@ -131,7 +131,7 @@
       "depends_on": ["IS5-U02"],
       "action_class": "deterministic_validation",
       "human_gate": false,
-      "status": "planned",
+      "status": "in_progress",
       "inputs": ["Locked dashboard implementation"],
       "outputs": ["Rendered browser receipts", "Accessibility and responsive QA", "Failure-state evidence"],
       "gates": {},
@@ -190,12 +190,13 @@
     ],
     "completed_checks": [
       "Verified checkpoint-is-0004 entry with exact public marker, clean runtime boundary, missing approval, and no workflow execution",
-      "Publicly reproduced closed dashboard projection, trust, state, scenario, visual, and evaluation contract with no server, browser, or Docker runtime"
+      "Publicly reproduced closed dashboard projection, trust, state, scenario, visual, and evaluation contract with no server, browser, or Docker runtime",
+      "Publicly reproduced the exact read-only loopback dashboard implementation and real Windows launcher with byte-identical responses, attack denial, missing approval, and complete process teardown"
     ]
   },
   "handoff": {
-    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; IS5-U01 contract freeze reproduced publicly at commit 2e22804aef49071ef42611357eaa4a7f4e0f384e and tree 73c2480aa4e700b506ef5b00202e9ce6ee2fc702; IS5-U02 is the sole active implementation unit",
-    "next_action": "Implement the dependency-free exact-record projection, separate loopback-only read-only dashboard launcher, fixed local assets, defensive headers, and implementation mutations under the public-reproduced contract.",
+    "current_checkpoint": "IS-0005 active from verified checkpoint-is-0004; IS5-U01 contract and IS5-U02 implementation reproduced publicly at exact commit 6a5d1cf8fe359b6eaa2098d7bbe00092d56034a2 and tree 857af1c8064823c7716ff2265175e711ca997c5d; IS5-U03 is the sole active rendered-browser unit",
+    "next_action": "Run real browser QA for the production success view and all nine fixed scenario views across 1440x900 and 390x844, including landmarks, keyboard, contrast, reduced motion, overflow, local requests, and failure-state calibration.",
     "do_not_carry_forward": [
       "Do not use OneDrive",
       "Do not alter or automate operator approval",

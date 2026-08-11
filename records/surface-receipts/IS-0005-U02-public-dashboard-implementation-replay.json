@@ -1,0 +1,29 @@
+{
+  "schema_version":"incidentseal-dashboard-implementation-public-replay/v1",
+  "receipt_id":"IS-RECEIPT-0005-U02-PUBLIC-IMPLEMENTATION",
+  "checkpoint_id":"IS-0005",
+  "unit_id":"IS5-U02",
+  "observed_at_utc":"2026-08-11T01:32:35Z",
+  "execution_state":"completed",
+  "verification_verdict":"PASS",
+  "public_source":{"repository":"https://github.com/drwbkr1/incidentseal.git","branch":"main","commit":"6a5d1cf8fe359b6eaa2098d7bbe00092d56034a2","tree":"857af1c8064823c7716ff2265175e711ca997c5d","remote_main_equal":true,"credential_helpers_disabled":true,"terminal_prompting_disabled":true,"worktree_clean_before_and_after":true},
+  "identity":{"contract_lock_digest":"sha256:9bc2785ee3112781dcb3c468a9646813de68e7d5b1e908647e461362d1036b61","implementation_lock_digest":"sha256:53e89d0bd182da7f15d899b75f338318b9ff10b01689ffe033e198021f6f6447","snapshot_digest":"sha256:fc438a90a18ff2117db59ab781052934236c1a49ac313837ac4bcb83c54c89b2","html_digest":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f"},
+  "checks":[
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"exact_commit":true,"exact_tree":true,"remote_main_equal":true,"clean_before_and_after":true}},
+    {"id":"project-probe","status":"PASS","observed":{"checkpoint":"IS-0005","docker_server":"29.4.3","compose":"5.1.3","custody":"PASS"}},
+    {"id":"dashboard-contract","status":"PASS","observed":{"source_records":7,"exits":8,"scenarios":9,"repetitions":3,"mutations":37}},
+    {"id":"dashboard-implementation","status":"PASS","observed":{"separate_launcher":true,"verification_cli_changed":false,"routes":5,"allowed_methods":2,"denied_methods":7,"security_headers":8,"scenario_views":9,"mutations":29}},
+    {"id":"regression-tests","status":"PASS","observed":{"tests":125}},
+    {"id":"full-schema-meta-validation","status":"PASS","observed":{"draft":"2020-12","schemas":2,"fixtures":4,"exact_source_gated_wheels":6,"network_used":false,"temporary_custody_removed":true}},
+    {"id":"real-windows-launcher","status":"PASS","observed":{"port":59384,"requests":25,"get_routes":5,"head_routes":5,"write_and_control_methods_denied":7,"wrong_hosts_denied":4,"bad_targets_denied":4,"security_headers":8,"external_requests":0,"repository_writes":0,"server_closed":true}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0}},
+    {"id":"authority-boundary","status":"PASS","observed":{"before_invocation_id":"c6db2c1d-b9ee-4638-ae14-dbdcd73386b5","after_invocation_id":"2bbb41c7-cbac-40e5-aa3b-f0d4ac5b27ae","approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"approval_written":false,"workflow_executed":false}},
+    {"id":"runtime-boundary","status":"PASS","observed":{"dashboard_processes_after":0,"docker_accessed_by_dashboard":false,"containers":0,"networks":0,"protected_volumes":3,"protected_volume_identity_unchanged":true}}
+  ],
+  "response_digests":{"html":"sha256:c210465290f728df1b5f6c2083bdcb5e50e1d3b3fc87945b3bd26bc80742319f","snapshot":"sha256:7b84239cebcae34a81cf317363eb43b9137fb25ed3eeea6be71bc9b96318c8dc","css":"sha256:6988c08b2a45569aa856a57ee5abefd47bd77669db333e6dbb80b75a843c1feb","javascript":"sha256:84cea305fd0de541b7a3101a7a96255948c5f8160c0f4aafc5fb7ebabf42c954","health":"sha256:1d41faf32e23b3fb200f92457ddd06be0c63ce4b9e5f10b31d7b6a8e7cdc4bd7"},
+  "protected_volume_identity":{"incidentseal-57ca5f96d527da1b_database-data":"sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825","incidentseal-a6443d83ae9eb463_database-data":"sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768","incidentseal-e10983c7309c56a0_database-data":"sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"},
+  "retained_attempts":{"invalid":{"path":"records/evaluations/IS-0005-U02-dashboard-implementation-invalid-attempts.json","count":3},"superseded":{"path":"records/evaluations/IS-0005-U02-dashboard-implementation-superseded-attempts.json","count":3}},
+  "temporary_clone_custody":{"path":"C:\\Users\\drewb\\AppData\\Local\\Temp\\incidentseal-is5-u02-dashboard-6a5d1cf","state":"retained-clean-noncanonical-outside-onedrive-and-runtime-custody","required_for_runtime":false},
+  "non_claims":["No real browser or rendered accessibility receipt exists yet.","No repeated scenario evaluation, packaging, registry, release, or v0.1.0 claim advances."],
+  "decision":{"status":"pass-implementation-public-replay","reason":"Exact public custody reproduced the real read-only loopback server, byte identities, attack denials, authority boundary, and teardown. Rendered-browser QA remains a separate gate."}
+}

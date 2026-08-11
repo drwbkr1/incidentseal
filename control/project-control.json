@@ -191,6 +191,6 @@
     "checkpoint_id": "IS-0005",
     "expected_branch": "main",
     "expected_head": null,
-    "next_action": "Commit, push, and credential-free reproduce the exact IS5-U02 dashboard implementation candidate before rendered-browser evaluation"
+    "next_action": "Run real rendered-browser QA for production and all nine fixed dashboard scenarios under IS5-U03"
   }
 }
