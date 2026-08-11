@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0",
+  "milestone_id": "IS-0006",
+  "project_profile_ref": "control/project-control.json",
+  "status": "active",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_action_classes": [
+      "read_only_inspection",
+      "project_control",
+      "update_project_records",
+      "source_gate",
+      "dependency_management",
+      "reversible_remediation",
+      "deterministic_validation",
+      "version_control_write",
+      "git_push",
+      "container_image_publication",
+      "release_publication",
+      "release_verification"
+    ],
+    "user_instruction": "Prepare, verify, publish, and independently audit IncidentSeal v0.1.0 as a portable local-first release without changing the product promise, manifest authority, Docker trust boundary, evidence semantics, or explicit human gates.",
+    "repository_controls": ["AGENTS.md","docs/product-contract.md","docs/threat-model.md","control/project-control.json"],
+    "active_contract": "contracts/IS-0006.json",
+    "verified_at_utc": "2026-08-11T05:07:20Z",
+    "expires_at_utc": null
+  },
+  "scope": {
+    "objective": "Freeze, build, evaluate, publish, download, and independently verify a polished v0.1.0 GitHub and GHCR release from checkpoint-is-0005.",
+    "allowed_paths": ["."],
+    "release_channels": {
+      "source_repository": "https://github.com/drwbkr1/incidentseal",
+      "software_release": "GitHub Releases",
+      "container_registry": "ghcr.io/drwbkr1",
+      "python_package_index": "excluded_from_v0.1.0"
+    },
+    "forbidden_work": [
+      "Any access to C:\\Users\\drewb\\OneDrive",
+      "Changing the approved product promise, manifest authority, Docker trust boundary, stable machine CLI semantics, or evidence-state distinctions",
+      "Giving any container a Docker socket or API socket, secret, privileged mode, host network, broad host mount, or external runtime network by default",
+      "Publishing or mirroring any image while redistribution remains INCONCLUSIVE or required notices and NOASSERTION entries are unresolved",
+      "Using mutable image tags as authority or publishing an image that is not source-gated, digest-pinned, scanned, SBOM-bound, provenance-bound, and runtime-verified",
+      "Using an unpinned GitHub Action, build backend, scanner, attestation tool, or release dependency",
+      "Adding PyPI, a paid service, user-managed secret, external credential, cloud platform, Kubernetes, multi-tenancy, or arbitrary remote execution",
+      "Enabling immutable releases, changing repository or package access, or taking another irreversible action without the exact human gate",
+      "Publishing a tag, image, asset, or release before its candidate gates pass",
+      "Claiming release completion from tests, source inspection, local tags, mutable tags, registry upload, or draft metadata alone",
+      "Shipping an artifact, image, release note, or public claim that cannot be independently downloaded and verified"
+    ],
+    "reversible_actions": [
+      "Freeze version, package, artifact, image, action, attestation, scan, reproducibility, and release-verification contracts",
+      "Add source-gated and digest-pinned packaging, build, scan, SBOM, provenance, and release dependencies",
+      "Build deterministic wheel and source-distribution candidates and verify them in fresh isolated environments",
+      "Build exact local OCI image candidates from pinned sources and verify all real topology, database, runner, dashboard, receipt, and recovery surfaces",
+      "Create digest-pinned GitHub workflow candidates that use only repository-scoped GITHUB_TOKEN authority",
+      "Create clean-clone and downloaded-artifact evaluators, release notes, checksums, notices, SBOMs, provenance, scan reports, and receipts",
+      "Commit and push verified bounded improvements"
+    ],
+    "stop_conditions": [
+      "A required change would alter the product promise, trust boundary, workflow approval authority, stable machine contract, or weaken an explicit security or evidence gate",
+      "An image or dependency cannot pass source, integrity, license, vulnerability, compatibility, and redistribution gates appropriate to its use",
+      "A build or release path requires a paid service, user-managed secret, real sensitive data, access or ownership change, or broader credential authority",
+      "Immutable-release enablement or another irreversible publication step is ready without exact owner confirmation",
+      "A candidate cannot reproduce from clean public custody or a published artifact cannot be independently downloaded and verified",
+      "A public claim would exceed the exact retained evidence"
+    ]
+  },
+  "entry_conditions": [
+    {"id":"ENTRY-VERIFIED-IS-0005","status":"pass","evidence":["records/evaluations/IS-0005-U05-public-checkpoint.json","records/surface-receipts/IS-0005-public-checkpoint.json","records/surface-receipts/IS-0005-checkpoint-marker.json","records/evaluations/IS-0006-milestone-opening.json"]},
+    {"id":"ENTRY-PUBLIC-REPOSITORY","status":"pass","evidence":["records/evaluations/IS-0006-milestone-opening.json"]},
+    {"id":"ENTRY-WORKFLOW-EXECUTION-DENIED","status":"pass","evidence":["records/evaluations/IS-0006-milestone-opening.json"]},
+    {"id":"ENTRY-PROTECTED-RUNTIME-CLEAN","status":"pass","evidence":["requirements/retained-runtime-volumes.lock.json","records/evaluations/IS-0006-milestone-opening.json"]},
+    {"id":"ENTRY-UNRELEASED-STATE","status":"pass","evidence":["records/evaluations/IS-0006-milestone-opening.json"]}
+  ],
+  "exit_conditions": [
+    {"id":"EXIT-RELEASE-CONTRACT","status":"pending","evidence":[]},
+    {"id":"EXIT-PACKAGED-CLI","status":"pending","evidence":[]},
+    {"id":"EXIT-REDISTRIBUTION-AND-IMAGE-SUPPLY-CHAIN","status":"pending","evidence":[]},
+    {"id":"EXIT-CLEAN-INSTALL-AND-CLONE","status":"pending","evidence":[]},
+    {"id":"EXIT-PUBLIC-V0.1.0","status":"pending","evidence":[]},
+    {"id":"EXIT-DOWNLOADED-RELEASE-VERIFICATION","status":"pending","evidence":[]},
+    {"id":"EXIT-PUBLIC-CHECKPOINT","status":"pending","evidence":[]}
+  ],
+  "units": [
+    {
+      "id":"IS6-U01",
+      "purpose":"Freeze the v0.1.0 package, release-channel, image-redistribution, supply-chain, publication, and downloaded-verification contract before building an artifact.",
+      "depends_on":[],
+      "action_class":"update_project_records",
+      "human_gate":false,
+      "status":"running",
+      "inputs":["checkpoint-is-0005 records","Product and threat contracts","Current official release and supply-chain practices","Current GitHub, Docker, Compose, packaging, and tool state"],
+      "outputs":["Release contract","Release artifact and surface matrix","Pinned dependency and action source gates","Redistribution decision plan","Fail-closed mutations and exact lock"],
+      "gates":{},
+      "disposition":"continue",
+      "retained_failures":["IS-0006 opening keeps separate INVALID and INCONCLUSIVE discovery attempts in records/evaluations/IS-0006-milestone-opening-attempts.json."],
+      "exit_condition_delta":{"expected":["EXIT-RELEASE-CONTRACT"],"observed":[],"decision_value":"enables_next","rationale":"The milestone is open from exact IS-0005 public custody; no release contract has yet passed."},
+      "next_dependency":"IS6-U02"
+    },
+    {
+      "id":"IS6-U02",
+      "purpose":"Build reproducible dependency-free v0.1.0 wheel and source-distribution candidates and verify the installed CLI and dashboard in fresh isolated environments.",
+      "depends_on":["IS6-U01"],
+      "action_class":"dependency_management",
+      "human_gate":false,
+      "status":"pending",
+      "inputs":["Frozen release contract"],
+      "outputs":["Wheel","Source distribution","Checksums","Package SBOM and provenance","Fresh-install receipts"],
+      "gates":{},"disposition":"pending","retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-PACKAGED-CLI"],"observed":[],"decision_value":"pending","rationale":"U01 must pass first."},
+      "next_dependency":"IS6-U03"
+    },
+    {
+      "id":"IS6-U03",
+      "purpose":"Resolve exact image redistribution obligations, build deterministic OCI candidates, and retain notices, SBOM, provenance, scan, hardening, and reproducibility evidence.",
+      "depends_on":["IS6-U02"],
+      "action_class":"source_gate","human_gate":false,"status":"pending",
+      "inputs":["Frozen release contract","Exact base-image and runtime locks","Packaged CLI candidate"],
+      "outputs":["Redistribution decisions and notices","Exact OCI image candidates","SBOM and provenance","Vulnerability and hardening receipts","Reproducibility receipts"],
+      "gates":{},"disposition":"pending","retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-REDISTRIBUTION-AND-IMAGE-SUPPLY-CHAIN"],"observed":[],"decision_value":"pending","rationale":"U02 must pass first and publication remains forbidden while redistribution is INCONCLUSIVE."},
+      "next_dependency":"IS6-U04"
+    },
+    {
+      "id":"IS6-U04",
+      "purpose":"Verify the complete candidate from clean installation and clean public clone across the real CLI, Compose, PostgreSQL, runners, dashboard, receipts, recovery, and release-artifact surfaces.",
+      "depends_on":["IS6-U03"],
+      "action_class":"deterministic_validation","human_gate":false,"status":"pending",
+      "inputs":["Packaged CLI and OCI candidates","Frozen real-surface matrix"],
+      "outputs":["Clean-install receipt","Credential-free clean-clone receipt","Complete real-surface candidate audit"],
+      "gates":{},"disposition":"pending","retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-CLEAN-INSTALL-AND-CLONE"],"observed":[],"decision_value":"pending","rationale":"U03 must pass first."},
+      "next_dependency":"IS6-U05"
+    },
+    {
+      "id":"IS6-U05",
+      "purpose":"After every candidate gate passes, publish exact GHCR digests and a complete v0.1.0 GitHub Release draft, then publish the immutable release only after its exact irreversible-action gate.",
+      "depends_on":["IS6-U04"],
+      "action_class":"release_publication","human_gate":true,"status":"pending",
+      "inputs":["Fully verified release candidate","Exact owner confirmation for irreversible release immutability and publication"],
+      "outputs":["Exact GHCR digests","Attestations","v0.1.0 tag and release","Published release receipts"],
+      "gates":{},"disposition":"pending","retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-PUBLIC-V0.1.0"],"observed":[],"decision_value":"pending_human_gate","rationale":"The user authorized release work but explicitly reserved irreversible actions; exact confirmation is deferred until the fully verified publication set is ready."},
+      "next_dependency":"IS6-U06"
+    },
+    {
+      "id":"IS6-U06",
+      "purpose":"Independently pull exact public image digests, download every release asset, verify attestations and immutability, replay the real release surface, reconcile public records, and mark the release checkpoint.",
+      "depends_on":["IS6-U05"],
+      "action_class":"release_verification","human_gate":false,"status":"pending",
+      "inputs":["Published v0.1.0 and GHCR digests"],
+      "outputs":["Downloaded-release audit","Registry audit","Release evaluation","checkpoint-is-0006 marker"],
+      "gates":{},"disposition":"pending","retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-DOWNLOADED-RELEASE-VERIFICATION","EXIT-PUBLIC-CHECKPOINT"],"observed":[],"decision_value":"pending","rationale":"Public artifacts do not exist yet."},
+      "next_dependency":null
+    }
+  ],
+  "path_efficiency":{"max_consecutive_no_progress_units":2,"review_action_class":"project_control","review_human_gate":false},
+  "verification": {
+    "changed_risks":["package","build supply chain","image redistribution","registry","public release","external verification"],
+    "required_checks":[
+      "Source-gated and digest-pinned build backends, scanners, SBOM/provenance tools, and GitHub Actions",
+      "Reproducible wheel and source distribution with isolated installation and exact CLI JSON/JSONL plus exit-code behavior",
+      "Complete license and notice reconciliation with no unresolved NOASSERTION before image publication",
+      "Exact-digest OCI images with SPDX SBOM, SLSA provenance, current vulnerability scans, runtime hardening, and repeated-build evidence",
+      "No Docker socket, secret, privileged mode, host network, broad host mount, or external runtime network by default",
+      "Real packaged and clean-clone CLI, Compose, PostgreSQL, Python, Node, dashboard, receipt, recovery, and teardown verification",
+      "Distinct PASS, FAIL, INCONCLUSIVE, INVALID, cancelled, failed, stale, and superseded evidence throughout",
+      "Public tag, commit, release assets, checksums, attestations, exact registry digests, immutability, download, pull, and clean-consumer verification"
+    ],
+    "completed_checks":[
+      "Verified checkpoint-is-0005 entry, public repository and remote main, absent GitHub release, missing workflow approval, no IncidentSeal containers or networks, and exact protected-volume custody",
+      "Recorded package-registry visibility as INCONCLUSIVE because the current GitHub token lacks read:packages instead of claiming absence",
+      "Recorded GitHub release immutability as disabled and reserved any change for the irreversible-action human gate",
+      "Confirmed the checkout has no package metadata or GitHub workflows and that Buildx is present while dedicated signing, SBOM, and scanner CLIs are absent"
+    ]
+  },
+  "handoff": {
+    "current_checkpoint":"IS-0006 active from independently verified checkpoint-is-0005 object aba5e64fec406a57255a37601ba46091a800fb30, peeling to closure commit 04230dcc233c6a5064da5c8e8e1a54be51c19503; post-marker records are at clean public main b4abd2c0fd3281b0eed402c230e2bf633c21dac0",
+    "next_action":"Complete IS6-U01 by freezing and fail-closed validating the exact release contract, source gates, artifact matrix, redistribution plan, and publication verification plan without building or publishing an artifact.",
+    "do_not_carry_forward":[
+      "Do not use OneDrive",
+      "Do not alter or automate operator approval or execute repository workflow input",
+      "Do not weaken Docker, manifest-authority, evidence-state, or release-evidence gates",
+      "Do not publish an image while redistribution is INCONCLUSIVE",
+      "Do not add PyPI, paid services, or user-managed secrets to v0.1.0",
+      "Do not enable immutable releases or publish an irreversible release without the exact human gate",
+      "Do not claim package, registry, downloaded release, or v0.1.0 completion before every real surface passes"
+    ]
+  }
+}

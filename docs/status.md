@@ -1,8 +1,8 @@
 # IncidentSeal status
 
-- Current checkpoint: `IS-0005`
+- Current checkpoint: `IS-0006`
 - Latest verified checkpoint: `IS-0005`
-- State: complete; annotated `checkpoint-is-0005` independently verifies the dashboard-and-evaluation closure; no dashboard, scenario, container, or network process remains
+- State: active; `IS6-U01` is the sole eligible contract-only release unit; annotated `checkpoint-is-0005` remains the latest verified checkpoint
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -11,11 +11,13 @@
 - Verified checkpoint marker: `checkpoint-is-0005` tag object `aba5e64fec406a57255a37601ba46091a800fb30` -> `04230dcc233c6a5064da5c8e8e1a54be51c19503`
 - Approved workflow manifest digest: not established
 - Application surfaces: topology security, PostgreSQL, Python, Node, cross-runner consistency, bounded reliability, portable receipts, offline verification, durable journal streaming, fixed recovery, backup/clean restore, repeated integrated recovery, and the loopback-only rendered evidence dashboard are verified from public custody
-- Release state: unreleased
+- Release state: unreleased; no GitHub Release exists, registry inventory is `INCONCLUSIVE`, and no package or release image has been built
 
 ## Current truth
 
-The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `checkpoint-is-0005` now establishes the latest verified public dashboard-and-evaluation checkpoint without changing that trust boundary.
+The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `checkpoint-is-0005` remains the latest verified public dashboard-and-evaluation checkpoint without changing that trust boundary.
+
+`IS-0006` opened from exact annotated marker object `aba5e64f...`, peeled commit `04230dcc...`, and clean public post-marker `main` commit `b4abd2c...`. GitHub has no release, packaging metadata and workflows are absent, release immutability is disabled, and the current token cannot inspect packages because it lacks `read:packages`; registry state is therefore `INCONCLUSIVE`, not absent. `IS6-U01` may freeze release, packaging, image-redistribution, supply-chain, and downloaded-verification contracts only. It may not build or publish an artifact.
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
@@ -108,7 +110,7 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 ## Known limitations
 
 - The checkout CLI implements policy lint, digest, status, diff, the TTY-only operator approval command, bounded platform-validation probes, and read-only retained run-event JSONL streaming; approved-workflow verification and its event writer remain unimplemented.
-- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, integrated recovery, rendered local dashboard, repeated dashboard evaluation, and IS-0005 marker pass from public custody. Packaging and release gates remain pending.
+- The database, both real language surfaces, bounded topology reliability, portable receipts, offline verifier, durable journal, fixed synthetic recovery, backup/clean restore, integrated recovery, rendered local dashboard, repeated dashboard evaluation, and IS-0005 marker pass from public custody. Packaging, redistribution, registry, downloaded-release, and release gates remain pending.
 - No workflow digest is approved and workflow execution remains unavailable.
 - Four selected base images have been pulled and scanned; the active revision-3 derived images ran only under the exact topology and runtime locks. The base artifacts were not started directly.
 - Image redistribution remains `INCONCLUSIVE` until exact component notices and `NOASSERTION` license entries are reconciled at the release gate.
@@ -118,4 +120,4 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 
 ## Next eligible action
 
-Open `IS-0006` from verified `checkpoint-is-0005` with a contract-first portable-release gate covering the packaged host CLI, clean installation, exact release artifacts, SBOM/provenance/scan/reproducibility receipts, exact-digest registry publication, downloaded-release verification, and `v0.1.0`.
+Complete contract-only `IS6-U01`: freeze the exact `v0.1.0` artifact set, package and image identities, source-gated dependencies and actions, redistribution closure, SBOM/provenance/scan/reproducibility requirements, public release gates, downloaded verification, fail-closed mutations, and irreversible publication gate before building any artifact.

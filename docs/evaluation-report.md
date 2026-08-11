@@ -27,7 +27,7 @@ IncidentSeal has a verified public dashboard-and-evaluation checkpoint, not a re
 
 ## Remaining before v0.1.0
 
-Repeated dashboard scenario evaluation, packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified.
+Packaged host CLI, SBOM/provenance/scan/reproducibility receipts for release artifacts, exact-digest registry publication, downloaded-release validation, and release documentation remain unverified. The repeated dashboard scenario evaluation passed from exact public custody under IS5-U04 and the IS-0005 closure replay.
 
 Image redistribution remains `INCONCLUSIVE`; no derived image was published. No workflow manifest is approved and no workflow was executed.
 

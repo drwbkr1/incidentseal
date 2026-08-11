@@ -1,0 +1,96 @@
+{
+  "schema_version": "incidentseal-milestone-opening/v1",
+  "evaluation_id": "IS-EVAL-0006-OPENING",
+  "checkpoint_id": "IS-0006",
+  "observed_at_utc": "2026-08-11T05:07:20Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "verified_base": {
+    "checkpoint": "checkpoint-is-0005",
+    "tag_object": "aba5e64fec406a57255a37601ba46091a800fb30",
+    "peeled_commit": "04230dcc233c6a5064da5c8e8e1a54be51c19503",
+    "post_marker_commit": "b4abd2c0fd3281b0eed402c230e2bf633c21dac0",
+    "post_marker_tree": "9c21366da11c094ffe5dbd6585a2147ab414c0b3",
+    "local_remote_main_equal": true,
+    "source_worktree_clean": true
+  },
+  "public_state": {
+    "repository": "drwbkr1/incidentseal",
+    "visibility": "PUBLIC",
+    "default_branch": "main",
+    "releases": [],
+    "release_state": "UNRELEASED",
+    "container_package_state": "INCONCLUSIVE",
+    "container_package_reason": "The current GitHub token lacks read:packages; HTTP 403 cannot prove package absence.",
+    "immutable_releases_enabled": false
+  },
+  "package_state": {
+    "version_file": "0.0.0",
+    "packaging_metadata": [],
+    "github_workflows": [],
+    "candidate_version": "0.1.0",
+    "candidate_assets": ["dependency-free Python wheel","source distribution","SHA256SUMS","SPDX SBOM","SLSA provenance","scan and verification receipts"],
+    "release_channels": ["GitHub Releases","GHCR exact digests"],
+    "excluded_channel": "PyPI"
+  },
+  "tool_state": {
+    "git": "2.52.0.windows.1",
+    "gh": "2.93.0",
+    "docker_client_server": "29.4.3",
+    "compose": "5.1.3",
+    "buildx": "0.33.0-desktop.1",
+    "python": "3.12.10",
+    "node": "24.15.0",
+    "npm": "11.12.1",
+    "cosign": "absent",
+    "syft": "absent",
+    "grype": "absent",
+    "trivy": "absent",
+    "oras": "absent"
+  },
+  "policy_state": {
+    "command": "policy.status",
+    "invocation_id": "10b799c9-16fe-4beb-b93b-9120e5514a13",
+    "manifest_digest": "sha256:0448e9abcf58045d85691c6bb5d9cdbb306d1e415dd71f722052e51682919e45",
+    "approval_status": "MISSING",
+    "verification_verdict": "INVALID",
+    "process_exit_code": 12,
+    "workflow_execution_available": false
+  },
+  "control_validation": {
+    "canonical_root": "C:\\Projects\\Active\\incidentseal",
+    "project_profile": "PASS",
+    "prior_milestone_contract": "PASS_COMPLETE",
+    "authority_active": true,
+    "authority_expanded": false,
+    "authorized_ready_units": ["IS6-U01"],
+    "human_gate_ready_units": []
+  },
+  "runtime_boundary": {
+    "docker_server": "29.4.3",
+    "compose": "5.1.3",
+    "incidentseal_containers": [],
+    "incidentseal_networks": [],
+    "protected_volume_identities": {
+      "incidentseal-57ca5f96d527da1b_database-data": "sha256:0c463bab157dd38435c5d30a15ceaa346fe98e9b30b354958833175356bd0825",
+      "incidentseal-a6443d83ae9eb463_database-data": "sha256:6fcf55db46b3ba0733b6734f642cdda1480858ce7a4d06d9e374f50fa7807768",
+      "incidentseal-e10983c7309c56a0_database-data": "sha256:0ec5fa39d08217eb8197a5744f77e4d1f555bb00e8824707de6f681ddf6d1b85"
+    },
+    "unit_runtime_authorized": false,
+    "artifact_built": false,
+    "image_published": false,
+    "release_published": false
+  },
+  "current_practice_basis": [
+    {"topic":"BuildKit SBOM and provenance attestations","source":"https://docs.docker.com/build/metadata/attestations/"},
+    {"topic":"Compose service hardening and trust model","source":"https://docs.docker.com/reference/compose-file/services/"},
+    {"topic":"GitHub artifact attestations and downstream verification","source":"https://docs.github.com/en/actions/concepts/security/artifact-attestations"},
+    {"topic":"GHCR exact-digest pulls and repository association","source":"https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry"},
+    {"topic":"Python pyproject and console-script packaging","source":"https://packaging.python.org/en/latest/guides/writing-pyproject-toml/"},
+    {"topic":"Immutable GitHub releases and asset verification","source":"https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases"}
+  ],
+  "decision": {
+    "status": "open-milestone",
+    "reason": "The exact verified IS-0005 marker, public post-marker records, clean repository and runtime boundaries, missing workflow approval, inherited release authority, and unreleased public state support contract-only IS6-U01. No package, image, workflow, tag, release, access, or repository setting is changed by opening the milestone."
+  }
+}

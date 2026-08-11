@@ -61,7 +61,9 @@ Progress: `IS5-U01` through `IS5-U05` passed. Exact closure commit `04230dcc...`
 
 ### IS-0006 - Portable release
 
-Status: planned
+Status: active
+
+Progress: Opened from verified `checkpoint-is-0005` and clean public post-marker `main` at `b4abd2c...`. `IS6-U01` is the sole active unit and may freeze the release contract, source gates, artifact matrix, redistribution plan, supply-chain evidence, and downloaded-verification path only. No package, image, tag, release, workflow, access, or repository setting has been changed.
 
 - Packaged host CLI and documented clean-clone path.
 - SBOM, SLSA provenance, vulnerability, hardening, reproducibility, and registry receipts.
