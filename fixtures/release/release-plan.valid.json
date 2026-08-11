@@ -1,0 +1,156 @@
+{
+  "schema_version": "incidentseal-release-plan/v1",
+  "release": {
+    "product": "IncidentSeal",
+    "version": "0.1.0",
+    "tag": "v0.1.0",
+    "base_checkpoint": "checkpoint-is-0005",
+    "source_repository": "https://github.com/drwbkr1/incidentseal",
+    "registry_repository": "ghcr.io/drwbkr1/incidentseal",
+    "platforms": ["linux/amd64"],
+    "source_date_epoch": 1786424840,
+    "released": false
+  },
+  "workflow_verification": {
+    "required_before_packaging": true,
+    "command": "incidentseal verify --manifest PATH --json",
+    "authority": "operator-approved-external-manifest-digest",
+    "agent_can_approve": false,
+    "repository_identity_required": true,
+    "runners": ["python", "node"],
+    "input_custody": "manifest-declared-copy-only-read-only-staging",
+    "output_custody": "per-run-content-addressed-evidence-only",
+    "host_owns_docker": true,
+    "docker_socket": "denied",
+    "secrets": "denied",
+    "privileged": false,
+    "host_network": false,
+    "runtime_egress": "denied",
+    "broad_host_mounts": "denied",
+    "events": "append-only-internal-writer-read-only-agent-stream",
+    "recovery": "idempotent-resume-under-approved-digest",
+    "claim_rule": "all-required-steps-pass-under-current-approved-digest"
+  },
+  "package": {
+    "name": "incidentseal",
+    "requires_python": ">=3.12",
+    "runtime_dependencies": [],
+    "build_frontend": "build==1.5.0",
+    "build_backend": "hatchling==1.32.0",
+    "entry_points": {
+      "incidentseal": "incidentseal.cli:main",
+      "incidentseal-dashboard": "incidentseal.dashboard_surface:main"
+    },
+    "artifacts": [
+      "incidentseal-0.1.0-py3-none-any.whl",
+      "incidentseal-0.1.0.tar.gz"
+    ],
+    "build_repetitions": 3,
+    "byte_reproducible": true,
+    "isolated_install_required": true,
+    "pypi_publish": false
+  },
+  "images": [
+    {"role":"database","version_tag":"database-v0.1.0","authority":"exact-registry-digest","runtime_user":"70:70"},
+    {"role":"migration","version_tag":"migration-v0.1.0","authority":"exact-registry-digest","runtime_user":"65532:65532"},
+    {"role":"python-runner","version_tag":"python-runner-v0.1.0","authority":"exact-registry-digest","runtime_user":"65532:65532"},
+    {"role":"node-runner","version_tag":"node-runner-v0.1.0","authority":"exact-registry-digest","runtime_user":"65532:65532"}
+  ],
+  "supply_chain": {
+    "source_gate": "records/source-gates/2026-08-11-release-tooling.json",
+    "base_image_lock": "requirements/images.lock.json",
+    "runtime_image_lock": "requirements/topology-runtime.lock.json",
+    "redistribution_required_before_publish": true,
+    "unresolved_noassertion_allowed": false,
+    "third_party_notices_required": true,
+    "sbom_format": "SPDX-2.3-json",
+    "provenance_format": "SLSA-v1-in-toto",
+    "package_attestation_required": true,
+    "image_attestation_required": true,
+    "scanner": "grype==0.117.0",
+    "sbom_tool": "syft==1.51.0-and-buildkit",
+    "critical_findings_allowed": 0,
+    "high_findings_allowed": 0,
+    "medium_low_retained": true,
+    "image_rebuilds": 2,
+    "image_digest_reproducible": true,
+    "mutable_tags_are_authority": false,
+    "github_actions": [
+      {"repository":"actions/checkout","commit":"3d3c42e5aac5ba805825da76410c181273ba90b1"},
+      {"repository":"actions/upload-artifact","commit":"043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"},
+      {"repository":"actions/download-artifact","commit":"3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c"},
+      {"repository":"actions/attest-build-provenance","commit":"4d101475d8b20a2381f78447822ac1eab6504dd8"},
+      {"repository":"actions/attest-sbom","commit":"c604332985a26aa8cf1bdc465b92731239ec6b9e"},
+      {"repository":"docker/setup-buildx-action","commit":"bb05f3f5519dd87d3ba754cc423b652a5edd6d2c"},
+      {"repository":"docker/login-action","commit":"dbcb813823bdd20940b903addbd779551569679f"},
+      {"repository":"docker/build-push-action","commit":"53b7df96c91f9c12dcc8a07bcb9ccacbed38856a"}
+    ]
+  },
+  "release_assets": [
+    "incidentseal-0.1.0-py3-none-any.whl",
+    "incidentseal-0.1.0.tar.gz",
+    "incidentseal-0.1.0.spdx.json",
+    "incidentseal-0.1.0.provenance.json",
+    "incidentseal-v0.1.0-release-manifest.json",
+    "incidentseal-v0.1.0-scan-summary.json",
+    "incidentseal-v0.1.0-verification-receipt.json",
+    "THIRD_PARTY_NOTICES.md",
+    "SHA256SUMS"
+  ],
+  "real_surfaces": [
+    "packaged-cli",
+    "approved-manifest-workflow",
+    "compose-topology",
+    "postgresql",
+    "python-runner",
+    "node-runner",
+    "dashboard",
+    "portable-receipts",
+    "recovery",
+    "backup-clean-restore",
+    "clean-install",
+    "clean-clone",
+    "downloaded-release-and-registry"
+  ],
+  "evidence": {
+    "verification_verdicts": ["PASS", "FAIL", "INCONCLUSIVE", "INVALID"],
+    "lifecycle_states": ["queued", "running", "completed", "cancelled", "failed", "stale", "superseded"],
+    "retain_all_attempts": true,
+    "missing_is_pass": false,
+    "rendered_state_is_authority": false
+  },
+  "publication": {
+    "github_release": true,
+    "ghcr": true,
+    "pypi": false,
+    "draft_before_publish": true,
+    "complete_asset_set_before_publish": true,
+    "annotated_tag_required": true,
+    "immutable_release_required": true,
+    "irreversible_human_gate": "IS6-U06-IMMUTABLE-PUBLICATION",
+    "built_in_github_token_only": true,
+    "user_managed_secret_allowed": false,
+    "minimum_permissions": ["contents:write", "packages:write", "id-token:write", "attestations:write"],
+    "publish_before_all_gates": false
+  },
+  "download_verification": {
+    "credential_free": true,
+    "fresh_temporary_custody": true,
+    "verify_release_immutability": true,
+    "verify_every_asset_digest": true,
+    "verify_artifact_attestations": true,
+    "pull_images_by_digest": true,
+    "replay_all_real_surfaces": true,
+    "reconcile_github_release_and_ghcr": true,
+    "shipping_without_verification": false
+  },
+  "non_goals": [
+    "kubernetes",
+    "cloud-infrastructure",
+    "multi-tenancy",
+    "arbitrary-remote-execution",
+    "pypi-publication",
+    "paid-services",
+    "reusable-codex-skill"
+  ]
+}

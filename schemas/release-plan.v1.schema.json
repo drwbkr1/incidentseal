@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://incidentseal.dev/schemas/release-plan.v1.schema.json",
+  "title": "IncidentSeal v0.1.0 release plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "release", "workflow_verification", "package", "images",
+    "supply_chain", "release_assets", "real_surfaces", "evidence", "publication",
+    "download_verification", "non_goals"
+  ],
+  "properties": {
+    "schema_version": {"const": "incidentseal-release-plan/v1"},
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product","version","tag","base_checkpoint","source_repository","registry_repository","platforms","source_date_epoch","released"],
+      "properties": {
+        "product": {"const": "IncidentSeal"},
+        "version": {"const": "0.1.0"},
+        "tag": {"const": "v0.1.0"},
+        "base_checkpoint": {"const": "checkpoint-is-0005"},
+        "source_repository": {"const": "https://github.com/drwbkr1/incidentseal"},
+        "registry_repository": {"const": "ghcr.io/drwbkr1/incidentseal"},
+        "platforms": {"const": ["linux/amd64"]},
+        "source_date_epoch": {"const": 1786424840},
+        "released": {"const": false}
+      }
+    },
+    "workflow_verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_before_packaging","command","authority","agent_can_approve","repository_identity_required","runners","input_custody","output_custody","host_owns_docker","docker_socket","secrets","privileged","host_network","runtime_egress","broad_host_mounts","events","recovery","claim_rule"],
+      "properties": {
+        "required_before_packaging": {"const": true},
+        "command": {"const": "incidentseal verify --manifest PATH --json"},
+        "authority": {"const": "operator-approved-external-manifest-digest"},
+        "agent_can_approve": {"const": false},
+        "repository_identity_required": {"const": true},
+        "runners": {"const": ["python","node"]},
+        "input_custody": {"const": "manifest-declared-copy-only-read-only-staging"},
+        "output_custody": {"const": "per-run-content-addressed-evidence-only"},
+        "host_owns_docker": {"const": true},
+        "docker_socket": {"const": "denied"},
+        "secrets": {"const": "denied"},
+        "privileged": {"const": false},
+        "host_network": {"const": false},
+        "runtime_egress": {"const": "denied"},
+        "broad_host_mounts": {"const": "denied"},
+        "events": {"const": "append-only-internal-writer-read-only-agent-stream"},
+        "recovery": {"const": "idempotent-resume-under-approved-digest"},
+        "claim_rule": {"const": "all-required-steps-pass-under-current-approved-digest"}
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name","requires_python","runtime_dependencies","build_frontend","build_backend","entry_points","artifacts","build_repetitions","byte_reproducible","isolated_install_required","pypi_publish"],
+      "properties": {
+        "name": {"const": "incidentseal"},
+        "requires_python": {"const": ">=3.12"},
+        "runtime_dependencies": {"const": []},
+        "build_frontend": {"const": "build==1.5.0"},
+        "build_backend": {"const": "hatchling==1.32.0"},
+        "entry_points": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["incidentseal","incidentseal-dashboard"],
+          "properties": {
+            "incidentseal": {"const": "incidentseal.cli:main"},
+            "incidentseal-dashboard": {"const": "incidentseal.dashboard_surface:main"}
+          }
+        },
+        "artifacts": {"const": ["incidentseal-0.1.0-py3-none-any.whl","incidentseal-0.1.0.tar.gz"]},
+        "build_repetitions": {"const": 3},
+        "byte_reproducible": {"const": true},
+        "isolated_install_required": {"const": true},
+        "pypi_publish": {"const": false}
+      }
+    },
+    "images": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {"$ref": "#/$defs/databaseImage"},
+        {"$ref": "#/$defs/migrationImage"},
+        {"$ref": "#/$defs/pythonImage"},
+        {"$ref": "#/$defs/nodeImage"}
+      ],
+      "items": false
+    },
+    "supply_chain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_gate","base_image_lock","runtime_image_lock","redistribution_required_before_publish","unresolved_noassertion_allowed","third_party_notices_required","sbom_format","provenance_format","package_attestation_required","image_attestation_required","scanner","sbom_tool","critical_findings_allowed","high_findings_allowed","medium_low_retained","image_rebuilds","image_digest_reproducible","mutable_tags_are_authority","github_actions"],
+      "properties": {
+        "source_gate": {"const": "records/source-gates/2026-08-11-release-tooling.json"},
+        "base_image_lock": {"const": "requirements/images.lock.json"},
+        "runtime_image_lock": {"const": "requirements/topology-runtime.lock.json"},
+        "redistribution_required_before_publish": {"const": true},
+        "unresolved_noassertion_allowed": {"const": false},
+        "third_party_notices_required": {"const": true},
+        "sbom_format": {"const": "SPDX-2.3-json"},
+        "provenance_format": {"const": "SLSA-v1-in-toto"},
+        "package_attestation_required": {"const": true},
+        "image_attestation_required": {"const": true},
+        "scanner": {"const": "grype==0.117.0"},
+        "sbom_tool": {"const": "syft==1.51.0-and-buildkit"},
+        "critical_findings_allowed": {"const": 0},
+        "high_findings_allowed": {"const": 0},
+        "medium_low_retained": {"const": true},
+        "image_rebuilds": {"const": 2},
+        "image_digest_reproducible": {"const": true},
+        "mutable_tags_are_authority": {"const": false},
+        "github_actions": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "prefixItems": [
+            {"$ref":"#/$defs/actionCheckout"},
+            {"$ref":"#/$defs/actionUpload"},
+            {"$ref":"#/$defs/actionDownload"},
+            {"$ref":"#/$defs/actionProvenance"},
+            {"$ref":"#/$defs/actionSbom"},
+            {"$ref":"#/$defs/actionBuildx"},
+            {"$ref":"#/$defs/actionLogin"},
+            {"$ref":"#/$defs/actionBuildPush"}
+          ],
+          "items": false
+        }
+      }
+    },
+    "release_assets": {"const": ["incidentseal-0.1.0-py3-none-any.whl","incidentseal-0.1.0.tar.gz","incidentseal-0.1.0.spdx.json","incidentseal-0.1.0.provenance.json","incidentseal-v0.1.0-release-manifest.json","incidentseal-v0.1.0-scan-summary.json","incidentseal-v0.1.0-verification-receipt.json","THIRD_PARTY_NOTICES.md","SHA256SUMS"]},
+    "real_surfaces": {"const": ["packaged-cli","approved-manifest-workflow","compose-topology","postgresql","python-runner","node-runner","dashboard","portable-receipts","recovery","backup-clean-restore","clean-install","clean-clone","downloaded-release-and-registry"]},
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verification_verdicts","lifecycle_states","retain_all_attempts","missing_is_pass","rendered_state_is_authority"],
+      "properties": {
+        "verification_verdicts": {"const": ["PASS","FAIL","INCONCLUSIVE","INVALID"]},
+        "lifecycle_states": {"const": ["queued","running","completed","cancelled","failed","stale","superseded"]},
+        "retain_all_attempts": {"const": true},
+        "missing_is_pass": {"const": false},
+        "rendered_state_is_authority": {"const": false}
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["github_release","ghcr","pypi","draft_before_publish","complete_asset_set_before_publish","annotated_tag_required","immutable_release_required","irreversible_human_gate","built_in_github_token_only","user_managed_secret_allowed","minimum_permissions","publish_before_all_gates"],
+      "properties": {
+        "github_release": {"const": true},
+        "ghcr": {"const": true},
+        "pypi": {"const": false},
+        "draft_before_publish": {"const": true},
+        "complete_asset_set_before_publish": {"const": true},
+        "annotated_tag_required": {"const": true},
+        "immutable_release_required": {"const": true},
+        "irreversible_human_gate": {"const": "IS6-U06-IMMUTABLE-PUBLICATION"},
+        "built_in_github_token_only": {"const": true},
+        "user_managed_secret_allowed": {"const": false},
+        "minimum_permissions": {"const": ["contents:write","packages:write","id-token:write","attestations:write"]},
+        "publish_before_all_gates": {"const": false}
+      }
+    },
+    "download_verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["credential_free","fresh_temporary_custody","verify_release_immutability","verify_every_asset_digest","verify_artifact_attestations","pull_images_by_digest","replay_all_real_surfaces","reconcile_github_release_and_ghcr","shipping_without_verification"],
+      "properties": {
+        "credential_free": {"const": true},
+        "fresh_temporary_custody": {"const": true},
+        "verify_release_immutability": {"const": true},
+        "verify_every_asset_digest": {"const": true},
+        "verify_artifact_attestations": {"const": true},
+        "pull_images_by_digest": {"const": true},
+        "replay_all_real_surfaces": {"const": true},
+        "reconcile_github_release_and_ghcr": {"const": true},
+        "shipping_without_verification": {"const": false}
+      }
+    },
+    "non_goals": {"const": ["kubernetes","cloud-infrastructure","multi-tenancy","arbitrary-remote-execution","pypi-publication","paid-services","reusable-codex-skill"]}
+  },
+  "$defs": {
+    "imageBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role","version_tag","authority","runtime_user"],
+      "properties": {
+        "role": {"type":"string"},
+        "version_tag": {"type":"string"},
+        "authority": {"const":"exact-registry-digest"},
+        "runtime_user": {"type":"string"}
+      }
+    },
+    "databaseImage": {"allOf":[{"$ref":"#/$defs/imageBase"},{"properties":{"role":{"const":"database"},"version_tag":{"const":"database-v0.1.0"},"runtime_user":{"const":"70:70"}}}]},
+    "migrationImage": {"allOf":[{"$ref":"#/$defs/imageBase"},{"properties":{"role":{"const":"migration"},"version_tag":{"const":"migration-v0.1.0"},"runtime_user":{"const":"65532:65532"}}}]},
+    "pythonImage": {"allOf":[{"$ref":"#/$defs/imageBase"},{"properties":{"role":{"const":"python-runner"},"version_tag":{"const":"python-runner-v0.1.0"},"runtime_user":{"const":"65532:65532"}}}]},
+    "nodeImage": {"allOf":[{"$ref":"#/$defs/imageBase"},{"properties":{"role":{"const":"node-runner"},"version_tag":{"const":"node-runner-v0.1.0"},"runtime_user":{"const":"65532:65532"}}}]},
+    "actionBase": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["repository","commit"],
+      "properties":{"repository":{"type":"string"},"commit":{"type":"string","pattern":"^[0-9a-f]{40}$"}}
+    },
+    "actionCheckout":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"actions/checkout"},"commit":{"const":"3d3c42e5aac5ba805825da76410c181273ba90b1"}}}]},
+    "actionUpload":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"actions/upload-artifact"},"commit":{"const":"043fb46d1a93c77aae656e7c1c64a875d1fc6a0a"}}}]},
+    "actionDownload":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"actions/download-artifact"},"commit":{"const":"3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c"}}}]},
+    "actionProvenance":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"actions/attest-build-provenance"},"commit":{"const":"4d101475d8b20a2381f78447822ac1eab6504dd8"}}}]},
+    "actionSbom":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"actions/attest-sbom"},"commit":{"const":"c604332985a26aa8cf1bdc465b92731239ec6b9e"}}}]},
+    "actionBuildx":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"docker/setup-buildx-action"},"commit":{"const":"bb05f3f5519dd87d3ba754cc423b652a5edd6d2c"}}}]},
+    "actionLogin":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"docker/login-action"},"commit":{"const":"dbcb813823bdd20940b903addbd779551569679f"}}}]},
+    "actionBuildPush":{"allOf":[{"$ref":"#/$defs/actionBase"},{"properties":{"repository":{"const":"docker/build-push-action"},"commit":{"const":"53b7df96c91f9c12dcc8a07bcb9ccacbed38856a"}}}]}
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "contract_version": "source-gate/v1",
+  "assessment_id": "INCIDENTSEAL-SOURCE-GATE-RELEASE-001",
+  "assessed_at": "2026-08-11T05:20:00Z",
+  "authority": {
+    "mode": "inherited",
+    "authority_ref": "thread:019fe4df-b396-7f20-81db-4ae4087fee17#approval-2026-08-09",
+    "authorized_actions": ["retain public metadata", "later acquire exact hashes into temporary non-OneDrive custody", "later use only under the active bounded release unit"],
+    "expires_at_utc": null
+  },
+  "intended_use": {
+    "summary": "Bind exact build, SBOM, vulnerability, and GitHub publication dependencies before acquisition or use for IncidentSeal v0.1.0.",
+    "runtime_dependencies_added": false,
+    "artifact_acquired_by_this_gate": false,
+    "container_started_by_this_gate": false,
+    "publication_performed_by_this_gate": false
+  },
+  "python_build_wheels": [
+    {"name":"build","version":"1.5.0","filename":"build-1.5.0-py3-none-any.whl","sha256":"13f3eecb844759ab66efec90ca17639bbf14dc06cb2fdf37a9010322d9c50a6f","size":26018,"license":"MIT","source":"https://pypi.org/project/build/1.5.0/","url":"https://files.pythonhosted.org/packages/0d/fe/6bea5c9162869c5beba5d9c8abbed835ec85bf1ec1fba05a3822325c45f3/build-1.5.0-py3-none-any.whl"},
+    {"name":"hatchling","version":"1.32.0","filename":"hatchling-1.32.0-py3-none-any.whl","sha256":"0e17c9c3b9aa7c625acc8d0f5b622f107d5049af9ecf5ada4de1aada5be7cdbc","size":78435,"license":"MIT","source":"https://pypi.org/project/hatchling/1.32.0/","url":"https://files.pythonhosted.org/packages/a9/84/1798b6d85ecde0e31546004efd25c5de1b1f49250644a60cce460e12593a/hatchling-1.32.0-py3-none-any.whl"},
+    {"name":"packaging","version":"26.3","filename":"packaging-26.3-py3-none-any.whl","sha256":"d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c","size":129956,"license":"Apache-2.0 OR BSD-2-Clause","source":"https://pypi.org/project/packaging/26.3/","url":"https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl"},
+    {"name":"pathspec","version":"1.1.1","filename":"pathspec-1.1.1-py3-none-any.whl","sha256":"a00ce642f577bf7f473932318056212bc4f8bfdf53128c78bbd5af0b9b20b189","size":57328,"license":"MPL-2.0","source":"https://pypi.org/project/pathspec/1.1.1/","url":"https://files.pythonhosted.org/packages/f1/d9/7fb5aa316bc299258e68c73ba3bddbc499654a07f151cba08f6153988714/pathspec-1.1.1-py3-none-any.whl"},
+    {"name":"pluggy","version":"1.6.0","filename":"pluggy-1.6.0-py3-none-any.whl","sha256":"e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746","size":20538,"license":"MIT","source":"https://pypi.org/project/pluggy/1.6.0/","url":"https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl"},
+    {"name":"tomlkit","version":"0.15.1","filename":"tomlkit-0.15.1-py3-none-any.whl","sha256":"177a05aece5a8ca5266fd3c448abb47b8d352f09d477d3ca8332db4d89b24304","size":49449,"license":"MIT","source":"https://pypi.org/project/tomlkit/0.15.1/","url":"https://files.pythonhosted.org/packages/13/bc/8c13eb66537dce1d2bd3a57132902f38d0e7f5bb46fa9f4daed9fe9d76ee/tomlkit-0.15.1-py3-none-any.whl"},
+    {"name":"trove-classifiers","version":"2026.6.1.19","filename":"trove_classifiers-2026.6.1.19-py3-none-any.whl","sha256":"ab4c4ec93cc4a4e7815fa759906e05e6bb3f2fbd92ea0f897288c6a43efd15b3","size":14211,"license":"Apache-2.0","source":"https://pypi.org/project/trove-classifiers/2026.6.1.19/","url":"https://files.pythonhosted.org/packages/7c/a4/81502f486f01db95bc8320646a8a12511f5e556cb63d5e224d91816605c4/trove_classifiers-2026.6.1.19-py3-none-any.whl"},
+    {"name":"pyproject-hooks","version":"1.2.0","filename":"pyproject_hooks-1.2.0-py3-none-any.whl","sha256":"9e5c6bfa8dcc30091c74b0cf803c81fdd29d94f01992a7707bc97babb1141913","size":10216,"license":"MIT","source":"https://pypi.org/project/pyproject-hooks/1.2.0/","url":"https://files.pythonhosted.org/packages/bd/24/12818598c362d7f300f18e74db45963dbcb85150324092410c8b49405e42/pyproject_hooks-1.2.0-py3-none-any.whl"},
+    {"name":"colorama","version":"0.4.6","filename":"colorama-0.4.6-py2.py3-none-any.whl","sha256":"4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6","size":25335,"license":"BSD-3-Clause","source":"https://pypi.org/project/colorama/0.4.6/","url":"https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl"}
+  ],
+  "github_actions": [
+    {"repository":"actions/checkout","tag_observed":"v7.0.1","commit":"3d3c42e5aac5ba805825da76410c181273ba90b1","license":"MIT","published_at":"2026-07-20T15:10:05Z"},
+    {"repository":"actions/upload-artifact","tag_observed":"v7.0.1","commit":"043fb46d1a93c77aae656e7c1c64a875d1fc6a0a","license":"MIT","published_at":"2026-04-10T17:31:14Z"},
+    {"repository":"actions/download-artifact","tag_observed":"v8.0.1","commit":"3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c","license":"MIT","published_at":"2026-03-11T15:44:25Z"},
+    {"repository":"actions/attest-build-provenance","tag_observed":"v4.2.2","commit":"4d101475d8b20a2381f78447822ac1eab6504dd8","license":"MIT","published_at":"2026-08-06T19:59:04Z"},
+    {"repository":"actions/attest-sbom","tag_observed":"v4.1.0","commit":"c604332985a26aa8cf1bdc465b92731239ec6b9e","license":"MIT","published_at":"2026-03-18T19:03:45Z"},
+    {"repository":"docker/setup-buildx-action","tag_observed":"v4.2.0","commit":"bb05f3f5519dd87d3ba754cc423b652a5edd6d2c","license":"Apache-2.0","published_at":"2026-07-02T09:23:15Z"},
+    {"repository":"docker/login-action","tag_observed":"v4.6.0","commit":"dbcb813823bdd20940b903addbd779551569679f","license":"Apache-2.0","published_at":"2026-07-29T12:12:00Z"},
+    {"repository":"docker/build-push-action","tag_observed":"v7.3.0","commit":"53b7df96c91f9c12dcc8a07bcb9ccacbed38856a","license":"Apache-2.0","published_at":"2026-07-01T14:24:45Z"}
+  ],
+  "standalone_tools": [
+    {
+      "name":"syft","version":"1.51.0","repository":"anchore/syft","commit":"2293641e3bd628a01bb37639318d62c0ebe89b39","license":"Apache-2.0","published_at":"2026-08-10T14:55:18Z",
+      "assets":[
+        {"name":"syft_1.51.0_checksums.txt","sha256":"3d85f1d0e1266cae4346514124665f10b7cefd9cce815be13921d199917e5581","size":2690},
+        {"name":"syft_1.51.0_linux_amd64.tar.gz","sha256":"2a2e837a2c8d59ec9af5472ee22d3b04ee463c4e44476ecf993fd1e5ab6ebc7f","size":28743977},
+        {"name":"syft_1.51.0_windows_amd64.zip","sha256":"fc5ffaeffb993576ece9c791da5a688fb2c8969a1479bbfe58583672c64da336","size":29438342}
+      ]
+    },
+    {
+      "name":"grype","version":"0.117.0","repository":"anchore/grype","commit":"b5fa92bbcbef655497e3be840a2f718380e2cdd3","license":"Apache-2.0","published_at":"2026-08-10T16:54:43Z",
+      "assets":[
+        {"name":"grype_0.117.0_checksums.txt","sha256":"960a8acecdd2fa4b20520cb04d7e11ab40df58fc22769b513a25b8257d18dcfe","size":1468},
+        {"name":"grype_0.117.0_linux_amd64.tar.gz","sha256":"38525dab1e06f162ebaa02f94d82d1f807076b011a44180cf2777edf1a7b9c26","size":29955191},
+        {"name":"grype_0.117.0_windows_amd64.zip","sha256":"7728ee9c06792e62444bd651274e4dd1e30eec02eee1266bb6c9c9d237d0f0cb","size":30670547}
+      ]
+    }
+  ],
+  "bundled_docker_plugins": [
+    {"name":"buildx","version":"v0.33.0-desktop.1","vendor":"Docker Inc.","sha256":"207a02ac628636bead19218d5f8f52d2d2f4d6f772444bf1caa4142fbc9bcf9f","decision":"PASS_FOR_LOCAL_CANDIDATE_BUILDS_ONLY"},
+    {"name":"scout","version":"v1.20.4","vendor":"Docker Inc.","sha256":"ce738ac98a95c08664a661de8e38479d6c424a29946db5b5f53a23e67ae05e28","decision":"EXCLUDED_FROM_RELEASE_GATE","note":"The installed service-linked plugin is inventory evidence only; the release contract uses exact standalone Syft and Grype artifacts instead."}
+  ],
+  "criteria": [
+    {"id":"identity","status":"PASS","note":"Every selected wheel, action, and standalone tool is versioned and hash- or commit-bound."},
+    {"id":"authority","status":"PASS","note":"Metadata came from PyPI project APIs, GitHub repository and release APIs, Docker CLI plugin inventory, and official documentation."},
+    {"id":"access","status":"PASS","note":"Selected metadata and artifacts are public and require no paid service or user-managed secret; actual acquisition remains a later unit."},
+    {"id":"rights","status":"PASS","note":"Selected build and release dependencies use identified OSI-approved licenses. Their exact license files and notices must be retained during acquisition."},
+    {"id":"provenance","status":"PASS","note":"GitHub Actions are pinned to full commits; standalone release assets are bound to publisher-reported SHA-256 digests and source commits."},
+    {"id":"integrity","status":"PASS","note":"Nine wheels, eight Actions, and six standalone binary/checksum assets have exact immutable identities."},
+    {"id":"fitness","status":"PASS","note":"The set supports standard pyproject builds, SPDX SBOM generation, vulnerability scanning, BuildKit provenance, GitHub attestations, artifact transfer, and GHCR publication without adding a product runtime dependency."},
+    {"id":"privacy-security","status":"PASS","note":"No secret, credential, source archive, binary, package, or container was acquired or executed by this metadata-only gate."}
+  ],
+  "decision": {
+    "status": "PASS_CONDITIONAL",
+    "authorized_next_actions": ["exact hash-verified offline acquisition in a later active unit", "license-file retention", "isolated compatibility validation"],
+    "prohibited_actions": ["floating-version use", "unverified acquisition", "product-runtime dependency", "image or release publication", "use of Docker Scout as release evidence"],
+    "note": "This gate approves only the exact selected identities for later acquisition and validation. It does not prove compatibility, a build, a scan, an SBOM, provenance, redistribution, or release behavior."
+  }
+}

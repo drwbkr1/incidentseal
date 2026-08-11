@@ -1,0 +1,20 @@
+{
+  "schema_version": "incidentseal-retained-attempts/v1",
+  "evaluation_id": "IS-EVAL-0006-U01-RELEASE-CONTRACT-ATTEMPTS",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U01",
+  "observed_at_utc": "2026-08-11T15:08:15Z",
+  "attempts": [
+    {"id":"IS6-U01-ATTEMPT-001","execution_state":"failed","verification_verdict":"INCONCLUSIVE","scope":"resume aggregate inspection wrapper","reason":"The aggregate read-only wrapper timed out before it emitted a usable result. Its checks were rerun separately; no product or repository state changed."},
+    {"id":"IS6-U01-ATTEMPT-002","execution_state":"failed","verification_verdict":"INCONCLUSIVE","scope":"control-and-status inspection wrapper","reason":"A combined read-only wrapper timed out before producing a complete control result. A bounded Python replacement and the canonical probe passed separately."},
+    {"id":"IS6-U01-ATTEMPT-003","execution_state":"failed","verification_verdict":"INVALID","scope":"read-only release-script discovery","reason":"A Windows rg invocation treated scripts\\validate_* as a literal invalid path. A corrected file search located the validators; no product action occurred."},
+    {"id":"IS6-U01-ATTEMPT-004","execution_state":"failed","verification_verdict":"INVALID","scope":"read-only Docker plugin inventory","reason":"The first PowerShell wrapper omitted a closing brace and failed parsing before it queried the plugin inventory. The corrected read-only inventory passed."},
+    {"id":"IS6-U01-ATTEMPT-005","execution_state":"completed","verification_verdict":"INVALID","scope":"milestone control validation","reason":"The first controlled-milestone validation found stale status and decision vocabulary in the newly opened IS-0006 contract. The contract was corrected to the current closed vocabulary and then passed validation with IS6-U01 as the sole active unit."},
+    {"id":"IS6-U01-ATTEMPT-006","execution_state":"failed","verification_verdict":"INVALID","scope":"read-only text inspection","reason":"A Windows rg alternation was parsed as a path instead of a pattern. A separately quoted inspection returned the required records."},
+    {"id":"IS6-U01-ATTEMPT-007","execution_state":"failed","verification_verdict":"INVALID","scope":"read-only Python inspection wrapper","reason":"An inline PowerShell here-string was missing its terminator and did not execute. The corrected read-only inspection passed."},
+    {"id":"IS6-U01-ATTEMPT-008","execution_state":"failed","verification_verdict":"INVALID","scope":"focused unit-test wrapper","reason":"The first direct focused unittest invocation failed before test execution because the source package path was absent. Discovery reproduced the import defect; adding the same explicit source-path binding used by the repository corrected the harness."},
+    {"id":"IS6-U01-ATTEMPT-009","execution_state":"failed","verification_verdict":"INVALID","scope":"read-only launcher discovery","reason":"A lookup requested a nonexistent incidentseal.ps1 after successfully locating the valid minimal manifest. The corrected inventory identified incidentseal.cmd and the real policy-status command returned the expected MISSING boundary."},
+    {"id":"IS6-U01-ATTEMPT-010","execution_state":"failed","verification_verdict":"INVALID","scope":"read-only protected-volume inspection","reason":"The first boundary wrapper omitted the required Docker executable argument to the retained-volume lock loader and stopped with TypeError before inspecting custody. The corrected wrapper returned zero containers, zero networks, and the exact three protected volume identities."}
+  ],
+  "retention": "The corrected release contract candidate passes. These two INCONCLUSIVE and eight INVALID attempts remain distinct from product FAIL and PASS. None built or published an artifact, created approval, executed a workflow, or started product runtime."
+}

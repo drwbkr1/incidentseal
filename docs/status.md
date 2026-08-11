@@ -2,7 +2,7 @@
 
 - Current checkpoint: `IS-0006`
 - Latest verified checkpoint: `IS-0005`
-- State: active; `IS6-U01` is the sole eligible contract-only release unit; annotated `checkpoint-is-0005` remains the latest verified checkpoint
+- State: active; `IS6-U01` has a local runtime-free release-contract candidate and still requires credential-free public replay; annotated `checkpoint-is-0005` remains the latest verified checkpoint
 - Version: `0.0.0`
 - Canonical root: `C:\Projects\Active\incidentseal`
 - Expected public remote: `https://github.com/drwbkr1/incidentseal.git`
@@ -17,7 +17,11 @@
 
 The product name, promise, trust boundary, public repository owner, presentation direction, Apache-2.0 license, and long-running operating authority were approved on 2026-08-09. `checkpoint-is-0005` remains the latest verified public dashboard-and-evaluation checkpoint without changing that trust boundary.
 
-`IS-0006` opened from exact annotated marker object `aba5e64f...`, peeled commit `04230dcc...`, and clean public post-marker `main` commit `b4abd2c...`. GitHub has no release, packaging metadata and workflows are absent, release immutability is disabled, and the current token cannot inspect packages because it lacks `read:packages`; registry state is therefore `INCONCLUSIVE`, not absent. `IS6-U01` may freeze release, packaging, image-redistribution, supply-chain, and downloaded-verification contracts only. It may not build or publish an artifact.
+`IS-0006` opened from exact annotated marker object `aba5e64f...` and peeled commit `04230dcc...`; its opening records are at public `main` commit `5b3c391...`. GitHub has no release, packaging metadata and workflows are absent, release immutability is disabled, and the current token cannot inspect packages because it lacks `read:packages`; registry state is therefore `INCONCLUSIVE`, not absent.
+
+`IS6-U01` now has a local runtime-free release-contract candidate under lock `sha256:8b1254d9...` and plan digest `sha256:6c43b61a...`. It binds 15 exact contract files and 8 checkpoint inputs; 141 repository tests, 53 release mutations, dependency-free validation, and offline Draft 2020-12 validation from six retained exact source-gated wheels pass. The tooling gate records 9 build wheels, 8 exact GitHub Action commits, Syft, and Grype for later hash-verified acquisition; nothing was acquired into project custody. The plan freezes 2 package artifacts, 4 image roles, 9 release assets, 13 real surfaces, zero runtime dependencies, and one exact irreversible-publication human gate.
+
+The candidate makes the promised approved-manifest verifier a required checkpoint before packaging. That verifier and its internal append-only event writer remain unimplemented; policy is still `MISSING` / `INVALID` at exit `12`, no workflow ran, and no package, image, release, access, or repository setting changed. Zero IncidentSeal containers or networks exist and the exact three protected volume identities remain unchanged. Two U01 attempts remain `INCONCLUSIVE` and eight remain `INVALID`; they are not product failures. Exact credential-free public reproduction is the remaining U01 gate.
 
 The canonical repository is not in OneDrive. All OneDrive paths are forbidden for IncidentSeal work.
 
@@ -120,4 +124,4 @@ Annotated `checkpoint-is-0004` object `60b467a7970a6fb6b5e80dcdc4dd283ab80b0acf`
 
 ## Next eligible action
 
-Complete contract-only `IS6-U01`: freeze the exact `v0.1.0` artifact set, package and image identities, source-gated dependencies and actions, redistribution closure, SBOM/provenance/scan/reproducibility requirements, public release gates, downloaded verification, fail-closed mutations, and irreversible publication gate before building any artifact.
+Commit and push the exact runtime-free `IS6-U01` candidate, then reproduce its lock, 141 tests, 53 mutations, offline schema validation, source gate, missing-approval boundary, unchanged Docker custody, Git integrity, and bounded secret scan from a credential-free public clone. Only that public replay can close `EXIT-RELEASE-CONTRACT` and make `IS6-U02` eligible.
