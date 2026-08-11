@@ -1,0 +1,57 @@
+{
+  "schema_version": "incidentseal-public-release-contract-replay/v1",
+  "receipt_id": "IS-SURFACE-0006-U01-PUBLIC-RELEASE-CONTRACT",
+  "checkpoint_id": "IS-0006",
+  "unit_id": "IS6-U01",
+  "observed_at_utc": "2026-08-11T15:19:37Z",
+  "execution_state": "completed",
+  "verification_verdict": "PASS",
+  "claim_scope": "Credential-free public reproduction of the runtime-free v0.1.0 release contract; no approved workflow, package build, image build, registry publication, or GitHub Release is claimed.",
+  "public_custody": {
+    "repository": "https://github.com/drwbkr1/incidentseal.git",
+    "visibility": "PUBLIC",
+    "default_branch": "main",
+    "credential_helpers_disabled": true,
+    "terminal_prompts_disabled": true,
+    "commit": "f66409b3e17ed610aef29b38b8c40b4b18b5d805",
+    "tree": "1aae10e60529c11fd5c6b0d67b357fe71ffb55c9",
+    "remote_main_equal": true,
+    "worktree_clean": true,
+    "custody_class": "noncanonical local AppData temporary clone outside OneDrive and product runtime",
+    "custody_removed": false,
+    "retention_reason": "The cleanup command was denied before execution; the exact clone remains clean, noncanonical, and outside repository and runtime custody."
+  },
+  "identity": {
+    "release_contract_lock_digest": "sha256:8b1254d988a93a0b90444c4063cf64ba2cd33c6e1be214e5860182170c63d954",
+    "release_plan_digest": "sha256:6c43b61a700ecc896b4e0f1a2e7f912ac93b10199c83ba55ca021ea5adb8c9b3",
+    "release_tooling_source_gate_digest": "sha256:6194b1a3f106d2399eb0b3044417db07fdb94e90cb6e52ab4eb2fa0236ef31a0"
+  },
+  "checks": [
+    {"id":"credential-free-public-clone","status":"PASS","observed":{"commit":"f66409b3e17ed610aef29b38b8c40b4b18b5d805","tree":"1aae10e60529c11fd5c6b0d67b357fe71ffb55c9","remote_main_equal":true}},
+    {"id":"exact-release-lock","status":"PASS","observed":{"locked_files":15,"bindings":8,"lock_digest":"sha256:8b1254d988a93a0b90444c4063cf64ba2cd33c6e1be214e5860182170c63d954"}},
+    {"id":"release-plan","status":"PASS","observed":{"plan_digest":"sha256:6c43b61a700ecc896b4e0f1a2e7f912ac93b10199c83ba55ca021ea5adb8c9b3","release_version":"0.1.0","released":false}},
+    {"id":"fail-closed-release-mutations","status":"PASS","observed":{"passed":53,"total":53}},
+    {"id":"repository-tests","status":"PASS","observed":{"passed":141,"failed":0,"errors":0}},
+    {"id":"draft-2020-12-meta-validation","status":"PASS","observed":{"schemas":1,"fixtures":2,"exact_source_gated_wheels":6,"network_acquisition":false,"temporary_evaluator_custody_removed":true}},
+    {"id":"controlled-milestone","status":"PASS","observed":{"valid":true,"active_units":["IS6-U01"],"errors":[],"warnings":[]}},
+    {"id":"manifest-authority","status":"PASS","observed":{"approval_status":"MISSING","verification_verdict":"INVALID","process_exit_code":12,"invocation_id":"73cf4477-536a-4875-b313-765fc46adeb1","workflow_executed":false}},
+    {"id":"git-and-secret-integrity","status":"PASS","observed":{"git_fsck_strict":true,"high_confidence_secret_patterns":4,"matches":0,"worktree_clean":true}},
+    {"id":"docker-custody","status":"PASS","observed":{"containers":[],"networks":[],"protected_volumes":3,"protected_identities_unchanged":true,"product_runtime_started":false}},
+    {"id":"public-release-state","status":"PASS","observed":{"github_releases":[],"release_published":false,"image_published":false,"repository_setting_changed":false}},
+    {"id":"noncanonical-clone-boundary","status":"PASS","observed":{"outside_onedrive":true,"outside_canonical_repository":true,"outside_product_runtime":true,"clean":true,"cleanup_command_executed":false}}
+  ],
+  "retained_invalid_attempts": {
+    "path": "records/evaluations/IS-0006-U01-public-release-contract-invalid-attempts.json",
+    "count": 3
+  },
+  "non_claims": [
+    "The approved-workflow verifier and internal event writer remain unimplemented and unexecuted.",
+    "No artifact, image, SBOM, provenance statement, scan result, registry digest, or release asset exists.",
+    "Image redistribution and GitHub package inventory remain INCONCLUSIVE.",
+    "No v0.1.0, downloaded release, immutable release, or IS-0006 public checkpoint is claimed."
+  ],
+  "decision": {
+    "status": "pass",
+    "reason": "Exact credential-free public custody reproduced every runtime-free release-contract gate while manifest approval remained missing, Docker custody remained exact, GitHub remained unreleased, and no workflow or publication action occurred."
+  }
+}

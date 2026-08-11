@@ -74,7 +74,7 @@
     {"id":"ENTRY-UNRELEASED-STATE","status":"pass","evidence":["records/evaluations/IS-0006-milestone-opening.json"]}
   ],
   "exit_conditions": [
-    {"id":"EXIT-RELEASE-CONTRACT","status":"pending","evidence":["requirements/release-contract.lock.json","records/evaluations/IS-0006-U01-release-contract-candidate.json","records/evaluations/IS-0006-U01-release-contract-attempts.json"]},
+    {"id":"EXIT-RELEASE-CONTRACT","status":"pass","evidence":["requirements/release-contract.lock.json","records/evaluations/IS-0006-U01-release-contract-candidate.json","records/evaluations/IS-0006-U01-release-contract-attempts.json","records/evaluations/IS-0006-U01-release-contract.json","records/surface-receipts/IS-0006-U01-public-release-contract-replay.json","records/evaluations/IS-0006-U01-public-release-contract-invalid-attempts.json"]},
     {"id":"EXIT-APPROVED-WORKFLOW-VERIFICATION","status":"pending","evidence":[]},
     {"id":"EXIT-PACKAGED-CLI","status":"pending","evidence":[]},
     {"id":"EXIT-REDISTRIBUTION-AND-IMAGE-SUPPLY-CHAIN","status":"pending","evidence":[]},
@@ -90,13 +90,13 @@
       "depends_on":[],
       "action_class":"update_project_records",
       "human_gate":false,
-      "status":"in_progress",
+      "status":"complete",
       "inputs":["checkpoint-is-0005 records","Product and threat contracts","Current official release and supply-chain practices","Current GitHub, Docker, Compose, packaging, and tool state"],
       "outputs":["Release contract","Release artifact and surface matrix","Pinned dependency and action source gates","Redistribution decision plan","Fail-closed mutations and exact lock"],
-      "gates":{"exact_lock":"pass","release_plan":"pass","mutations":"53/53 pass","repository_tests":"141 pass","draft_2020_12":"pass","source_gate":"pass","credential_free_public_replay":"pending"},
-      "disposition":"continue",
-      "retained_failures":["IS-0006 opening keeps separate INVALID and INCONCLUSIVE discovery attempts in records/evaluations/IS-0006-milestone-opening-attempts.json.","U01 retains two INCONCLUSIVE and eight INVALID contract/evaluator attempts in records/evaluations/IS-0006-U01-release-contract-attempts.json; none is promoted to product FAIL or PASS."],
-      "exit_condition_delta":{"expected":["EXIT-RELEASE-CONTRACT"],"observed":[],"decision_value":"enables_dependency","rationale":"The exact runtime-free local contract candidate passes its lock, 141 tests, 53 mutations, offline full-schema validation, source gate, authority boundary, and Docker custody checks. Credential-free public reproduction is still required before this exit can pass."},
+      "gates":{"exact_lock":"pass","release_plan":"pass","mutations":"53/53 pass","repository_tests":"141 pass","draft_2020_12":"pass","source_gate":"pass","credential_free_public_replay":"pass"},
+      "disposition":"pass",
+      "retained_failures":["IS-0006 opening keeps separate INVALID and INCONCLUSIVE discovery attempts in records/evaluations/IS-0006-milestone-opening-attempts.json.","U01 retains two INCONCLUSIVE and eight INVALID contract/evaluator attempts in records/evaluations/IS-0006-U01-release-contract-attempts.json; none is promoted to product FAIL or PASS.","The public replay and closure retain three INVALID wrappers in records/evaluations/IS-0006-U01-public-release-contract-invalid-attempts.json: one incorrect full-commit assertion after a successful clone, one policy-denied cleanup command before execution, and one invalid closed-unit vocabulary value corrected by the control validator."],
+      "exit_condition_delta":{"expected":["EXIT-RELEASE-CONTRACT"],"observed":["EXIT-RELEASE-CONTRACT"],"decision_value":"advances_exit","rationale":"Exact credential-free public commit f66409b3 and tree 1aae10e6 reproduced the release lock, 141 tests, 53 mutations, offline full-schema validation, source gate, authority boundary, Git and secret integrity, clean custody, and exact Docker boundary without building or publishing an artifact."},
       "next_dependency":"IS6-U02"
     },
     {
@@ -105,11 +105,11 @@
       "depends_on":["IS6-U01"],
       "action_class":"reversible_remediation",
       "human_gate":false,
-      "status":"planned",
+      "status":"in_progress",
       "inputs":["Frozen release and workflow-verification contract","External operator approval boundary","Exact runner and runtime locks"],
       "outputs":["Stable incidentseal verify machine command","Digest-bound staged Python and Node execution","Append-only internal event evidence","Cancellation and resume receipts","Credential-free public replay"],
-      "gates":{},"disposition":"pending","retained_failures":[],
-      "exit_condition_delta":{"expected":["EXIT-APPROVED-WORKFLOW-VERIFICATION"],"observed":[],"decision_value":"unknown","rationale":"U01 must pass first."},
+      "gates":{},"disposition":"continue","retained_failures":[],
+      "exit_condition_delta":{"expected":["EXIT-APPROVED-WORKFLOW-VERIFICATION"],"observed":[],"decision_value":"enables_dependency","rationale":"U01 passes from exact public custody. U02 is now the sole active unit; no manifest is approved and no workflow execution has started."},
       "next_dependency":"IS6-U03"
     },
     {
@@ -191,11 +191,12 @@
       "Confirmed the checkout has no package metadata or GitHub workflows and that Buildx is present while dedicated signing, SBOM, and scanner CLIs are absent"
       ,"Froze a dependency-free v0.1.0 release plan with 15 exact contract files, 8 prior-checkpoint bindings, 9 release assets, 4 image roles, 13 real surfaces, 8 full-commit GitHub Action pins, 53 fail-closed mutations, and a required approved-workflow verification stage before packaging"
       ,"Validated the local runtime-free candidate with 141 tests and offline Draft 2020-12 evaluation from six retained exact source-gated wheels without building, running, or publishing an artifact"
+      ,"Reproduced the exact U01 contract from credential-free public commit f66409b3e17ed610aef29b38b8c40b4b18b5d805 and tree 1aae10e60529c11fd5c6b0d67b357fe71ffb55c9 with 141 tests, 53 mutations, offline full-schema validation, strict Git and secret integrity, missing approval, exact Docker custody, and no public release"
     ]
   },
   "handoff": {
-    "current_checkpoint":"IS-0006 active from independently verified checkpoint-is-0005 object aba5e64fec406a57255a37601ba46091a800fb30, peeling to closure commit 04230dcc233c6a5064da5c8e8e1a54be51c19503; opening records are at public main 5b3c391eb933fec7d76f0766540eb1ac04913d0e and the U01 release-contract candidate is local only",
-    "next_action":"Commit and push the exact U01 release-contract candidate, then reproduce its lock, tests, mutations, full-schema validation, authority boundary, Docker custody, Git integrity, and secret scan from credential-free public custody before closing EXIT-RELEASE-CONTRACT.",
+    "current_checkpoint":"IS-0006 active from independently verified checkpoint-is-0005; U01 passes from credential-free public commit f66409b3e17ed610aef29b38b8c40b4b18b5d805 and tree 1aae10e60529c11fd5c6b0d67b357fe71ffb55c9; U02 is the sole active unit",
+    "next_action":"Implement one bounded approved-workflow verification contract and machine surface under IS6-U02, preserving external digest approval, host-owned Docker, copy-only staging, internal append-only evidence writing, cancellation, idempotent resume, and missing-approval denial before any package build.",
     "do_not_carry_forward":[
       "Do not use OneDrive",
       "Do not alter or automate operator approval or execute repository workflow input",

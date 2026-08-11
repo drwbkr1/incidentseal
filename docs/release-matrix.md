@@ -12,7 +12,7 @@
 | Receipts | Portable custody and offline verification implemented and publicly replayed | Independent verification plus corruption and truncation rejection |
 | Recovery | Contract and fixed synthetic runtime matrix verified from exact public custody | Integration with backup/restore and later end-to-end approved-workflow verification |
 | Clean clone | Multiple bounded public paths verified; full product workflow pending | Fresh clone setup and end-to-end verification |
-| Supply chain | Runtime-free v0.1.0 contract locally locked; 9 build wheels, 8 Actions, Syft and Grype are source-gated for later exact acquisition | Public contract replay, redistribution decisions, lockfiles, SBOM, provenance, scan and reproducibility evidence |
+| Supply chain | Runtime-free v0.1.0 contract reproduced from exact public custody; 9 build wheels, 8 Actions, Syft and Grype are source-gated for later exact acquisition | Redistribution decisions, lockfiles, SBOM, provenance, scan and reproducibility evidence |
 | GitHub/GHCR release | Not created | Remote identity, commit/tag, exact digest, attestations and downloaded verification |
 
 No row may be represented as released or verified from source inspection alone.
